@@ -1,0 +1,18 @@
+[paket]
+tanim   = Ağ üzerinden dosya senkronizasyonu sağlayan uygulama
+paketci = milisarge
+grup 	= temel
+url     = http://samba.anu.edu.au/rsync
+
+[kaynak]
+gz     	= http://rsync.samba.org/ftp/$isim
+
+;[sha256]
+;1 		= 55cc554efec5fdaad70de921cd5a5eeb6c29a95524c715f3bbf849235b0800c0
+
+[derle]
+betik   = ./configure --prefix=/tools --host=$ONSISTEM_TARGET --disable-debug --with-included-popt=no --with-included-zlib=no --disable-xxhash --disable-zstd --disable-lz4
+betik   = make $MAKEJOBS
+     
+[pakur]
+tip     = gnu

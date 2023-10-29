@@ -1,0 +1,25 @@
+[paket]
+tanim   = Bölüm Düzenleyicisi uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://gparted.sourceforge.io
+
+[gerek]
+derleme = python intltool itstool glib gtkmm parted desktop-file-utils polkit
+calisma = dosfstools ntfs-3g btrfs-progs reiserfsprogs xfsprogs gpart udftools
+
+[kaynak]
+gz     = https://sourceforge.net/projects/$isim/files/$isim/$isim-$surum
+
+[sha256]
+1      = 3c95ea26a944083ff1d9b17639b1e2ad9758df225dc751ff407b2a6aa092a8de
+
+[derle]
+betik  = sed -i 's/Exec=/Exec=sudoui -c /g' gparted.desktop.in.in
+ekconf = --enable-libparted-dmraid --enable-online-resize
+tip    = gnu
+
+[pakur]
+tip    = gnu
+betik  = install -D -m0644 org.gnome.gparted.policy $PKG/usr/share/polkit-1/actions/org.gnome.gparted.policy
+;betik  = install -D -m0755 $SRC/gparted+.sh $PKG/usr/bin/gparted+.sh

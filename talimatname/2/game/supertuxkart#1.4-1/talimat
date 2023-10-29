@@ -1,0 +1,31 @@
+[paket]
+tanim   = Kart yarış oyunu
+paketci = milisarge
+grup    = oyun
+url     = https://supertuxkart.net
+arsiv   = SuperTuxKart-${surum}-src
+
+[gerek]
+derleme = ninja cmake libjpeg-turbo libpng bluez mesa xiph libxrandr openal sdl2 freetype harfbuzz desktop-file-utils
+calisma =
+
+[kaynak]
+1       = https://github.com/${isim}/stk-code/releases/download/${surum}/SuperTuxKart-${surum}-src.tar.xz
+2       = https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch!
+3       = https://github.com/Benau/stk-code/commit/8544f19b59208ae93fc3db0cf41bd386c6aefbcb.patch!
+4       = https://src.fedoraproject.org/rpms/supertuxkart/raw/rawhide/f/stk-gcc13.patch!
+
+[sha256]
+1       = 9890392419baf4715313f14d5ad60746f276eed36eb580636caf44e2532c0f03
+
+[derle]
+betik = patch -Np1 -i /sources/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
+betik = patch -Np1 -i /sources/8544f19b59208ae93fc3db0cf41bd386c6aefbcb.patch
+betik = patch -Np1 -i /sources/stk-gcc13.patch
+betik = cmake . -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_RECORDER=0
+betik = ninja -C build $MAKEJOBS
+
+[pakur]
+betik = DESTDIR=$PKG ninja -C build install
+betik = rm -r $PKG/usr/lib
+betik = rm -r $PKG/usr/include

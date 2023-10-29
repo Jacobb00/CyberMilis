@@ -1,0 +1,24 @@
+[paket]
+tanim   = USB cihazlarına erişim sağlayan kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = https://libusb.info
+
+[gerek]
+derleme = automake eudev
+calisma =
+
+[kaynak]
+bz2     = https://github.com/${isim}/${isim}/releases/download/v$surum
+dosya   = libusb-1.0.24-descriptor_parsing.patch
+
+[sha256]
+1 		= 12ce7a61fc9854d1d2a1ffe095f7b5fac19ddba095c259e6067a46500381b5a5
+
+[derle]
+betik   = autoreconf -vfi
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

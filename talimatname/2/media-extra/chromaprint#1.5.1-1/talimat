@@ -1,0 +1,27 @@
+[paket]
+tanim   = Herhangi bir ses kaynağından parmak izi çıkaran kitaplık
+paketci = milisarge
+grup    = kütüphane
+url     = https://acoustid.org/chromaprint
+
+[gerek]
+derleme = cmake ffmpeg
+calisma =
+
+[kaynak]
+gz      = https://github.com/acoustid/$isim/archive/v1.5.1
+2       = https://github.com/acoustid/chromaprint/commit/aa67c95b.patch!
+dosya   = 8ccad693.patch
+
+[sha256]
+1       = a1aad8fa3b8b18b78d3755b3767faff9abb67242e01b478ec9a64e190f335e1c
+
+[derle]
+betik   = patch -p1 < $SRC/8ccad693.patch
+betik   = patch -p1 < /sources/aa67c95b.patch # Port to ffmpeg 5
+betik   = sed -e '/CMAKE_CXX_STANDARD/d' -i CMakeLists.txt # Don't enforce c++11
+betik   = cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='None' -DBUILD_TESTS=OFF -DBUILD_TOOLS=ON -Wno-dev -B build
+betik   = cmake --build build
+
+[pakur]
+tip     = cmake

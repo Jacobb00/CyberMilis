@@ -1,0 +1,19 @@
+[paket]
+tanim   = Dosya tiplerini gösteren uygulama
+paketci = milisarge
+grup 	= onsistem
+url     = ftp://ftp.fu-berlin.de/unix/tools/file
+
+[kaynak]
+gz      = ftp://ftp.astron.com/pub/file
+
+;[sha256]
+;1 		= f05d286a76d9556243d0cb05814929c2ecf3a5ba07963f8f70bfaaa70517fad1
+
+[derle]
+betik 	= ./configure --prefix=/tools --host=$ONSISTEM_TARGET
+betik 	= make $MAKEJOBS
+	      
+[pakur]
+tip     = gnu
+betik   = rm -fv $PKG/tools/lib/libmagic.la

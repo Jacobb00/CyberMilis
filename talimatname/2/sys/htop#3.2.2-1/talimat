@@ -1,0 +1,23 @@
+[paket]
+tanim   = Gerçek zamanlı sistem işlem izleyicisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/htop-dev/htop
+
+[gerek]
+derleme = automake ncurses libnl
+calisma =
+
+[kaynak]
+gz	    = $url/archive/${surum}
+
+[sha256]
+1       = 3829c742a835a0426db41bb039d1b976420c21ec65e93b35cd9bfd2d57f44ac8 
+[derle]
+betik   = autoreconf -fi
+ekconf  = --enable-cgroup --enable-delayacct --enable-openvz --enable-unicode --enable-vserver
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/usr/share/{applications,pixmaps,icons}

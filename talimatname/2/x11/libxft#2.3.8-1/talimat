@@ -1,0 +1,23 @@
+[paket]
+tanim   = X için FreeType tabanlı yazı tipi çizim kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xorg.freedesktop.org
+arsiv   = libXft-$surum
+
+[gerek]
+derleme = xorg-util-macros libxrender fontconfig
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXft-$surum.tar.xz
+
+[sha256]
+1 		= 5e8c3c4bc2d4c0a40aef6b4b38ed2fb74301640da29f6528154b5009b1c6dd49
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

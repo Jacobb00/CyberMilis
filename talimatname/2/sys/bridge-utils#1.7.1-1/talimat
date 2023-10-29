@@ -1,0 +1,22 @@
+[paket]
+tanim   = Linux için Layer2 ethernet köprülemesi
+paketci = milisarge
+grup    = ağ
+url     = http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+xz      = ${KERNEL_SITE}/utils/net/$isim
+
+[sha256]
+1       = a61d8be4f1a1405c60c8ef38d544f0c18c05b33b9b07e5b4b31033536165e60e
+
+[derle]
+betik   = aclocal ;autoconf
+tip     = gnu
+
+[pakur]
+tip     = gnu

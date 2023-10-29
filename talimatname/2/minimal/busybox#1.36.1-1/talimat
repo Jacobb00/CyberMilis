@@ -1,0 +1,23 @@
+[paket]
+tanim   = Kurtarma ve gömülü sistemler için yardımcı programlar
+paketci = milisarge
+grup 	= sistem
+url     = http://busybox.net
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+bz2     = $url/downloads
+dosya   = $isim-$surum-$devir.config
+
+;[sha256]
+;1	= 9d57c4bd33974140fd4111260468af22856f12f5b5ef7c70c8d9b75c712a0dee
+
+[derle]
+betik   = cp $SRC/$isim-$surum-$devir.config .config
+betik   = export KCONFIG_NOTIMESTAMP=1 && make
+	      
+[pakur]
+betik   = install -m 0755 -D busybox $PKG/usr/bin/busybox

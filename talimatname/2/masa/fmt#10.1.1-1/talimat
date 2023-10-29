@@ -1,0 +1,22 @@
+[paket]
+tanim   = Modern biçimlendirme kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/fmtlib/fmt
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+1       = $url/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 5dea48d1fcddc3ec571ce2058e13910a0d4a6bab4cc09a809d8b1dd1c88ae6f2
+
+[derle]
+ekconf  = -DBUILD_SHARED_LIBS=ON -DFMT_DOC=OFF -DFMT_TEST=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake

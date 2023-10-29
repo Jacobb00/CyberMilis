@@ -1,0 +1,12 @@
+::sysinit:/etc/init/servis.lua start all
+tty1::respawn:/usr/bin/getty 9600 tty1
+tty2::respawn:/usr/bin/getty 9600 tty2
+tty3::respawn:/usr/bin/getty 9600 tty3
+tty4::respawn:/usr/bin/getty 9600 tty4
+tty5::respawn:/usr/bin/getty 9600 tty5
+tty6::respawn:/usr/bin/getty 9600 tty6
+
+::restart:/usr/bin/init
+
+::ctrlaltdel:/usr/bin/reboot
+::shutdown:/etc/init/servis.lua stop all

@@ -1,0 +1,9 @@
+libavutil.so.58
+libgcc_s.so.1
+libchromaprint.so.1
+libavformat.so.60
+libavcodec.so.60
+libm.so.6
+libswresample.so.4
+libstdc++.so.6
+libc.so.6

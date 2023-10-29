@@ -1,0 +1,22 @@
+[paket]
+tanim   = C kodları için test kütüphanesi
+paketci = milisarge  
+grup    = sistem  
+url     = https://cmocka.org/
+
+[gerek]
+derleme  = cmake
+calisma  =  
+
+[kaynak]
+xz       = https://cmocka.org/files/1.1
+
+[sha256]
+1        = 810570eb0b8d64804331f82b29ff47c790ce9cd6b163e98d47a4807047ecad82
+
+[derle]
+ekconf   = -DUNIT_TESTING=OFF
+tip      = cmake
+
+[pakur]
+tip      = cmake

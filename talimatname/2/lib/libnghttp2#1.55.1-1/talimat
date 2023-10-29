@@ -1,0 +1,20 @@
+[paket]
+tanim    = HTTP2 için çerçeveleme katmanı, yeniden kullanılabilir bir C kütüphanesi olarak uygulanır
+paketci  = milisarge 
+grup     = kütüphane  
+url      = https://nghttp2.org/
+arsiv    = nghttp2-$surum
+
+[kaynak]
+1      = https://github.com/nghttp2/nghttp2/releases/download/v$surum/nghttp2-${surum}.tar.xz
+
+[sha256]
+1      = 19490b7c8c2ded1cf7c3e3a54ef4304e3a7876ae2d950d60a81d0dc6053be419
+
+[derle]
+ekconf = --disable-examples --disable-python-bindings --enable-lib-only
+tip    = gnu
+
+[pakur]
+tip    = gnu
+betik  = rm -rf $PKG/usr/bin

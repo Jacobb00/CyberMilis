@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 yetkilendirme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXau-$surum
+
+[gerek]
+derleme = xorgproto
+calisma = xorgproto
+
+[kaynak]
+1      = $url/releases/individual/lib/libXau-$surum.tar.xz
+
+[sha256]
+1 		= f3fa3282f5570c3f6bd620244438dbfbdd580fc80f02f549587a0f8ab329bbeb
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

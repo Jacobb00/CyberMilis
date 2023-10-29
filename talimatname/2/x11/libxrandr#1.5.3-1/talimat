@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 RandR eklenti kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXrandr-$surum
+
+[gerek]
+derleme = libxext libxrender xorgproto xorg-util-macros
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXrandr-$surum.tar.xz
+
+[sha256]
+1 		= 897639014a78e1497704d669c5dd5682d721931a4452c89a7ba62676064eb428
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

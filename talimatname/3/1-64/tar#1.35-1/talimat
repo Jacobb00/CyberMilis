@@ -1,0 +1,18 @@
+[paket]
+tanim   = Gnu Arşivleme uygulaması
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/tar/tar.html
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/tar
+
+;[sha256]
+;1 		= 63bebd26879c5e1eea4352f0d03c991f966aeb3ddeb3c7445c902568d5411d28
+
+[derle]
+betik   = FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --libexecdir=/usr/lib/tar
+betik   = make
+
+[pakur]
+tip     = gnu

@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Xdamage kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXdamage-$surum
+
+[gerek]
+derleme = libxfixes xorgproto
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXdamage-$surum.tar.xz
+
+[sha256]
+1 		= 52733c1f5262fca35f64e7d5060c6fcd81a880ba8e1e65c9621cf0727afb5d11
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu 
+	      
+[pakur]
+tip 	= gnu

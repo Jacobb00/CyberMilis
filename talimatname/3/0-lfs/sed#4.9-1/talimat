@@ -1,0 +1,17 @@
+[paket]
+tanim   = Metin dosyaları değiştirme, verileriyle oynama aracı
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/sed//sed.html
+
+[kaynak]
+xz      = https://ftp.gnu.org/gnu/sed
+
+;[sha256]
+;1 		= 2885768cd0a29ff8d58a6280a270ff161f6a3deb5690b2be6c49f46d4c67bd6a
+
+[derle]
+betik   = ./configure --prefix=/tools --host=$ONSISTEM_TARGET; make $MAKEJOBS
+
+[pakur]
+tip     = gnu

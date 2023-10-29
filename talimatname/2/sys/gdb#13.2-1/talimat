@@ -1,0 +1,29 @@
+[paket]
+tanim   = GNU Debugger
+paketci = milisarge
+grup    = sistem   
+url     = https://www.gnu.org/software/gdb/
+
+[gerek]
+derleme = perl python ncurses zlib readline expat
+calisma =
+
+[kaynak]
+xz      = ${GNU_SITE}/${isim}
+
+[sha256]
+1       = fd5bebb7be1833abdb6e023c2f498a354498281df9d05523d8915babeb893f0a
+
+[derle]
+; doc-man textinfo gereğinden kurtulmak için
+betik   = ln -s /usr/bin/echo /usr/bin/makeinfo
+betik   = sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" libiberty/configure
+betik   = mkdir build;cd build
+betik   = ../configure --prefix=/usr --disable-nls --disable-source-highlight --enable-tui --with-system-readline --with-python=/usr/bin/python3 --without-guile --with-system-gdbinit=/etc/gdb/gdbinit
+betik   = make $MAKEJOBS
+
+[pakur]
+betik   = cd build
+betik   = make -C gdb DESTDIR=$PKG install
+betik   = install -dm755 $PKG/etc/gdb
+betik   = touch $PKG/etc/gdb/gdbinit

@@ -1,0 +1,7 @@
+libcrypt.so.2
+libpcre2-8.so.0
+libssl.so.3
+libcrypto.so.3
+libz.so.1
+libGeoIP.so.1
+libc.so.6

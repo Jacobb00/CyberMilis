@@ -1,0 +1,22 @@
+[paket]
+tanim   = Python3 için genel ayrıştırma modülü
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/pyparsing/pyparsing
+arsiv   = pyparsing-$surum
+
+[gerek]
+derleme = python
+calisma =
+
+[kaynak]
+1       = https://files.pythonhosted.org/packages/37/fe/65c989f70bd630b589adfbbcd6ed238af22319e90f059946c26b4835e44b/pyparsing-$surum.tar.gz
+
+[sha256]
+1       = ede28a1a32462f5a9705e07aea48001a08f7cf81a021585011deba701581a0db
+
+[derle]
+betik   = echo ""
+
+[pakur]
+betik   = pip3 install --isolate --root=$PKG --ignore-installed --no-deps .

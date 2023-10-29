@@ -1,0 +1,23 @@
+[paket]
+tanim   = DejaVu fontları, bitstream vera tabanlı ISO-8859-2 karakter destekli
+paketci = milisarge
+grup 	= kütüphane
+url     = https://dejavu-fonts.github.io
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+bz2     = https://downloads.sourceforge.net/project/dejavu/dejavu/${surum}
+dosya   = remove-generic-name-assignment-and-aliasing.patch
+
+[sha256]
+1 		= fa9ca4d13871dd122f61258a80d01751d603b4d3ee14095d65453b4e846e17d7
+2       = 21d85a4f6ea7856074a4eb5c5fce6a10e764d11ff4336e92c4f009815efebb0c
+
+[derle]
+yama    = remove-generic-name-assignment-and-aliasing.patch
+
+[pakur]
+dosya   = pakur.sh

@@ -1,0 +1,22 @@
+[paket]
+tanim   = C ve C++ için çöp toplayıcı
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.hboehm.info/gc
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+gz      = https://github.com/ivmai/bdwgc/releases/download/v${surum}
+
+;[sha256]
+;1       = 436a0ddc67b1ac0b0405b61a9675bca9e075c8156f4debd1d06f3a56c7cd289d
+
+[derle]
+betik   = ./configure --prefix=/usr --enable-cplusplus --disable-static
+betik   = make $MAKEJOBS
+
+[pakur]
+tip     = gnu

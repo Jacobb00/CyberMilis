@@ -1,0 +1,17 @@
+[paket]
+tanim   = Karmaşık sayılar ve yüksek derece kesinlik matematik kütüphaneleri
+paketci = milisarge
+grup 	= temel
+url     = http://www.multiprecision.org
+
+[kaynak]
+gz      = https://ftp.gnu.org/gnu/$isim
+
+;[sha256]
+;1 		= 17503d2c395dfcf106b622dc142683c1199431d095367c6aacba6eec30340459
+
+[derle]
+tip		= gnu
+	      
+[pakur]
+tip		= gnu

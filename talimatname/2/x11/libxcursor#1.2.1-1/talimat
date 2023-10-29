@@ -1,0 +1,23 @@
+[paket]
+tanim   = X imleç yönetimi kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xorg.freedesktop.org
+arsiv   = libXcursor-$surum
+
+[gerek]
+derleme = xorg-util-macros libxrender libxfixes
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXcursor-$surum.tar.xz
+
+[sha256]
+1 		= 46c143731610bafd2070159a844571b287ac26192537d047a39df06155492104
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu 
+	      
+[pakur]
+tip 	= gnu

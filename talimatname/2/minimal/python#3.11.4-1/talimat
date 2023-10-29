@@ -1,0 +1,23 @@
+[paket]
+tanim   = Python programlama dili
+paketci = milisarge
+grup 	= geliştirme
+url     = http://www.python.org
+arsiv   = Python-$surum
+
+[gerek]
+derleme = sqlite
+calisma = 
+
+[kaynak]
+1       = https://www.python.org/ftp/python/$surum/Python-$surum.tar.xz
+
+;[sha256]
+;1	= 3c2034c54f811448f516668dce09d24008a0716c3a794dd8639b5388cbde247d
+
+[derle]
+dosya   = derle.sh
+  
+[pakur]
+tip     = gnu
+betik   = ln -s /usr/bin/python3 $PKG/usr/bin/python

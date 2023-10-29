@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 istemci tarafı kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = python xorg-util-macros xorgproto libxau libxdmcp xcb-proto 
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 		= cc38744f817cf6814c847e2df37fcb8997357d72fa4bcbc228ae0fe47219a059
+
+[derle]
+betik   = ./configure --prefix=/usr --enable-xinput --enable-xkb --disable-static
+betik   = make
+	      
+[pakur]
+tip 	= gnu

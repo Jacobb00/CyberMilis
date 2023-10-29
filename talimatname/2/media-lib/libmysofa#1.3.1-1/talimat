@@ -1,0 +1,23 @@
+[paket]
+tanim   = Daha iyi HRTF'ler elde etmek için AES SOFA dosyaları için okuyucu
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/hoene/libmysofa
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+1       = https://github.com/hoene/libmysofa/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = a8a8cbf7b0b2508a6932278799b9bf5c63d833d9e7d651aea4622f3bc6b992aa
+
+[derle]
+ekconf  = -DBUILD_TESTS=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake
+

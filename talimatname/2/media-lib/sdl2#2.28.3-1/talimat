@@ -1,0 +1,24 @@
+[paket]
+tanim   = Simple DirectMedia Layer sürüm2 kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.libsdl.org
+arsiv   = SDL2-${surum}
+
+[gerek]
+derleme = cmake alsa-lib mesa libxrandr libxinerama wayland libxkbcommon wayland-protocols
+calisma =
+
+[kaynak]
+1       = $url/release/SDL2-$surum.tar.gz
+
+[sha256]
+1       = 7acb8679652701a2504d734e2ba7543ec1a83e310498ddd22fd44bf965eb5518
+
+[derle]
+ekconf  = -DSDL_STATIC=OFF
+tip     = cmake
+
+[pakur]
+betik  = cd build
+tip    = gnu

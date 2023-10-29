@@ -1,0 +1,23 @@
+[paket]
+tanim   = XML ayrıştırma kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.xmlsoft.org/
+
+[gerek]
+derleme = automake icu python
+calisma =
+
+[kaynak]
+xz      = https://download.gnome.org/sources/libxml2/${surum:0:4}
+
+[sha256]
+1       = 737e1d7f8ab3f139729ca13a2494fd17bf30ddb4b7a427cf336252cab57f57f7
+
+[derle]
+betik   = NOCONFIGURE=1 ./autogen.sh
+ekconf  = --disable-static --with-threads --with-history --with-python=/usr/bin/python3 --with-icu
+tip     = gnu
+
+[pakur]
+tip     = gnu

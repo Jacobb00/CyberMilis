@@ -1,0 +1,9 @@
+libc.so.6
+libm.so.6
+libncursesw.so.6
+libasound.so.2
+libsamplerate.so.0
+libformw.so.6
+libmenuw.so.6
+libpanelw.so.6
+libatopology.so.2

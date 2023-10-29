@@ -1,0 +1,40 @@
+
+[paket]
+tanim   = Adwaita simge ve tema paketi
+paketci = milisarge
+grup    = tema
+url     = https://gitlab.gnome.org/GNOME/gnome-themes-extra
+
+[gerek]
+derleme = meson automake intltool gtk3 librsvg
+calisma = fontconfig
+
+[kaynak]
+1       = https://gitlab.gnome.org/GNOME/gnome-themes-extra/-/archive/master/gnome-themes-extra-7cdb6c77.tar.bz2
+2       = https://download.gnome.org/sources/cantarell-fonts/0.303/cantarell-fonts-0.303.1.tar.xz
+3       = https://gitlab.gnome.org/GNOME/adwaita-icon-theme/-/archive/44.0/adwaita-icon-theme-44.0.tar.bz2
+
+;[sha256]
+;1       = 74f9722f025ae6c6290b1d67e1887328214935c92b1a01ff86ed3a08c9671bfe
+
+[derle]
+betik   = cd $SRC
+betik   = milis-meson cantarell-fonts-0.303.1 build-c -D useprebuilt=true
+betik   = meson compile -C build-c
+betik   = cd gnome-themes-extra-master-7cdb6c77*
+betik   = autoreconf -fvi
+ekconf  = --disable-gtk2-engine --disable-nls
+tip     = gnu
+betik   = cd $SRC/adwaita-icon-theme-44.0
+betik   = autoreconf -fvi
+tip     = gnu
+
+[pakur]
+betik   = cd $SRC
+betik   = meson install -C build-c --destdir "$PKG"
+betik   = cd gnome-themes-extra-master-7cdb6c77*
+tip     = gnu
+betik   = cd $SRC/adwaita-icon-theme-44.0
+betik   = gdk-pixbuf-register
+betik   = update-mime-database /usr/share/mime
+tip     = gnu

@@ -1,0 +1,20 @@
+[paket]
+tanim   = Linux kernel modül yönetim aracı
+paketci = milisarge
+grup 	= temel
+url     = http://www.kernel.org/pub/linux/kernel/people/rusty/modules
+
+[kaynak]
+xz      = http://www.kernel.org/pub/linux/utils/kernel/$isim
+dosya	= depmod-search.conf
+
+;[sha256]
+;1 		= 3969fc0f13daa98084256337081c442f8749310089e48aa695c9b4dfe1b3a26c
+
+[derle]
+betik 	= ./configure ${CONF_OPT} --with-xz --with-zlib --with-zstd --with-openssl
+betik 	= make
+	      
+[pakur]
+tip 	= gnu
+dosya   = pakur.sh

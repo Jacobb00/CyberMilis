@@ -1,0 +1,21 @@
+[paket]
+tanim   = Fraunhofer FDK AAC kodek kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.iis.fraunhofer.de/en/ff/amm/impl/fdkaaccodec.html
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+gz      = https://downloads.sourceforge.net/project/opencore-amr/$isim
+
+[sha256]
+1       = c9e8630cf9d433f3cead74906a1520d2223f89bcd3fa9254861017440b8eb22f
+
+[derle]
+tip     = cmake
+
+[pakur]
+tip     = cmake

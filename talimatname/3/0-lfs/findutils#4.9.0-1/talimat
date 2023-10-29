@@ -1,0 +1,18 @@
+[paket]
+tanim   = Dosyaları bulma/konumlandırma uygulaması
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/findutils/
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/findutils
+
+;[sha256]
+;1 		= 57127b7e97d91282c6ace556378d5455a9509898297e46e10443016ea1387164
+
+[derle]
+betik   = ./configure --prefix=/tools --build=$(build-aux/config.guess) --host=$ONSISTEM_TARGET
+betik   = make $MAKEJOBS
+	      
+[pakur]
+tip     = gnu

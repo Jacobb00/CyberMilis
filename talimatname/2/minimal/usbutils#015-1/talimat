@@ -1,0 +1,27 @@
+[paket]
+tanim 	= USB Cihazları yardımcı aracı
+paketci = milisarge
+grup 	= sistem
+url 	= http://linux-usb.sourceforge.net/
+
+[gerek]
+derleme = libusb automake autoconf
+calisma = hwids
+
+[kaynak]
+xz    	= https://www.kernel.org/pub/linux/utils/usb/$isim
+
+[sha256]
+1       = c3b451bb1f4ff9f6356cac5a6956a9ac8e85d81651af56a29e689f94fa6fda6e
+
+[derle]
+betik   = autoreconf -vfi
+ekconf  = --datadir=/usr/share/hwdata
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/usr/{share/hwdata,sbin}
+betik   = rm -f ${PKG}/usr/bin/lsusb.py
+betik   = rm -f ${PKG}/usr/bin/update-usbids.sh
+

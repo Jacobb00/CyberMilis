@@ -1,0 +1,24 @@
+[paket]
+tanim   = Kullanıcı düzeyinde paket yakalama aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://www.tcpdump.org
+
+[gerek]
+derleme = automake libnl libusb dbus bluez
+calisma = 
+
+[kaynak]
+gz      = https://www.tcpdump.org/release
+
+;[sha256]
+;1 		= 8d12b42623eeefee872f123bd0dc85d535b00df4d42e865f993c40f7bfc92b1e
+
+[derle]
+betik   = autoreconf -fiv
+ekconf  = --enable-ipv6 --enable-bluetooth --with-libnl --enable-usb
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -f $PKG/usr/lib/libpcap.a

@@ -1,0 +1,19 @@
+[paket]
+tanim   = Lz4 hızlı veri sıkıştırma uygulaması
+paketci = milisarge
+grup 	= temel
+url     = https://github.com/Cyan4973/lz4
+
+[kaynak]
+github  = lz4/lz4
+
+;[sha256]
+;1 		= 030644df4611007ff7dc962d981f390361e6c97a34e5cbc393ddfbe019ffe2c1
+
+[derle]
+betik 	= make -C lib PREFIX=/usr
+betik 	= make -C programs PREFIX=/usr lz4 lz4c
+	      
+[pakur]
+betik 	= make install PREFIX=/usr DESTDIR="$PKG"
+betik 	= rm -f $PKG/usr/lib/*.a

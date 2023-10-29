@@ -1,0 +1,23 @@
+[paket]
+tanim   = NFS paylaşımlarına erişmek için istemci kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/sahlberg/libnfs
+arsiv   = $isim-$isim-$surum
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+1       = https://github.com/sahlberg/libnfs/archive/${isim}-${surum}.tar.gz
+
+;[sha256]
+;1       = 6ee77e9fe220e2d3e3b1f53cfea04fb319828cc7dbb97dd9df09e46e901d797d
+
+[derle]
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

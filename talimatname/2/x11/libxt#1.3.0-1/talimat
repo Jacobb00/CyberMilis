@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 araç kiti iç kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXt-$surum
+
+[gerek]
+derleme = libsm libx11 xorg-util-macros
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXt-$surum.tar.xz
+
+[sha256]
+1 		= 52820b3cdb827d08dc90bdfd1b0022a3ad8919b57a39808b12591973b331bf91
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

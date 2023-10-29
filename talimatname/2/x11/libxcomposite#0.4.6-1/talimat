@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Composite ek kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXcomposite-$surum
+
+[gerek]
+derleme = xorg-util-macros libxfixes xorgproto
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXcomposite-$surum.tar.xz
+
+[sha256]
+1 		= fe40bcf0ae1a09070eba24088a5eb9810efe57453779ec1e20a55080c6dc2c87
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

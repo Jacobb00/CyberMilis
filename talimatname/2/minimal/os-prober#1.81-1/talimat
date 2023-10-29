@@ -1,0 +1,18 @@
+[paket]
+tanim 	= Farklı sürücülerdeki işletim sistemlerini tespit etme aracı
+paketci	= milisarge
+grup 	= sistem
+url 	= https://joeyh.name/code/os-prober
+
+[kaynak]
+1    	= http://http.debian.net/debian/pool/main/o/${isim}/${isim}_${surum}.tar.xz
+
+[sha256]
+1	    = 2fd928ec86538227711e2adf49cfd6a1ef74f6bb3555c5dad4e0425ccd978883
+
+[derle]
+betik   = sed -i -e "s:/lib/ld\*\.so\*:/lib*/ld*.so*:g" os-probes/mounted/common/90linux-distro
+betik   = rm -f Makefile && make newns
+
+[pakur]
+dosya   = pakur.sh

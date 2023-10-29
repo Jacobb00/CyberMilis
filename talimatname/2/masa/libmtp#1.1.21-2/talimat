@@ -1,0 +1,25 @@
+[paket]
+tanim   = Media Transfer Protokü kütüphanesi
+paketci = milisarge  
+grup    = kütüphane  
+url     = http://libmtp.sourceforge.net
+
+[gerek]
+derleme = libusb 
+calisma =  
+
+[kaynak]
+gz     = https://downloads.sourceforge.net/$isim
+;2      = https://mls.akdeniz.edu.tr/git/milislinux/dosyalar/raw/branch/master/libmtp-rules.tar.gz
+
+[sha256]
+1      = c4ffa5ab8c8f48c91b0047f2e253c101c418d5696a5ed65c839922a4280872a7
+;2      = 5e57545ef9f86943be0e37231677124135243d901aef649362272332e26f7ed4
+
+[derle]
+ekconf = --with-udev=/usr/lib/udev
+tip    = gnu
+
+[pakur]
+tip    = gnu
+;betik  = cp -f $SRC/69-libmtp.rules $PKG/usr/lib/udev/rules.d/69-libmtp.rules

@@ -1,0 +1,13 @@
+minimal
+lib
+dev
+sys
+wasi
+x11
+mesa
+gtk
+media-lib
+masa
+ofis
+media-extra
+app

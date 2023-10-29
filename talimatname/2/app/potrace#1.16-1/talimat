@@ -1,0 +1,22 @@
+[paket]
+tanim   = Bitmap vektör grafik dönüştürme uyguluma ve kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://potrace.sourceforge.net
+
+[gerek]
+derleme = zlib
+calisma =
+
+[kaynak]
+gz      = ${SOURCEFORGE_SITE}/$isim
+
+[sha256]
+1       = be8248a17dedd6ccbaab2fcc45835bb0502d062e40fbded3bc56028ce5eb7acc
+
+[derle]
+ekconf  = --with-libpotrace
+tip     = gnu
+
+[pakur]
+tip     = gnu

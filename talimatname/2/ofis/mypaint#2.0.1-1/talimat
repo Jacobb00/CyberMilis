@@ -1,0 +1,39 @@
+[paket]
+tanim   = MyPaint resim uygulaması ve kütüphanesi
+paketci = milisarge
+grup    = ofis
+url     = https://github.com/mypaint
+
+[gerek]
+derleme = automake intltool gegl gobject-introspection json-c glib json-glib python gtk3 python-numpy swig
+calisma = python-numpy
+
+[kaynak]
+1       = https://github.com/mypaint/mypaint/releases/download/v2.0.1/mypaint-2.0.1.tar.xz
+2       = https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
+3       = https://github.com/mypaint/mypaint-brushes/archive/v2.0.2/mypaint-brushes-2.0.2.tar.gz
+4       = https://github.com/mypaint/mypaint/commit/032a155b.patch!
+
+[sha256]
+1       = f3e437d7cdd5fd28ef6532e8ab6b4b05d842bcdd644f16a0162dad3d8e57bb16
+2       = 741754f293f6b7668f941506da07cd7725629a793108bb31633fb6c3eae5315f
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig:$PKG/usr/share/pkgconfig
+
+ekconf  = --enable-gegl
+gnu     = libmypaint-1.6.1
+
+betik   = cd $SRC/mypaint-brushes-2.0.2;autoreconf -fiv;cd -
+gnu     = mypaint-brushes-2.0.2
+
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libmypaint"
+betik   = cd $SRC/mypaint-2.0.1;patch -p1 -i /sources/032a155b.patch;cd -
+py      = mypaint-2.0.1
+
+[pakur]
+betik   = echo "pakur yok"

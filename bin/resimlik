@@ -1,0 +1,521 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+import gi, sys, os, locale, cairo, subprocess
+gi.require_version("Gtk","3.0")
+from gi.repository import Gio, Gtk, GLib, GdkPixbuf, Gdk
+
+
+
+translate = {"tr":{0:"Açmak istediğiniz resimleri seçiniz.",
+					1:"Açmak istediğiniz dizini seçiniz.",
+					2:"Resim",
+					3:"{} dosyası okunamadı. Format desteklenmiyor.",
+					4:"PyGtk tabanlı basit resim gösterici.",
+					5:"Resim Dosyası Aç",
+					6:"Dizin Aç",
+					7:"Önceki Resim",
+					8:"Yakınlaş",
+					9:"Uzaklaş",
+					10:"90 Derece Döndür - Saat Yönü Tersi",
+					11:"90 Derece Döndür - Saat Yönü",
+					12:"Hakkında",
+					13:"Sonraki Resim",
+					14:"Yazdır",
+					15:"Tam Ekran",
+					16:"Resim Bilgisi",
+					17:"Resimi Diskten Siler",
+					18:"Resim Silinecek!",
+					19:"{} yolunda bulunan resim kalıcı olarak silinecek onaylıyor musunuz?",
+					20:"HATA",
+					21:"Resim Silinemedi"},
+
+			"en":{0:"Select open images.",
+					1:"Select open directory..",
+					2:"Image",
+					3:"{} file cant open. Format not found.",
+					4:"PyGtk based simple image viewer.",
+					5:"Open Image File",
+					6:"Open Directory",
+					7:"Back Image",
+					8:"Zoom In",
+					9:"Zoom out",
+					10:"90 Rotate - Clock Counter",
+					11:"90 Rotate - Clock",
+					12:"About",
+					13:"Foward Image",
+					14:"Print",
+					15:"Full Screen",
+					16:"Image Info",
+					17:"Remove Image on Disk",
+					18:"Remove Image!",
+					19:"Do you confirm that the picture on the {} road will be deleted permanently?",
+					20:"ERROR",
+					21:"Image Could Not Be Deleted"}}
+
+l = locale.getdefaultlocale()
+l = l[0].split("_")[0]
+locales = list(translate.keys())
+if l not in locales:
+	l = "en"
+_ = translate[l]
+
+
+
+
+class Resimlik(Gtk.Window):
+	def __init__(self):
+		super(Resimlik, self).__init__()
+		self.images = []
+		self.scale_factor = 1
+		self.rotate_factor = 0
+		self.is_full_screen = 0
+		self.rotate_angels = {0:GdkPixbuf.PixbufRotation.NONE,
+							90:GdkPixbuf.PixbufRotation.COUNTERCLOCKWISE,
+							180:GdkPixbuf.PixbufRotation.UPSIDEDOWN,
+							270:GdkPixbuf.PixbufRotation.CLOCKWISE}
+
+		self.h_bar = Gtk.HeaderBar()
+		self.h_bar.set_title("Resimlik")
+		self.set_titlebar(self.h_bar)
+		self.h_bar.set_show_close_button(True)
+
+		#Gtk.STOCK_PRINT
+		self.print_button = Gtk.ToolButton()
+		self.print_button.connect("clicked",self.print_button_show)
+		self.print_button.set_property("has-tooltip", True)
+		self.print_button.connect("query-tooltip", self.get_query_tooltip,_[14])
+		self.print_button.set_stock_id(Gtk.STOCK_PRINT)
+		self.print_button.set_sensitive(False)
+		self.h_bar.pack_end(self.print_button)
+
+		self.about_button = Gtk.ToolButton()
+		self.about_button.connect("clicked",self.about_button_show)
+		self.about_button.set_property("has-tooltip", True)
+		self.about_button.connect("query-tooltip", self.get_query_tooltip,_[12])
+		self.about_button.set_stock_id(Gtk.STOCK_ABOUT)
+		self.h_bar.pack_end(self.about_button)
+
+		self.open_img_folder_button = Gtk.ToolButton()
+		self.open_img_folder_button.set_stock_id(Gtk.STOCK_DIRECTORY)
+		self.open_img_folder_button.connect("clicked", self.open_image_dir)
+		self.open_img_folder_button.set_property("has-tooltip", True)
+		self.open_img_folder_button.connect("query-tooltip", self.get_query_tooltip,_[6])
+		self.h_bar.pack_end(self.open_img_folder_button)
+
+		self.open_img_button = Gtk.ToolButton()
+		self.open_img_button.set_stock_id(Gtk.STOCK_OPEN)
+		self.open_img_button.connect("clicked", self.open_image)
+		self.open_img_button.set_property("has-tooltip", True)
+		self.open_img_button.connect("query-tooltip", self.get_query_tooltip,_[5])
+		self.h_bar.pack_end(self.open_img_button)
+
+		self.back_button = Gtk.ToolButton()
+		self.back_button.connect("clicked",self.go_back_image)
+		self.back_button.set_property("has-tooltip", True)
+		self.back_button.connect("query-tooltip", self.get_query_tooltip,_[7])
+		self.back_button.set_stock_id(Gtk.STOCK_GO_BACK)
+		self.back_button.set_sensitive(False)
+		self.h_bar.pack_start(self.back_button)
+
+		self.zoom_in_button = Gtk.ToolButton()
+		self.zoom_in_button.connect("clicked",self.zoom_in)
+		self.zoom_in_button.set_property("has-tooltip", True)
+		self.zoom_in_button.connect("query-tooltip", self.get_query_tooltip,_[8])
+		self.zoom_in_button.set_stock_id(Gtk.STOCK_ZOOM_IN)
+		self.zoom_in_button.set_sensitive(False)
+		self.h_bar.pack_start(self.zoom_in_button)
+
+		self.zoom_out_button = Gtk.ToolButton()
+		self.zoom_out_button.connect("clicked",self.zoom_out)
+		self.zoom_out_button.set_property("has-tooltip", True)
+		self.zoom_out_button.connect("query-tooltip", self.get_query_tooltip,_[9])
+		self.zoom_out_button.set_sensitive(False)
+		self.zoom_out_button.set_stock_id(Gtk.STOCK_ZOOM_OUT)
+		self.h_bar.pack_start(self.zoom_out_button)
+
+		self.rotate_clock_counter_button = Gtk.ToolButton()
+		self.rotate_clock_counter_button.connect("clicked",self.rotate_clock_counter)
+		self.rotate_clock_counter_button.set_property("has-tooltip", True)
+		self.rotate_clock_counter_button.connect("query-tooltip", self.get_query_tooltip,_[10])
+		self.rotate_clock_counter_button.set_stock_id(Gtk.STOCK_UNDO)
+		self.rotate_clock_counter_button.set_sensitive(False)
+		self.h_bar.pack_start(self.rotate_clock_counter_button)
+
+		self.rotate_clock_button = Gtk.ToolButton()
+		self.rotate_clock_button.connect("clicked",self.rotate_clock)
+		self.rotate_clock_button.set_property("has-tooltip", True)
+		self.rotate_clock_button.connect("query-tooltip", self.get_query_tooltip,_[11])
+		self.rotate_clock_button.set_stock_id(Gtk.STOCK_REDO)
+		self.rotate_clock_button.set_sensitive(False)
+		self.h_bar.pack_start(self.rotate_clock_button)
+
+		self.foward_button = Gtk.ToolButton()
+		self.foward_button.connect("clicked",self.go_foward_image)
+		self.foward_button.set_property("has-tooltip", True)
+		self.foward_button.connect("query-tooltip", self.get_query_tooltip,_[13])
+		self.foward_button.set_stock_id(Gtk.STOCK_GO_FORWARD)
+		self.foward_button.set_sensitive(False)
+		self.h_bar.pack_start(self.foward_button)
+
+		self.img_info_button = Gtk.ToolButton()
+		self.img_info_button.connect("clicked",self.view_image_info)
+		self.img_info_button.set_property("has-tooltip", True)
+		self.img_info_button.connect("query-tooltip", self.get_query_tooltip,_[16])
+		self.img_info_button.set_stock_id(Gtk.STOCK_INFO)
+		self.img_info_button.set_sensitive(False)
+		self.h_bar.pack_start(self.img_info_button)
+
+		self.fs_button = Gtk.ToolButton()
+		self.fs_button.connect("clicked",self.set_fs_resimlik)
+		self.fs_button.set_property("has-tooltip", True)
+		self.fs_button.connect("query-tooltip", self.get_query_tooltip,_[15])
+		self.fs_button.set_stock_id(Gtk.STOCK_FULLSCREEN )
+		self.h_bar.pack_start(self.fs_button)
+
+		self.delete_image_button = Gtk.ToolButton()
+		self.delete_image_button.connect("clicked",self.delete_image)
+		self.delete_image_button.set_property("has-tooltip", True)
+		self.delete_image_button.connect("query-tooltip", self.get_query_tooltip,_[17])
+		self.delete_image_button.set_stock_id(Gtk.STOCK_REMOVE)
+		self.delete_image_button.set_sensitive(False)
+		self.h_bar.pack_start(self.delete_image_button)
+
+		scroll = Gtk.ScrolledWindow()
+		self.add(scroll)
+		scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+		self.image_viewer = Gtk.Image()
+		scroll.add(self.image_viewer)
+
+		enforce_target = Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags(4), 129)
+		self.drag_dest_set(Gtk.DestDefaults.ALL, [enforce_target], Gdk.DragAction.COPY)
+		self.connect('size-allocate', self.size_changed)
+		self.connect('key-press-event',self.key_press)
+		self.connect("drag-data-received", self.on_drag_data_received)
+
+		self.set_default_size(640,480)
+		self.timer = False
+		self.width, self.height = self.get_size()
+		self.active_pixbuf_default_size = []
+
+	def delete_image(self, widget):
+		rm_image = self.images[0]
+		q = Gtk.MessageDialog(self,0,Gtk.MessageType.QUESTION, Gtk.ButtonsType.OK_CANCEL,_[18])
+		q.format_secondary_text(_[19].format(rm_image))
+		ans = q.run()
+		if ans == Gtk.ResponseType.OK:
+			q.destroy()
+			try:
+				subprocess.Popen(["rm",self.images[0]])
+				self.images.pop(0)
+				if len(self.images) == 0:
+					self.print_button.set_sensitive(False)
+					self.zoom_in_button.set_sensitive(False)
+					self.zoom_out_button.set_sensitive(False)
+					self.rotate_clock_button.set_sensitive(False)
+					self.img_info_button.set_sensitive(False)
+					self.rotate_clock_counter_button.set_sensitive(False)
+					self.delete_image_button.set_sensitive(False)
+					self.foward_button.set_sensitive(False)
+					self.back_button.set_sensitive(False)
+				self.view_images()
+			except:
+				dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, _[20])
+				dialog.format_secondary_text(_[21])
+				dialog.run()
+				dialog.destroy()
+		else:
+			q.destroy()
+
+	def get_query_tooltip(self, widget, x, y, keyboard_mode, tooltip, text):
+		tooltip.set_text(text)
+		return True
+
+	def print_button_show(self, widget):
+		pd = Gtk.PrintOperation()
+		pd.set_n_pages(1)
+		pd.connect("draw_page",self.draw_page)
+		result = pd.run(Gtk.PrintOperationAction.PRINT_DIALOG, self)
+		
+	def draw_page(self, operation=None, context=None, page_nr=None):
+		ctx = context.get_cairo_context()
+		a_pf = self.image_viewer.get_pixbuf()
+		if a_pf != None:
+			Gdk.cairo_set_source_pixbuf(ctx, a_pf,0,0)
+			ctx.paint()
+
+
+	def set_fs_resimlik(self, widget):
+		if self.is_full_screen:
+			self.is_full_screen = 0
+			self.unfullscreen()
+		else:
+			self.is_full_screen = 1
+			self.fullscreen()
+
+	def about_button_show(self, widget):
+		about = Gtk.AboutDialog()
+		about.set_program_name("Resimlik")
+		about.set_version("1.0")
+		about.set_logo_icon_name("multimedia-photo-viewer")
+		about.set_authors(["SonAkinci41"])
+		about.set_comments(_[4])
+		about.set_copyright("(c) 2021 Fatih Kaya <sonakinci41@gmail.com>")
+		about.set_license(" GPL-3.0 License ")
+		about.set_website("https://mls.akdeniz.edu.tr/git/sonakinci41/Resimlik")
+		about.run()
+		about.destroy()
+
+
+	def open_image(self,widget):
+		dialog = Gtk.FileChooserDialog(_[0], self, Gtk.FileChooserAction.OPEN,
+		(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+		filter_ = Gtk.FileFilter()
+		filter_.set_name(_[2])
+		filter_.add_mime_type("image/*")
+		dialog.add_filter(filter_)
+		return_dialog = dialog.run()
+		if return_dialog == Gtk.ResponseType.OK:
+			self.get_images([dialog.get_filename()])
+		dialog.destroy()
+
+	def open_image_dir(self,widget):
+		dialog = Gtk.FileChooserDialog(_[1], self, Gtk.FileChooserAction.SELECT_FOLDER,
+		(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+		return_dialog = dialog.run()
+		if return_dialog == Gtk.ResponseType.OK:
+			self.get_images([dialog.get_filename()])
+		dialog.destroy()
+
+
+	def on_drag_data_received(self, widget, drag_context, x, y, data, info, time):
+		text = data.get_text()
+		text = text.split("\n")
+		text.remove("")
+		imgs = []
+		for t in text:
+			t = t.replace("file://","")
+			imgs.append(t)
+		self.get_images(imgs)
+
+	def key_press(self,widget,event):
+		keyname = Gdk.keyval_name(event.keyval)
+		if keyname == "plus" or keyname == "KP_Add":
+			self.zoom_in(None)
+		elif keyname == "minus" or keyname == "KP_Subtract":
+			self.zoom_out(None)
+		elif keyname == "Right" or keyname == "Up":
+			if len(self.images) > 1:
+				self.go_foward_image(None)
+		elif keyname == "Left" or keyname == "Down":
+			if len(self.images) > 1:
+				self.go_back_image(None)
+		elif keyname == "Escape":
+			if self.is_full_screen:
+				self.is_full_screen = 0
+				self.unfullscreen()
+			else:
+				self.destroy()
+		if keyname == "r":
+			self.rotate_clock(None)
+		elif keyname == "R":
+			self.rotate_clock_counter(None)
+
+	def rotate_clock_counter(self,widget):
+		self.rotate_factor += 90
+		if self.rotate_factor > 270:
+			self.rotate_factor = 0
+		self.view_images()
+
+	def rotate_clock(self,widget):
+		self.rotate_factor -= 90
+		if self.rotate_factor < 0:
+			self.rotate_factor = 270
+		self.view_images()
+
+	def refresh_ui(self):
+		self.scale_factor = 1
+		self.rotate_factor = 0
+		self.zoom_in_button.set_sensitive(True)
+		self.zoom_out_button.set_sensitive(True)
+
+	def zoom_in(self, widget):
+		if self.scale_factor < 1.9:
+			self.scale_factor += 0.1
+			self.view_images()
+		if self.scale_factor == 2:
+			self.zoom_in_button.set_sensitive(False)
+
+	def zoom_out(self,widget):
+		if self.scale_factor > 0.2:
+			self.scale_factor -= 0.1
+			self.view_images()
+		if self.scale_factor == 0.1:
+			self.zoom_out_button.set_sensitive(False)
+
+
+	def go_foward_image(self,widget):
+		f = self.images[0]
+		self.images.remove(f)
+		self.images.append(f)
+		self.refresh_ui()
+		self.view_images()
+
+	def go_back_image(self,widget):
+		f = self.images[0]
+		l = self.images[-1]
+		self.images.remove(f)
+		self.images.remove(l)
+		self.images.insert(0,f)
+		self.images.insert(0,l)
+		self.refresh_ui()
+		self.view_images()
+
+	def size_changed(self, widget, alloc):
+		w, h = self.get_size()
+		if w != self.width or h != self.height:
+			self.width = w
+			self.height = h
+			self.view_images()
+
+	def get_file_info(self,url):
+		g_file = Gio.File.new_for_path(url)
+		info = g_file.query_info("standard::*",Gio.FileQueryInfoFlags.NONE,None)
+		c_type = info.get_content_type()
+		c_type = c_type.split("/")
+		if "image" in c_type:
+			return True
+		else:
+			return False
+
+	def get_pixbuf_screen_size(self,w,h):
+		self.active_pixbuf_default_size = [w,h]
+		ws = self.width / w
+		hs = self.height / h
+		if ws > hs:
+			return (hs*w,hs*h)
+		else:
+			return (ws*w,ws*h)
+
+
+	def view_image_info(self, widget):
+		if self.images != []:
+			g_file = Gio.File.new_for_path(self.images[0])
+			info = g_file.query_info("standard::*",Gio.FileQueryInfoFlags.NONE,None)
+			size = info.get_size()
+			if size < 1024:
+				size = str(size) + " bytes"
+			elif 1024 < size < 1024**2:
+				size = str(round(size/1024,2)) + " KB"
+			else:
+				size = str(round(size/1024**2,2)) + " MB"
+			c_type = info.get_content_type()
+			v_image_inf = Gtk.Popover()
+			box = Gtk.Box()
+			info_label = Gtk.Label()
+			info_label.set_text("{}x{} px\n{}\n{}".format(*self.active_pixbuf_default_size,size,c_type))
+			box.pack_start(info_label,1,1,10)
+			v_image_inf.add(box)
+			v_image_inf.set_position(Gtk.PositionType.BOTTOM)
+			v_image_inf.set_relative_to(widget)
+			v_image_inf.show_all()
+			v_image_inf.popup()
+
+	def view_images(self):
+		if self.timer:
+			GLib.source_remove(self.timer)
+			self.timer = False
+		try:
+			self.active_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(self.images[0],
+																	int(self.width*self.scale_factor),
+																	int(self.height*self.scale_factor),
+																	True)
+			self.active_pixbuf = self.active_pixbuf.rotate_simple(self.rotate_angels[self.rotate_factor])
+			self.image_viewer.set_from_pixbuf(self.active_pixbuf)
+			self.h_bar.set_title(self.images[0])
+			apb = GdkPixbuf.Pixbuf.new_from_file(self.images[0])
+			self.active_pixbuf_default_size = [apb.get_width(),apb.get_height()]
+		except:
+			try:
+				self.active_pixbuf = GdkPixbuf.PixbufAnimation.new_from_file(self.images[0])
+				if self.active_pixbuf.is_static_image():
+					self.active_pixbuf = self.active_pixbuf.get_static_image()
+					w,h = self.get_pixbuf_screen_size(self.active_pixbuf.get_width(),self.active_pixbuf.get_height())
+					self.active_pixbuf.scale_simple(int(w*self.scale_factor),
+													int(h*self.scale_factor),
+													True)
+					self.active_pixbuf = self.active_pixbuf.rotate_simple(self.rotate_angels[self.rotate_factor])
+					self.image_viewer.set_from_pixbuf(self.active_pixbuf)
+				else:
+					iter_ = self.active_pixbuf.get_iter(GLib.TimeVal())
+					self.timer = GLib.timeout_add(iter_.get_delay_time(),self.view_gif_animation,iter_)
+				self.h_bar.set_title(self.images[0])
+			except:
+				if len(self.images) == 0:
+					pass
+				else:
+					dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, _[20])
+					dialog.format_secondary_text(_[3].format(self.images[0]))
+					self.images.pop(0)
+					dialog.run()
+					dialog.destroy()
+
+	def view_gif_animation(self,iter_):
+		iter_.advance()
+		pb = iter_.get_pixbuf()
+		w,h = self.get_pixbuf_screen_size(pb.get_width(),pb.get_height())
+		pb = pb.scale_simple(int(w*self.scale_factor),
+							int(h*self.scale_factor),
+							True)
+		pb = pb.rotate_simple(self.rotate_angels[self.rotate_factor])
+		self.image_viewer.set_from_pixbuf(pb)
+		return True
+		
+
+	def get_images(self, paths):
+		self.images = []
+		for path in paths:
+			if not os.path.exists(path):
+				continue
+			if os.path.isfile(path):
+				dir_, select_ = os.path.split(path)
+			else:
+				select_ = False
+				dir_ = path
+			dir_items = os.listdir(dir_)
+			dir_items.sort()
+			for d in dir_items:
+				path = os.path.join(dir_,d)
+				info = self.get_file_info(path)
+				if info:
+					if select_ and d == select_:
+						self.images.insert(0,path)
+					else:
+						self.images.append(path)
+		if len(self.images) < 2:
+			self.foward_button.set_sensitive(False)
+			self.back_button.set_sensitive(False)
+		else:
+			self.foward_button.set_sensitive(True)
+			self.back_button.set_sensitive(True)
+		if len(self.images) > 0:
+			self.print_button.set_sensitive(True)
+			self.zoom_in_button.set_sensitive(True)
+			self.zoom_out_button.set_sensitive(True)
+			self.rotate_clock_button.set_sensitive(True)
+			self.img_info_button.set_sensitive(True)
+			self.rotate_clock_counter_button.set_sensitive(True)
+			self.delete_image_button.set_sensitive(True)
+
+		self.view_images()
+
+
+if __name__ == '__main__':
+	app = Resimlik()
+	args = sys.argv
+	if "resimlik" in args:
+		args.remove("resimlik")
+	if len(args) != 0:
+		app.get_images(args)
+	app.connect("destroy", Gtk.main_quit)
+	app.show_all()
+	Gtk.main()

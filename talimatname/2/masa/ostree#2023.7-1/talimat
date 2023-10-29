@@ -1,0 +1,24 @@
+[paket]
+tanim   = İşletim sistemi ve kapsayıcı ikili dağıtımı ve yükseltmeleri
+paketci = milisarge
+grup    = kütüphane
+url     = https://ostree.readthedocs.io/en/latest/
+arsiv   = lib${isim}-$surum
+
+[gerek]
+derleme = glib libxslt e2fsprogs fuse3 gpgme libsoup libsodium gobject-introspection avahi
+calisma =
+
+[kaynak]
+1       = https://github.com/ostreedev/ostree/releases/download/v${surum}/libostree-${surum}.tar.xz
+
+[sha256]
+1       = 19cda718705f7ac8c018c939c38b1bb8412deaaa04862da98cd9fe9243f073bf
+
+[derle]
+ekconf  = --enable-man=no --with-openssl --with-builtin-grub2-mkconfig --enable-experimental-api --disable-static --with-dracut=yesbutnoconf --with-ed25519-libsodium --without-avahi --with-modern-grub --with-curl
+tip     = gnu
+
+[pakur]
+tip     = gnu
+

@@ -1,0 +1,19 @@
+[paket]
+tanim   = Linux asenkron I/O kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = http://lse.sourceforge.net/io/aio.html
+
+[kaynak]
+gz   	= https://releases.pagure.org/libaio
+
+[sha256]
+1	    = 2c44d1c5fd0d43752287c9ae1eb9c023f04ef848ea8d4aafa46e9aedb678200b
+
+[derle]
+betik   = CFLAGS="-march=${CARCH/_/-} -mtune=generic -O2 -pipe"
+betik   = make
+     
+[pakur]
+tip     = gnu
+betik   = rm -f $PKG/usr/lib/*.a

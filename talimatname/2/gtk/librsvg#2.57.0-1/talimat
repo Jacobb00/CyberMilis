@@ -1,0 +1,28 @@
+[paket]
+tanim   = SVG çeviri kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://librsvg.sourceforge.net/
+
+[gerek]
+derleme = gobject-introspection gdk-pixbuf pango vala
+calisma = 
+
+[kaynak]
+xz      = http://ftp.gnome.org/pub/gnome/sources/$isim/${surum%.*}
+
+[sha256]
+1       = 335fe2e0c2cbf1b7bf0668651224a23e135451f0b1793cd813649be2bffa74e8
+
+[derle]
+betik   = rust_setup.sh -y
+betik   = source $HOME/.cargo/env
+betik   = NOCONFIGURE=1 ./autogen.sh
+betik   = export CARGO_PROFILE_RELEASE_LTO=true CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+betik   = ./configure --prefix=/usr --disable-static --disable-gtk-doc --enable-vala --disable-debug
+betik   = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' libtool
+betik   = make
+      
+[pakur]
+betik   = source $HOME/.cargo/env
+tip 	= gnu

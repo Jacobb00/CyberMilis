@@ -1,0 +1,22 @@
+[paket]
+tanim   = MacOS'ta Snappy'den ilham alan Wayland yerel anlık görüntü düzenleme aracı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/jtheoof/swappy
+
+[gerek]
+derleme = meson glib cairo gtk3 libnotify pango
+calisma = wl-clipboard
+
+[kaynak]
+github  = jtheoof/swappy
+
+[sha256]
+1       = 266fac289d4b903d80d44746044bafe8a8b663c6032be696c651ad390bcb1850
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

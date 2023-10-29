@@ -1,0 +1,18 @@
+[paket]
+tanim   = GNU dosya yamalama aracı
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/patch/patch.html
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/patch
+
+[sha256]
+1 		= ac610bda97abe0d9f6b7c963255a11dcb196c25e337c61f94e4778d632f1d8fd
+
+[derle]
+betik   = ./configure --prefix=/tools
+betik   = make -j2 && make install
+	      
+[pakur]
+betik   = echo "paketleme yok"

@@ -1,0 +1,23 @@
+[paket]
+tanim   = Çeşitli DWARF araçları
+paketci = milisarge
+grup    = sistem
+url     = http://git.kernel.org/?p=devel/pahole/pahole.git;a=summary
+arsiv   = dwarves-${surum}
+
+[gerek]
+derleme = cmake elfutils
+calisma =
+
+[kaynak]
+1       = https://fedorapeople.org/~acme/dwarves/dwarves-${surum}.tar.xz
+
+[sha256]
+1       = e7d45955f6f4eca25a4c8c3bd6611059b35dc217e45976681d7db170fccdec4a
+
+[derle]
+ekconf  = -D__LIB=lib
+tip     = cmake
+
+[pakur]
+tip     = cmake

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=/usr/share/chromium/chrome --enable-features=UseOzonePlatform  --ozone-platform=wayland %u
+Icon=chromium
+StartupNotify=false
+Terminal=false
+Name=Chromium
+Name[tr]=Chromium
+Comment=Chromium
+Comment[tr]=Chromium
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;

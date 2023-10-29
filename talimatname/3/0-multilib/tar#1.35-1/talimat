@@ -1,0 +1,18 @@
+[paket]
+tanim   = Gnu Arşivleme uygulaması
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/tar/tar.html
+
+[kaynak]
+bz2     = http://ftp.gnu.org/gnu/tar
+
+;[sha256]
+;1 		= e4bb9e08e12e7fa9f11fef544efc85e59ba34538593d9ad38148c7ca2bfbb566
+
+[derle]
+betik   = FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/tools
+betik   = make $MAKEJOBS && make install
+	      
+[pakur]
+betik   = echo "paketleme yok"

@@ -1,0 +1,26 @@
+[paket]
+tanim    = Ses ve video işlemleri için toplu çözüm araç ve kütüphanesi
+paketci  = milisarge
+grup     = kütüphane 
+url      = https://ffmpeg.org
+
+[gerek]
+derleme  = nasm gnutls alsa-lib aom fontconfig fribidi gmp libssh gsm lame ladspa libass libbluray libdrm libomxil-bellagio ieee1394 freetype libmodplug libsoxr libvidstab xiph libvpx libwebp libx11 libxcb libxext libxml2 libxv sdl2 x264 x265 xvidcore opencore-amr openjpeg2 v4l-utils jack pulseaudio libbs2b srt opencl-headers mesa
+calisma  =  
+
+[kaynak]
+xz       = ${url}/releases
+dosya    = add-av_stream_get_first_dts-for-chromium.patch
+dosya    = binutils241-ffmpeg.patch
+2        = https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/v1.4.30/amf-headers-1.4.30.tar.gz
+
+;[sha256]
+;1        = 46e4e64f1dd0233cbc0934b9f1c0da676008cad34725113fb7f802cfa84ccddb
+
+[derle]
+dosya    = derle.sh
+
+[pakur]
+betik    = make DESTDIR="${PKG}" install install-man
+betik    = install -Dm 755 tools/qt-faststart "${PKG}"/usr/bin/
+

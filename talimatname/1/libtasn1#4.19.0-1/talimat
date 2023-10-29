@@ -1,0 +1,19 @@
+[paket]
+tanim   = GNUTLS için ASN.1 kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = https://www.gnu.org/software/libtasn1/
+
+[kaynak]
+gz      = https://ftp.gnu.org/gnu/$isim
+
+;[sha256]
+;1 		= 0e0fb0903839117cb6e3b56e68222771bebf22ad7fc2295a0ed7d576e8d4329d
+
+[derle]
+betik   =  ./configure --prefix=/usr --disable-static
+betik   = CODE_COVERAGE_LDFLAGS=${LDFLAGS} make $MAKEJOBS
+
+	      
+[pakur]
+tip     = gnu

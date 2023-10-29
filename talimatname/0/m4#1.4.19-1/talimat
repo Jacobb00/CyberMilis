@@ -1,0 +1,19 @@
+[paket]
+tanim   = The M4 macro işleyicisi
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu/m4
+
+[kaynak]
+xz      = $url
+
+;[sha256]
+;1 		= f2c1e86ca0a404ff281631bdc8377638992744b175afb806e25871a24a934e07
+
+[derle]
+betik   = unset CFLAGS
+betik   = ./configure --prefix=/tools
+betik   = make  && make install      
+
+[pakur]
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

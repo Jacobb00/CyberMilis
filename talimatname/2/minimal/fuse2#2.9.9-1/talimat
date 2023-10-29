@@ -1,0 +1,27 @@
+[paket]
+tanim   = Kullanıcı alanında(userspace) dosya sistemi gerçekleme kütüphanesi
+paketci = milisarge
+grup 	= sistem
+url     = https://github.com/libfuse/libfuse
+arsiv   = fuse-$surum
+
+[gerek]
+derleme = automake autoconf
+calisma =
+
+[kaynak]
+1       = https://github.com/libfuse/libfuse/releases/download/fuse-$surum/fuse-$surum.tar.gz
+dosya   = fuse2-0007-util-ulockmgr_server.c-conditionally-define-closefro.patch
+
+[sha256]
+1	= d0e69d5d608cc22ff4843791ad097f554dd32540ddc9bed7638cc6fea7c1b4b5
+
+[derle]
+betik   = export UDEV_RULES_PATH=/usr/lib/udev/rules.d MOUNT_FUSE_PATH=/usr/bin
+yama    = fuse2-0007-util-ulockmgr_server.c-conditionally-define-closefro.patch
+betik   =  autoreconf -vfi
+betik   = ./configure --prefix=/usr --libdir=/usr/lib --enable-lib --enable-util --disable-example && make
+	      
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/etc;rm ${PKG}/usr/bin/mount.fuse ; rm -rf $PKG/dev

@@ -1,0 +1,35 @@
+[paket]
+tanim   = QT grafik kullanıcı arayüzleri oluşturmak için kullanılan çoklu platform araç kitidir. 
+paketci = milisarge
+grup 	= sistem
+url     = https://www.qt.io
+
+[gerek]
+derleme = qt5-base qt5-declarative ccache bluez libjpeg-turbo xcb-util-renderutil xcb-util-keysyms fontconfig shared-mime-info xcb-util-wm libxrender libxi sqlite xcb-util-image mesa libinput libxkbcommon cups sqlite alsa-lib gstreamer gtk3 pulseaudio cups vulkan mariadb unixodbc postgresql
+calisma = 
+
+[kaynak]
+1       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qttools-everywhere-opensource-src-$surum.tar.xz
+2       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtsvg-everywhere-opensource-src-$surum.tar.xz
+3       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtquickcontrols-everywhere-opensource-src-$surum.tar.xz
+4       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtquickcontrols2-everywhere-opensource-src-$surum.tar.xz
+5       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtscript-everywhere-opensource-src-$surum.tar.xz
+6       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtwayland-everywhere-opensource-src-$surum.tar.xz
+7       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtlocation-everywhere-opensource-src-$surum.tar.xz
+8       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtwebchannel-everywhere-opensource-src-$surum.tar.xz
+9       = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtxmlpatterns-everywhere-opensource-src-$surum.tar.xz
+10      = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtwebsockets-everywhere-opensource-src-$surum.tar.xz
+11      = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtgraphicaleffects-everywhere-opensource-src-$surum.tar.xz
+12      = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtconnectivity-everywhere-opensource-src-$surum.tar.xz
+13      = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtcharts-everywhere-opensource-src-$surum.tar.xz
+14      = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtserialport-everywhere-opensource-src-$surum.tar.xz
+dosya   = qt5-logo.png
+
+;[sha256]
+;1       = c0d06cb18d20f10bf7ad53552099e097ec39362d30a5d6f104724f55fa1c8fb9
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+dosya   = pakur.sh

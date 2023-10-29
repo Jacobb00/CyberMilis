@@ -1,0 +1,24 @@
+[paket]
+tanim   = Qt geliştiricileri için platformlar arası IDE
+paketci = milisarge
+grup    = geliştirme
+url     = https://wiki.qt.io
+arsiv   = qt-creator-opensource-src-${surum}
+
+[gerek]
+derleme = cmake llvm python qt6-webengine ccache qt6-5compat
+calisma = gdb
+
+[kaynak]
+1       = https://download.qt.io/official_releases/qtcreator/${surum%.*}/${surum}/qt-creator-opensource-src-${surum}.tar.xz
+
+[sha256]
+1       = 5f501e64e836b7e3e50b98b3ebc345b201396a5fd92e49738dabb5e268d5cf1c
+
+[derle]
+betik = cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBEXECDIR=lib -DWITH_DOCS=OFF -DBUILD_DEVELOPER_DOCS=OFF -DBUILD_QBS=OFF -DQTC_CLANG_BUILDMODE_MATCH=ON -DCLANGTOOLING_LINK_CLANG_DYLIB=ON
+betik = cmake --build build $MAKEJOBS
+
+
+[pakur]
+betik = DESTDIR=$PKG cmake --install build

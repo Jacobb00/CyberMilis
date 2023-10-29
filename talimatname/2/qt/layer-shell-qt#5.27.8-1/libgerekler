@@ -1,0 +1,7 @@
+libLayerShellQtInterface.so.5
+libwayland-client.so.0
+libQt5WaylandClient.so.5
+libQt5Gui.so.5
+libQt5Core.so.5
+libstdc++.so.6
+libc.so.6

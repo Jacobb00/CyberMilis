@@ -1,0 +1,21 @@
+[paket]
+tanim   = Masaüstü girdileri için komut satırı araçları
+paketci = milisarge
+grup 	= sistem
+url     = https://www.freedesktop.org/wiki/Software/desktop-file-utils
+
+[gerek]
+derleme = meson glib
+calisma = 
+
+[kaynak]
+xz      = https://www.freedesktop.org/software/desktop-file-utils/releases
+
+[sha256]
+1 		= b26dbde79ea72c8c84fb7f9d870ffd857381d049a86d25e0038c4cef4c747309
+
+[derle]
+tip 	= meson
+	      
+[pakur]
+tip 	= meson

@@ -1,0 +1,20 @@
+[paket]
+tanim   = Dosyaları bir cpio veya tar arşivinin içine veya dışına kopyalar
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/cpio
+
+[kaynak]
+bz2  	= https://mirrors.dotsrc.org/gnu/cpio
+
+[sha256]
+1       = fcdc15d60f7267a6fc7efcd6b9db7b6c8966c4f2fbbb964c24d41336fd3f2c12
+
+[derle]
+betik   = CFLAGS+=' -fcommon'
+tip     = gnu
+     
+[pakur]
+tip     = gnu
+betik   = rm -rf ${PKG}/usr/lib
+betik   = rm -f ${PKG}/usr/share/man/man8/rmt.8

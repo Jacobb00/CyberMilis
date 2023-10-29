@@ -1,0 +1,42 @@
+[paket]
+tanim   = Python için HTTP Kütüphanesi.
+paketci = milisarge
+grup    = kütüphane
+url     = http://python-requests.org
+arsiv   = requests-$surum
+
+[gerek]
+derleme = python
+calisma = python
+
+[kaynak]
+1       = ${PYPI_SITE}/r/requests/requests-${surum}.tar.gz
+2       = ${PYPI_SITE}/c/chardet/chardet-4.0.0.tar.gz
+3       = ${PYPI_SITE}/i/idna/idna-3.2.tar.gz
+4       = ${PYPI_SITE}/u/urllib3/urllib3-1.26.6.tar.gz
+dosya	= certs.patch
+
+[sha256]
+;1       = b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6
+;2	     = c5173f471fabe4aa5acd8759c65a6ce49607d70a619ea591fc349d7a0413c8b4
+
+[derle]
+betik   = pip3 install six
+betik	= sed -e '/certifi/d' -e "s/,<.*'/'/" -i setup.py
+yama	= certs.patch
+tip     = py3
+betik   = cd $SRC/chardet-4.0.0
+tip     = py3
+betik   = cd $SRC/idna-3.2
+tip     = py3
+betik   = cd $SRC/urllib3-1.26.6
+tip     = py3
+
+[pakur]
+tip     = py3
+betik   = cd $SRC/chardet-4.0.0
+tip     = py3
+betik   = cd $SRC/idna-3.2
+tip     = py3
+betik   = cd $SRC/urllib3-1.26.6
+tip     = py3

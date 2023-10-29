@@ -1,0 +1,21 @@
+[paket]
+tanim   = Masaüstüne mesaj gönderme kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://developer.gnome.org/notification-spec
+
+[gerek]
+derleme = meson libxslt gdk-pixbuf glib libpng gtk3 gobject-introspection
+
+[kaynak]
+xz      = http://ftp.gnome.org/pub/gnome/sources/${isim}/${surum%.*}
+
+[sha256]
+1       = c5f4ed3d1f86e5b118c76415aacb861873ed3e6f0c6b3181b828cf584fc5c616
+
+[derle]
+ekconf  = -Dman=false -Dgtk_doc=false -Ddocbook_docs=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

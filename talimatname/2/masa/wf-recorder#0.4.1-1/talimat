@@ -1,0 +1,23 @@
+[paket]
+tanim   = Wlroots tabanlı masalar için ekran kaydedici
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/ammen99/wf-recorder
+
+[gerek]
+derleme = meson wayland wayland-protocols ffmpeg x264 pulseaudio
+
+[kaynak]
+xz      = $url/releases/download/v${surum}
+
+;[sha256]
+;1       = 72c32f0d31e3c1de1cdd14f2e814d5f5bc9ed162518cf8f39d18016875741db5
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson
+
+
+

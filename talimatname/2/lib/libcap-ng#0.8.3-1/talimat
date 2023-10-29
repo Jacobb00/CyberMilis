@@ -1,0 +1,22 @@
+[paket]
+tanim   = Alternatif bir POSIX capability kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://people.redhat.com/sgrubb/libcap-ng/
+
+[gerek]
+derleme = swig python
+calisma =
+
+[kaynak]
+1       = http://people.redhat.com/sgrubb/$isim/$isim-$surum.tar.gz
+
+[sha256]
+1       = bed6f6848e22bb2f83b5f764b2aef0ed393054e803a8e3a8711cb2a39e6b492d
+
+[derle]
+ekconf  = --enable-static=no --without-python --with-python3
+tip     = gnu
+
+[pakur]
+tip     = gnu

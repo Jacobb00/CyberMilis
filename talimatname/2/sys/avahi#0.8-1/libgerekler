@@ -1,0 +1,11 @@
+libavahi-core.so.7
+libexpat.so.1
+libglib-2.0.so.0
+libevent-2.1.so.7
+libdaemon.so.0
+libavahi-client.so.3
+libavahi-common.so.3
+libgdbm.so.6
+libcap.so.2
+libdbus-1.so.3
+libc.so.6

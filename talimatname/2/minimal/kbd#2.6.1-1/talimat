@@ -1,0 +1,32 @@
+[paket]
+tanim   = Konsol yazı tipleri ve klavye araçları
+paketci = milisarge
+grup 	= temel
+url     = ftp://devel.altlinux.org/legion/kbd
+
+[gerek]
+derleme = autoconf automake
+calisma = 
+
+[kaynak]
+xz      = https://www.kernel.org/pub/linux/utils/kbd
+dosya   = fix-euro2.patch
+dosya   = vlock.pam
+
+[sha256]
+1 		= 2eb6c6c972be9589bab733275bf020beb5f644d5f9439737920e701af6cf3485
+
+[derle]
+betik   = mv data/keymaps/i386/qwertz/cz{,-qwertz}.map
+betik   = mv data/keymaps/i386/olpc/es{,-olpc}.map
+betik   = mv data/keymaps/i386/olpc/pt{,-olpc}.map
+betik   = mv data/keymaps/i386/fgGIod/trf{,-fgGIod}.map
+betik   = mv data/keymaps/i386/colemak/{en-latin9,colemak}.map
+betik   = patch -Np1 -i $SRC/fix-euro2.patch
+betik   = autoreconf -if
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --datadir=/usr/share/kbd --mandir=/usr/share/man
+betik   = make KEYCODES_PROGS=yes RESIZECONS_PROGS=yes
+	      
+[pakur]
+betik   = make KEYCODES_PROGS=yes RESIZECONS_PROGS=yes DESTDIR=${PKG} install
+betik   = install -Dm644 $SRC/vlock.pam "${PKG}"/etc/pam.d/vlock

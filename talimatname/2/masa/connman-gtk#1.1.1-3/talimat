@@ -1,0 +1,23 @@
+[paket]
+tanim   = ConnMan için GTK arayüzü
+paketci = milisarge
+grup    = ağ
+url     = https://github.com/milisarge/connman-gtk
+arsiv	= $isim
+
+[gerek]
+derleme = intltool meson cmake glib gtk3 connman
+calisma = 
+
+[kaynak]
+git	= ${url}
+
+[derle]
+betik   = sed -i "s/HAVE_CONFIG_SETTINGS 1/HAVE_CONFIG_SETTINGS 0/g" src/configurator.h
+ekconf	= -Duse_openconnect=no
+tip     = meson
+
+[pakur]
+betik   = sed -i s#share/locale#/usr/share/locale#g ../build/config.h
+;betik   = sed -i s#share\/#\/usr\/share\/#g ../build/meson-info/intro-buildoptions.json
+tip     = meson

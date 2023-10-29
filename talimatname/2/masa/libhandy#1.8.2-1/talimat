@@ -1,0 +1,22 @@
+[paket]
+tanim   = Modern uyarlanabilir uygulamalar için GTK+3 yapı taşları
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.gnome.org/GNOME/libhandy
+
+[gerek]
+derleme = meson glib vala gtk3
+calisma =
+
+[kaynak]
+bz2     = https://gitlab.gnome.org/GNOME/libhandy/-/archive/$surum
+
+;[sha256]
+;1       = 138bec94e66d15a7a19350b65845d4529bcd969ea913ab3eb438f56fe47d5d37
+
+[derle]
+ekconf  = -Dexamples=false -Dtests=false -Dglade_catalog=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

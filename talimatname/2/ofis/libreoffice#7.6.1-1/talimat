@@ -1,0 +1,85 @@
+[paket]
+tanim   = Libreoffice ofis uygulama seti
+paketci = milisarge
+grup    = sistem
+url     = https://www.libreoffice.org/
+arsiv   = libreoffice-${surum}.2
+
+[gerek]
+derleme = automake gperf poppler python pango libjpeg-turbo libxrandr dbus-glib libxslt graphite icu lcms2 harfbuzz nss desktop-file-utils shared-mime-info gstreamer zip unzip gtk3 mesa bluez libxinerama glm gobject-introspection gpgme krb5 libice libsm unixodbc mariadb postgresql
+calisma = 
+
+[kaynak]
+link = https://download.documentfoundation.org/libreoffice/src/$surum/libreoffice-${surum}.2.tar.xz
+link = https://download.documentfoundation.org/libreoffice/src/$surum/libreoffice-help-${surum}.2.tar.xz
+link = https://download.documentfoundation.org/libreoffice/src/$surum/libreoffice-translations-${surum}.2.tar.xz
+link = https://dev-www.libreoffice.org/src/0168229624cfac409e766913506961a8-ucpp-1.3.2.tar.gz!
+link = https://dev-www.libreoffice.org/src/17410483b5b5f267aa18b7e00b65e6e0-hsqldb_1_8_0.zip!
+link = https://dev-www.libreoffice.org/src/185d60944ea767075d27247c3162b3bc-unowinreg.dll!
+link = https://dev-www.libreoffice.org/src/1f5def51ca0026cd192958ef07228b52-rasqal-0.9.33.tar.gz!                                                                                                                                           
+link = https://dev-www.libreoffice.org/src/26b3e95ddf3d9c077c480ea45874b3b8-lp_solve_5.5.tar.gz!
+link = https://dev-www.libreoffice.org/src/35c94d2df8893241173de1d16b6034c0-swingExSrc.zip!
+link = https://dev-www.libreoffice.org/src/48d647fbd8ef8889e5a7f422c1bfda94-clucene-core-2.3.3.4.tar.gz!
+link = https://dev-www.libreoffice.org/src/5ade6ae2a99bc1e9e57031ca88d36dad-hyphen-2.8.8.tar.gz!
+link = https://dev-www.libreoffice.org/src/798b2ffdc8bcfe7bca2cf92b62caf685-rhino1_5R5.zip!
+link = https://dev-www.libreoffice.org/src/8249374c274932a21846fa7629c2aa9b-officeotron-0.7.4-master.jar!
+link = https://dev-www.libreoffice.org/src/a39f6c07ddb20d7dd2ff1f95fa21e2cd-raptor2-2.0.15.tar.gz!
+link = https://dev-www.libreoffice.org/src/a7983f859eafb2677d7ff386a023bc40-xsltml_2.1.2.zip!
+link = https://dev-www.libreoffice.org/src/ba2930200c9f019c2d93a8c88c651a0f-flow-engine-0.9.4.zip!
+link = https://dev-www.libreoffice.org/src/boost_1_82_0.tar.xz!
+link = https://dev-www.libreoffice.org/src/box2d-2.4.1.tar.gz!
+link = https://dev-www.libreoffice.org/src/cppunit-1.15.1.tar.gz!
+link = https://dev-www.libreoffice.org/src/d8bd5eed178db6e2b18eeed243f85aa8-flute-1.1.6.zip!
+link = https://dev-www.libreoffice.org/src/dragonbox-1.1.3.tar.gz!
+link = https://dev-www.libreoffice.org/src/dtoa-20180411.tgz!
+link = https://dev-www.libreoffice.org/src/e5be03eda13ef68aabab6e42aa67715e-redland-1.0.17.tar.gz!
+link = https://dev-www.libreoffice.org/src/f543e6e2d7275557a839a164941c0a86e5f2c3f2a0042bfc434c88c6dde9e140-opens___.ttf!
+link = https://dev-www.libreoffice.org/src/Firebird-3.0.7.33374-0.tar.bz2!
+link = https://dev-www.libreoffice.org/src/frozen-1.1.1.tar.gz!
+link = https://dev-www.libreoffice.org/src/hunspell-1.7.2.tar.gz!
+link = https://dev-www.libreoffice.org/src/language-subtag-registry-2023-05-11.tar.bz2!
+link = https://dev-www.libreoffice.org/src/libabw-0.1.3.tar.xz!
+link = https://dev-www.libreoffice.org/src/libcdr-0.1.7.tar.xz!
+link = https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz!
+link = https://dev-www.libreoffice.org/src/libe-book-0.1.3.tar.xz!
+link = https://dev-www.libreoffice.org/src/libepubgen-0.1.1.tar.xz!
+link = https://dev-www.libreoffice.org/src/libetonyek-0.1.10.tar.xz!
+link = https://dev-www.libreoffice.org/src/libexttextcat-3.4.6.tar.xz!
+link = https://dev-www.libreoffice.org/src/libfreehand-0.1.2.tar.xz!
+link = https://dev-www.libreoffice.org/src/liblangtag-0.6.3.tar.bz2!
+link = https://dev-www.libreoffice.org/src/libmspub-0.1.4.tar.xz!
+link = https://dev-www.libreoffice.org/src/libmwaw-0.3.21.tar.xz!
+link = https://dev-www.libreoffice.org/src/libnumbertext-1.0.11.tar.xz!
+link = https://dev-www.libreoffice.org/src/libodfgen-0.1.8.tar.xz!
+link = https://dev-www.libreoffice.org/src/liborcus-0.18.1.tar.xz!
+link = https://dev-www.libreoffice.org/src/libpagemaker-0.0.4.tar.xz!
+link = https://dev-www.libreoffice.org/src/libqxp-0.0.2.tar.xz!
+link = https://dev-www.libreoffice.org/src/librevenge-0.0.4.tar.bz2!
+link = https://dev-www.libreoffice.org/src/libstaroffice-0.0.7.tar.xz!
+link = https://dev-www.libreoffice.org/src/libvisio-0.1.7.tar.xz!
+link = https://dev-www.libreoffice.org/src/libwebp-1.3.1.tar.gz!
+link = https://dev-www.libreoffice.org/src/libwpd-0.10.3.tar.xz!
+link = https://dev-www.libreoffice.org/src/libwpg-0.3.4.tar.xz!
+link = https://dev-www.libreoffice.org/src/libwps-0.4.12.tar.xz!
+link = https://dev-www.libreoffice.org/src/libzmf-0.0.2.tar.xz!
+link = https://dev-www.libreoffice.org/src/ltm-1.2.0.tar.xz!
+link = https://dev-www.libreoffice.org/src/lxml-4.1.1.tgz!
+link = https://dev-www.libreoffice.org/src/mariadb-connector-c-3.1.8-src.tar.gz!
+link = https://dev-www.libreoffice.org/src/mdds-2.1.1.tar.xz!
+link = https://dev-www.libreoffice.org/src/mythes-1.2.5.tar.xz!
+link = https://dev-www.libreoffice.org/src/odfvalidator-1.2.0-incubating-SNAPSHOT-jar-with-dependencies-971c54fd38a968f5860014b44301872706f9e540.jar!
+link = https://dev-www.libreoffice.org/src/pdfium-5778.tar.bz2!
+;link = https://dev-www.libreoffice.org/src/postgresql-13.11.tar.bz2!
+link = https://dev-www.libreoffice.org/src/QR-Code-generator-1.4.0.tar.gz!
+link = https://dev-www.libreoffice.org/src/skia-m111-a31e897fb3dcbc96b2b40999751611d029bf5404.tar.xz!
+link = https://dev-www.libreoffice.org/src/xmlsec1-1.2.37.tar.gz!
+link = https://dev-www.libreoffice.org/src/zxing-cpp-2.0.0.tar.gz!
+dosya = make-pyuno-work-with-system-wide-module-install.diff
+dosya = 623ea5c.diff
+dosya = optjava.patch
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

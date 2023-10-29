@@ -1,0 +1,20 @@
+[paket]
+tanim   = Güvenli soket ve iletim katmanı için araç ve kütüphaneler
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.openssl.org
+
+[kaynak]
+gz      = https://www.openssl.org/source
+
+;[sha256]
+;1 		= e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242
+
+[derle]
+;pod2man gerekli path core_perl
+betik 	= ./Configure --prefix=/tools --openssldir=/tools/etc/ssl --libdir=lib shared no-ssl3-method enable-ec_nistp_64_gcc_128 linux-x86_64 "-Wa,--noexecstack ${CPPFLAGS} ${CFLAGS} ${LDFLAGS}"
+betik 	= make depend
+betik 	= make -j1
+	      
+[pakur]
+betik 	= make DESTDIR=${PKG} MANDIR=/tools/share/man MANSUFFIX=ssl install

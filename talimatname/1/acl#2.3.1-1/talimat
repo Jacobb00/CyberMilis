@@ -1,0 +1,16 @@
+[paket]
+tanim   = POSIX Erişim Kontrol Listelerini Yönetme Komutları
+paketci = milisarge
+grup 	= temel
+url     = http://savannah.nongnu.org/projects/acl
+
+[kaynak]
+gz      = http://download.savannah.gnu.org/releases/$isim
+
+;[sha256]
+;1 		= 06be9865c6f418d851ff4494e12406568353b891ffe1f596b34693c387af26c7
+
+[derle]
+tip	= gnu
+[pakur]
+tip	= gnu

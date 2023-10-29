@@ -1,0 +1,17 @@
+[paket]
+tanim   = 80x86 assembly derleyici
+paketci = milisarge
+grup 	= geliştirme
+url     = https://www.nasm.us
+
+[kaynak]
+xz      = $url/pub/nasm/releasebuilds/${surum}
+
+[sha256]
+1 		= c77745f4802375efeee2ec5c0ad6b7f037ea9c87c92b149a9637ff099f162558
+
+[derle]
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

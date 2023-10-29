@@ -1,0 +1,21 @@
+[paket]
+tanim   = GNU Parted disk bölümü yeniden boyutlandırma programı
+paketci = milisarge
+grup    = sistem
+url     = http://www.gnu.org/software/parted/
+
+[gerek]
+derleme = lvm2
+calisma =
+
+[kaynak]
+xz      = ${GNU_SITE}/${isim}
+
+[sha256]
+1       = 3b43dbe33cca0f9a18601ebab56b7852b128ec1a3df3a9b30ccde5e73359e612
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu

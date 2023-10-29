@@ -1,0 +1,7 @@
+libva
+libvdpau
+libglvnd
+mesa
+glu
+glew
+freeglut

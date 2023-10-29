@@ -1,0 +1,24 @@
+[paket]
+tanim   = GNOME satranç kullanıcı arayüzü
+paketci = milisarge
+grup    = kütüphane
+url     = https://wiki.gnome.org/Apps/Chess
+
+[gerek]
+derleme = vala gtk4 itstool libadwaita
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/gnome-chess/${surum%.*}/gnome-chess-${surum}.tar.xz
+2       = ${GNU_SITE}/chess/gnuchess-6.2.9.tar.gz
+
+[sha256]
+1       = 348508f8f6e7451c07344ffa7a09a990cf1d2883bccf533409dbe029268d49f2
+2       = ddfcc20bdd756900a9ab6c42c7daf90a2893bf7f19ce347420ce36baebc41890
+
+[derle]
+gnu     = gnuchess-6.2.9
+tip     = meson
+
+[pakur]
+tip     = meson

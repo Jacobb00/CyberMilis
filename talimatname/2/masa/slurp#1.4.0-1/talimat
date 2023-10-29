@@ -1,0 +1,22 @@
+[paket]
+tanim   = Wayland için ekran alanı seçici
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/emersion/slurp
+
+[gerek]
+derleme = meson cairo libxkbcommon wayland wayland-protocols
+calisma =
+
+[kaynak]
+gz      = $url/releases/download/v$surum
+
+;[sha256]
+;1       = 005dd8601d4bada9728f434728c7a57c955f90f9b9f53d1ffb051abdbabb9876
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

@@ -1,0 +1,18 @@
+[paket]
+tanim   = Gzip sıkıştırma uygulaması
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gzip.org
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/gzip
+
+;[sha256]
+;1 		= 8425ccac99872d544d4310305f915f5ea81e04d0f437ef1a230dc9d1c819d7c0
+
+[derle]
+betik   = ./configure --prefix=/tools
+betik   = make $MAKEJOBS && make install
+	      
+[pakur]
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

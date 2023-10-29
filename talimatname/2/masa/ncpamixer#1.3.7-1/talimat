@@ -1,0 +1,22 @@
+[paket]
+tanim   = PulseAudio için Ncurses tabanlı arayüz
+paketci = milisarge
+grup    = medya
+url     = https://github.com/fulhax/ncpamixer
+
+[gerek]
+derleme = cmake pulseaudio ncurses
+calisma =
+
+[kaynak]
+1       = https://github.com/fulhax/ncpamixer/archive/${surum}.tar.gz::$isim$surum.tar.gz
+
+;[sha256]
+;1       = b2c797a90c92aa931052c5ac89a79fbc30f76d5e2a5b773ef68edf057c34b060
+
+[derle]
+betik   = cmake -DCMAKE_BUILD_TYPE=release src -DCMAKE_INSTALL_PREFIX="/usr"
+betik   = make
+
+[pakur]
+tip     = gnu

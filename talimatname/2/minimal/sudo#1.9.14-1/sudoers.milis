@@ -1,0 +1,3 @@
+%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) NOPASSWD: /bin/reboot, /bin/poweroff
+

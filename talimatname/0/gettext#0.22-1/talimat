@@ -1,0 +1,20 @@
+[paket]
+tanim   = Uluslararası ve yerelleştirme araçları
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/gettext
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/gettext
+
+;[sha256]
+;1 		= d20fcbb537e02dcf1383197ba05bd0734ef7bf5db06bdb241eb69b7d16b73192
+
+[derle]
+betik   = ./configure --prefix=/tools --disable-shared
+betik   = make $MAKEJOBS
+
+[pakur]
+betik   = cd gettext-tools	
+betik   = cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

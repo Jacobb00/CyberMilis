@@ -1,0 +1,30 @@
+[paket]
+tanim   = Dijital kamera erişim kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.gphoto.org
+
+[gerek]
+derleme = automake libexif libusb libjpeg-turbo
+calisma =
+
+[kaynak]
+bz2     = ${SOURCEFORGE_SITE}/gphoto
+
+[sha256]
+1       = ee61a1dac6ad5cf711d114e06b90a6d431961a6e7ec59f4b757a7cd77b1c0fb4
+
+[derle]
+betik   = autoreconf -fi
+ekconf  = --disable-rpath
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -r "$PKG/usr/lib/udev"
+betik   = rm "$PKG/usr/include/gphoto2/gphoto2"
+betik   = cd "$PKG/usr/lib/libgphoto2"
+betik   = export LD_LIBRARY_PATH="$PKG/usr/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
+betik   = export CAMLIBS="$PWD/$surum"
+betik   = ./print-camera-list hwdb | install -Dm644 /dev/stdin "$PKG/usr/lib/udev/hwdb.d/20-gphoto.hwdb"
+betik   = ./print-camera-list udev-rules version 201  | install -Dm644 /dev/stdin "$PKG/usr/lib/udev/rules.d/40-gphoto.rules"

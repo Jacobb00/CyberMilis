@@ -1,0 +1,26 @@
+[paket]
+tanim   = Java programlama dili araçları
+paketci = milisarge
+grup    = geliştirme
+url     = http://openjdk.java.net
+
+[gerek]
+derleme = automake libxrender libxtst libxt libxrandr giflib libjpeg-turbo fontconfig cups alsa-lib zip unzip lcms2 ccache
+calisma = 
+
+[kaynak]
+1       = https://github.com/openjdk/jdk20u/archive/jdk-20.0.2+9/openjdk20-jdk-20.0.2+9.tar.gz
+2       = https://git.crux.nu:82/tb/java-distfiles/raw/branch/master/distfiles/openjdk20-boot-20230715.tar.xz
+3       = https://git.crux.nu:82/tb/java-distfiles/raw/branch/master/distfiles/java_cacerts-20210916!
+
+;[sha256]
+;1 = 1ab92f321007df2d2608a77899d1acf457185ca905cb1b303570e16ad576cf3a
+;2 = 4c5b27da49f05bbf19223322213c4f430557c64c400a8fe6cb5b9b07e47780c6
+;3 = 983d71ae2fa404f102fbb7a02e48a56a96459f0d7473026daceef1219045f9de
+
+[derle]
+dosya  = derle.sh
+
+[pakur]
+;dosya  = pakur.sh
+betik  = echo "pakur yok"

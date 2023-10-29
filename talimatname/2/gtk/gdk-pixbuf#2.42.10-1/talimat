@@ -1,0 +1,26 @@
+[paket]
+tanim   = GTK için resim yükleme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://wiki.gnome.org/Projects/GdkPixbuf
+
+[gerek]
+derleme = meson libx11 tiff glib libjpeg-turbo gobject-introspection libpng shared-mime-info
+calisma = shared-mime-info
+
+[kaynak]
+xz      = ${GNOME_SITE}/${isim}/${surum%.*}
+dosya   = gdk-pixbuf-register.sh
+dosya   = gdk-pixbuf.loaders
+
+[sha256]
+1 		= ee9b6c75d13ba096907a2e3c6b27b61bcd17f5c7ebeab5a5b439d2f2e39fe44b
+
+[derle]
+betik   = milis-meson -Dman=false -Dinstalled_tests=false -D docs=false output . 
+betik   = ninja -C output
+	      
+[pakur]
+betik   = DESTDIR="$PKG" ninja -C output install
+betik   = install -m 755 $SRC/gdk-pixbuf-register.sh $PKG/usr/bin/gdk-pixbuf-register
+betik   = install -m 644 $SRC/gdk-pixbuf.loaders $PKG/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache

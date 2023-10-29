@@ -1,0 +1,23 @@
+[paket]
+tanim   = nwg-bar menü uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/nwg-piotr/nwg-bar
+
+[gerek]
+derleme = gtk3 gtk-layer-shell
+calisma =
+
+[kaynak]
+github  = nwg-piotr/$isim
+
+;[sha256]
+;1      = 083df513265cab03095461e8e0e8582efb917690ddad572959dd00972ca0abd1
+
+[derle]
+betik   = go_setup.sh 1.20.6
+betik   = export PATH=$HOME/.local/go/bin:$PATH
+tip     = go
+
+[pakur]
+betik   = install -Dm755 $isim $PKG/usr/bin/$isim

@@ -1,0 +1,20 @@
+[paket]
+tanim   = Güvenli soket ve iletim katmanı için araç ve kütüphaneler
+paketci = milisarge
+grup 	= temel
+url     = http://www.openssl.org
+
+[kaynak]
+gz      = https://www.openssl.org/source
+dosya   = ca-dir_openssl3.1.patch
+
+;[sha256]
+;1 		= e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242
+;2 		= 0938c8d68110768db4f350a7ec641070686904f2fe7ba630ac94399d7dc8cc5e
+
+[derle]
+dosya	= derle.sh
+
+[pakur]
+dosya   = pakur.sh
+

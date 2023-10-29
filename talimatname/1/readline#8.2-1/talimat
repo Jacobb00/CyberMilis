@@ -1,0 +1,19 @@
+[paket]
+tanim   = Komut satırı düzenleme ve tarihçe erişimleri sunan kütüphane
+paketci = milisarge
+grup 	= temel
+url     = http://ftp.gnu.org/gnu/readline
+
+[kaynak]
+gz      = $url
+dosya	= inputrc
+
+;[sha256]
+;1 		= e339f51971478d369f8a053a330a190781acb9864cf4c541060f12078948e461
+;2 		= 36e9611f935ee108d161587b0615f9c390192ef4bbff6dc59b58671261029901
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

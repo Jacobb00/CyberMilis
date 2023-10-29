@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Testi-Kaynak eklentisi kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXtst-$surum
+
+[gerek]
+derleme = xorg-util-macros libxext libxi libxfixes
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXtst-$surum.tar.xz
+
+[sha256]
+1 		= 84f5f30b9254b4ffee14b5b0940e2622153b0d3aed8286a3c5b7eeb340ca33c8
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

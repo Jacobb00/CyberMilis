@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Milis Screenshot
+Name[tr]=Milis Ekran Görüntüsü
+GenericName=Screenshot
+GenericName[en_US]=Screenshoter
+GenericName[tr]=Ekran Görüntüsü Alma
+Comment=Screenshoter for Milis Linux
+Comment[tr]=Milis Linux için ekran görüntüleyici
+Exec=meg
+Terminal=false
+Type=Application
+Categories=Graphics;2DGraphics;Viewer;
+Icon=gnome-screenshot
+Keywords=screenshot;

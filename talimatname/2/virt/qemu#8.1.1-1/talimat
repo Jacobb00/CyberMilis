@@ -1,0 +1,92 @@
+[paket]
+tanim   = QEMU sanal makine uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://www.qemu.org
+
+[gerek]
+derleme = automake cmake meson python libpng libjpeg-turbo libx11 alsa-lib libaio gnutls glib xfsprogs libcap-ng libpcap libssh2 libusb pulseaudio libnfs sdl2 gtk3 vte3 pixman xiph cyrus-sasl libepoxy libdrm mesa numactl ndctl fuse3 libseccomp libssh sdl2-extra keyutils nss json-glib polkit vala
+calisma =
+
+[kaynak]
+xz      = https://download.qemu.org
+2       = https://github.com/google/snappy/archive/1.1.10/snappy-1.1.10.tar.gz
+dosya   = snappy-thirdparty.patch
+dosya   = snappy-do-not-disable-rtti.patch
+3       = https://github.com/sahlberg/libiscsi/archive/1.19.0.tar.gz::libiscsi-1.19.0.tar.gz
+4       = https://github.com/virtualsquare/vde-2/archive/refs/tags/v2.3.3.tar.gz::vde2-2.3.3.tar.gz
+5       = https://spice-space.org/download/usbredir/usbredir-0.13.0.tar.xz
+6       = https://www.spice-space.org/download/libcacard/libcacard-2.7.0.tar.xz
+7       = https://gitlab.freedesktop.org/spice/spice-protocol/-/archive/v0.14.4/spice-protocol-v0.14.4.tar.gz
+8       = https://www.spice-space.org/download/releases/spice-server/spice-0.15.2.tar.bz2
+9       = https://spice-space.org/download/gtk/spice-gtk-0.42.tar.xz
+;dosya   = spice-remove-gobject-introspection-dep.patch
+10      = https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/virglrenderer-0.10.4/virglrenderer-virglrenderer-0.10.4.tar.bz2
+11      = https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.7.0/libslirp-v4.7.0.tar.gz
+
+[sha256]
+1       = 37ce2ef5e500fb752f681117c68b45118303ea49a7e26bd54080ced54fab7def
+
+[derle]
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/spice-1"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/spice-server"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/cacard"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/virgl"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/slirp"
+export = CPPFLAGS="$CFLAGS"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig:$PKG/usr/share/pkgconfig
+
+dosya  = snappy.sh
+
+betik  = cd $SRC/libiscsi-1.19.0;./autogen.sh
+ekconf = --disable-werror
+gnu    = libiscsi-1.19.0
+
+betik  = cd $SRC/vde-2-2.3.3
+betik  = autoreconf -fiv
+betik  = ./configure --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --libexecdir=/usr/lib/vde2 --enable-experimental
+betik  = make V=1 && make DESTDIR=$PKG install
+betik  = rm -rf $PKG/usr/lib/vde2/*.a
+
+meson  = usbredir-0.13.0
+
+betik  = cd $SRC/libcacard-2.7.0
+betik  = ./configure --prefix=/usr ; sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik  = make $MAKEJOBS && make DESTDIR=$PKG install
+
+betik  = pip3 install six
+betik  = pip3 install pyparsing
+meson  = spice-protocol-v0.14.4
+
+betik  = cd $SRC/spice-0.15.2
+betik  = sed -i "s/if not version_info.contains('git')/if version_info.length() >= 4/" server/meson.build
+betik  = sed -i "/meson-dist/d" meson.build
+betik  = milis-meson $SRC/spice-0.15.2 builds -D gstreamer=no
+betik  = ninja -C builds $MAKEJOBS
+betik  = DESTDIR=$PKG meson install -C builds
+
+betik  = patch -Np1 -d $SRC/spice-gtk-0.42 -i /sources/spice-remove-gobject-introspection-dep.patch
+betik  = sed -i -e "s/#error \"Only spice.h can be included directly.\"//g" $PKG/usr/include/spice-server/spice-version.h
+ekconf = -Dwebdav=disabled -Dgtk_doc=disabled
+meson  = spice-gtk-0.42
+
+ekconf = -Dvideo=true 
+meson  = virglrenderer-virglrenderer-0.10.4
+
+meson  = libslirp-v4.7.0
+
+betik  = cd $SRC/qemu-$surum
+betik  = sed -e 's,-rpath /usr/local/lib,,g' -i configure
+betik  = export ARFLAGS=rv;export CFLAGS+=" -fPIC"
+betik  = ./configure --prefix=/usr --libdir=/usr/lib --bindir=/usr/bin --sbindir=/usr/bin --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info --localstatedir=/var --libexecdir=/usr/lib/qemu --smbd=/usr/bin/smbd --python=/usr/bin/python3 --enable-modules --enable-kvm --audio-drv-list=alsa,pa,sdl --disable-xen --enable-tpm --enable-vhost-net --enable-virtfs --enable-libusb --disable-glusterfs --enable-snappy --enable-usb-redir --enable-pie --disable-docs --enable-virglrenderer --enable-opengl --enable-spice --enable-sdl --enable-smartcard --enable-gtk --enable-slirp
+betik  = make $MAKEJOBS
+
+[pakur]
+nostrip = 1
+tip     = gnu
+betik   = rm -rf $PKG/var
+betik   = chmod u+s $PKG/usr/lib/qemu/qemu-bridge-helper
+betik   = strip $PKG/usr/bin/*

@@ -1,0 +1,22 @@
+[paket]
+tanim 	= Ağ donanımlarını kontrol etmekte kullanılan bir araç.
+paketci = milisarge
+grup 	= ağ
+url 	= https://www.kernel.org/pub/software/network/ethtool
+
+[gerek]
+derleme = libmnl
+calisma =
+
+[kaynak]
+xz     	= $url
+
+[sha256]
+1       = 814171ea4b8026b081c0741dbbf32e6968311483ecf64711232faec2ac70a14c
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/usr/share

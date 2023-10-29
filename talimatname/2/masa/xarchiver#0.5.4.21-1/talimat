@@ -1,0 +1,25 @@
+[paket]
+tanim   = Gtk tabanlı arşiv yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/ib/xarchiver
+
+[gerek]
+derleme = gtk3 intltool
+calisma = desktop-file-utils unzip p7zip unrar
+
+[kaynak]
+1       = ${url}/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 65329bff7e901452f3f927d913c47ffca759a36e83e8b82d04fe6945e7393fd4
+
+[derle]
+betik   = sed -i 's/ " -idc "/" "/g' src/rar.c
+betik   = sed -i 's/-idp//g' src/rar.c
+ekconf  = --enable-gtk2=no --disable-doc
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = mkdir $PKG/usr/lib/xfce4;mv $PKG/usr/lib/thunar* $PKG/usr/lib/xfce4/

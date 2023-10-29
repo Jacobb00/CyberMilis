@@ -1,0 +1,33 @@
+[paket]
+tanim   = MS Visio diyagramlarını okumak ve dönüştürmek için kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = http://cgit.freedesktop.org/libreoffice/libvisio/commit/
+
+[gerek]
+derleme = boost libxml2 icu cppunit gperf
+calisma =
+
+[kaynak]
+xz      = http://dev-www.libreoffice.org/src
+2       = ${SOURCEFORGE_SITE}/libwpd/librevenge-0.0.5.tar.xz
+3       = http://dev-www.libreoffice.org/src/libcdr/libcdr-0.1.7.tar.xz
+
+[sha256]
+1       = 8faf8df870cb27b09a787a1959d6c646faa44d0d8ab151883df408b7166bea4c
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+betik   = cd $SRC/librevenge-0.0.5
+betik   = ./configure --prefix=/usr --disable-werror
+betik   = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik   = make $MAKEJOBS && make DESTDIR=$PKG install ; cd -
+
+gnu     = libcdr-0.1.7
+gnu     = libvisio-0.1.7
+
+[pakur]
+betik   = echo "pakur yok"

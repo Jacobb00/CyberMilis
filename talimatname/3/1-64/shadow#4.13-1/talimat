@@ -1,0 +1,17 @@
+[paket]
+tanim   = Şifrelerin güvenli biçimde işletilmesini sağlayana uygulama
+paketci = milisarge
+grup 	= temel
+url     = http://shadow.pld.org.pl
+
+[kaynak]
+xz      = https://github.com/shadow-maint/shadow/releases/download/$surum
+
+;[sha256]
+;1 		= a3ad4630bdc41372f02a647278a8c3514844295d36eefe68ece6c3a641c1ae62
+
+[derle]
+dosya	= derle.sh
+	      
+[pakur]
+dosya	= pakur.sh

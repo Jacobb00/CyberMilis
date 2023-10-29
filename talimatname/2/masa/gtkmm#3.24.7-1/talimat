@@ -1,0 +1,59 @@
+[paket]
+tanim   = GTK3 C++ bağlamları
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.gtkmm.org
+
+[gerek]
+derleme = meson perl-xml-parser gtk3 fontconfig libpng libxrender cairo pango
+calisma =
+
+[kaynak]
+xz      = ${GNOME_SITE}/$isim/${surum%.*}
+2       = https://github.com/libsigcplusplus/libsigcplusplus/releases/download/2.12.0/libsigc++-2.12.0.tar.xz
+3       = ${GNOME_SITE}/mm-common/1.0/mm-common-1.0.5.tar.xz
+4       = ${GNOME_SITE}/glibmm/2.66/glibmm-2.66.6.tar.xz
+5       = ${GNOME_SITE}/atkmm/2.28/atkmm-2.28.3.tar.xz
+6       = https://cairographics.org/releases/cairomm-1.14.4.tar.xz
+6       = ${GNOME_SITE}/pangomm/2.46/pangomm-2.46.3.tar.xz
+
+[sha256]
+1       = 1d7a35af9c5ceccacb244ee3c2deb9b245720d8510ac5c7e6f4b6f9947e6789c
+2       = 1c466d2e64b34f9b118976eb21b138c37ed124d0f61497df2a90ce6c3d9fa3b5
+3       = 705c6d29f4116a29bde4e36cfc1b046c92b6ef8c6dae4eaec85018747e6da5aa
+4       = 5358742598181e5351d7bf8da072bf93e6dd5f178d27640d4e462bc8f14e152f
+5       = 7c2088b486a909be8da2b18304e56c5f90884d1343c8da7367ea5cd3258b9969
+5       = 4749d25a2b2ef67cc0c014caaf5c87fa46792fc4b3ede186fb0fc932d2055158
+5       = 410fe04d471a608f3f0273d3a17d840241d911ed0ff2c758a9859c66c6f24379
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig:$PKG/usr/share/pkgconfig
+
+meson   = libsigc++-2.12.0
+export  = CFLAGS="$CFLAGS $(pkgconf --cflags sigc++-2.0 --define-prefix)"
+export  = CXXFLAGS=$CFLAGS
+
+meson   = mm-common-1.0.5
+
+meson   = glibmm-2.66.6
+export  = CFLAGS="$CFLAGS $(pkgconf --cflags giomm-2.4 --define-prefix)"
+export  = CXXFLAGS=$CFLAGS
+
+meson   = atkmm-2.28.3
+export  = CFLAGS="$CFLAGS $(pkgconf --cflags atkmm-1.6 --define-prefix)"
+
+meson   = cairomm-1.14.4
+export  = CFLAGS="$CFLAGS $(pkgconf --cflags cairomm-1.0 --define-prefix)"
+export  = CXXFLAGS=$CFLAGS
+
+meson   = pangomm-2.46.3
+export  = CFLAGS="$CFLAGS $(pkgconf --cflags pangomm-1.4 --define-prefix)"
+export  = CXXFLAGS=$CFLAGS
+
+ekconf  = -D maintainer-mode=false -Dbuild-documentation=false -D build-demos=false -D build-tests=false
+meson   = gtkmm-$surum
+
+[pakur]
+betik   = echo ""

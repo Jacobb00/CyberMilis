@@ -1,0 +1,21 @@
+[paket]
+tanim   = Fourier Transform Kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.fftw.org
+
+[gerek]
+derleme = cmake
+calisma = openmpi
+
+[kaynak]
+gz      = $url
+
+[sha256]
+1       = 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

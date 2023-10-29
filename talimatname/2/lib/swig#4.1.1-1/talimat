@@ -1,0 +1,22 @@
+[paket]
+tanim   = Farklı programlama dil kütüphaneleri aktarıcı ortak kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.swig.org
+
+[gerek]
+derleme = bison zlib pcre2
+calisma =
+
+[kaynak]
+gz      = ${SOURCEFORGE_SITE}/swig
+
+[sha256]
+1       = 2af08aced8fcd65cdb5cc62426768914bedc735b1c250325203716f78e39ac9b
+
+[derle]
+ekconf  = --with-pcre-prefix=/usr
+tip     = gnu
+
+[pakur]
+tip     = gnu

@@ -1,0 +1,22 @@
+[paket]
+tanim   = XC Bağlama için yardımcı program kütüphaneleri
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = xorg-util-macros libxcb xorgproto
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 	    = 5abe3bbbd8e54f0fa3ec945291b7e8fa8cfd3cccc43718f8758430f94126e512
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

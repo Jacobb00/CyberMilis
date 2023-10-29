@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wx eklentilerinin GTK çalışması
+paketci = milisarge
+grup    = kütüphane
+url     = https://wxwidgets.org
+
+[gerek]
+derleme = gstreamer mesa libsm webkit2gtk libnotify gtk3 sdl2 cmake
+
+[kaynak]
+1       = https://github.com/wxWidgets/wxWidgets/releases/download/v${surum}/wxWidgets-$surum.tar.bz2
+
+[sha256]
+1       = dffcb6be71296fff4b7f8840eb1b510178f57aa2eb236b20da41182009242c02
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = cd $SRC;DESTDIR=$PKG cmake --install build-gtk3
+

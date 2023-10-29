@@ -1,0 +1,21 @@
+[paket]
+tanim   = Mevcut ELF yürütülebilir dosyalarını ve kitaplıklarını değiştirmeye yönelik yardımcı program
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/NixOS/patchelf
+
+[gerek]
+derleme =
+calisma =
+
+[kaynak]
+1       = ${url}/releases/download/${surum}/patchelf-${surum}.tar.bz2
+
+[sha256]
+1       = 1952b2a782ba576279c211ee942e341748fdb44997f704dd53def46cd055470b
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu

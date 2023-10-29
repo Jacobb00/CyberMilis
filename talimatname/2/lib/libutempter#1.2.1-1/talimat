@@ -1,0 +1,17 @@
+[paket]
+tanim 	= utmp ve wtmp dosyalarındaki kullanıcı oturumları için kütüphane arayüzü
+paketci = milisarge
+grup 	= kütüphane
+url 	= ftp://ftp.altlinux.org/pub/people/ldv/utempter
+
+[kaynak]
+gz	= $url
+
+[sha256]
+1 	= 967fef372f391de501843ad87570c6cf5dabd9651f00f1783090fbc12b2a34cb
+
+[derle]
+betik   = make
+
+[pakur]
+tip 	= gnu

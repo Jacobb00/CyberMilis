@@ -1,0 +1,23 @@
+[paket]
+tanim   = Bluetooth için konsol arayüzü
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/darkhz/bluetuith
+
+[gerek]
+derleme = 
+calisma = bluez dbus pulseaudio
+
+[kaynak]
+github = darkhz/bluetuith
+
+;[sha256]
+;1      = 209648d86b0f872c03b00a4a0e7793086d3f23d15f95376567d82bff338f3536
+
+[derle]
+betik  = go_setup.sh 1.20.6
+betik  = export PATH=$HOME/.local/go/bin:$PATH
+tip    = go
+
+[pakur]
+betik  = install -Dm755 $isim $PKG/usr/bin/$isim

@@ -1,0 +1,20 @@
+[paket]
+tanim	= Unicode için uluslararası bileşenler kütüphanesi
+paketci	= milisarge
+grup	= kütüphane
+url	    = http://www.icu-project.org/
+arsiv   = icu/source
+
+[kaynak]
+1	    = https://github.com/unicode-org/icu/releases/download/release-${surum//./-}/icu4c-${surum//./_}-src.tgz::$isim-$surum.tgz
+dosya   = ICU-22132.patch
+
+[sha256]
+1	    = 818a80712ed3caacd9b652305e01afc7fa167e6f2e94996da44b90c2ab604ce1
+
+[derle]
+yama    = ICU-22132.patch
+tip	    = gnu
+
+[pakur]
+tip	    = gnu

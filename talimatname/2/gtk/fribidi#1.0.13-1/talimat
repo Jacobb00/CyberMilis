@@ -1,0 +1,22 @@
+[paket]
+tanim   = Unicode çift yönlü algoritmanın ücretsiz uygulanması
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/fribidi/fribidi/
+
+[gerek]
+derleme = meson
+calisma =
+
+[kaynak]
+xz      = https://github.com/fribidi/fribidi/releases/download/v$surum
+
+[sha256]
+1       = 7fa16c80c81bd622f7b198d31356da139cc318a63fc7761217af4130903f54a2
+
+[derle]
+ekconf  = -D docs=false
+tip     = meson
+
+[pakur]
+tip     = meson

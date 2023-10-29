@@ -1,0 +1,22 @@
+[paket]
+tanim	= Perl ile uyumlu normal ifade kütüphaneleri.
+paketci	= milisarge
+grup	= kütüphane
+url		= http://www.pcre.org
+
+[gerek]
+derleme	= 
+calisma	=
+
+[kaynak]
+bz2  	= https://sourceforge.net/projects/pcre/files/pcre/$surum
+
+[sha256]
+1       = 4dae6fdcd2bb0bb6c37b5f97c33c2be954da743985369cddac3546e3218bffb8
+
+[derle]
+ekconf = --enable-unicode-properties --enable-pcre16 --enable-pcre32 --enable-jit --enable-pcregrep-libz --enable-pcregrep-libbz2 --enable-pcretest-libreadline
+tip    = gnu
+
+[pakur]
+tip    = gnu

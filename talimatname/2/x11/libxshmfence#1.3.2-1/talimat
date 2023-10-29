@@ -1,0 +1,22 @@
+[paket]
+tanim   = Linux futex kütüphanesi için API
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+
+[gerek]
+derleme = xorgproto xorg-util-macros
+calisma = 
+
+[kaynak]
+xz      = $url/releases/individual/lib
+
+[sha256]
+1 		= 870df257bc40b126d91b5a8f1da6ca8a524555268c50b59c0acd1a27f361606f
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

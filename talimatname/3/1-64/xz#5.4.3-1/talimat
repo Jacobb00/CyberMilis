@@ -1,0 +1,17 @@
+[paket]
+tanim   = Yüksek sıkıştırma oranına sahip sıkıştırma uygulaması
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/texinfo
+
+[kaynak]
+xz      = http://tukaani.org/xz
+
+;[sha256]
+;1 		= 3e1e518ffc912f86608a8cb35e4bd41ad1aec210df2a47aaa1f95e7f5576ef56
+
+[derle]
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

@@ -1,0 +1,45 @@
+[paket]
+tanim   = Resim görüntüleme, işleme kütüphane ve aracı
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.imagemagick.org
+arsiv   = ImageMagick-${surum%.*}-${surum##*.}
+
+[gerek]
+derleme = cmake meson mesa python ghostscript librsvg libxml2 openjpeg2 libwebp chrpath jbigkit lcms2 libxext libpng tiff libjpeg-turbo libheif fftw
+calisma = 
+
+[kaynak]
+1       = https://www.imagemagick.org/download/releases/ImageMagick-${surum%.*}-${surum##*.}.tar.xz
+2       = https://github.com/openexr/openexr/archive/v3.2.0/openexr-3.2.0.tar.gz
+3       = https://www.libraw.org/data/LibRaw-0.21.1.tar.gz
+4       = https://github.com/LibRaw/LibRaw/commit/477e0719ff.patch!
+5       = https://github.com/mdadams/jasper/archive/version-4.0.0.tar.gz::jasper-4.0.0.tar.gz
+dosya   = jasper-1.900.1-fix-filename-buffer-overflow.patch
+6       = https://github.com/HOST-Oman/libraqm/releases/download/v0.10.1/raqm-0.10.1.tar.xz
+7       = https://github.com/caolanm/libwmf/archive/v0.2.13.tar.gz::libwmf-0.2.13.tar.gz
+8       = https://liblqr.wikidot.com/local--files/en:download-page/liblqr-1-0.4.2.tar.bz2
+9       = https://downloads.sourceforge.net/djvu/djvulibre-3.5.28.tar.gz
+dosya	= djvulibre-check-image-size.patch
+dosya	= djvulibre-check-input-pool.patch
+dosya	= djvulibre-djvuport-stack-overflow.patch
+dosya	= djvulibre-integer-overflow.patch
+dosya	= djvulibre-unsigned-short-overflow.patch
+
+[sha256]
+1 		= 1178b2062569d83314feb9ce586eaf1144c5daa3da3784ea641cee6d28cec00b
+2       = b1b200606640547fceff0d3ebe01ac05c4a7ae2a131be7e9b3e5b9f491ef35b3
+3       = 630a6bcf5e65d1b1b40cdb8608bdb922316759bfb981c65091fec8682d1543cd
+4       = 49469accec0d6f0fbfafb7083a440545bce0e87bcbdee3427ba8671b54ee13d7
+;6       = 4d76a358358d67c5945684f2f10b3b08fb80e924371bf3ebf8b15cd2e321d05d
+;7       = 18ba69febd2f515d98a2352de284a8051896062ac9728d2ead07bc39ea75a068
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+tip 	= gnu
+betik   = find "$PKG/usr/lib/perl5" -name '*.so' -exec chrpath -d {} +
+betik   = rm "$PKG"/etc/ImageMagick-${surum%%.*}/type-{apple,urw-base35,windows}.xml
+betik   = rm "$PKG"/usr/lib/*.a
+betik   = rm -rf $PKG/usr/lib/perl5/5.38/core_perl

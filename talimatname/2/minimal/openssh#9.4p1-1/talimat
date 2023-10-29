@@ -1,0 +1,21 @@
+[paket]
+tanim   = SSH protokol ile uzaktan erişim aracı
+paketci = milisarge
+grup 	= ağ
+url     = https://www.openssh.com/portable.html
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+gz      = https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable
+
+;[sha256]
+;1       = e9baba7701a76a51f3d85a62c383a3c9dcd97fa900b859bc7db114c1868af8a8
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+dosya   = pakur.sh

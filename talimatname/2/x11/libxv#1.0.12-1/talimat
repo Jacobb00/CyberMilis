@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Video uzantısı kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xorg.freedesktop.org
+arsiv   = libXv-$surum
+
+[gerek]
+derleme = libxext
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXv-$surum.tar.xz
+
+[sha256]
+1 		= aaf7fa09f689f7a2000fe493c0d64d1487a1210db154053e9e2336b860c63848
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

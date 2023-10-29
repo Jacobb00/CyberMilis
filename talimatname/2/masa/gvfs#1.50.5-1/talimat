@@ -1,0 +1,22 @@
+[paket]
+tanim   = Kullanıcı alanı sanal dosya sistemi
+paketci = milisarge
+grup    = kütüphane
+url     = https://wiki.gnome.org/Projects/gvfs
+
+[gerek]
+derleme = glib openssh python meson polkit avahi dbus-glib fuse3 gcr bluez libbluray libnfs libgphoto2 libimobiledevice libmtp libcdio-paranoia libsecret libgudev gcr udisks samba
+calisma =  
+
+[kaynak]
+xz      = ${GNOME_SITE}/${isim}/${surum%.*}
+
+;[sha256]
+;1       = b2ea4f271aad2711f16b43c03151e2ec5a9874ff1a21142ef6d6406486a19dc2
+
+[derle]
+ekconf  = -Dsystemduserunitdir=no -Dtmpfilesdir=no -Dlogind=false -Dgoa=false -Dgoogle=false -Dhttp=false
+tip     = meson
+
+[pakur]
+tip     = meson

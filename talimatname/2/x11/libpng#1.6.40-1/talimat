@@ -1,0 +1,21 @@
+[paket]
+tanim   = PNG formatındaki grafik dosyalarını oluşturmak için kullanılan kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.libpng.org/pub/png/libpng.html
+
+[kaynak]
+xz      = https://downloads.sourceforge.net/sourceforge/$isim
+
+[sha256]
+1       = 535b479b2467ff231a3ec6d92a525906fb8ef27978be4f66dbe05d3f3a01b3a1
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu 
+	      
+[pakur]
+tip 	= gnu
+betik   = cd contrib/pngminus
+betik   = make PNGLIB_SHARED="-L$PKG/usr/lib -lpng" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" png2pnm pnm2png
+betik   = install -m0755 png2pnm pnm2png "$PKG/usr/bin/"

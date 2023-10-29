@@ -1,0 +1,43 @@
+[paket]
+tanim   = LV2 eklentileri kullanmak için basit ama güçlü C API
+paketci = milisarge
+grup    = kütüphane
+url     = http://drobilla.net/software/lilv
+arsiv   = .
+
+[gerek]
+derleme = meson pcre libsndfile
+calisma =
+
+[kaynak]
+xz      = http://download.drobilla.net
+2       = https://download.drobilla.net/serd-0.30.16.tar.xz
+3       = https://download.drobilla.net/sord-0.16.14.tar.xz
+4       = https://lv2plug.in/spec/lv2-1.18.10.tar.xz
+5       = https://download.drobilla.net/sratom-0.6.14.tar.xz
+5       = https://download.drobilla.net/suil-0.10.18.tar.xz
+
+;[sha256]
+;1       = 26a37790890c9c1f838203b47f5b2320334fe92c02a4d26ebbe2669dbd769061
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/serd-0"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/sord-0"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/sratom-0"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+ekconf  = -Ddocs=disabled
+meson   = serd-0.30.16
+ekconf  = -Ddocs=disabled
+meson   = sord-0.16.14
+meson   = lv2-1.18.10
+ekconf  = -D cocoa=disabled
+meson   = suil-0.10.18
+ekconf  = -Ddocs=disabled
+meson   = sratom-0.6.14
+ekconf  = -Ddocs=disabled
+meson   = lilv-$surum
+
+[pakur]
+betik   = echo "pakur yok"

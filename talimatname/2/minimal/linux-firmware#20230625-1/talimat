@@ -1,0 +1,21 @@
+[paket]
+tanim   = Kernel için firmware dosyaları
+paketci = milisarge
+grup 	= temel
+url     = https://git.kernel.org
+
+[kaynak]
+gz   	= https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot
+
+[sha256]
+1	    = 2f609c503bde5ee6c32336a465c48e939138b8263504d3f7d03ec65ace80b130
+
+[derle]
+betik   = echo "derle"
+     
+[pakur]
+nostrip = 1
+betik   = make DESTDIR=$PKG FIRMWAREDIR=/usr/lib/firmware install
+betik   = rm $PKG/usr/lib/firmware/{Makefile,README,configure,GPL-{2,3}}
+betik   = install -d ${PKG}/usr/share/licenses/${isim};install -Dm644 LICEN* WHENCE ${PKG}/usr/share/licenses/linux-firmware/
+

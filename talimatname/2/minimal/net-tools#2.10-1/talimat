@@ -1,0 +1,22 @@
+[paket]
+tanim   = Yardımcı ağ araçları
+paketci = milisarge
+grup    = ağ
+url     = http://net-tools.sourceforge.net/
+
+[kaynak]
+xz      = https://downloads.sourceforge.net/project/net-tools
+
+[sha256]
+1       = b262435a5241e89bfa51c3cabd5133753952f7a7b7b93f32e08cb9d96f580d69
+
+[derle]
+bayrak  = 0
+betik   = sed -i "s#/sbin#/bin#" Makefile
+betik   = sed -i "s#/usr##" man/Makefile
+betik   = yes "" | make
+
+[pakur]
+betik   = make DESTDIR=${PKG}/usr install
+betik   = rm "${PKG}"/usr/bin/{hostname,dnsdomainname}
+betik   = rm -rf "${PKG}"/usr/share/man/man1

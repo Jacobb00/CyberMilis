@@ -1,0 +1,15 @@
+#!/bin/sh
+export XDG_RUNTIME_DIR=/tmp/runtime-$UID
+mkdir -p $XDG_RUNTIME_DIR
+chown $UID:$UID $XDG_RUNTIME_DIR 
+chmod 700 $XDG_RUNTIME_DIR
+export XKB_DEFAULT_LAYOUT=`servis oku system.keyboard`
+export WLR_RENDERER_ALLOW_SOFTWARE=1
+mkdir -p ~/.config/waybar
+[ ! -f ~/.config/wayfire.ini ] && cp /etc/wayfire/wayfire.ini ~/.config/
+[ ! -f ~/.config/wf-shell.ini ] && cp /etc/wayfire/wf-shell.ini ~/.config/
+[ -f /etc/waybar/config ] && [ ! -f ~/.config/waybar/config ] && cp -f /etc/waybar/* ~/.config/waybar/
+[ -d /etc/wofi ] && [ ! -d ~/.config/wofi ] && cp -rf /etc/wofi ~/.config/
+[ -d /etc/skel/.config/gtk-3.0 ] && [ ! -d ~/.config/gtk-3.0 ] && cp -rf /etc/skel/.config/gtk-3.0 ~/.config/
+[ -d /etc/skel/.config/geany ] && [ ! -d ~/.config/geany ] && cp -rf /etc/skel/.config/geany ~/.config/
+wayfire -c ~/.config/wayfire.ini

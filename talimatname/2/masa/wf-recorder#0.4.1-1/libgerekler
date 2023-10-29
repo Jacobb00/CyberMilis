@@ -1,0 +1,13 @@
+libstdc++.so.6
+libc.so.6
+libwayland-client.so.0
+libavformat.so.60
+libpulse-simple.so.0
+libswresample.so.4
+libpulse.so.0
+libgbm.so.1
+libgcc_s.so.1
+libavutil.so.58
+libavcodec.so.60
+libavdevice.so.60
+libavfilter.so.9

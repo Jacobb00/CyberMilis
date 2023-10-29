@@ -1,0 +1,18 @@
+[paket]
+tanim   = Açık kaynak IDNA2008 gerçeklemesi
+paketci = milisarge
+grup 	= temel
+url     = https://www.gnu.org/software/libidn/libidn2/manual/libidn2.html
+
+[kaynak]
+gz     	= https://ftp.gnu.org/gnu/libidn
+
+;[sha256]
+;1 		= e1cb1db3d2e249a6a3eb6f0946777c2e892d5c5dc7bd91c74394fc3a01cab8b5
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+     
+[pakur]
+tip     = gnu

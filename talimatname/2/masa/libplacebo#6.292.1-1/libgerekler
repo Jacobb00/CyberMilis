@@ -1,0 +1,9 @@
+libstdc++.so.6
+libm.so.6
+libgcc_s.so.1
+libc.so.6
+libshaderc_shared.so.1
+libvulkan.so.1
+liblcms2.so.2
+libunwind.so.8
+libSPIRV.so.13

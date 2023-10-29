@@ -1,0 +1,22 @@
+[paket]
+tanim   = Milis Linux konsol tabanlı giriş yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://mls.akdeniz.edu.tr/git/milisarge/milis-greeter
+arsiv   = $isim
+
+[gerek]
+derleme = 
+calisma = greetd
+
+[kaynak]
+git     = $url 
+
+[derle]
+betik   = go_setup.sh 1.20.6
+betik   = export PATH=$PATH:$HOME/.local/go/bin
+tip     = go
+
+[pakur]
+tip     = bin
+	

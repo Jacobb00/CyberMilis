@@ -1,0 +1,22 @@
+[paket]
+tanim   = GNU C, C++, fortran and objc derleyicileri içeren araçlar
+paketci = milisarge
+grup 	= onsistem
+url     = http://gcc.gnu.org
+arsiv   = gcc-$surum
+
+[kaynak]
+1       = ftp://gcc.gnu.org/pub/gcc/releases/gcc-$surum/gcc-$surum.tar.xz
+
+;[sha256]
+;1 		= b8dd4368bb9c7f0b98188317ee0254dd8cc99d1e3a18d0ff146c855fe16c1d8c
+
+[derle]
+betik   = mkdir -v build;cd build
+betik   = ../libstdc++-v3/configure --host=$ONSISTEM_TARGET --build=$(../config.guess) --prefix=/tools --disable-multilib --disable-nls --disable-libstdcxx-pch --with-gxx-include-dir=/tools/$ONSISTEM_TARGET/include/c++/$surum
+betik   = make $MAKEJOBS
+
+[pakur]
+betik   = cd build
+tip     = gnu
+betik   = rm -f $PKG/tools/lib/*.la

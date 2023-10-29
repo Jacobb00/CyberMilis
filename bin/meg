@@ -1,0 +1,204 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+import gi, os, locale, subprocess, sys
+gi.require_version("Gtk","3.0")
+from datetime import datetime
+from gi.repository import Gtk, GObject, GdkPixbuf, Gdk, GLib
+
+
+translate = {"tr":{0:"Tüm ekran.",
+					1:"Alan seçimi.",
+					2:"Ekran yakalama öncesi gecikme.",
+					3:"saniye.",
+					4:"Kaydet.",
+					5:"Panoya Kopyala.",
+					6:"0x0.st ye yükle.",
+					7:"Ekran Görüntüsü Al",
+					8:"Uygula"},
+			"en":{0:"Entire Screen.",
+					1:"Select a region.",
+					2:"Delay before caputring.",
+					3:"seconds.",
+					4:"Save.",
+					5:"Copy Clipboard.",
+					6:"Upload 0x0.st",
+					7:"Take Screenshot",
+					8:"Apply"}}
+
+l = locale.getdefaultlocale()
+l = l[0].split("_")[0]
+locales = list(translate.keys())
+if l not in locales:
+	l = "en"
+_ = translate[l]
+
+
+SS_SAVE_DIR = "/tmp"
+SS_WHAT = 0#0 Save 1 Copy Clipboard 2 Upload 0x0.st
+
+def get_default_file_name():
+	name = ""
+	now = datetime.now()
+	current_time = now.strftime("%F_%H%M%S")
+	return "{}.png".format(current_time)
+
+def take_screen_shot(ss_size):
+	f_name = os.path.join(SS_SAVE_DIR,get_default_file_name())
+	if ss_size:
+		take = subprocess.Popen(["sh","-c",'grim -g "{}" {}'.format(ss_size,f_name)], stdout = subprocess.PIPE)
+	else:
+		take = subprocess.Popen(["grim",f_name], stdout = subprocess.PIPE)
+	take.wait()
+	get_ss = GetSS(f_name)
+	get_ss.connect("destroy", Gtk.main_quit)
+	get_ss.show_all()
+
+def get_ss_destroy(win):
+	if win.win_destroy_user:
+		Gtk.main_quit()
+	
+
+class GetSSInfo(Gtk.Window):
+	def __init__(self):
+		super(GetSSInfo, self).__init__()
+		self.win_destroy_user = True
+		m_box = Gtk.VBox()
+		self.add(m_box)
+
+		box = Gtk.HBox()
+		m_box.pack_start(box,1,1,5)
+
+		self.all_screen_tg = Gtk.Button()
+		self.all_screen_tg.set_label(_[0])
+		self.all_screen_tg.connect("clicked",self.take_ss, False)
+		box.pack_start(self.all_screen_tg,1,1,5)
+
+		self.select_area_tg = Gtk.Button()
+		self.select_area_tg.set_label(_[1])
+		self.select_area_tg.connect("clicked",self.take_ss, True)
+		box.pack_start(self.select_area_tg,1,1,5)
+
+
+		box = Gtk.HBox()
+		m_box.pack_start(box,0,0,5)
+
+		box.pack_start(Gtk.Label(_[2]),0,0,5)
+
+		ad = Gtk.Adjustment(0, 0, 300, 1, 0, 0)
+		self.delay_sb = Gtk.SpinButton(adjustment=ad, climb_rate=1, digits=0)
+		self.delay_sb.set_wrap(True)
+		box.pack_start(self.delay_sb,0,0,5)
+
+		box.pack_start(Gtk.Label(_[3]),0,0,5)
+
+	def take_ss(self, widget, ss_size):
+		SS_DELAY = self.delay_sb.get_text()
+		self.win_destroy_user = False
+		self.destroy()
+		if SS_DELAY == "0":
+			SS_DELAY = "0.5"
+		if ss_size:
+			ss_size = subprocess.Popen(["slurp"], stdout = subprocess.PIPE)
+			ss_size.wait()
+			ss_size = ss_size.communicate()[0]
+			ss_size = ss_size.decode("utf-8","strict")
+			ss_size = ss_size.replace("\n","")
+		GObject.timeout_add(float(SS_DELAY)*1000, take_screen_shot, ss_size)
+
+
+
+
+class GetSS(Gtk.Window):
+	def __init__(self,file_name):
+		super(GetSS, self).__init__()
+		box = Gtk.VBox()
+		self.add(box)
+
+		scroll = Gtk.ScrolledWindow()
+		box.add(scroll)
+		scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+		self.image_viewer = Gtk.Image()
+		scroll.add(self.image_viewer)
+
+		self.set_default_size(480,400)
+		self.width, self.height = self.get_size()
+		self.view_image(file_name)
+
+		self.file_choser = Gtk.FileChooserButton()
+		self.file_choser.set_action(Gtk.FileChooserAction.SELECT_FOLDER)
+		box.pack_start(self.file_choser,0,0,5)
+		img_dir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
+		if img_dir == None:
+			img_dir = os.path.expanduser("~")
+		self.file_choser.set_current_folder(img_dir)
+
+		self.save_tg = Gtk.Button()
+		self.save_tg.set_label(_[4])
+		self.save_tg.connect("clicked",self.save_tg_ps,file_name)
+		box.pack_start(self.save_tg,0,0,5)
+
+		self.clipboard_tg = Gtk.Button()
+		self.clipboard_tg.set_label(_[5])
+		self.clipboard_tg.connect("clicked",self.clipboard_tg_ps,file_name)
+		box.pack_start(self.clipboard_tg,0,0,5)
+
+		self.up_0x0_tg = Gtk.Button()
+		self.up_0x0_tg.set_label(_[6])
+		self.up_0x0_tg.connect("clicked",self.up_0x0_tg_ps,file_name)
+		box.pack_start(self.up_0x0_tg,0,0,5)
+
+	def save_tg_ps(self,widget,file_name):
+		folder = self.file_choser.get_filename()
+		subprocess.Popen(["cp",file_name,folder], stdout = subprocess.PIPE)
+		self.destroy()
+
+	def clipboard_tg_ps(self,widget,file_name):
+		subprocess.Popen(["sh","-c","wl-copy < {}".format(file_name)], stdout = subprocess.PIPE)
+		self.destroy()
+	
+
+	def up_0x0_tg_ps(self,widget,file_name):
+		get = subprocess.Popen(["sh","-c","curl -F'file=@{}' https://0x0.st".format(file_name)], stdout = subprocess.PIPE)
+		get.wait()
+		get = get.communicate()[0]
+		get = get.decode("utf-8","strict")
+		subprocess.Popen(["sh","-c","wl-copy {}".format(get)], stdout = subprocess.PIPE)
+		self.destroy()
+
+
+	def view_image(self,file_name):
+		active_pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(file_name,
+																	int(self.width),
+																	int(self.height),
+																	True)
+		self.image_viewer.set_from_pixbuf(active_pixbuf)
+
+
+
+if __name__ == '__main__':
+	args = sys.argv
+	if not ("--fullscreen" in args or "--area" in args):
+		get_ss_info = GetSSInfo()
+		get_ss_info.connect("destroy", get_ss_destroy)
+		get_ss_info.show_all()
+	else:
+		ss_size = False
+		SS_DELAY = 0
+		for a in args:
+			if a  == "-fullscreen":
+				ss_size = False
+			elif a == "--area":
+				ss_size = True
+			elif "--timer=" in a:
+				try:
+					SS_DELAY = int(a.replace("--timer=",""))
+				except:
+					pass
+		if ss_size:
+			ss_size = subprocess.Popen(["slurp"], stdout = subprocess.PIPE)
+			ss_size.wait()
+			ss_size = ss_size.communicate()[0]
+			ss_size = ss_size.decode("utf-8","strict")
+			ss_size = ss_size.replace("\n","")
+		GObject.timeout_add(float(SS_DELAY)*1000, take_screen_shot, ss_size)
+	Gtk.main()

@@ -1,0 +1,23 @@
+[paket]
+tanim   = Ruby 3.x programlama dili
+paketci = milisarge
+grup    = geliştirme
+url     = http://www.ruby-lang.org
+
+[gerek]
+derleme = libffi libyaml gdbm openssl
+calisma =
+
+[kaynak]
+gz      = https://cache.ruby-lang.org/pub/ruby/3.2
+
+[sha256]
+1       = 96c57558871a6748de5bc9f274e93f4b5aad06cd8f37befa0e8d94e7b8a423bc
+
+[derle]
+;betik   = rm -rf gems
+ekconf  = --sharedstatedir=/var/lib --libexecdir=/usr/lib/ruby --enable-shared --disable-rpath --with-dbm-type=gdbm_compat --disable-install-doc
+tip     = gnu
+
+[pakur]
+betik   = make DESTDIR=${PKG} install-nodoc

@@ -1,0 +1,23 @@
+[paket]
+tanim   = Advanced Linux Sound Architecture (ALSA) araçları
+paketci = milisarge
+grup    = sistem
+url     = http://www.alsa-project.org
+
+[gerek]
+derleme = alsa-lib libsamplerate
+calisma = pciutils
+
+[kaynak]
+bz2     = ftp://ftp.alsa-project.org/pub/utils
+
+[sha256]
+1       = e7623d4525595f92e11ce25ee9a97f2040a14c6e4dcd027aa96e06cbce7817bd
+
+[derle]
+ekconf  = --with-udev-rules-dir=/usr/lib/udev/rules.d --disable-alsaconf --with-alsactl-lock-dir=/run/lock --sbindir=/usr/bin
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -d "${PKG}/var/lib/alsa"

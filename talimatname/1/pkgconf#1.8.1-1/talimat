@@ -1,0 +1,25 @@
+[paket]
+tanim   = Derleme ve bağlama bayraklarını yöneten kütüphane
+paketci = milisarge
+grup 	= temel
+url     = http://pkgconf.org
+
+[kaynak]
+xz      = https://distfiles.dereferenced.org/pkgconf
+dosya   = x86_64-pc-linux-gnu.personality
+dosya   = i686-pc-linux-gnu.personality
+
+;[sha256]
+;1 		= b846aea51cf696c3392a0ae58bef93e2e72f8e7073ca6ad1ed8b01c85871f9c0
+
+[derle]
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --with-system-libdir="/usr/lib" --with-system-includedir="/usr/include" --with-pkg-config-dir=/"usr/lib/pkgconfig:/usr/share/pkgconfig" --disable-static
+betik   = make
+	      
+[pakur]
+tip     = gnu
+betik   = install -Dt "$PKG/usr/share/pkgconfig/personality.d" -m644 $SRC/i686-pc-linux-gnu.personality $SRC/x86_64-pc-linux-gnu.personality
+betik   = ln -s pkgconf "$PKG/usr/bin/x86_64-pc-linux-gnu-pkg-config"
+betik   = ln -s pkgconf "$PKG/usr/bin/i686-pc-linux-gnu-pkg-config"
+betik   = ln -s pkgconf "$PKG/usr/bin/pkg-config"
+betik   = ln -s pkgconf.1 "$PKG/usr/share/man/man1/pkg-config.1"

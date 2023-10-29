@@ -1,0 +1,7 @@
+libc.so.6
+libgcrypt.so.20
+libgpg-error.so.0
+libm.so.6
+libxslt.so.1
+libexslt.so.0
+libxml2.so.2

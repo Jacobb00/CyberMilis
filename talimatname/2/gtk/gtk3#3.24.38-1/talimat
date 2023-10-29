@@ -1,0 +1,30 @@
+[paket]
+tanim   = GTK + Araç Seti, grafik kullanıcı arayüzleri oluşturmak için kullanılan çoklu platform araç kitidir. 
+paketci = milisarge
+grup 	= sistem
+url     = http://www.gtk.org/
+arsiv   = gtk+-$surum
+
+[gerek]
+derleme = meson gobject-introspection glib libxcomposite libxinerama libxdamage libxrandr pango shared-mime-info at-spi2-core wayland wayland-protocols libxkbcommon fribidi gdk-pixbuf libepoxy cups librsvg
+calisma = shared-mime-info wayland-protocols mesa librsvg
+
+[kaynak]
+1       = http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.24/gtk+-$surum.tar.xz
+2       = http://icon-theme.freedesktop.org/releases/hicolor-icon-theme-0.17.tar.xz
+
+[sha256]
+1 		= ce11decf018b25bdd8505544a4f87242854ec88be054d9ade5f3a20444dd8ee7
+;2		= 317484352271d18cbbcfac3868eab798d67fff1b8402e740baa6ff41d588a9d8
+
+[derle]
+betik   = export CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
+betik   = update-mime-database /usr/share/mime
+betik   = milis-meson -D broadway_backend=true -Dgtk_doc=false -Dman=false build
+tip     = ninja
+betik   = cd $SRC/hicolor-icon-theme-0.17 && ./configure --prefix=/usr
+	      
+[pakur]
+tip     = ninja
+betik   = rm -rf $PKG/usr/share/icons/hicolor
+betik   = cd $SRC/hicolor-icon-theme-0.17 && make DESTDIR=$PKG install

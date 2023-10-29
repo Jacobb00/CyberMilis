@@ -1,0 +1,22 @@
+[paket]
+tanim   = X ve Cairo için piksel kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://cgit.freedesktop.org/pixman
+
+[gerek]
+derleme = meson libpng
+calisma = 
+
+[kaynak]
+xz      = https://xorg.freedesktop.org/releases/individual/lib
+
+[sha256]
+1       = 5747d2ec498ad0f1594878cc897ef5eb6c29e91c53b899f7f71b506785fc1376
+
+[derle]
+ekconf  = -D loongson-mmi=disabled -D vmx=disabled -D arm-simd=disabled -D neon=disabled -D a64-neon=disabled -D iwmmxt=disabled -D mips-dspr2=disabled -D gtk=disabled
+tip     = meson
+	      
+[pakur]
+tip     = meson

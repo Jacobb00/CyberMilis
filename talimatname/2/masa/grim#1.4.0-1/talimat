@@ -1,0 +1,22 @@
+[paket]
+tanim   = Wayland için ekran yakalıyıcı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/emersion/grim
+
+[gerek]
+derleme = meson cairo libjpeg-turbo wayland wayland-protocols
+calisma =
+
+[kaynak]
+gz      = $url/releases/download/v$surum
+
+[sha256]
+1       = b6786e889ed93568634189a59f6b6429c041bf74883c10e8b6e2ed6772ae7ffb
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

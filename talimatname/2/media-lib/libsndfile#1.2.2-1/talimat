@@ -1,0 +1,22 @@
+[paket]
+tanim   = Örneklenmiş ses içeren dosyaları okumak ve yazmak için bir C kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/libsndfile/libsndfile
+
+[gerek]
+derleme = xiph alsa-lib cmake python mpg123 lame
+calisma = 
+
+[kaynak]
+xz      = $url/releases/download/${surum}
+
+[sha256]
+1       = 3799ca9924d3125038880367bf1468e53a1b7e3686a934f098b7e1d286cdb80e
+
+[derle]
+betik   = cmake ${CMAKE_OPT} -DBUILD_SHARED_LIBS=ON -Wno-dev -B build -S .
+betik   = make VERBOSE=1 -C build
+
+[pakur]
+betik   = make DESTDIR="$PKG" install -C build

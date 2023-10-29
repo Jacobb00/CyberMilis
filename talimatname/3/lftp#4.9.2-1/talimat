@@ -1,0 +1,23 @@
+[paket]
+tanim   = Gelişmiş FTP / HTTP istemcisi
+paketci = milisarge
+grup    = ağ
+url     = https://lftp.yar.ru/
+
+[gerek]
+derleme = zlib ncurses readline expat gettext gnutls
+calisma =
+
+[kaynak]
+1       = http://lftp.yar.ru/ftp/lftp-${surum}.tar.xz
+
+[sha256]
+1       = c517c4f4f9c39bd415d7313088a2b1e313b2d386867fe40b7692b83a20f0670d
+
+[derle]
+ekconf  = --with-gnutls --without-openssl --without-included-regex
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -rf ${PKG}/usr/lib

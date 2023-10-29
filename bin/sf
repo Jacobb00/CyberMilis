@@ -1,0 +1,425 @@
+#!/usr/bin/env python3
+""" A simple file manager written in python """
+""" source of code is : https://gitlab.com/Yellowhat/sf """
+import curses
+import sys
+from argparse import ArgumentParser
+from curses import KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT
+from curses import KEY_NPAGE, KEY_PPAGE, KEY_ENTER, KEY_BACKSPACE
+from curses import KEY_RESIZE
+from curses.ascii import BEL, ESC
+from os import environ, makedirs
+from math import log
+from mimetypes import guess_type
+from pathlib import Path
+from shutil import which
+from stat import filemode
+from string import Template
+from subprocess import run, PIPE
+from tempfile import NamedTemporaryFile
+
+__version__ = "sf 1.1.1"
+EDITOR = environ.get("EDITOR", "nano")
+
+
+def fmt_size(size):
+    """Format a bytes size in human format"""
+
+    if size == 0:
+        return f"{0:6d}  B"
+
+    units = ["B", "kB", "MB", "GB", "TB", "PB"]
+    decms = [0, 0, 1, 2, 2, 2]
+    exponent = min(int(log(size, 1024)), len(units) - 1)
+    quotient = float(size) / 1024 ** exponent
+    unit, ndecm = units[exponent], decms[exponent]
+    return f"{quotient:6.{ndecm}f} {unit:>2s}"
+
+
+class Sf:
+    """Sf class"""
+
+    def __init__(self, dircur=None, showhidden=False):
+
+        # (>=3.9) Sets the number of milliseconds to wait after reading an escape character
+        if sys.version_info.minor >= 9:
+            curses.set_escdelay(10)
+
+        # Padding
+        self.padl = 1
+        self.padt = 2
+
+        # Check progress option for cp/mv
+        out = run("cp --help", shell=True, check=True, capture_output=True).stdout.decode("UTF-8")
+        opt_g = "--progress-bar" if "--progress-bar" in out else ""
+
+        # Keybindings
+        self.keybindings = {
+            **dict.fromkeys([ord("k"), KEY_UP], lambda: self.move_cursor(-1)),
+            **dict.fromkeys([ord("j"), KEY_DOWN], lambda: self.move_cursor(+1)),
+            KEY_PPAGE: lambda: self.move_cursor(-10),
+            KEY_NPAGE: lambda: self.move_cursor(+10),
+            ord("g"): lambda: self.move_cursor(-999999),
+            ord("G"): lambda: self.move_cursor(+999999),
+            **dict.fromkeys([ord("l"), KEY_RIGHT, 10, 13, KEY_ENTER, BEL], self.open),
+            **dict.fromkeys([ord("h"), KEY_LEFT, KEY_BACKSPACE, ord("\b")], self.upper_dir),
+            ord("."): self.togglehidden,
+            **dict.fromkeys([ord("p"), ord(" ")], self.mark),
+            ord("P"): lambda: self.mark(mark_all=True),
+            ord("c"): lambda: self.mark_clean(refresh=True),
+            ord("f"): lambda: self.create("file"),
+            ord("n"): lambda: self.create("folder"),
+            ord("r"): self.rename,
+            ord("y"): lambda: self.run_cmd(Template(f"cp -vir {opt_g} $files $dest")),
+            ord("m"): lambda: self.run_cmd(Template(f"mv -vi {opt_g} $files $dest")),
+            ord("x"): lambda: self.run_cmd(Template("rm -rf $files")),
+            KEY_RESIZE: self.show_dir,
+            ord("e"): self.read_dir,
+            ord("!"): self.open_shell,
+            ord("/"): self.search,
+            ord("~"): lambda: self.go_dir(Path.home()),
+            ord("1"): lambda: self.go_dir(Path.home() / "Downloads"),
+            ord("2"): lambda: self.go_dir(Path("/media/Backup")),
+        }
+        if which("fzf") is not None:
+            self.keybindings[ord("d")] = self.fzf
+
+        self.window = None
+        self.width = 0
+        self.idxcur = 0
+        self.dircur = Path(dircur if dircur is not None and Path(dircur).is_dir() else ".").resolve()
+        self.showhidden = showhidden
+        self.items = list()
+        self.nitems = 0
+        self.marked = set()
+        self.mark_file = "/tmp/.sf_marked"
+
+    def mainloop(self, window):
+        """Initialise curses, show and wait for key to be pressed"""
+
+        self.window = window
+        curses.start_color()
+        curses.use_default_colors()
+        curses.curs_set(False)
+
+        # Header
+        curses.init_pair(1, 7, 4)  # Header: White | Light Blue
+        curses.init_pair(2, 7, 5)  # Header: White | Light Blue
+        # Colors (Standard)
+        curses.init_pair(11, 248, 0)  # Info: Grey  | Black
+        curses.init_pair(12, 6, 0)  # Folder (Sym): Blue  | Black
+        curses.init_pair(13, 12, 0)  # Folder: Blue  | Black
+        curses.init_pair(14, 10, 0)  # Exec: Green | Black
+        curses.init_pair(15, 5, 0)  # Sym: Green | Black
+        # Colors (Select)
+        curses.init_pair(21, 1, 0)  # Info: Grey | Grey
+
+        self.mark_load()
+        self.read_dir()
+        while True:
+            key = self.window.getch()
+            if key == ord("q"):
+                break
+            self.keybindings.get(key, lambda: None)()
+
+    def print_line(self, irow, path):
+        """Print an item of the self.items list"""
+
+        stat = filemode(path.stat().st_mode)
+        if path.is_dir():
+            size = "%9d" % sum(1 for p in path.glob("*"))
+        else:
+            size = fmt_size(path.stat().st_size)
+        self.window.addstr(irow + self.padt, self.padl, f"{stat} {size} ", curses.color_pair(11))
+        text = f"*{path.name}" if path in self.marked else f" {path.name}"
+        if path.is_dir() and path.is_symlink():
+            self.window.addnstr(text, self.width, curses.A_BOLD | curses.color_pair(12))
+        elif path.is_dir():
+            self.window.addnstr(text, self.width, curses.A_BOLD | curses.color_pair(13))
+        elif which(path) is not None:
+            self.window.addnstr(text, self.width, curses.color_pair(14))
+        elif path.is_symlink():
+            self.window.addnstr(text, self.width, curses.color_pair(15))
+        else:
+            self.window.addnstr(text, self.width)
+
+    def show_dir(self, header=None):
+        """Show the content of the current folder"""
+
+        self.window.clear()
+        term_l, term_w = self.window.getmaxyx()
+        maxitems = term_l - self.padt
+        self.width = term_w - self.padl - 9 - 1 - 9 - 2 - 1
+        if header is None:
+            header = f"{self.idxcur + 1:4d}/{self.nitems} {self.dircur} "
+        self.window.addnstr(0, self.padl, header, term_w - 1, curses.color_pair(1))
+        if self.items:
+            nshow = 3
+            if maxitems - self.idxcur < nshow:
+                idx_end = self.idxcur + nshow
+                idx_start = idx_end - maxitems
+            else:
+                idx_start = 0
+                idx_end = maxitems
+            path_cur = self.items[self.idxcur]
+            sep = 10 + 10 + 2
+            for irow, path in enumerate(self.items[idx_start:idx_end]):
+                self.print_line(irow, path)
+                if path == path_cur:
+                    self.window.move(irow + self.padt, self.padl)
+                    self.window.chgat(sep, curses.color_pair(21))
+                    self.window.move(irow + self.padt, self.padl + sep)
+                    self.window.chgat(len(path.name), curses.A_REVERSE)
+        else:
+            self.window.addstr(self.padt, self.padl, "empty", curses.color_pair(12))
+        self.window.refresh()
+
+    def read_dir(self):
+        """Read current folder content"""
+
+        dirs = list()
+        files = list()
+        for path in Path(self.dircur).glob("*"):
+            if (not path.name.startswith(".")) or self.showhidden:
+                if path.is_dir():
+                    dirs.append(path)
+                else:
+                    files.append(path)
+        dirs.sort(key=lambda x: x.name.lower())
+        files.sort(key=lambda x: x.stem.lower())
+        self.idxcur = 0
+        self.items = dirs + files
+        self.nitems = len(self.items)
+        self.show_dir()
+
+    def move_cursor(self, nrows):
+        """Move the cursors by nrows"""
+
+        self.idxcur += nrows
+        if self.idxcur < 0:
+            self.idxcur = self.nitems - 1
+        elif self.idxcur > self.nitems - 1:
+            self.idxcur = 0
+        self.show_dir()
+
+    def go_dir(self, path):
+        """Go to folder"""
+
+        self.dircur = path.resolve()
+        if self.dircur.is_file():
+            self.dircur = self.dircur.parent
+        self.idxcur = 0
+        self.read_dir()
+
+    def upper_dir(self):
+        """Go to the upper folder"""
+
+        self.go_dir(self.dircur.parent)
+
+    def open_shell(self):
+        """Open a terminal in the current folder"""
+
+        curses.endwin()
+        _ = run(f"cd '{self.dircur}'; $0", shell=True, check=True)
+        self.window.refresh()
+
+    def open_app(self, path):
+        """Open the current item in an external application"""
+
+        mimetype = guess_type(path)[0]
+        path = '"' + path.absolute().as_posix() + '"'
+        if mimetype is None:
+            cmd = f"{EDITOR} {path}"
+        else:
+            typ, subtyp = mimetype.split("/")
+            if typ in ["image", "video"]:
+                cmd = f"nohup mpv {path} &>/dev/null &"
+            elif typ == "audio":
+                cmd = f"nohup mpv --no-video {path} &>/dev/null &"
+            elif typ == "text" or subtyp in ["x-sh"]:
+                cmd = f"{EDITOR} {path}"
+            elif any(subtyp.startswith(s) for s in ["vnd.oasis", "vnd.open", "vnd.ms-", "msword"]):
+                cmd = f"nohup dbus-launch flatpak run org.libreoffice.LibreOffice {path} &>/dev/null &"
+            elif subtyp.startswith("pdf"):
+                cmd = f"nohup zathura {path} &>/dev/null &"
+            else:
+                cmd = f"nohup xdg-open {path} &>dev/null &"
+        curses.endwin()
+        _ = run(cmd, shell=True, check=True)
+        self.window.refresh()
+
+    def open(self):
+        """Open the current item"""
+
+        if not self.items:
+            return
+        path = self.items[self.idxcur]
+        if path.is_dir():
+            self.go_dir(path.resolve())
+        else:
+            self.open_app(path)
+            self.show_dir()
+
+    def togglehidden(self):
+        """Toggle to show/hide hidden items"""
+
+        self.showhidden = not self.showhidden
+        self.read_dir()
+
+    def mark(self, mark_all=None):
+        """Mark an or all items and save to file the new set"""
+
+        if mark_all is not None:
+            paths = self.items
+        else:
+            paths = [self.items[self.idxcur]]
+        for path in paths:
+            if path in self.marked:
+                self.marked.remove(path)
+            else:
+                self.marked.add(path)
+        with open(self.mark_file, "w") as fobj:
+            for path in self.marked:
+                fobj.write(str(path) + "\n")
+        self.show_dir()
+
+    def mark_load(self):
+        """Load marked items set from file"""
+
+        if not Path(self.mark_file).is_file():
+            self.mark_clean()
+            return
+        if Path(self.mark_file).stat().st_size == 0:
+            self.mark_clean()
+            return
+        with open(self.mark_file, "r") as fobj:
+            self.marked = {Path(s.strip()) for s in fobj.readlines()}
+
+    def mark_clean(self, refresh=False):
+        """Empty marked items set"""
+
+        self.marked = set()
+        open(self.mark_file, "w").close()
+        if refresh:
+            self.show_dir()
+
+    def prompt(self, prompt):
+        """Prompt user for a string"""
+
+        self.window.addstr(0, self.padl, prompt, curses.color_pair(2))
+        self.window.clrtoeol()
+        response = ""
+        while True:
+            key = self.window.getch()
+            if key == ESC:
+                return None
+            if key in [10, KEY_ENTER]:
+                return response
+            if key in [KEY_BACKSPACE, ord("\b")]:
+                response = response[:-1]
+            else:
+                response += chr(key)
+            self.window.addstr(0, self.padl + len(prompt), response, curses.color_pair(1))
+            self.window.clrtoeol()
+
+    def prompt_yesno(self, header, extra):
+        """Prompt user for yes/no"""
+
+        header += ", confirm with y?"
+        curses.echo()
+        self.window.clear()
+        self.window.addstr(0, self.padl, header, curses.color_pair(1))
+        i = 1
+        for row in extra:
+            self.window.addstr(i, self.padl, str(row), curses.color_pair(1))
+            i += 1
+        self.window.refresh()
+        curses.noecho()
+        key = self.window.getch()
+        return bool(key == ord("y"))
+
+    def create(self, typ):
+        """Create a new empty file/folder if not existing"""
+
+        name = self.prompt(f"New {typ} name: ")
+        if name is None:
+            self.show_dir()
+            return
+        path = Path(self.dircur) / Path(name)
+        if not path.exists():
+            if typ == "file":
+                open(path, "a").close()
+            elif typ == "folder":
+                makedirs(path)
+        self.read_dir()
+
+    def rename(self):
+        """Rename all items in current folder"""
+
+        if not self.items:
+            return
+        with NamedTemporaryFile(mode="w+") as temp_file:
+            for item in self.items:
+                temp_file.write(item.name + "\n")
+            temp_file.seek(0)
+            curses.endwin()
+            _ = run(f"{EDITOR} {temp_file.name}", shell=True, check=True)
+            temp_file.seek(0)
+            items_new = temp_file.read().splitlines()
+            if len(items_new) == len(self.items):
+                for src, dst in zip(self.items, items_new):
+                    src.rename(src.parent / dst)
+            self.window.refresh()
+        self.read_dir()
+
+    def run_cmd(self, template):
+        """Run a command in the shell (cp/mv/rm)"""
+
+        self.mark_load()
+        lst = self.marked if self.marked else [self.items[self.idxcur]]
+        response = self.prompt_yesno(f"Run '{template.template.split()[0]}'", lst)
+        curses.endwin()
+        if response:
+            files = " ".join(f'"{p.absolute()}"' for p in lst)
+            cmd = template.substitute(files=files, dest=f"'{self.dircur}'")
+            _ = run(cmd, shell=True, check=True)
+            self.mark_clean()
+        self.window.refresh()
+        self.read_dir()
+
+    def search(self):
+        """Search in the current folder"""
+
+        search = self.prompt("Search: ")
+        if search is None:
+            self.show_dir()
+        else:
+            self.items = [s for s in self.items if search in s.name]
+            self.nitems = len(self.items)
+            self.idxcur = 0
+            header = f"Search: {search}"
+            self.show_dir(header=header)
+
+    def fzf(self):
+        """Go to the folder of the file selected"""
+
+        proc = run(f"find {self.dircur} | fzf", shell=True, check=False, stdout=PIPE, encoding="UTF-8")
+        self.go_dir(path=Path(proc.stdout.strip()))
+
+
+if __name__ == "__main__":
+    # Parse arguments
+    parser = ArgumentParser(description="sf: A simple console file manager written in python")
+    parser.add_argument("-v", "--version", action="version", version=__version__)
+    parser.add_argument("folder", nargs="?", help="Folder to run from")
+    parser.add_argument("--showhidden", default=False, action="store_true", help="Show hidden files")
+    parser.add_argument("--no-showhidden", dest="showhidden", action="store_false", help="Hide hidden files (default)")
+    args = parser.parse_args()
+
+    # Mainloop
+    sf = Sf(dircur=args.folder, showhidden=args.showhidden)
+    try:
+        curses.wrapper(sf.mainloop)
+    except KeyboardInterrupt:
+        pass
+

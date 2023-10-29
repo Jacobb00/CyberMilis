@@ -1,0 +1,10 @@
+libc.so.6
+libdl.so.2
+libexpat.so.1
+libgnutls.so.30
+libidn2.so.0
+libncursesw.so.6
+libreadline.so.8
+libstdc++.so.6
+libutil.so.1
+libz.so.1

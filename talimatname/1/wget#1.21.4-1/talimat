@@ -1,0 +1,18 @@
+[paket]
+tanim   = HTTP, HTTPS ve FTP protokolü bazlı dosya indirme uygulaması
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/wget
+
+[kaynak]
+gz     	= http://ftp.gnu.org/gnu/$isim
+
+;[sha256]
+;1 		= 59ba0bdade9ad135eda581ae4e59a7a9f25e3a4bde6a5419632b31906120e26e
+
+[derle]
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --with-ssl=openssl --disable-rpath --enable-nls --disable-debug
+betik   = make
+
+[pakur]
+tip     = gnu

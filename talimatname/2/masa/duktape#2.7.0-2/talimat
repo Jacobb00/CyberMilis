@@ -1,0 +1,23 @@
+[paket]
+tanim   = Gömülebilir JavaScript motoru
+paketci = milisarge
+grup    = geliştirme
+url     = https://duktape.org
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+xz      = $url
+
+[sha256]
+1       = 90f8d2fa8b5567c6899830ddef2c03f3c27960b11aca222fa17aa7ac613c2890
+
+[derle]
+betik   = sed -i 's/^#undef DUK_USE_FASTINT$/#define DUK_USE_FASTINT/' src/duk_config.h
+betik   = sed -i 's/duktape\.c/& -lm/' Makefile.sharedlibrary
+betik   = make -f Makefile.sharedlibrary
+
+[pakur]
+betik   = make -f Makefile.sharedlibrary INSTALL_PREFIX=${PKG}/usr install

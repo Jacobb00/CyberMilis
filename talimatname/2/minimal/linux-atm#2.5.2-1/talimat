@@ -1,0 +1,27 @@
+[paket]
+tanim   = ATM ağ araçları
+paketci = milisarge
+grup 	= temel
+url     = http://linux-atm.sourceforge.net
+
+[kaynak]
+gz      = http://downloads.sourceforge.net/sourceforge/$isim
+dosya   = man-pages.patch
+dosya   = remove-define-hacks.patch
+dosya   = 0001-saaldump-atmdump-Include-linux-sockios.h-for-SIOCGST.patch
+
+[sha256]
+1 	= 9645481a2b16476b59220aa2d6bc5bc41043f291326c9b37581018fbd16dd53a
+2 	= 0e535ace1a88d4bba95a586f9357a6fef5258e07ffeba209d630e32149dfaa07
+
+[derle]
+yama    = 0001-saaldump-atmdump-Include-linux-sockios.h-for-SIOCGST.patch
+yama    = man-pages.patch
+yama    = remove-define-hacks.patch
+betik   = sed -i "s#/lib/firmware#/usr/lib/firmware#" src/extra/Makefile.in
+betik   = ./configure --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc
+betik   = make
+	      
+[pakur]
+tip	= gnu
+betik   = rm -f $PKG/usr/lib/*.a

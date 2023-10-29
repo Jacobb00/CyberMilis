@@ -1,0 +1,32 @@
+[paket]
+tanim   = Belirtilen programları planlanan zamanlarda çalıştırma uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/cronie-crond/cronie
+
+[gerek]
+derleme = pam 
+calisma = run-parts
+
+[kaynak]
+gz      = ${url}/releases/download/cronie-${surum}
+dosya   = crond-pam
+
+[sha256]
+1       = 2cd0f0dd1680e6b9c39bf1e3a5e7ad6df76aa940de1ee90a453633aa59984e62
+
+[derle]
+ekconf  = --with-inotify --without-selinux --with-pam --enable-anacron --enable-pie --enable-relro
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = chmod u+s ${PKG}/usr/bin/crontab
+betik   = install -d ${PKG}/var/spool/{ana,}cron
+betik   = install -d ${PKG}/etc/cron.{d,hourly,daily,weekly,monthly}
+betik   = touch ${PKG}/etc/cron.deny
+betik   = chmod 644 ${PKG}/etc/cron.deny
+betik   = install -Dm0644 $SRC/crond-pam ${PKG}/etc/pam.d/crond
+betik   = install -Dm0644 contrib/anacrontab ${PKG}/etc/anacrontab
+betik   = install -Dm0644 contrib/0hourly ${PKG}/etc/cron.d/0hourly
+betik   = install -Dm0755 contrib/0anacron ${PKG}/etc/cron.hourly/0anacron

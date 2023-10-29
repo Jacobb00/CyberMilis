@@ -1,0 +1,22 @@
+[paket]
+tanim   = Dm-crypt ile şifrelenmiş aygıtları kurma aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://gitlab.com/cryptsetup/cryptsetup
+
+[gerek]
+derleme = json-c popt lvm2 gnupg argon2
+calisma = 
+
+[kaynak]
+xz      = https://www.kernel.org/pub/linux/utils/cryptsetup/v${surum%.*}
+
+[sha256]
+1       = 410ded65a1072ab9c8e41added37b9729c087fef4d2db02bb4ef529ad6da4693
+
+[derle]
+ekconf  =  --with-crypto_backend=openssl --disable-asciidoc --disable-ssh-token
+tip     = gnu
+	      
+[pakur]
+tip     = gnu

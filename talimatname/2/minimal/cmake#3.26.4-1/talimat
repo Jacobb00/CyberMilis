@@ -1,0 +1,23 @@
+[paket]
+tanim   = Çapraz platform açık kaynaklı derleme sistemi
+paketci = milisarge
+grup 	= geliştirme
+url     = http://www.cmake.org
+
+[gerek]
+derleme = libuv rhash jsoncpp
+calisma = 
+
+[kaynak]
+gz      = https://github.com/Kitware/CMake/releases/download/v$surum
+
+[sha256]
+1 		= 313b6880c291bd4fe31c0aa51d6e62659282a521e695f30d5cc0d25abbd5c208
+
+[derle]
+betik   = export CXXFLAGS+=" ${CPPFLAGS}"
+betik   = ./bootstrap --prefix=/usr --mandir=/share/man --datadir=/share/$isim --docdir=/share/doc/$isim --system-libs --parallel=$(/usr/bin/getconf _NPROCESSORS_ONLN)
+betik   = make 
+
+[pakur]
+tip     = gnu

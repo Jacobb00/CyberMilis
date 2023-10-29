@@ -1,0 +1,28 @@
+[paket]
+tanim   = Yetkilendirme araç seti
+paketci = milisarge
+grup    = sistem
+url     = https://www.freedesktop.org/wiki/Software/polkit
+
+[gerek]
+derleme = meson intltool glib gobject-introspection duktape
+calisma =
+
+[kaynak]
+bz2     = https://gitlab.freedesktop.org/polkit/polkit/-/archive/$surum
+dosya   = polkit-1.pam
+
+[sha256]
+1       = e0fe9c7feac5a90d60891be5fbbebfe4ebfd7460691414d1bd64e73e0675b965
+2       = 336599f2092de0f728d674dbc4bb5ed35f3ca832a0ab4f2ea1f4748b0c89fcd3
+
+[derle]
+ekconf  = -D examples=false -D gtk_doc=false -D man=false -D os_type=lfs -D tests=false
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = install -d -o root -g 102 -m 750 "$PKG"/{etc,usr/share}/polkit-1/rules.d
+betik   = cp -rf $SRC/polkit-1.pam $PKG/etc/pam.d/polkit-1
+betik   = chmod 4775 $PKG/usr/bin/pkexec
+betik   = chmod 4755 $PKG/usr/lib/polkit-1/polkit-agent-helper-1

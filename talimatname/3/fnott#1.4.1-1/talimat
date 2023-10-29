@@ -1,0 +1,27 @@
+[paket]
+tanim   = Bildirim takip sistemi
+paketci = milisarge
+grup    = kütüphane
+url     = https://codeberg.org/dnkl/fnott
+arsiv   = $isim
+
+[gerek]
+derleme = meson fontconfig freetype pixman harfbuzz libutf8proc wayland-protocols
+calisma =
+
+[kaynak]
+1       = ${url}/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+2       = https://codeberg.org/dnkl/tllist/archive/1.0.5.tar.gz::tllist-1.0.5.tar.gz
+3       = https://codeberg.org/dnkl/fcft/archive/3.1.6.tar.gz::fcft-3.1.6.tar.gz
+
+;[sha256]
+;1       = f571afe693d3fa11fe36e97c7a2ecbbf9313755ee31c1ec3dcc648796b8e6db0
+
+[derle]
+betik   = mkdir -p subprojects;mv $SRC/tllist subprojects/;mv $SRC/fcft subprojects/
+betik   = rm -rf doc/*;touch doc/meson.build
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/usr/share/{zsh,applications}

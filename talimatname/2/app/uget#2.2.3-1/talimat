@@ -1,0 +1,32 @@
+[paket]
+tanim   = Uget indirme yöneticisi
+paketci = milisarge
+grup    = ağ
+url     = http://ugetdm.com
+
+[gerek]
+derleme = intltool libnotify gtk3 curl gstreamer
+calisma = aria2
+
+[kaynak]
+1       = ${SOURCEFORGE_SITE}/urlget/$isim-$surum-1.tar.gz
+dosya   = uget-gcc10.patch
+dosya   = disable-rss.patch
+dosya   = uget-gtk.appdata.xml
+
+[sha256]
+1       = 11356e4242151b9014fa6209c1f0360b699b72ef8ab47dbeb81cc23be7db9049
+
+[derle]
+betik	= sed -i '/GenericName=Download Manager/a GenericName[tr]=İndirme Yöneticisi' uget-gtk.desktop
+betik	= sed -i '/^Comment/a Comment[tr]=Birden çok URL indirme-kuyruklama' uget-gtk.desktop
+betik	= sed -i 's/x11/wayland/' uget-gtk.desktop
+betik   = patch -Np1 -i $SRC/uget-gcc10.patch
+betik   = patch -Np1 -i $SRC/disable-rss.patch
+betik   = sed -i 's/env GDK_BACKEND=x11 uget-gtk/uget-gtk/' uget-gtk.desktop
+ekconf  = --disable-rss-notify
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -Dm644 $SRC/uget-gtk.appdata.xml $PKG/usr/share/metainfo/uget-gtk.appdata.xml

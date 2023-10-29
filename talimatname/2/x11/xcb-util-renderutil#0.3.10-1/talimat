@@ -1,0 +1,22 @@
+[paket]
+tanim   = XCB Render eklentisi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = xorgproto xorg-util-macros libxcb
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 	    = 3e15d4f0e22d8ddbfbb9f5d77db43eacd7a304029bf25a6166cc63caa96d04ba
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	  
+[pakur]
+tip 	= gnu

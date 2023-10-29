@@ -1,0 +1,44 @@
+[paket]
+tanim   = Appstream metadatası için okuma yazma aracı
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.freedesktop.org/software/appstream
+arsiv   = .
+
+[gerek]
+derleme = gtk3 gobject-introspection itstool glib librsvg libsoup libyaml vala gperf
+calisma =
+
+[kaynak]
+1       = $url/releases/AppStream-$surum.tar.xz
+2       = https://people.freedesktop.org/~hughsient/appstream-glib/releases/appstream-glib-0.8.2.tar.xz
+3       = https://github.com/hughsie/libxmlb/releases/download/0.3.13/libxmlb-0.3.13.tar.xz
+
+;[sha256]
+;1       = 71256500add5048d6f08878904708b3d0c3875f402e0adcd358e91d47dcd8b96
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libxmlb-2"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libxmlb-2/xmlb"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+betik   = milis-meson -D stemmer=false -Dgtkdoc=false libxmlb-0.3.13 build-x
+betik   = meson compile -C build-x
+betik   = meson install -C build-x --destdir $PKG
+betik   = rm -rf $PKG/usr/lib/installed-tests
+
+betik   = sed  -i "/subdir('docs\/')/d" $SRC/AppStream-$surum/meson.build
+betik   = milis-meson -Dstemming=false -Dvapi=true -Dcompose=true -Dsystemd=false -Ddocs=false -Dapidocs=false -Dinstall-docs=false AppStream-$surum build-a
+betik   = meson compile -C build-a
+betik   = meson install -C build-a --destdir $PKG
+
+betik   = milis-meson -Dgtk-doc=false -Drpm=false -Dstemmer=false -Dman=false appstream-glib-0.8.2 build-g
+betik   = meson compile -C build-g
+betik   = meson install -C build-g --destdir $PKG
+
+[pakur]
+betik	= rm -rf -- "${PKG}"/usr/share/installed-tests
+betik	= rm -rf -- "${PKG}"/usr/lib/installed-tests

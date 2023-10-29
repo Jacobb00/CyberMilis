@@ -1,0 +1,22 @@
+[paket]
+tanim   = Çoklu paltform destekli asenkron I/O kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://github.com/libuv/libuv
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+github  = libuv/libuv
+
+[sha256]
+1       = 7aa66be3413ae10605e1f5c9ae934504ffe317ef68ea16fdaa83e23905c681bd
+
+[derle]
+betik 	= ./autogen.sh
+betik 	= ./configure --prefix=/usr && make
+	      
+[pakur]
+tip 	= gnu

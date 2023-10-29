@@ -1,0 +1,7 @@
+libcrypt.so.2
+libsubid.so.4
+libacl.so.1
+libattr.so.1
+libc.so.6
+libpam.so.0
+libpam_misc.so.0

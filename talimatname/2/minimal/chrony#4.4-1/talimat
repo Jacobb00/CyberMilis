@@ -1,0 +1,24 @@
+[paket]
+tanim   = Ağ Zaman Protokol uygulaması
+paketci = milisarge
+grup    = sistem
+url     = http://chrony.tuxfamily.org
+
+[gerek]
+derleme = libcap
+calisma = 
+
+[kaynak]
+gz      = http://download.tuxfamily.org/$isim
+
+[sha256]
+1       = eafb07e6daf92b142200f478856dfed6efc9ea2d146eeded5edcb09b93127088
+
+[derle]
+ekconf  = --with-user=chrony
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install examples/chrony.conf.example1 $PKG/etc/chrony.conf
+betik   = mkdir -p $PKG/var/log/chrony

@@ -1,0 +1,61 @@
+[paket]
+tanim   = Uygulamaların bir menüyü dışa aktarmasına izin veren kitaplık seti
+paketci = milisarge
+grup    = kütüphane
+url     = https://launchpad.net/libappindicator
+
+[gerek]
+derleme = automake intltool python gtk3 glib dbus-glib gobject-introspection vala 
+calisma =
+
+[kaynak]
+1       = https://launchpad.net/libappindicator/12.10/12.10.0/+download/libappindicator-12.10.0.tar.gz
+2       = https://launchpad.net/libindicator/12.10/12.10.1/+download/libindicator-12.10.1.tar.gz
+dosya	= no-python.patch
+dosya	= incompatible_pointer_build_fix.patch
+dosya	= improved-plasma.patch
+3       = https://launchpad.net/libdbusmenu/16.04/16.04.0/+download/libdbusmenu-16.04.0.tar.gz
+
+;[sha256]
+;1       = d5907c1f98084acf28fd19593cb70672caa0ca1cf82d747ba6f4830d4cc3b49f
+;2	    = 37d1b113de098f049b3685360e41d70fd5e2aaa0748f5eb628c424ea2df241e3
+;3	    = 790a936efdcd54d8a369734546ae2879c6077865270be4bce9a59532292df256
+;4	    = b5ee550484aebc13eccbee181f355416efa1de917317c00b044266104418526a
+
+[derle]
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libindicator3-0.4"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libdbusmenu-glib-0.4"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/libdbusmenu-gtk3-0.4"
+
+; libdbusmenu
+betik   = cd $SRC/libdbusmenu-16.04.0
+betik	= sed -i 's/-Werror//' libdbusmenu-*/Makefile.{am,in}
+betik	= export HAVE_VALGRIND_TRUE='#'
+betik	= export HAVE_VALGRIND_FALSE='' 
+ekconf  = --with-gtk=3 --enable-vala --enable-introspection --disable-dumper --disable-tests
+gnu     = libdbusmenu-16.04.0
+
+; libindicator
+betik   = cd $SRC/libindicator-12.10.1
+betik   = sed -i 's/-Werror//' {libindicator,tools}/Makefile.am
+betik   = autoreconf -fi
+ekconf  = --with-gtk=3 --disable-tests
+gnu     = libindicator-12.10.1
+
+; libappindicator
+betik   = rm -rf $PKG/usr/lib/*.la
+betik   = cd $SRC/libappindicator-12.10.0
+yama    = incompatible_pointer_build_fix.patch
+yama    = improved-plasma.patch
+yama    = no-python.patch
+betik   = export CFLAGS="$CFLAGS -Wno-error"
+betik   = sed -i 's/-Werror//' src/Makefile.am
+ekconf  = --with-gtk=3 --disable-gtk-doc-html --disable-mono-test
+gnu     = libappindicator-12.10.0
+
+[pakur]
+betik   = echo "pakur yok"

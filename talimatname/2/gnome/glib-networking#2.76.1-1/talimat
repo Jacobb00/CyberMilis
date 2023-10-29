@@ -1,0 +1,22 @@
+[paket]
+tanim   = Glib için ağ ile ilgili giomodüller
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.gnome.org/GNOME/glib-networking/
+
+[gerek]
+derleme = meson gnutls libproxy glib gsettings-desktop-schemas
+calisma = 
+
+[kaynak]
+xz      = ${GNOME_SITE}/${isim}/${surum%.*}
+
+[sha256]
+1       = 5c698a9994dde51efdfb1026a56698a221d6250e89dc50ebcddda7b81480a42b
+
+[derle]
+ekconf  = -Dinstalled_tests=false -Dgnutls=enabled -Dlibproxy=enabled -Dopenssl=enabled
+tip     = meson
+
+[pakur]
+tip     = meson

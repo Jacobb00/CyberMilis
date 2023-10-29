@@ -1,0 +1,110 @@
+[paket]
+tanim   = POSIX sistemleri için yazıcı sürücüleri
+paketci = milisarge
+grup    = kütüphane
+url     = http://gimp-print.sourceforge.net
+
+[gerek]
+derleme = automake meson cmake ghostscript perl cups glib avahi poppler lcms2 python dejavu-fonts-ttf libyaml libexif python-gobject libsecret openjpeg2 harfbuzz mesa desktop-file-utils
+calisma = python-dbus
+
+[kaynak]
+1       = ${SOURCEFORGE_SITE}/gimp-print/gutenprint-5.3.4.tar.xz
+2       = https://github.com/OpenPrinting/cups-filters/releases/download/1.28.17/cups-filters-1.28.17.tar.xz
+3       = https://github.com/OpenPrinting/cups-filters/commit/93e60d3df358c0ae6f3dba79e1c9684657683d89.patch!
+4       = https://github.com/liblouis/liblouis/releases/download/v3.27.0/liblouis-3.27.0.tar.gz
+git     = https://github.com/OpenPrinting/foomatic-db
+git     = https://github.com/OpenPrinting/foomatic-db-nonfree
+5       = https://ftp.gnu.org/gnu/enscript/enscript-1.6.6.tar.gz
+6       = https://github.com/OpenPrinting/system-config-printer/releases/download/v1.5.18/system-config-printer-1.5.18.tar.xz
+;dosya   = service-cups.patch
+7       = ${PYPI_SITE}/p/pycups/pycups-2.0.1.tar.gz
+8       = ${PYPI_SITE}/p/pycurl/pycurl-7.45.2.tar.gz
+9       = https://github.com/qpdf/qpdf/releases/download/v11.6.1/qpdf-11.6.1.tar.gz
+10      = https://mupdf.com/downloads/archive/mupdf-1.23.3-source.tar.gz
+11      = https://codeberg.org/grisha/gumbo-parser/archive/0.12.0.tar.gz::gumbo-parser-0.12.0.tar.gz
+
+[sha256]
+1      = db44a701d2b8e6a8931c83cec06c91226be266d23e5c189d20a39dd175f2023b
+
+[derle]
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = CPPFLAGS="$CFLAGS"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+; enscript
+betik  = cd $SRC/enscript-1.6.6
+betik  = ./configure --prefix=/usr --sysconfdir=/etc/enscript
+betik  = make $MAKEJOBS && make DESTDIR=$PKG install
+export = PATH=$PATH:$PKG/usr/bin
+betik  = cd $SRC
+
+; foomatic
+betik  = cp -r /sources/foomatic-db $SRC/
+betik  = cd $SRC/foomatic-db
+betik  = ./make_configure && ./configure --prefix=/usr
+betik  = find -type f  -name 'hpijs*' | xargs rm -vf
+betik  = make DESTDIR=$PKG install
+
+; foomatic-nonfree
+betik  = cp -r /sources/foomatic-db-nonfree $SRC/
+betik  = cd $SRC/foomatic-db-nonfree
+betik  = ./make_configure && ./configure --prefix=/usr
+betik  = find -type f  -name 'hpijs*' | xargs rm -vf
+betik  = make DESTDIR=$PKG install
+
+; liblouis
+betik  = cd $SRC/liblouis-3.27.0
+betik  = ./configure --prefix=/usr --enable-ucs4
+betik  = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik  = make $MAKEJOBS && make DESTDIR=$PKG install
+betik  = pip3 install python-build
+betik  = pip3 install python-install
+betik  = cd python;python -m build --wheel --no-isolation;python -m installer --destdir=$PKG dist/*.whl;cd $SRC
+
+; qpdf
+betik  = cd qpdf-11.6.1
+export = QOPT="-D BUILD_STATIC_LIBS:BOOL=OFF -D REQUIRE_CRYPTO_GNUTLS:BOOL=ON -D REQUIRE_CRYPTO_OPENSSL:BOOL=OFF -D ENABLE_QTC:BOOL=ON -D BUILD_DOC:BOOL=OFF"
+betik  = cmake -B buildq $CMAKE_OPT $QOPT 
+betik  = make -C buildq $MAKEJOBS
+betik  = make -C buildq DESTDIR=$PKG install 
+
+; gumbo-parser
+betik  = cd $SRC/gumbo-parser;./autogen.sh
+gnu    = gumbo-parser
+
+; mupdf
+betik  = cd $SRC/mupdf-1.23.3-source 
+betik  = rm -rf thirdparty/{freeglut,freetype,harfbuzz,jbig2dec,libjpeg,openjpeg,zlib}
+export = USE_SYSTEM_LIBS='yes'
+betik  = make shared=yes build=release libs apps
+betik  = make shared=yes build=release prefix=$PKG/usr install
+export = PATH=$PATH:$PKG/usr/bin
+
+; cups filters
+betik  = cd $SRC/cups-filters-1.28.17;patch -Np1 < /sources/93e60d3df358c0ae6f3dba79e1c9684657683d89.patch;cd -
+export = CXXFLAGS+=" -std=c++17"
+ekconf = --with-rcdir=no --enable-avahi --with-browseremoteprotocols=DNSSD,CUPS --with-test-font-path=/usr/share/fonts/TTF/DejaVuSans.ttf
+gnu    = cups-filters-1.28.17
+
+; gutenprint
+ekconf = --disable-rpath --enable-samples --disable-static --disable-static-genppd --enable-cups-ppds --enable-simplified-cups-ppds=only
+gnu    = gutenprint-5.3.4
+
+; python-libs
+py     = pycups-2.0.1
+py     = pycurl-7.45.2
+
+; system-config-printer
+betik  = cd $SRC/system-config-printer-1.5.18;patch < $TDIR/service-cups.patch;cd -
+ekconf = --with-udevdir=/usr/lib/udev --with-udev-rules --with-xmlto=no
+gnu    = system-config-printer-1.5.18
+
+[pakur]
+betik  = echo "pakur yok"
+betik  = mv "${PKG}"/usr/sbin/* "${PKG}"/usr/bin/
+betik  = rmdir ${PKG}/usr/sbin/
+betik  = rm -rf ${PKG}/usr/lib/*.a
+betik  = mv $PKG/usr/lib/python3.11/site-packages/cupshelpers-1.0-py3.11.egg/cupshelpers $PKG/usr/lib/python3.11/site-packages/

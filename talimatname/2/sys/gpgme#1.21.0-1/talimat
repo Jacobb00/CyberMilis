@@ -1,0 +1,22 @@
+[paket]
+tanim   = GnuPG erişim kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.gnupg.org/related_software/gpgme
+
+[gerek]
+derleme = gnupg
+calisma = gnupg
+
+[kaynak]
+bz2     = https://www.gnupg.org/ftp/gcrypt/$isim
+
+[sha256]
+1       = 416e174e165734d84806253f8c96bda2993fd07f258c3aad5f053a6efd463e88
+
+[derle]
+ekconf  = --disable-fd-passing --disable-static --disable-gpgsm-test
+tip     = gnu
+
+[pakur]
+tip     = gnu

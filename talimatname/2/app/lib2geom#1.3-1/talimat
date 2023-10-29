@@ -1,0 +1,22 @@
+[paket]
+tanim   = C++ için 2D kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.com/inkscape/lib2geo
+
+[gerek]
+derleme = cmake glib gsl double-conversion cairo boost lapack
+calisma =
+
+[kaynak]
+bz2     = https://gitlab.com/inkscape/${isim}/-/archive/${surum}
+
+[sha256]
+1       = bd07f2a1322fcad16a55a1901207faa55dffdecebc56a00eabd4575f62e043c9
+
+[derle]
+ekconf  = -D2GEOM_TESTING=NO -D2GEOM_BOOST_PYTHON=NO -D2GEOM_BUILD_SHARED=YES
+tip     = cmake
+
+[pakur]
+tip     = cmake

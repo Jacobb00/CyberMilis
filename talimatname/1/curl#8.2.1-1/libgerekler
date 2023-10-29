@@ -1,0 +1,7 @@
+libcrypto.so.3
+libzstd.so.1
+libz.so.1
+libcurl.so.4
+libc.so.6
+libidn2.so.0
+libssl.so.3

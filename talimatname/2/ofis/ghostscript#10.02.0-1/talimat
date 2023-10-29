@@ -1,0 +1,28 @@
+[paket]
+tanim   = PostScript dili yorumlayıcı ve kütüphaneleri
+paketci = milisarge
+grup    = sistem
+url     = https://www.ghostscript.com
+arsiv   = ghostpdl-${surum}
+
+[gerek]
+derleme = automake cups dbus fontconfig gnutls lcms2 libxext openjpeg2 libpaper libjpeg-turbo gnutls
+calisma =
+
+[kaynak]
+1       = https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${surum//./}/ghostpdl-${surum}.tar.xz
+2       = https://www.openprinting.org/download/ijs/download/ijs-0.35.tar.bz2
+
+[sha256]
+1       = c158f3b5ade88227510a42652e0fe7b2aa48e123c1fd663cb03e3d87ca2db86a
+2       = 11a5f5084488c480f3ff5a24d64d7147bb64272bf60a0ba51330a56c5b50cab9
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = make DESTDIR=${PKG} cups_serverroot=${PKG}/etc/cups cups_serverbin=${PKG}/usr/lib/cups install install-so
+betik   = rm -rf ${PKG}/usr/share/man/[^man1]*
+betik   = cd ijs && make DESTDIR=${PKG} install && cd ..
+betik   = cd jbig2dec && make DESTDIR=${PKG} install && cd ..
+betik   = rm -f ${PKG}/usr/lib/cups/filter/{gstopxl,gstoraster}

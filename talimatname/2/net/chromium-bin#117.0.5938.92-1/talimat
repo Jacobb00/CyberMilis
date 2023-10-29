@@ -1,0 +1,26 @@
+[paket]
+tanim   = Google eklentilerinden arındırılmış Chromium tarayıcısı (derlenmiş)
+paketci = milisarge
+grup 	= ağ
+url     = https://github.com/clickot/ungoogled-chromium-binaries
+
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = $url/releases/download/${surum}-1/ungoogled-chromium_${surum}-1.1_linux.tar.xz
+dosya   = chromium-bin.desktop
+
+[sha256]
+1       = ff8b82a6426bbae073d3fe1c93a3083e4a81b500c458f7b50a683502ada24d73
+
+[derle]
+betik   = echo "derleme yok"
+	      
+[pakur]
+strip   = 0
+betik   = mkdir -p $PKG/usr/share/applications
+betik   = mv $SRC/ungoogled-chromium_$surum-1.1_linux $PKG/usr/share/chromium
+betik   = cp $SRC/chromium-bin.desktop $PKG/usr/share/applications/

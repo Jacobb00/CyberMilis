@@ -1,0 +1,22 @@
+[paket]
+tanim   = Dbus için Glib bağ kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.freedesktop.org/wiki/Software/DBusBindings
+
+[gerek]
+derleme = python dbus glib
+
+[kaynak]
+gz      = https://dbus.freedesktop.org/releases/${isim}
+
+[sha256]
+1       = 7d550dccdfcd286e33895501829ed971eeb65c614e73aadb4a08aeef719b143a
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+betik   = make DESTDIR="$PKG" install completiondir=/usr/share/bash-completion/completions 
+betik   = mv ${PKG}/usr/share/bash-completion/completions/{dbus-bash-completion.sh,dbus-send}

@@ -1,0 +1,19 @@
+[paket]
+tanim   = Wayland için ekran güç kesici
+paketci = milisarge
+grup    = sistem
+url     = https://git.sr.ht/~leon_plickat/wlopm
+arsiv   = wlopm
+
+[gerek]
+derleme = wayland-protocols wayland
+calisma =
+
+[kaynak]
+git     = $url
+
+[derle]
+betik   = make
+
+[pakur]
+betik   = install -Dm755 wlopm $PKG/usr/bin/wlopm

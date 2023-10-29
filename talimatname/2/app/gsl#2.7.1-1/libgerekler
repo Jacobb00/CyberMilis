@@ -1,0 +1,4 @@
+libm.so.6
+libgsl.so.27
+libgslcblas.so.0
+libc.so.6

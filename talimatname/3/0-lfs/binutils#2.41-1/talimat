@@ -1,0 +1,22 @@
+[paket]
+tanim   = Bağlayıcı, assembler ve nesne dosyalarını işleme araçları. Pass-1
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu
+
+[kaynak]
+xz      = $url/$isim
+
+;[sha256]
+;1       = 0f8a4c272d7f17f369ded10a4aca28b8e304828e95526da482b0ccc4dfc9d8e1
+
+[derle]
+bayrak  = 0
+betik   = mkdir build;cd build
+betik   = ../configure --prefix=/tools --with-lib-path=/tools/lib --with-sysroot=$ONSISTEM_CHROOT --target=$ONSISTEM_TARGET --disable-nls --enable-gprofng=no --disable-werror
+betik   = make $MAKEJOBS
+	      
+[pakur]
+betik   = cd build
+tip     = gnu
+betik   = mkdir -pv $PKG/tools/lib && ln -sv lib $PKG/tools/lib64

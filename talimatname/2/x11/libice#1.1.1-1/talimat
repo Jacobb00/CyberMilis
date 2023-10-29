@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 istemciler arası değişim kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libICE-$surum
+
+[gerek]
+derleme = xorgproto xorg-util-macros xtrans
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libICE-$surum.tar.xz
+
+[sha256]
+1	    = 03e77afaf72942c7ac02ccebb19034e6e20f456dcf8dddadfeb572aa5ad3e451
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

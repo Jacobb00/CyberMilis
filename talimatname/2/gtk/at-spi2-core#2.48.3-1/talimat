@@ -1,0 +1,23 @@
+[paket]
+tanim	= D-Bus at-spi'de protokol tanimları ve arka plan programı
+paketci	= milisarge
+grup	= kütüphane
+url	    = https://www.freedesktop.org/wiki/Accessibility/AT-SPI2
+
+[gerek]
+derleme	= meson dbus glib libxtst libxml2 gobject-introspection
+calisma	= 
+
+[kaynak]
+xz      = http://ftp.gnome.org/pub/gnome/sources/$isim/${surum%.*}
+
+[sha256]
+1       = 37316df43ca9989ce539d54cf429a768c28bb38a0b34950beadd0421827edf55
+
+[derle]
+ekconf  = -D default_bus=dbus-broker -D docs=false
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -rf ${PKG}/usr/lib/systemd

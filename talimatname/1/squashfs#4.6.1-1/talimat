@@ -1,0 +1,21 @@
+[paket]
+tanim   = Sıkıştırılmış dosya sistemi uygulaması
+paketci = milisarge
+grup 	= temel
+url     = http://squashfs.sourceforge.net
+arsiv   = squashfs-tools-$surum/squashfs-tools
+
+[kaynak]
+1    	= http://downloads.sourceforge.net/sourceforge/$isim/$isim$surum.tar.gz
+
+;[sha256]
+;1	= a981b3f3f2054b5a2e658851a3c06a2460ad04a9a8a645e0afe063a63fdbb07e
+
+[derle]
+; gentoo yama
+;betik   = patch mksquashfs.h $SRC/squashfs-tools-4.4-fno-common.patch
+;betik   = sed -i '1,1i#include <sys/sysmacros.h>' mksquashfs.c unsquashfs.c
+betik   = make GZIP_SUPPORT=1 XZ_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZ4_SUPPORT=1 XATTR_SUPPORT=1  ZSTD_SUPPORT=1 XATTR_SUPPORT=1
+     
+[pakur]
+betik   = make install INSTALL_DIR="${PKG}"/usr/bin

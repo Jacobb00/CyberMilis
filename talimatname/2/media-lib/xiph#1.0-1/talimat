@@ -1,0 +1,130 @@
+[paket]
+tanim   = Xiph.org tarafından geliştirilen video kütüphane seti
+paketci = milisarge  
+grup    = kütüphane  
+url     = https://github.com/xiph
+
+[gerek]
+derleme = automake cmake meson ninja openssl nasm libpng
+calisma =  
+
+[kaynak]
+1     = $url/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.xz
+2     = $url/vorbis/releases/download/v1.3.7/libvorbis-1.3.7.tar.xz
+3     = https://downloads.xiph.org/releases/opus/opus-1.4.tar.gz
+4     = https://downloads.xiph.org/releases/opus/opusfile-0.12.tar.gz
+5     = $url/flac/releases/download/1.4.3/flac-1.4.3.tar.xz
+6     = https://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.bz2
+7     = https://gitlab.xiph.org/xiph/speex/-/archive/Speex-1.2.1/speex-Speex-1.2.1.tar.bz2
+8     = https://gitlab.xiph.org/xiph/speexdsp/-/archive/SpeexDSP-1.2.1/speexdsp-SpeexDSP-1.2.1.tar.bz2
+9     = https://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-10.2.src.tgz
+10    = https://downloads.xiph.org/releases/libshout/libshout-2.4.6.tar.gz
+11    = https://github.com/xiph/rav1e/archive/v0.6.6/rav1e-0.6.6.tar.gz
+12    = https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/libkate/libkate-0.4.1.tar.gz
+13    = https://gitlab.xiph.org/xiph/rnnoise/-/archive/1cbdbcf1283499bbb2230a6b0f126eb9b236defd/rnnoise-1cbdbcf1283499bbb2230a6b0f126eb9b236defd.tar.gz
+dosya = cdparanoia-gcc.patch
+dosya = libtheora-1.1.1-libpng16.patch
+dosya = 0001-Fix-automake-warnings.patch
+
+;[sha256]
+;1       = b6ae1ee2fa3d42ac489287d3ec34c5885730b1296f0801ae577a35193d3affbc
+;2       = e4c9a8dc798c596ed32a2a720020ae27a0e72f5add1a47cb8fadebe0e7180d7e
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+export  = LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+
+; rnnoise
+betik   = cd $SRC/rnnoise-1cbdbcf1283499bbb2230a6b0f126eb9b236defd;./autogen.sh
+gnu     = rnnoise-1cbdbcf1283499bbb2230a6b0f126eb9b236defd
+
+; cdparanoia
+betik   = cd $SRC/cdparanoia-III-10.2
+betik   = export CFLAGS="-fPIC"
+betik   = patch -p0 -i ${SRC}/cdparanoia-gcc.patch
+betik   = ./configure --prefix=/usr --disable-static && make
+betik   = make prefix="${PKG}"/usr LIBDIR=$PKG/usr/lib MANDIR="${PKG}"/usr/share/man install
+betik   = rm -rf $PKG/usr/lib/*.a
+
+; libogg
+betik   = cd $SRC/libogg-1.3.5
+betik   = cmake -Bbuild -G Ninja ${CMAKE_OPT} -DBUILD_SHARED_LIBS=ON
+betik   = cmake --build build
+betik   = DESTDIR=${PKG} cmake --build build --target install
+betik   = install -Dm 644 $SRC/libogg-1.3.5/ogg.m4 -t $PKG/usr/share/aclocal/
+export  = OGG_LIBS="-logg -L$PKG/usr/lib/"
+export  = OGG_CFLAGS="-I$PKG/usr/include/"
+
+; libvorbis
+betik   = cd $SRC/libvorbis-1.3.7
+betik   = ./configure $CONF_OPT && make && make DESTDIR=$PKG install
+
+; opus
+ekconf   = -Ddocs=disabled -Dtests=disabled -Dasm=disabled -Dcustom-modes=true
+meson    = opus-1.4
+betik    = install -Dt $PKG/usr/share/aclocal -m644 $SRC/opus-1.4/opus.m4
+
+; opusfile     
+betik   = cd $SRC/opusfile-0.12       
+betik   = CFLAGS="$CFLAGS -I$PKG/usr/include -I$PKG/usr/include/opus" PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/ ./configure $CONF_OPT --disable-examples 
+betik   = make -O && make DESTDIR=$PKG install
+
+; flac
+betik   = cd $SRC
+export  = FLAC_OPTS="-DOGG_INCLUDE_DIR=$PKG/usr/include -DOGG_LIBRARY=$PKG/usr/lib/libogg.so -DINSTALL_MANPAGES=OFF -DWITH_STACK_PROTECTOR=OFF -DNDEBUG=ON"
+export  = _CMAKE_OPT="-DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -D BUILD_EXAMPLES=OFF -D BUILD_TESTING=OFF"
+betik   = cmake -S $SRC/flac-1.4.3 -B build -G Ninja $_CMAKE_OPT $FLAC_OPTS -DBUILD_SHARED_LIBS=ON
+betik   = cmake --build build
+betik   = DESTDIR=${PKG} cmake --install build
+betik   = install -Dm 644 flac-1.4.3/src/*/*.m4 -t $PKG/usr/share/aclocal
+betik   = rm -rf $PKG/usr/lib/{libFLAC.a,libFLAC++.a}
+
+; libtheora
+betik   = rm -rf $PKG/usr/lib/*.la
+betik   = cd $SRC/libtheora-1.1.1
+betik   =  patch -Np0 -i $SRC/libtheora-1.1.1-libpng16.patch
+betik   = ./configure $CONF_OPT --disable-doc --disable-examples && make && make DESTDIR=$PKG install
+
+; speexdsp
+betik   = cd $SRC/speexdsp-SpeexDSP-1.2.1
+betik   = NO_CONFIGURE=1 ./autogen.sh
+betik   = ./configure $CONF_OPT
+betik   = sed -i -e '/^SUBDIRS *=/s|\bdoc\b||' Makefile
+betik   = make && make DESTDIR=$PKG install
+
+; speex
+betik   = cd $SRC/speex-Speex-1.2.1
+betik   = NO_CONFIGURE=1 ./autogen.sh
+betik   = ./configure $CONF_OPT --enable-epic-48k --enable-binaries --disable-static
+betik   = sed -i -e "/^SUBDIRS = /s/doc //" Makefile
+betik   = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik   = make && make DESTDIR=$PKG install
+
+; libshout
+betik   = cd $SRC/libshout-2.4.6
+betik   = ./configure $CONF_OPT && make && make DESTDIR=$PKG install
+
+; libkate
+betik   = cd $SRC/libkate-0.4.1
+betik   = patch -Np1 -i $SRC/0001-Fix-automake-warnings.patch
+betik   = autoreconf -fiv
+betik   = ./configure --prefix=/usr --disable-static --disable-doc
+betik   = make && make DESTDIR=$PKG install
+
+; rav1e
+betik   = rust_setup.sh -y
+betik   = source $HOME/.cargo/env
+betik   = cargo install cargo-c
+betik   = cd $SRC/rav1e-0.6.6
+;betik   = cp /sources/rav1e-0.6.6-Cargo.lock Cargo.lock
+betik   = export LDFLAGS+=' -lgit2'
+betik   = cargo build --release
+betik   = cargo cbuild --release --prefix=/usr
+betik   = cargo install --offline --no-track --path . --root $PKG/usr
+betik   = cargo cinstall --release --prefix /usr --destdir $PKG
+
+[pakur]
+betik   = echo "pakur yok"
+betik   = rm -rf $PKG/usr/lib/*.a

@@ -1,0 +1,22 @@
+[paket]
+tanim   = Güvenli, güvenilir, taşıma kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/Haivision/srt
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+1       = https://github.com/Haivision/srt/archive/refs/tags/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = af891e7a7ffab61aa76b296982038b3159da690f69ade7c119f445d924b3cf53
+
+[derle]
+ekconf  = -DCMAKE_INSTALL_BINDIR=bin
+tip     = cmake
+
+[pakur]
+tip     = cmake

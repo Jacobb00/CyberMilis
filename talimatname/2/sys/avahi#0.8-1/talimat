@@ -1,0 +1,40 @@
+[paket]
+tanim   = Çoklu DNS servis bulma servis uygulaması
+paketci = milisarge
+grup    = ağ
+url     = http://www.avahi.org/
+
+[gerek]
+derleme = automake python dbus libcap glib libevent
+calisma = 
+
+[kaynak]
+gz      = https://github.com/lathiat/avahi/releases/download/v$surum
+dosya   = build-db.txt
+3       = http://0pointer.de/lennart/projects/libdaemon/libdaemon-0.14.tar.gz
+
+[sha256]
+1       = 060309d7a333d38d951bc27598c677af1796934dbd98e1024e7ad8de798fedda
+3       = fd23eb5f6f986dcc7e708307355ba3289abe03cc381fc47a80bca4a50aa6b834
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+
+betik   = cd $SRC/libdaemon-0.14
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+
+dosya   = derle.sh
+
+[pakur]
+tip     = gnu
+betik   = rm -f "$PKG"/etc/avahi/services/{,sftp-}ssh.service
+;Enable 'disallow_other_stacks' option by default.
+betik   = 	sed -e 's,\#\(disallow-other-stacks\).*,\1=yes,' -i ${PKG}/etc/avahi/avahi-daemon.conf
+;Set 'enable-dbus=warn' option by default to not require dbus.
+betik   = sed -e 's,\#\(enable-dbus\).*,\1=warn,' -i ${PKG}/etc/avahi/avahi-daemon.conf
+;mdnsresponder compat
+betik   = ln -s avahi-compat-libdns_sd/dns_sd.h "$PKG/usr/include/dns_sd.h"
+betik   = rm -rf ${PKG}/etc/sysconfig

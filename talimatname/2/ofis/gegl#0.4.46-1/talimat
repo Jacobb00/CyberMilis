@@ -1,0 +1,70 @@
+[paket]
+tanim   = Grafik tabanlı görüntü işleme çerçevesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.gimp.org
+
+[gerek]
+derleme = cmake meson lcms2 vala gobject-introspection brotli libinih python-gobject luajit gtk3 sdl2 ffmpeg json-glib librsvg libwebp ffmpeg mesa vala poppler imagemagick
+calisma =
+; babl exiv2 gexiv2 lensfun
+; jasper libraw openexr
+
+[kaynak]
+xz      = https://download.gimp.org/pub/$isim/${surum%.*}
+2       = https://download.gimp.org/pub/babl/0.1/babl-0.1.106.tar.xz
+3       = https://github.com/Exiv2/exiv2/archive/v0.28.0/exiv2-0.28.0.tar.gz
+4       = https://download.gnome.org/sources/gexiv2/0.14/gexiv2-0.14.2.tar.xz
+5       = https://github.com/lensfun/lensfun/archive/v0.3.4/lensfun-0.3.4.tar.gz
+dosya   = lensfun-fix-python-module-install.patch
+6       = https://github.com/fontforge/libspiro/releases/download/20221101/libspiro-dist-20221101.tar.gz
+
+;[sha256]
+;1       = 6fd58a0cdcc7702258adaeffb573a389228ae8f0eff47578efda2309b61b2ca6
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+; babl
+meson   = babl-0.1.106
+
+;betik   = mv $SRC/babl-0.1.106 $SRC/gegl-0.4.46/subprojects/babl
+
+
+; exiv2
+export  = EXIV_OPTS="-DEXIV2_ENABLE_NLS=ON -DEXIV2_ENABLE_XMP=ON -DEXIV2_ENABLE_CURL=ON -DEXIV2_ENABLE_WEBREADY=ON -DEXIV2_ENABLE_BMFF=ON"
+betik   = cmake -S $SRC/exiv2-0.28.0 -B buildex -G Ninja $CMAKE_OPT -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS -Wno-deprecated-declarations" $EXIV_OPTS
+betik   = cmake --build buildex $MAKEJOBS
+betik   = DESTDIR=$PKG cmake --install buildex
+  
+; gexiv2
+betik   = mkdir -p $SRC/build-gexiv2-0.14.2/gexiv2 && cp $PKG/usr/lib/libexiv2.so* $SRC/build-gexiv2-0.14.2/gexiv2
+meson   = gexiv2-0.14.2
+
+; lensfun
+betik   = patch -d $SRC/lensfun-0.3.4 -p1 < $SRC/lensfun-fix-python-module-install.patch
+betik   = cmake -B buildlens -S $SRC/lensfun-0.3.4 $CMAKE_OPT -DCMAKE_BUILD_TYPE=None -DCMAKE_CXX_FLAGS="$CXXFLAGS -fno-delete-null-pointer-checks" -DINSTALL_PYTHON_MODULE=OFF
+betik   = cmake --build buildlens $MAKEJOBS
+betik   = cd buildlens/apps
+betik   = python -m build --wheel --no-isolation
+betik   = python -m installer --destdir=$PKG dist/*.whl
+betik   = cd - ;DESTDIR=$PKG cmake --install buildlens
+
+; libspiro
+gnu     = libspiro-20221101
+betik   = rm -rf $PKG/usr/lib/*.la
+
+; gegl
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/babl-0.1 -I$PKG/usr/include/lensfun"
+export  = CPPFLAGS="$CFLAGS"
+;betik   = mkdir -p $SRC/build-gegl-0.4.46/gegl && ln -s $PKG/usr/lib/babl.so* $SRC/build-gegl-0.4.46/gegl
+export  = XDG_DATA_DIRS="/usr/share/:/usr/locale/share/:$PKG/usr/share/"
+ekconf  = -Ddocs=false -Dworkshop=true -Dmrg=disabled -Dumfpack=disabled -Dmaxflow=disabled
+meson   = gegl-$surum
+
+[pakur]
+betik   = echo "pakur yok"

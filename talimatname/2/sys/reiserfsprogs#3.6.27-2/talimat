@@ -1,0 +1,26 @@
+[paket]
+tanim 	= Reiserfs dosya sistemi araçları
+paketci = milisarge
+grup 	= sistem
+url 	= https://www.kernel.org
+
+[gerek]
+derleme = automake
+calisma = 
+
+[kaynak]
+xz	= $url/pub/linux/kernel/people/jeffm/reiserfsprogs/v${surum}
+dosya   = reiserfsprogs-3.6.27-loff_t.patch
+
+[sha256]
+1	= 0e95b67fa7746a3c2d59145e9b9c2feb4a6be52853e83b497b182eae508e62e3
+2       = 2d4e90d5e2b0610021d0c078f350e098d5573edccdf2864909aada83ed0473f9
+
+[derle]
+yama    = reiserfsprogs-3.6.27-loff_t.patch
+betik 	= autoreconf -i
+betik   = export CFLAGS+=' -fgnu89-inline'
+tip 	= gnu
+
+[pakur]
+tip 	= gnu

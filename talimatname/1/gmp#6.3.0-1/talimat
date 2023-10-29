@@ -1,0 +1,18 @@
+[paket]
+tanim   = İsteğe bağlı kesinlik aritmetik kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = http://gmplib.org
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/$isim
+
+;[sha256]
+;1 		= fd4829912cddd12f84181c3451cc752be224643e87fac497b69edddadc49b4f2
+
+[derle]
+ekconf  = --enable-cxx --enable-fat
+tip	    = gnu
+	      
+[pakur]
+tip	    = gnu

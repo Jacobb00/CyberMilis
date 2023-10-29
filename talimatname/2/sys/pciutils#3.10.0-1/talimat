@@ -1,0 +1,24 @@
+[paket]
+tanim 	= PCI bus konfigürasyon kütüphane ve araçları
+paketci = milisarge
+grup 	= sistem
+url 	= https://mj.ucw.cz/sw/pciutils/
+
+[gerek]
+derleme = 
+calisma = hwids
+
+[kaynak]
+gz 	    = https://mj.ucw.cz/download/linux/pci
+
+[sha256]
+1       = 7deabe38ae5fa88a96a8c4947975cf31c591506db546e9665a10dddbf350ead0
+[derle]
+betik   = make OPT="${CFLAGS} -fPIC -DPIC" ZLIB=no SHARED=no PREFIX=/usr SHAREDIR=/usr/share/hwdata MANDIR=/usr/share/man SBINDIR=/usr/bin lib/libpci.a 
+betik   = cp lib/libpci.a "${SRC}/"
+betik   = make clean
+betik   = make OPT="${CFLAGS}" ZLIB=no SHARED=yes PREFIX=/usr SBINDIR=/usr/bin SHAREDIR=/usr/share/hwdata MANDIR=/usr/share/man all
+
+[pakur]
+betik   = make SHARED=yes PREFIX=/usr SBINDIR=/usr/bin SHAREDIR=/usr/share/hwdata MANDIR=/usr/share/man DESTDIR="${PKG}" install install-lib
+betik   = rm -rf "$PKG"/usr/{sbin/update-pciids,share/{man/man8/update-pciids.8,hwdata}}

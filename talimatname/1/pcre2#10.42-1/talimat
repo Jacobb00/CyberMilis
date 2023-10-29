@@ -1,0 +1,20 @@
+[paket]
+tanim   = Perl5 uyumlu kurallı ifadeler kütüphanesi
+paketci = milisarge
+grup    = temel
+url     = https://www.pcre.org
+
+[kaynak]
+bz2     = https://github.com/philiphazel/pcre2/releases/download/$isim-$surum
+
+;[sha256]
+;1       = a9ef39278113542968c7c73a31cfcb81aca1faa64690f400b907e8ab6b4a665c
+
+[derle]
+betik   = CFLAGS+=" -ffat-lto-objects"
+betik   = CXXFLAGS+=" -ffat-lto-objects"
+ekconf  = --enable-pcre2-16 --enable-pcre2-32 --enable-jit --enable-pcre2grep-libz --enable-pcre2grep-libbz2 --enable-pcre2test-libreadline
+tip     = gnu
+
+[pakur]
+tip     = gnu

@@ -1,0 +1,27 @@
+[paket]
+tanim   = Kullanıcılara root yetkisi vererek uygulama yetkili çalıştırma
+paketci = milisarge
+grup 	= temel
+url     = http://www.sudo.ws
+
+[gerek]
+derleme  = pam
+calisma  =  
+
+[kaynak]
+gz     	= http://www.sudo.ws/sudo/dist
+dosya   = sudo.pam
+dosya   = sudoers.milis
+
+[sha256]
+1       = 7bb70e4529ab2ada47ded970cdf2fe7be3084912861ddbac239eebdc92935a29
+
+[derle]
+dosya   = derle.sh
+     
+[pakur]
+tip     = gnu
+betik   = mkdir -pv $PKG/etc/pam.d
+betik   = rm -rf $PKG/run
+betik   = install -Dm644 "$SRC/sudo.pam" "$PKG/etc/pam.d/sudo"
+betik   = install -Dm0440 "$SRC/sudoers.milis" "$PKG/etc/sudoers.d/milis"

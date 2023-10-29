@@ -1,0 +1,23 @@
+[paket]
+tanim   = Wayland için boşta kalma yönetimi arka plan programı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/swaywm/swayidle
+
+[gerek]
+derleme = meson wayland wayland-protocols
+calisma =
+
+[kaynak]
+1       = $url/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 0fba74c520a2bd64acd00bc3bce7bc8c7b84a2609c0f66329d72dfb33cca03d7
+
+[derle]
+ekconf  = -Dman-pages=disabled -Dlogind=disabled -Dwerror=false
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/usr/share

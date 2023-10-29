@@ -1,0 +1,19 @@
+[paket]
+tanim 	= Çalışan Unix işlemleri için açılmış dosyaları gösterir
+paketci = milisarge
+grup 	= sistem
+url 	= https://people.freebsd.org/~abe/
+
+[kaynak]
+gz      = https://fossies.org/linux/misc
+
+[sha256]
+1       = 80308a614508814ac70eb2ae1ed2c4344dcf6076fa60afc7734d6b1a79e62b16
+
+[derle]
+betik   = sed -i 's|/\* #define\tHASSECURITY\t1 \*/|#define\tHASSECURITY\t1|' dialects/linux/machine.h
+betik   = ./Configure -n linux && make CC="cc ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}"
+
+[pakur]
+betik   = install -Dm0755 lsof $PKG/usr/bin/lsof 
+betik   = install -Dm0644 Lsof.8 $PKG/usr/share/man/man8/lsof.8

@@ -1,0 +1,44 @@
+[paket]
+tanim   = WPE WebKit için kütüphane seti
+paketci = milisarge
+grup    = kütüphane
+url     = https://wpewebkit.org
+
+[gerek]
+derleme = cmake meson glib mesa wayland libepoxy libxkbcommon
+calisma =
+
+[kaynak]
+xz      = ${url}/releases
+2       = ${url}/releases/libwpe-1.14.1.tar.xz
+3       = https://dotat.at/prog/unifdef/unifdef-2.12.tar.gz
+
+[sha256]
+1       = 93c9766ae9864eeaeaee2b0a74f22cbca08df42c1a1bdb55b086f2528e380d38
+2       = b1d0cdcf0f8dbb494e65b0f7913e357106da9a0d57f4fbb7b9d1238a6dbe9ade
+3       = fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/wpe-1.0"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+
+; unifdef
+betik   = cd $SRC/unifdef-2.12
+betik   = make clean && make
+betik   = mkdir -p $PKG/usr/bin
+betik   = install -m 0755 unifdef $PKG/usr/bin/
+betik   = install -m 0755 unifdefall.sh $PKG/usr/bin/unifdefall
+
+; libwpe
+betik   = cmake -S $SRC/libwpe-1.14.1 -B build -G Ninja $CMAKE_OPT
+betik   = cmake --build build
+betik   = DESTDIR=$PKG cmake --install build
+
+; wpebackend-fdo
+meson   = $isim-$surum 
+
+[pakur]
+betik   = echo "pakur yok"

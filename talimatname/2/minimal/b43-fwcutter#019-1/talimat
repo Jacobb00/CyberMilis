@@ -1,0 +1,18 @@
+[paket]
+tanim   = Bcm43xx kernel modulleri için firmware dışarı-çıkarıcısı
+paketci = milisarge
+grup 	= temel
+url     = http://wireless.kernel.org/en/users/Drivers/b43
+
+[kaynak]
+1       = http://bues.ch/b43/fwcutter/b43-fwcutter-019.tar.bz2
+
+[sha256]
+1 	    = d6ea85310df6ae08e7f7e46d8b975e17fc867145ee249307413cfbe15d7121ce
+
+[derle]
+betik   = make || make
+	      
+[pakur]
+betik   = install -D -m755 b43-fwcutter ${PKG}/usr/bin/b43-fwcutter
+betik	= install -D -m644 b43-fwcutter.1 ${PKG}/usr/share/man/man1/b43-fwcutter.1

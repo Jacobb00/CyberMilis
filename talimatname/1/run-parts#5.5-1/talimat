@@ -1,0 +1,18 @@
+[paket]
+tanim   = Bir dizin içindeki betik ve uygulamaların çalıştırmaya çalışan araç
+paketci = milisarge
+grup 	= temel
+url     = https://packages.qa.debian.org/d/debianutils.html
+arsiv   = debianutils-$surum
+
+[kaynak]
+1 = https://clint.pages.debian.net/debianutils-tarballs/artifacts/debianutils-$surum.tar.gz
+;[sha256]
+;1 		= 099f1e8a7278b26145a2ba2dda84c4118403bfab38c8d7070a6235a7ffcb55ed
+
+[derle]
+betik   = ./configure --prefix=/usr && make run-parts
+	      
+[pakur]
+betik    = install -D -m755 run-parts $PKG/usr/bin/run-parts
+betik    = install -D -m644 run-parts.8 $PKG/usr/share/man/man8/run-parts.8

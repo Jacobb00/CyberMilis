@@ -1,0 +1,4 @@
+requests
+chardet
+idna
+urllib3

@@ -1,0 +1,23 @@
+[paket]
+tanim   = Gobject tabanlı kütüphaneler için gözlem sistemi
+paketci = milisarge
+grup    = sistem
+url     = https://gi.readthedocs.io/en/latest/
+
+[gerek]
+derleme = meson cairo glib
+calisma = python
+
+[kaynak]
+xz      = https://download.gnome.org/sources/$isim/${surum%.*}
+
+[sha256]
+1       = 196178bf64345501dcdc4d8469b36aa6fe80489354efe71cb7cb8ab82a3738bf
+
+[derle]
+betik   = cd $SRC
+betik   = milis-meson build $isim-$surum -Ddoctool=disabled -Dcairo=enabled -D gtk_doc=false
+betik   = ninja -C build               
+
+[pakur]
+tip     = meson

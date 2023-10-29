@@ -1,0 +1,18 @@
+[paket]
+tanim   = XML ayrıştırıcı C kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = http://expat.sourceforge.net
+
+[kaynak]
+bz2     = http://downloads.sourceforge.net/$isim
+
+;[sha256]
+;1 		= b2c160f1b60e92da69de8e12333096aeb0c3bf692d41c60794de278af72135a5
+
+[derle]
+tip	    = gnu
+      
+[pakur]
+tip	    = gnu
+betik   = rm -f $PKG/usr/lib/*.a

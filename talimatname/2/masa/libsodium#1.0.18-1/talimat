@@ -1,0 +1,18 @@
+[paket]
+tanim   = Modern ve kullanımı kolay kripto kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://libsodium.org/
+
+[kaynak]
+gz      = https://download.libsodium.org/libsodium/releases
+
+[sha256]
+1       = 6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46636c1
+
+[derle]
+ekconf  = lt_cv_prog_compiler_static_works=yes
+tip     = gnu
+
+[pakur]
+tip     = gnu

@@ -1,0 +1,30 @@
+[paket]
+tanim   = Vulkan Yüklenebilir İstemci Sürücüsü (ICD) yükleyici ve başlık
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.khronos.org/vulkan
+arsiv   = Vulkan-Loader-$surum
+
+[gerek]
+derleme = cmake python libxcb libxkbcommon wayland libxrandr
+calisma =
+
+[kaynak]
+1       = https://github.com/KhronosGroup/Vulkan-Loader/archive/sdk-$surum/Vulkan-Loader-sdk-$surum.tar.gz
+2       = https://github.com/KhronosGroup/Vulkan-Headers/archive/sdk-$surum/Vulkan-Headers-sdk-$surum.tar.gz
+
+;[sha256]
+;1       = f85f0ea57b63750d4ddaf6c8649df781c4777006daa3cd772b01e7b5ed02f3f2
+;2       = 7a25ebdb6325e626dc5d33bc937b289ccce7ddb7b0ac1a1b1d5d7ff33b6715d3
+
+[derle]
+betik   = cd $SRC/Vulkan-Headers-sdk-$surum
+betik   = cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release . && make
+betik   = make DESTDIR=$PKG install
+betik   = cd $SRC/Vulkan-Loader-sdk-$surum
+ekconf  = -DVulkanHeaders_DIR=$PKG/usr/share/cmake/VulkanHeaders -DCMAKE_SKIP_RPATH=True -DBUILD_TESTS=Off -DBUILD_WSI_XCB_SUPPORT=On -DBUILD_WSI_XLIB_SUPPORT=On -DBUILD_WSI_WAYLAND_SUPPORT=On
+tip     = cmake
+
+[pakur]
+betik   = cd $SRC/Vulkan-Loader-sdk-$surum
+tip     = cmake

@@ -1,0 +1,23 @@
+[paket]
+tanim   = UDF dosya sistemleri ve DVD/CD-R(W) sürücüleri için Linux araçları
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/pali/udftools
+
+[gerek]
+derleme = automake ncurses readline
+calisma =
+
+[kaynak]
+gz      = $url/releases/download/${surum}
+
+[sha256]
+1       = 750dcf5c797765eb42265e0a56d1a99f97f94b7f6f4534263a5410503f0caf59
+
+[derle]
+betik   = sed -i 's|/lib/|$(libdir)/|' pktsetup/Makefile.am
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

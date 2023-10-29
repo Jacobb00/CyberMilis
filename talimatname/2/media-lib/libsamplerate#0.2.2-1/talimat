@@ -1,0 +1,22 @@
+[paket]
+tanim   = Ses örnekleme hızı dönüştürme kütüphanesi.
+paketci = milisarge
+grup    = kütüphane
+url     = https://libsndfile.github.io/libsamplerate
+
+[gerek]
+derleme = libsndfile alsa-lib cmake xiph
+calisma = 
+
+[kaynak]
+xz     = https://github.com/libsndfile/${isim}/releases/download/${surum}
+
+[sha256]
+1      = 3258da280511d24b49d6b08615bbe824d0cacc9842b0e4caf11c52cf2b043893
+
+[derle]
+ekconf = -DBUILD_SHARED_LIBS=ON
+tip    = cmake
+
+[pakur]
+tip    = cmake

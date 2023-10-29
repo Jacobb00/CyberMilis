@@ -1,0 +1,21 @@
+[paket]
+tanim   = Simgesel font paketi
+paketci = milisarge
+grup    = kütüphane
+url     = https://fontawesome.com
+arsiv   = Font-Awesome-${surum}
+
+[kaynak]
+1       = https://github.com/FortAwesome/Font-Awesome/archive/$surum/FontAwesome-$surum.tar.gz
+
+[sha256]
+1       = c8d286b1941fca9841d07fe165f9e0a5ee1ccf99417cf60025986f303b54da5c
+
+[derle]
+betik   = echo "derleme yok"
+
+[pakur]
+betik   = install -d "$PKG/usr/share/fonts/TTF"
+betik   = install -m644 ./webfonts/*.ttf "$PKG/usr/share/fonts/TTF"
+betik   = install -d "$PKG/usr/share/fonts/OTF"
+betik   = install -m644 ./otfs/*.otf "$PKG/usr/share/fonts/OTF"

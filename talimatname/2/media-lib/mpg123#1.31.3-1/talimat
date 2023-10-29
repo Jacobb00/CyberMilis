@@ -1,0 +1,24 @@
+[paket]
+tanim   = MPEG ses oynatıcı için konsol tabanlı arayüz
+paketci = milisarge  
+grup    = kütüphane  
+url     = https://sourceforge.net/projects/mpg123
+
+[gerek]
+derleme = alsa-lib sdl2
+calisma =  
+
+[kaynak]
+bz2     = https://downloads.sourceforge.net/sourceforge/$isim
+
+[sha256]
+1       = 1ca77d3a69a5ff845b7a0536f783fee554e1041139a6b978f6afe14f5814ad1a
+
+[derle]
+ekconf  = --with-optimization=0 --with-default-audio=alsa --enable-ipv6=yes --enable-network=yes
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -m755 scripts/conplay "${PKG}/usr/bin/conplay"
+

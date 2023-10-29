@@ -1,0 +1,23 @@
+[paket]
+tanim   = X Rendering eklenti istemci kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXrender-$surum
+
+[gerek]
+derleme = xorgproto libx11 xorg-util-macros
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXrender-$surum.tar.xz
+
+[sha256]
+1 		= bc53759a3a83d1ff702fb59641b3d2f7c56e05051fa0cfa93501166fa782dc24
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

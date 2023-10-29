@@ -1,0 +1,22 @@
+[paket]
+tanim   = POSIX 1003.1e kapasite kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = http://www.kernel.org/pub/linux/libs/security/linux-privs
+
+[kaynak]
+xz      = $url/libcap2
+;dosya   = libcap-2.45-makefile.patch
+
+;[sha256]
+;1 		= 4de9590ee09a87c282d558737ffb5b6175ccbfd26d580add10df44d0f047f6c2
+;2 		= bf007b9712d5992e3f0bdcdaf74a69b5fc24049fc084eb225171931d38b3fde3
+
+[derle]
+;yama    = libcap-2.45-makefile.patch
+betik   = make KERNEL_HEADERS='/usr/include' lib='lib' prefix='/usr' sbindir='bin'
+	      
+[pakur]
+betik 	= make DESTDIR="$PKG" RAISE_SETFCAP='no' lib='lib' prefix='/usr' sbindir='bin' install
+betik 	= rm -f $PKG/usr/lib/*.a
+  

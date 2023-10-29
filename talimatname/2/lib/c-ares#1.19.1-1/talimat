@@ -1,0 +1,20 @@
+[paket]
+tanim   = DNS isteklerini ve adını gerçekleştiren C kütüphanesi zaman uyumsuz olarak çözülür
+paketci = milisarge
+grup    = kütüphane
+url     = https://c-ares.haxx.se/
+
+[kaynak]
+gz      = https://c-ares.haxx.se/download
+
+[sha256]
+1       = 321700399b72ed0e037d0074c629e7741f6b2ec2dda92956abe3e9671d3e268e
+
+[derle]
+betik   = export CFLAGS=${CFLAGS/-D_FORTIFY_SOURCE=?/}
+betik   = export CPPFLAGS+=" -D_FORTIFY_SOURCE=2"
+betik   = export CFLAGS=${CFLAGS/-I${XBPS_CROSS_BASE}\/usr\/include/}
+tip     = gnu
+
+[pakur]
+tip     = gnu

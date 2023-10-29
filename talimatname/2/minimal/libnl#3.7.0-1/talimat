@@ -1,0 +1,18 @@
+[paket]
+tanim   = Netlink soketleri ile ilgili kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = https://github.com/thom311/libnl
+
+[kaynak]
+gz      = https://github.com/thom311/libnl/releases/download/libnl${surum//./_}
+
+[sha256]
+1   	= 9fe43ccbeeea72c653bdcf8c93332583135cda46a79507bfd0a483bb57f65939
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+
+[pakur]
+tip     = gnu

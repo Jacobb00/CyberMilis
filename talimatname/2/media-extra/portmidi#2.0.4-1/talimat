@@ -1,0 +1,18 @@
+[paket]
+tanim   = MIDI verilerinin gerçek zamanlı girişi ve çıkışı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/portmidi/portmidi
+
+[gerek]
+derleme = cmake alsa-lib
+calisma =
+
+[kaynak]
+gz      = $url/archive/v$surum
+
+[derle]
+tip     = cmake
+
+[pakur]
+tip     = cmake

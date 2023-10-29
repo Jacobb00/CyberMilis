@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 ekran yöneticisi kontrol protokolü kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXdmcp-$surum
+
+[gerek]
+derleme = xorgproto
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXdmcp-$surum.tar.xz
+
+[sha256]
+1       = 2dce5cc317f8f0b484ec347d87d81d552cdbebb178bd13c5d8193b6b7cd6ad00
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip     = gnu

@@ -1,0 +1,26 @@
+[paket]
+tanim   = UTF-8 kodlu Unicode dizelerini işlemek için C kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/JuliaStrings/utf8proc
+arsiv   = utf8proc-$surum
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+1       = $url/archive/refs/tags/v${surum}.tar.gz::libutf8proc-${surum}.tar.gz
+dosya   = libutf8proc.pc.in
+
+;[sha256]
+;1       = 7820cf02c37cbb3b977b406f276b384c6b4e22f992bc850592503bb3f5111049
+
+[derle]
+ekconf  = -DBUILD_SHARED_LIBS=ON
+tip     = cmake
+
+[pakur]
+tip     = cmake
+betik   = mkdir -p $PKG/usr/lib/pkgconfig
+betik   = sed "s|@VERSION@|${surum}|" ${SRC}/libutf8proc.pc.in > ${PKG}/usr/lib/pkgconfig/libutf8proc.pc

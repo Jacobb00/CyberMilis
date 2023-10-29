@@ -1,0 +1,23 @@
+[paket]
+tanim    = Yüksek kalitede mp3 kodlayıcı kütüphanesi
+paketci  = milisarge 
+grup     = kütüphane
+url      = http://lame.sourceforge.net/
+
+[gerek]
+derleme  = nasm ncurses 
+calisma  =  
+
+[kaynak]
+gz       = https://downloads.sourceforge.net/$isim
+
+[sha256]
+1        = ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e
+
+[derle]
+ekconf   = --enable-nasm --enable-shared
+tip      = gnu
+
+[pakur]
+tip      = gnu
+

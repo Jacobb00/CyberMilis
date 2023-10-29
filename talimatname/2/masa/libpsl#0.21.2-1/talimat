@@ -1,0 +1,22 @@
+[paket]
+tanim   = Public Suffix List kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/rockdaboot/libpsl
+
+[gerek]
+derleme = libidn2 python libunistring
+calisma =
+
+[kaynak]
+gz      = https://github.com/rockdaboot/libpsl/releases/download/${surum}
+link    = https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat::$isim-$surum-$devir-public_suffix_list.dat!
+
+[derle]
+betik   = rm -frv list
+betik   = export LC_CTYPE=en_US.UTF-8
+ekconf  = --disable-gtk-doc --disable-static --disable-dependency-tracking --enable-builtin=libidn2 --enable-runtime=libidn2 --with-psl-file=$SOURCES_DIR/$isim-$surum-$devir-public_suffix_list.dat
+tip     = gnu
+
+[pakur]
+tip     = gnu

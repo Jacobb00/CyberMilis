@@ -1,0 +1,4 @@
+libgdbm.so.6
+libc.so.6
+libreadline.so.8
+ld-linux-x86-64.so.2

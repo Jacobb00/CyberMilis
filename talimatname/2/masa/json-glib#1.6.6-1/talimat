@@ -1,0 +1,23 @@
+[paket]
+tanim   = GLib tabanlı kütüphaneler ve uygulamalar için JSON ayrıştırıcısı
+paketci = milisarge
+grup    = kütüphane
+url     = http://live.gnome.org/JsonGlib
+
+[gerek]
+derleme = meson glib gobject-introspection
+calisma =
+
+[kaynak]
+xz      = ${GNOME_SITE}/${isim}/${surum%.*}
+
+[sha256]
+1       = 96ec98be7a91f6dde33636720e3da2ff6ecbb90e76ccaa49497f31a6855a490e
+
+[derle]
+ekconf  = -Dgtk_doc=disabled
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -r "$PKG"/usr/{lib,share}/installed-tests

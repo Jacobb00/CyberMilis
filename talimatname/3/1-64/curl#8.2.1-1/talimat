@@ -1,0 +1,19 @@
+[paket]
+tanim   = Çoklu protokol destekli dosya transfer uygulaması
+paketci = milisarge
+grup    = temel
+url     = https://curl.haxx.se
+
+[kaynak]
+xz      = $url/download
+
+;[sha256]
+;1       = fe0c49d8468249000bda75bcfdf9e30ff7e9a86d35f1a21f428d79c389d55675
+
+[derle]
+ekconf  = --with-ca-path=/etc/ssl/certs --enable-threaded-resolver --disable-static --enable-versioned-symbols --with-random=/dev/urandom --enable-ipv6 --disable-manual --with-openssl
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = make DESTDIR="$PKG" install -C scripts

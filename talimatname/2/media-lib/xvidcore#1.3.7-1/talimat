@@ -1,0 +1,24 @@
+[paket]
+tanim   = MPEG-4 vide kodek kütüphanesi
+paketci = milisarge 
+grup    = kütüphane
+url     = http://www.xvid.org/
+arsiv   = xvidcore/build/generic
+
+[gerek]
+derleme = nasm 
+calisma =  
+
+[kaynak]
+gz      = https://ftp.osuosl.org/pub/blfs/conglomeration/xvidcore
+
+[sha256]
+1       = abbdcbd39555691dd1c9b4d08f0a031376a3b211652c0d8b3b8aa9be1303ce2d
+
+[derle]
+tip    = gnu
+
+[pakur]
+tip    = gnu
+betik  = rm -f $PKG/usr/lib/*.a
+

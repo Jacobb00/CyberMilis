@@ -1,0 +1,29 @@
+[paket]
+tanim   = Hafif, yapılandırması kolay DNS iletici ve DHCP sunucusu
+paketci = milisarge
+grup    = sistem
+url     = http://www.thekelleys.org.uk/dnsmasq/doc.html
+
+[gerek]
+derleme = dbus libcap libidn2 nettle
+calisma =
+
+[kaynak]
+xz      = http://www.thekelleys.org.uk/${isim}
+dosya   = dnsmasq-config.patch
+
+[sha256]
+1       = 02bd230346cf0b9d5909f5e151df168b2707103785eb616b56685855adebb609 
+
+[derle]
+betik   = patch -p1 -i $SRC/dnsmasq-config.patch
+betik   = export _build_copts="-DHAVE_DNSSEC -DHAVE_DBUS -DHAVE_LIBIDN2 "
+betik   = make CFLAGS="$CPPFLAGS $CFLAGS" LDFLAGS="$LDFLAGS" COPTS="$_build_copts" PREFIX=/usr BINDIR=/usr/bin all-i18n
+
+[pakur]
+betik   = export _build_copts="-DHAVE_DNSSEC -DHAVE_DBUS -DHAVE_LIBIDN2 "
+betik   = make COPTS="$_build_copts" PREFIX=/usr BINDIR=/usr/bin DESTDIR="$PKG" install install-i18n
+betik   = install -Dm644 dbus/dnsmasq.conf $PKG/usr/share/dbus-1/system.d/dnsmasq.conf
+betik   = install -Dm644 dnsmasq.conf.example $PKG/etc/dnsmasq.conf
+betik   = sed -i 's,%%PREFIX%%,/usr,' $PKG/etc/dnsmasq.conf
+betik   = install -Dm644 trust-anchors.conf $PKG/usr/share/dnsmasq/trust-anchors.conf

@@ -1,0 +1,22 @@
+[paket]
+tanim   = iCalendar veri tipi ve format gerçeklemesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://libical.github.io/libical
+
+[gerek]
+derleme = cmake glib libxml2 gobject-introspection
+calisma = 
+
+[kaynak]
+gz      = https://github.com/libical/libical/archive/v$surum
+
+[sha256]
+1       = b44705dd71ca4538c86fb16248483ab4b48978524fb1da5097bd76aa2e0f0c33
+
+[derle]
+ekconf  = -DICAL_BUILD_DOCS=false -DGOBJECT_INTROSPECTION=true -DSHARED_ONLY=true -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
+tip     = cmake
+	      
+[pakur]
+tip 	= cmake

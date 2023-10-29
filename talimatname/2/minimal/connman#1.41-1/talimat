@@ -1,0 +1,27 @@
+[paket]
+tanim   = Açık Kaynak ağ bağlantı yöneticisi
+paketci = milisarge
+grup    = ağ
+url     = https://01.org/connman
+
+[gerek]
+derleme = automake iptables libtool gnutls glib libmnl dbus
+calisma = wpa_supplicant
+
+[kaynak]
+xz      = ${KERNEL_SITE}/network/${isim}
+dosya   = connmand.conf
+
+[sha256]
+1       = 79fb40f4fdd5530c45aa8e592fb16ba23d3674f3a98cf10b89a6576f198de589
+
+[derle]
+betik   = export CFLAGS+=" -D_GNU_SOURCE"
+betik   = autoreconf -fi
+ekconf  = --enable-polkit --enable-client --enable-pie --enable-ethernet --enable-wifi --enable-bluetooth --enable-loopback --enable-nmcompat
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -Dm755 client/connmanctl $PKG/usr/bin/connmanctl
+betik   = install -Dm755 ${SRC}/connmand.conf $PKG/usr/share/dbus-1/system.d/connmand.conf

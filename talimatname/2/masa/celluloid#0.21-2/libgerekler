@@ -1,0 +1,12 @@
+libgdk-3.so.0
+libcairo.so.2
+libglib-2.0.so.0
+libc.so.6
+libgobject-2.0.so.0
+libm.so.6
+libmpv.so.2
+libepoxy.so.0
+libgtk-3.so.0
+libpangocairo-1.0.so.0
+libpango-1.0.so.0
+libgio-2.0.so.0

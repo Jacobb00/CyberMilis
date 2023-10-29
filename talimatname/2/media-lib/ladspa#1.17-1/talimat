@@ -1,0 +1,27 @@
+[paket]
+tanim   = Linux Audio Developer's Simple Plugin API (LADSPA)
+paketci = milisarge  
+grup    = kütüphane  
+url     = https://www.ladspa.org/
+arsiv   = ${isim}_sdk_${surum}
+
+[gerek]
+derleme = libsndfile
+calisma =
+
+[kaynak]
+1     =  https://ladspa.org/download/ladspa_sdk_$surum.tgz
+dosya =  fix-memleak-in-plugin-scanning.patch
+
+[sha256]
+1  =  27d24f279e4b81bd17ecbdcc38e4c42991bb388826c0b200067ce0eb59d3da5b
+
+[derle]
+dosya  = derle.sh
+
+[pakur]
+betik  = cd src
+betik  = make INSTALL_PLUGINS_DIR="${PKG}/usr/lib/ladspa/" \
+betik  = INSTALL_INCLUDE_DIR="${PKG}/usr/include/" \
+betik  = INSTALL_BINARY_DIR="${PKG}/usr/bin/" install
+

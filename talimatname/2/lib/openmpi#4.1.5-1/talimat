@@ -1,0 +1,21 @@
+[paket]
+tanim   = Yüksek Performanslı Mesaj İletme Kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.open-mpi.org/
+
+[gerek]
+derleme = automake zlib libevent
+calisma =
+
+[kaynak]
+1       = ${url}/software/ompi/v${surum%.*}/downloads/${isim}-${surum}.tar.bz2
+
+[sha256]
+1       = a640986bc257389dd379886fdae6264c8cfa56bc98b71ce3ae3dfbd8ce61dbe3
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+tip     = gnu

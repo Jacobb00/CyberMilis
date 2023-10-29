@@ -1,0 +1,24 @@
+[paket]
+tanim   = VTE tabanlı terminal uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://lxde.org/
+arsiv   = lxterminal
+
+[gerek]
+derleme = automake gtk3 vte3 intltool
+calisma =
+
+[kaynak]
+git     = https://github.com/milisarge/lxterminal
+
+
+[derle]
+betik   = ./autogen.sh || return 1
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-gtk3
+betik   = sed 's/SUBDIRS = src po data man/SUBDIRS = src po data/g' -i Makefile
+betik   = make
+
+[pakur]
+betik   = sed 's/_Name=LXTerminal/_Name=Terminal/g' -i data/lxterminal.desktop.in
+tip     = gnu

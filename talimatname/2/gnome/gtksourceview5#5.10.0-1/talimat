@@ -1,0 +1,23 @@
+[paket]
+tanim   = GTK4 GtkTextView küçük aracını genişleten metin küçük aracı
+paketci = milisarge
+grup    = kütüphane
+url     = https://wiki.gnome.org/Projects/GtkSourceView
+arsiv   = gtksourceview-${surum}
+
+[gerek]
+derleme = meson gtk4 glib vala libxml2 gobject-introspection pango cairo
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/gtksourceview/${surum%.*}/gtksourceview-${surum}.tar.xz
+
+;[sha256]
+;1       = 691b074a37b2a307f7f48edc5b8c7afa7301709be56378ccf9cc9735909077fd
+
+[derle]
+ekconf  = -Dgtk_doc=false
+tip     = meson
+
+[pakur]
+tip     = meson

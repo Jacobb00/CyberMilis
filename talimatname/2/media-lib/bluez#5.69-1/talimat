@@ -1,0 +1,32 @@
+[paket]
+tanim   = Bluetooth+SBC kütüphanesi
+paketci = milisarge
+grup 	= ağ
+url     = http://www.bluez.org
+
+[gerek]
+derleme = cups eudev glib libical json-c ell dbus alsa-lib
+calisma = 
+
+[kaynak]
+xz      = https://www.kernel.org/pub/linux/bluetooth
+dosya   = bluetooth.modprobe
+2       = https://www.kernel.org/pub/linux/bluetooth/sbc-2.0.tar.xz
+
+[sha256]
+1 		= bc5a35ddc7c72d0d3999a0d7b2175c8b7d57ab670774f8b5b4900ff38a2627fc
+3       = 8f12368e1dbbf55e14536520473cfb338c84b392939cc9b64298360fd4a07992
+
+[derle]
+; sbc
+ekconf  = --disable-tester
+gnu     = sbc-2.0
+
+; bluez
+betik   = cd -
+ekconf  = --enable-manpages=no --with-dbusconfdir=/usr/share --enable-btpclient --enable-midi --enable-sixaxis --enable-mesh --enable-hid2hci --enable-experimental --enable-library --with-udevdir=/usr/lib/udev --disable-systemd
+tip     = gnu
+
+[pakur]
+tip     = gnu
+dosya   = pakur.sh

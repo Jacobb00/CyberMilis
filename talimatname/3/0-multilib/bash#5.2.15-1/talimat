@@ -1,0 +1,19 @@
+[paket]
+tanim   = Shell uygulaması, Bourne-Again SHell'i içeriyor.
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu/bash
+
+[kaynak]
+gz      = $url
+
+[sha256]
+1 		= 13720965b5f4fc3a0d4b61dd37e7565c741da9a5be24edc2ae00182fc1b3588c
+
+[derle]
+betik 	= ./configure --prefix=/tools --without-bash-malloc
+betik 	= make $MAKEJOBS && make install
+	      
+[pakur]
+betik   = echo "paketleme yok"
+betik   = ln -sv bash /tools/bin/sh

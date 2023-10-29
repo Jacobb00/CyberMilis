@@ -1,0 +1,17 @@
+[paket]
+tanim   = Gömülü Linux kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://01.org/ell
+
+[kaynak]
+xz      = https://mirrors.edge.kernel.org/pub/linux/libs/$isim
+
+[sha256]
+1 	    = 7603928ee584b758ca27c67e4dc513049a09b038d7d28459a9440f8443c91018
+
+[derle]
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

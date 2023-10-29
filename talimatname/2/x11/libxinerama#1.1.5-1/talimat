@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Xinerama eklenti kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXinerama-$surum
+
+[gerek]
+derleme = xorg-util-macros libxext
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXinerama-$surum.tar.xz
+
+[sha256]
+1 		= 5094d1f0fcc1828cb1696d0d39d9e866ae32520c54d01f618f1a3c1e30c2085c
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

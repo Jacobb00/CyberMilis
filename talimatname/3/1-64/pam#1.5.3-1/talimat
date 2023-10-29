@@ -1,0 +1,20 @@
+[paket]
+tanim   = Uygulamalar ile kullanıcıları yetkilendiren kütüphane
+paketci = milisarge
+grup 	= temel
+url     = http://www.kernel.org/pub/libs/pam
+arsiv   = Linux-PAM-$surum
+
+[kaynak]
+1       = https://github.com/linux-pam/linux-pam/releases/download/v$surum/Linux-PAM-$surum.tar.xz
+
+;[sha256]
+;1 		= 201d40730b1135b1b3cdea09f2c28ac634d73181ccd0172ceddee3649c5792fc
+
+[derle]
+ekconf  = --disable-db
+tip     = gnu
+	      
+[pakur]
+betik   = make DESTDIR=$PKG SCONFIGDIR=/etc/security install
+betik   = chmod +s $PKG/usr/bin/unix_chkpwd

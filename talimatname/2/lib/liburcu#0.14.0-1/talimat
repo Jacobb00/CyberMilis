@@ -1,0 +1,22 @@
+[paket]
+tanim   = Basit ini dosyası ayrıştırıcı kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://liburcu.org/
+arsiv   = userspace-rcu-${surum}
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = https://lttng.org/files/urcu/userspace-rcu-$surum.tar.bz2
+
+[sha256]
+1       = ca43bf261d4d392cff20dfae440836603bf009fce24fdc9b2697d837a2239d4f
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu

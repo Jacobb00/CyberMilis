@@ -1,0 +1,43 @@
+[paket]
+tanim   = Portal ön uç hizmeti
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/flatpak/xdg-desktop-portal
+
+[gerek]
+derleme = gperf meson glib gobject-introspection gtk3 vala glib fuse3 pipewire libinih json-glib
+calisma =
+
+[kaynak]
+1       = https://github.com/flatpak/${isim}/releases/download/${surum}/${isim}-${surum}.tar.xz
+2       = https://github.com/flatpak/libportal/releases/download/0.7.1/libportal-0.7.1.tar.xz
+3       = https://github.com/emersion/xdg-desktop-portal-wlr/archive/v0.7.0.tar.gz::xdg-desktop-portal-wlr-0.7.0.tar.gz
+4       = https://git.sr.ht/~emersion/basu/archive/v0.2.1.tar.gz::basu-0.2.1.tar.gz
+5       = https://github.com/flatpak/xdg-desktop-portal-gtk/releases/download/1.15.1/xdg-desktop-portal-gtk-1.15.1.tar.xz
+
+;[sha256]
+;1       = 0590199a65daee7c4f3e5c293e3d5b287610bf9299c4515eacc3d133474f0c73
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+ekconf  = -Dwerror=false -Daudit=disabled
+meson   = basu-v0.2.1
+
+betik   = sed  -i "/subdir('doc')/d" $SRC/libportal-0.7.1/meson.build
+ekconf  = -Ddocs=false -Dbackend-gtk3=enabled -Dbackend-gtk4=disabled -Dbackend-qt5=disabled
+meson   = libportal-0.7.1
+
+ekconf  = -Ddocbook-docs=disabled -Dsystemd=disabled -Dman-pages=disabled -Dgeoclue=disabled -Dflatpak-interfaces-dir=/tmp
+meson   = xdg-desktop-portal-$surum
+
+ekconf  = -Dman-pages=disabled -Dsystemd=disabled -Dsd-bus-provider=basu
+meson   = xdg-desktop-portal-wlr-0.7.0
+
+ekconf  = -Dwallpaper=disabled
+meson   = xdg-desktop-portal-gtk-1.15.1
+
+[pakur]
+betik   = echo ""

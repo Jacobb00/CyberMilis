@@ -1,0 +1,22 @@
+[paket]
+tanim   = Arka ışık denetleyicilerini kontrol etme programı
+paketci = milisarge
+grup    = sistem
+url     = http://haikarainen.github.io/light/
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+github  = haikarainen/light
+
+[sha256]
+1       = 62e889ee9be80fe808a972ef4981acc39e83a20f9a84a66a82cd1f623c868d9c
+
+[derle]
+betik   = autoreconf -fi
+betik   = CFLAGS+=" -fcommon" ./configure --prefix=/usr --with-udev && make
+
+[pakur]
+tip     = gnu

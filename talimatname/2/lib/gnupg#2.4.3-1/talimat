@@ -1,0 +1,76 @@
+[paket]
+tanim   = OpenGPG gerçeklemesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.gnupg.org
+
+[gerek]
+derleme = automake openldap libusb sqlite gnutls
+calisma =
+
+[kaynak]
+bz2   = https://www.gnupg.org/ftp/gcrypt/$isim
+2     = https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
+3     = https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.bz2
+4     = https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.10.2.tar.bz2
+5     = https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.6.tar.bz2
+6     = https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.6.4.tar.bz2
+7     = https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.2.1.tar.bz2
+
+
+[sha256]
+1       = a271ae6d732f6f4d80c258ad9ee88dd9c94c8fdc33c3e45328c4d7c126bd219d
+2       = 1393abd9adcf0762d34798dc34fdcf4d0d22a8410721e76f1e3afcd1daa4e2d1
+3	    = 9e3c670966b96ecc746c28c2c419541e3bcb787d1a73930f5e5f5e1bcbbb9bdb
+4	    = 3b9c02a004b68c256add99701de00b383accccf37177e0d6c58289664cce0c03
+5       = e9fd27218d5394904e4e39788f9b1742711c3e6b41689a31aa3380bd5aa4f426
+6       = bbb43f032b9164d86c781ffe42213a83bf4f2fee91455edfa4654521b8b03b6b
+7       = 457a185e5a85238fb945a955dc6352ab962dc8b48720b62fc9fa48c7540a4067
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+export  = LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+
+betik   = cd $SRC/npth-1.6
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+export  = NPTH_CONFIG=$PKG/usr/bin/npth-config
+
+betik   = cd $SRC/libgpg-error-1.47
+betik   = autoreconf -fi
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+export  = GPGRT_CONFIG=$PKG/usr/bin/gpgrt-config  
+export  = GPG_ERROR_CONFIG=$PKG/usr/bin/gpg-error
+
+betik   = cd $SRC/libgcrypt-1.10.2
+ekconf  = --enable-static --without-capabilities
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+betik   = unset EXT_OPT
+
+betik   = cd $SRC/libassuan-2.5.6
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+
+betik   = cd $SRC/libksba-1.6.4
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+
+betik   = cd $SRC/pinentry-1.2.1
+ekconf  = --enable-pinentry-tty --enable-pinentry-curses --enable-fallback-curses
+tip     = gnu
+betik   = make DESTDIR=$PKG install
+betik   = unset EXT_OPT
+
+betik   = cd $SRC/gnupg-$surum
+betik   = ./autogen.sh
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin --libexecdir=/usr/lib/gnupg --disable-doc --enable-ldap
+betik   = make
+
+[pakur]
+tip     = gnu
+betik   = ln -s gpg "${PKG}"/usr/bin/gpg2
+betik   = ln -s gpgv "${PKG}"/usr/bin/gpgv2

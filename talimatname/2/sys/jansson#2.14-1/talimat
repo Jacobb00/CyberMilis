@@ -1,0 +1,18 @@
+[paket]
+tanim   = JSON veri işleme C kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.digip.org/jansson
+
+[kaynak]
+bz2     = https://github.com/akheron/jansson/releases/download/v$surum
+
+[sha256]
+1 	    = fba956f27c6ae56ce6dfd52fbf9d20254aad42821f74fa52f83957625294afb9
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

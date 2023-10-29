@@ -1,0 +1,25 @@
+[paket]
+tanim   = Çok yönlü dosya arama aracı
+paketci = milisarge
+grup    = sistem
+url     = https://docs.xfce.org/apps/catfish/start
+
+[gerek]
+derleme = python intltool python-gobject
+calisma = gtk3 python-cairo python-dbus python-pexpect python-gobject
+
+[kaynak]
+bz2      = https://archive.xfce.org/src/apps/catfish/${surum%.*}
+2        = https://launchpad.net/python-distutils-extra/trunk/2.39/+download/python-distutils-extra-2.39.tar.gz
+
+[sha256]
+1       = fdae9b73cc754a50716bb04b958aa31dbd7e94047068b7207f2ae313a7d58b99
+
+[derle]
+betik   = cd $SRC/python-distutils-extra-2.39;python setup.py install;cd -
+tip     = py3
+
+[pakur]
+betik   = python setup.py install --root=$PKG --optimize=1
+betik   = sed -i "s/^Name=Catfish/Name=/g" $PKG/usr/share/applications/org.xfce.Catfish.desktop
+betik   = sed -i "s/Name\[tr\]=Catfish/Name\[tr\]=/g" $PKG/usr/share/applications/org.xfce.Catfish.desktop

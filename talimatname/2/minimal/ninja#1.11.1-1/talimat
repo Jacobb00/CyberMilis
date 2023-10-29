@@ -1,0 +1,23 @@
+[paket]
+tanim   = Hız odaklı küçük derleme sistemi
+paketci = milisarge
+grup 	= sistem
+url     = https://ninja-build.org
+
+[gerek]
+derleme = python re2c
+calisma = python
+
+[kaynak]
+github  = martine/ninja
+
+[sha256]
+1 		= 31747ae633213f1eda3842686f83c2aa1412e0f5691d1c14dbbcc67fe7400cea
+
+[derle]
+betik 	= python3 configure.py --bootstrap
+	      
+[pakur]
+betik 	= install -vm755 -D ninja $PKG/usr/bin/ninja
+betik 	= install -vm644 -D misc/bash-completion $PKG/usr/share/bash-completion/completions/ninja
+betik 	= install -vm644 -D misc/zsh-completion $PKG/usr/share/zsh/site-functions/_ninja

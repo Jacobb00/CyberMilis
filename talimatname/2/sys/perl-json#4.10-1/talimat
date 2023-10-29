@@ -1,0 +1,19 @@
+[paket]
+tanim   = Perl için JSON kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://metacpan.org/pod/JSON
+arsiv   = JSON-$surum
+
+[kaynak]
+1       = https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/JSON-$surum.tar.gz
+
+[sha256]
+1       = df8b5143d9a7de99c47b55f1a170bd1f69f711935c186a6dc0ab56dd05758e35
+
+[derle]
+betik   = perl Makefile.PL INSTALLDIRS=vendor
+betik   = make
+
+[pakur]
+tip     = gnu

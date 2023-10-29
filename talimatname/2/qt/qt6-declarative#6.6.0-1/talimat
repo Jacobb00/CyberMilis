@@ -1,0 +1,25 @@
+[paket]
+tanim   = QT6 QML kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.qt.io
+arsiv   = qtdeclarative-everywhere-src-$surum
+
+[gerek]
+derleme = cmake qt6-base qt6-shadertools
+calisma =
+
+[kaynak]
+1       = https://download.qt.io/official_releases/qt/6.6/$surum/submodules/qtdeclarative-everywhere-src-$surum.tar.xz
+
+[sha256]
+1       = 1b539bb0a918c8f0307fd07bd4ef0334bf7f8934bbc2eabfc04c433a7d7fa331
+
+[derle]
+ekconf  = -D INSTALL_PUBLICBINDIR=usr/bin
+tip     = cmake
+
+[pakur]
+tip     = cmake
+betik   = mkdir -p $PKG/usr/bin;cd $PKG
+betik   = while read _line; do ln -s $_line; done < $SRC/qtdeclarative-everywhere-src-$surum/build/user_facing_tool_links.txt

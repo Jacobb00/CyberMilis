@@ -1,0 +1,4 @@
+libz.so.1
+libssl.so.3
+libcrypto.so.3
+libc.so.6

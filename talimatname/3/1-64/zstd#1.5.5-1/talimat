@@ -1,0 +1,20 @@
+[paket]
+tanim   = Zstandard, h  zl   ger  ek zamanl   s  k   ^=t  rma algoritmas   ve arac
+paketci = milisarge
+grup    = sistem
+url     = http://www.zstd.net
+
+[kaynak]
+gz       = https://github.com/facebook/zstd/releases/download/v${surum}
+
+;[sha256]
+;1              = f176f0626cb797022fbf257c3c644d71c1c747bb74c32201f9203654da35e9fa
+
+[derle]
+betik   = make ${MAKEJOBS} PREFIX=/usr lib-mt
+betik   = make ${MAKEJOBS} PREFIX=/usr -C contrib/pzstd
+
+[pakur]
+betik   = make PREFIX=/usr DESTDIR="${PKG}" install
+betik   = make -C contrib/pzstd PREFIX=/usr DESTDIR="${PKG}" install
+betik   = rm -f $PKG/usr/lib/*.a

@@ -1,0 +1,22 @@
+[paket]
+tanim   = Hızlı C/C++ Derleyici Önbelleği
+paketci = milisarge
+grup    = sistem
+url     = https://ccache.samba.org
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+xz      = https://github.com/ccache/ccache/releases/download/v${surum}
+
+[sha256]
+1       = e47374c810b248cfca3665ee1d86c7c763ffd68d9944bc422d9c1872611f2b11
+
+[derle]
+ekconf  = -DENABLE_TESTING=OFF -DREDIS_STORAGE_BACKEND=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake

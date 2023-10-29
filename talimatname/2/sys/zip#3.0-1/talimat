@@ -1,0 +1,23 @@
+[paket]
+tanim   = Zip arşivi ouşturma aracı
+paketci = milisarge
+grup 	= sistem
+url     = http://www.info-zip.org/Zip.html
+arsiv   = ${isim}${surum/./}
+[kaynak]
+1       = https://downloads.sourceforge.net/infozip/zip30.tar.gz
+dosya   = zipnote.patch
+
+[sha256]
+1 		= f0e8bb1f9b7eb0b01285495a2699df3a4b766784c1765a8f1aeedf63c0806369
+2       = 89249a3f1fdf838b795ce432a2d763fdbe913d6a146541e41b7a2e2769291ba0
+
+
+[derle]
+betik   = sed -e "/^CFLAGS_NOOPT =/s/\$/ $CPPFLAGS $CFLAGS/" -i unix/Makefile
+betik   = sed -e "s/^LFLAGS1=''/LFLAGS1=$LDFLAGS/" -i unix/configure
+betik   = patch -p1 -i ../zipnote.patch
+betik   = make -f unix/Makefile prefix=/usr generic_gcc
+	      
+[pakur]
+betik   = make -f unix/Makefile prefix="${PKG}"/usr MANDIR=${pkgdir}/usr/share/man/man1 install

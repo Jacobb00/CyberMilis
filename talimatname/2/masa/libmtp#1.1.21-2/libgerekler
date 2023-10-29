@@ -1,0 +1,4 @@
+libmtp.so.9
+libc.so.6
+libusb-1.0.so.0
+libgcrypt.so.20

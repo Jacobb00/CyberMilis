@@ -1,0 +1,36 @@
+[paket]
+tanim   = CD paranoia kütüphaneleri
+paketci = milisarge 
+grup    = kütüphane  
+url     = https://www.gnu.org/software/libcdio
+
+[gerek]
+derleme = automake
+calisma =  
+
+[kaynak]
+1      = https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.0.tar.bz2
+2      = https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+
+[sha256]
+1      = 4565c18caf401083c53733e6d2847b6671ba824cff1c7792b9039693d34713c1
+2      = 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
+
+[derle]
+betik  = export LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+betik  = export CFLAGS="$CFLAGS -I$PKG/usr/include"
+betik  = export PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+betik  = export LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+betik  = cd $SRC/libcdio-2.1.0
+betik  = autoreconf -fi
+ekconf = --disable-vcd-info --enable-cpp-progs --disable-static
+tip    = gnu
+betik  = make install DESTDIR=$PKG
+betik  = cd $SRC/libcdio-paranoia-10.2+2.0.0
+ekconf = --enable-cpp-progs --disable-static --disable-example-progs
+tip    = gnu
+
+[pakur]
+betik  = cd $SRC/libcdio-paranoia-10.2+2.0.0
+tip    = gnu
+

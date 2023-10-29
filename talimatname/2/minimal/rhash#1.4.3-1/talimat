@@ -1,0 +1,24 @@
+[paket]
+tanim   = Dosyaların karma toplamlarını doğrulamak için yardımcı program
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/rhash/RHash
+arsiv   = RHash-$surum
+
+[gerek]
+derleme =
+calisma =
+
+[kaynak]
+github  = rhash/RHash
+
+[sha256]
+1       = 1e40fa66966306920f043866cbe8612f4b939b033ba5e2708c3f41be257c8a3e
+
+[derle]
+betik  = ./configure --prefix=/usr --enable-static --sysconfdir=/etc --extra-cflags="$CFLAGS" --extra-ldflags="$LDFLAGS"
+betik  = make
+
+[pakur]
+tip     = gnu
+betik   = make -C librhash DESTDIR="$PKG" install-lib-headers install-lib-shared install-so-link

@@ -1,0 +1,19 @@
+[paket]
+tanim   = Dosya tiplerini gösteren uygulama
+paketci = milisarge
+grup 	= temel
+url     = ftp://ftp.fu-berlin.de/unix/tools/file
+
+[kaynak]
+gz      = ftp://ftp.astron.com/pub/file
+
+;[sha256]
+;1 		= f05d286a76d9556243d0cb05814929c2ecf3a5ba07963f8f70bfaaa70517fad1
+
+[derle]
+betik	= ./configure --prefix=/usr --datadir=/usr/share/file --disable-libseccomp
+betik	= sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik	= make
+	      
+[pakur]
+tip     = gnu

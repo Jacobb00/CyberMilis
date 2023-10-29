@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd /usr/milis/mps && git pull 
+rm -rf * && git reset --hard HEAD && git pull
+./derle.sh 

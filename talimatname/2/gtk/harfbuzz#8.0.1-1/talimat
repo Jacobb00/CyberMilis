@@ -1,0 +1,22 @@
+[paket]
+tanim   = OpenType metin şekillendirme motoru
+paketci = milisarge
+grup    = sistem
+url     = http://www.freedesktop.org/software/harfbuzz
+
+[gerek]
+derleme = meson freetype glib gobject-introspection cairo icu graphite chafa
+calisma = 
+
+[kaynak]
+xz      = https://github.com/harfbuzz/harfbuzz/releases/download/$surum
+
+[sha256]
+1       = c1ce780acd385569f25b9a29603d1d5bc71e6940e55bfdd4f7266fad50e42620
+
+[derle]
+ekconf  = -Dglib=enabled -Dfreetype=enabled -Dcairo=enabled -Dicu=enabled -Dgraphite=enabled -Dintrospection=enabled -Dbenchmark=disabled -Ddocs=disabled -Dtests=disabled
+tip     = meson
+  
+[pakur]
+tip	    = meson

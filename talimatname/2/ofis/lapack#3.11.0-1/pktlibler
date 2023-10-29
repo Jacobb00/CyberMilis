@@ -1,0 +1,12 @@
+libblas.so
+libblas.so.3
+libblas.so.3.11.0
+libcblas.so
+libcblas.so.3
+libcblas.so.3.11.0
+liblapack.so
+liblapack.so.3
+liblapack.so.3.11.0
+liblapacke.so
+liblapacke.so.3
+liblapacke.so.3.11.0

@@ -1,0 +1,23 @@
+[paket]
+tanim   = GTK4 arayüz kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.gtk.org
+
+[gerek]
+derleme = meson gobject-introspection glib libxcomposite libxinerama libxcursor libxdamage libxrandr pango shared-mime-info at-spi2-core wayland wayland-protocols libxkbcommon fribidi gdk-pixbuf libepoxy cups librsvg gtk3 graphene sassc gstreamer gstreamer-extra
+calisma = shared-mime-info desktop-file-utils
+
+[kaynak]
+1      = https://gitlab.gnome.org/GNOME/gtk/-/archive/$surum/gtk-$surum.tar.bz2
+
+[sha256]
+1 	   = bd152fa3a971c41da6d55179b4bd9eadf63ec5663fbf4a382c627042f1bfb7d9
+
+[derle]
+;betik = export CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
+ekconf = -Dbroadway-backend=true -Dcloudproviders=disabled -Dcolord=disabled -Ddocumentation=false -Dman-pages=false -Dtracker=disabled  -Dmedia-ffmpeg=disabled -Dbuild-tests=false -Dbuild-testsuite=false -Dbuild-examples=false -Ddemos=false
+meson  = gtk-$surum
+	      
+[pakur]
+betik  = echo "pakur yok"

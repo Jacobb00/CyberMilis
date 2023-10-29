@@ -1,0 +1,28 @@
+[paket]
+tanim   = Kağıt tiplerini işleme kütüphanesi ve aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://packages.debian.org/unstable/source/libpaper
+
+[gerek]
+derleme = automake
+calisma = run-parts
+
+[kaynak]
+gz      = https://github.com/rrthomas/libpaper/releases/download/v$surum
+dosya   = localepaper.c
+
+[sha256]
+1 		= a4e1297b69b9fd1054ee7f5bcc55f4d56da152d41d2eabdf18727a9cddc1f402
+
+[derle]
+betik   = cp $SRC/localepaper.c src/
+betik   = ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin && make
+betik   = cd src;gcc $CFLAGS $LDFLAGS -I.. -Ilibgnu -o localepaper localepaper.c libgnu/.libs/libgnupaper.a
+
+[pakur]
+tip     = gnu
+betik   = install -Dt "$PKG/usr/lib" -m0755 src/localepaper 
+betik   = install -dm 755 "$PKG"/etc
+betik   = install -dm 755 "$PKG"/etc/libpaper.d
+

@@ -1,0 +1,19 @@
+[paket]
+tanim   = SMBus erişim ve donanım gözlem araç araçları
+paketci = milisarge  
+grup    = sistem  
+url     = https://hwmon.wiki.kernel.org/lm_sensors
+arsiv   = lm-sensors-${surum//./-}
+
+[kaynak]
+1       = https://github.com/lm-sensors/lm-sensors/archive/V${surum//./-}.tar.gz
+
+[sha256]
+1       = 0591f9fa0339f0d15e75326d0365871c2d4e2ed8aa1ff759b3a55d3734b7d197
+
+[derle]
+betik   = make PREFIX=/usr
+
+[pakur]
+betik   = make BUILD_STATIC_LIB=0 PREFIX=/usr SBINDIR=/usr/bin MANDIR=/usr/share/man DESTDIR="${PKG}" install
+

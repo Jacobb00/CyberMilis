@@ -1,0 +1,23 @@
+[paket]
+tanim   = Önyükleme için initramfs oluşturma aracı
+paketci = milisarge
+grup 	= temel
+url     = https://dracut.wiki.kernel.org
+
+[gerek]
+derleme = kmod
+calisma = kmod util-linux cpio squashfs tar 
+
+[kaynak]
+xz      = http://kernel.org/pub/linux/utils/boot/dracut
+
+[sha256]
+1	    = e025bbdce9d1209640fb3f5f674f059c7e1f441537ba421703fe56055502421d
+
+[derle]
+betik   = ./configure $CONF_OPT --loginstalldir=/var/log/dracut
+betik   = make -j1 sysconfdir=/etc prefix=/usr
+	      
+[pakur]
+betik   = make sysconfdir=/etc prefix=/usr DESTDIR=$PKG install
+betik   = rm -rf $PKG/usr/share/bash-completion

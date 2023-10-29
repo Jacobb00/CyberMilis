@@ -1,0 +1,19 @@
+[paket]
+tanim   = GNU C, C++, fortran and objc derleyicileri içeren araçlar
+paketci = milisarge
+grup 	= onsistem
+url     = http://gcc.gnu.org
+arsiv   = gcc-$surum
+
+[kaynak]
+1       = ftp://gcc.gnu.org/pub/gcc/releases/gcc-$surum/gcc-$surum.tar.xz
+
+;[sha256]
+;1 		= b8dd4368bb9c7f0b98188317ee0254dd8cc99d1e3a18d0ff146c855fe16c1d8c
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = echo "paketleme yok"
+betik   = rm -v /tools/lib/lib{stdc++,stdc++fs,supc++}.la

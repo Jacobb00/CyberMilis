@@ -1,0 +1,11 @@
+--- src/remote/libvirtd.rules	2022-02-18 14:39:12.986666236 +0300
++++ src/remote/libvirtd.rules.y	2022-02-18 14:39:42.043332889 +0300
+@@ -3,7 +3,7 @@
+ 
+ polkit.addRule(function(action, subject) {
+     if (action.id == "org.libvirt.unix.manage" &&
+-        subject.isInGroup("libvirt")) {
++        subject.isInGroup("wheel")) {
+         return polkit.Result.YES;
+     }
+ });

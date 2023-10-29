@@ -1,0 +1,31 @@
+[paket]
+tanim   = NVMe yönetimi komut satırı arabirimi
+paketci = milisarge
+grup    = kütüphane
+url     = http://nvmexpress.org
+
+[gerek]
+derleme = meson json-c dbus keyutils
+calisma =
+
+[kaynak]
+1       = https://github.com/linux-nvme/nvme-cli/archive/v2.5/nvme-cli-2.5.tar.gz
+2       = https://github.com/linux-nvme/libnvme/archive/v1.5/libnvme-1.5.tar.gz
+
+[sha256]
+1       = e84bdba276aadcddda8cf5d412e934cc5673af15132ea02180deb5d06af73146
+2       = f73ba1edde059b2d5e7c1048ad4f895e6047bff241c94b34a7aff5894779d086
+
+[derle]
+betik   = meson setup $SRC/libnvme-1.5 build-l --prefix=/usr --buildtype=plain
+betik   = meson compile -C build-l
+betik   = DESTDIR=$PKG meson install -C build-l
+betik   = cd $SRC/nvme-cli-2.5
+betik   = export PKG_CONFIG_PATH=$PKG/usr/lib/pkgconfig
+betik   = export CFLAGS="$CFLAGS -I$PKG/usr/include"
+ekconf  = -Dudevrulesdir=lib/udev/rules.d -Dsysconfdir=/etc
+tip     = meson
+
+[pakur]
+betik   = export LIBRARY_PATH=$LIBRARY_PATH:$PKG/usr/lib
+tip     = meson

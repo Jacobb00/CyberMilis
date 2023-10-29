@@ -1,0 +1,21 @@
+[paket]
+tanim 	= Kablosuz aygıtlar için nl80211 tabanlı ayarlama aracı
+paketci = milisarge
+grup 	= sistem
+url 	= https://wireless.kernel.org/en/users/Documentation/iw
+
+[gerek]
+derleme = libnl
+calisma = 
+
+[kaynak]
+xz     	= https://www.kernel.org/pub/software/network/$isim
+
+[sha256]
+1       = f167bbe947dd53bb9ebc0c1dcef5db6ad73ac1d6084f2c6f9376c5c360cc4d4e
+
+[derle]
+betik   = make $MAKEJOBS
+
+[pakur]
+betik   = make DESTDIR=$PKG SBINDIR="/usr/bin" install

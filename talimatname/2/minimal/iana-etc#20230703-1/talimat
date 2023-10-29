@@ -1,0 +1,15 @@
+[paket]
+tanim   = Ağ servis ve protokolleri için veriler
+paketci = milisarge
+grup 	= temel
+url     = http://www.sethwklein.net/projects/iana-etc
+
+[kaynak]
+1       = https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml!
+2       = https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml!
+
+[derle]
+betik   = echo "-"
+	      
+[pakur]
+dosya   = pakur.sh

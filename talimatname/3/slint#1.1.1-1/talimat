@@ -1,0 +1,26 @@
+[paket]
+tanim   = Slint arayüz geliştirme
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/slint-ui/slint
+arsiv   = slint
+
+[gerek]
+derleme = cmake ninja fontconfig dejavu-fonts-ttf
+calisma =
+
+[kaynak]
+git     = https://github.com/slint-ui/slint
+
+[derle]
+betikt  = rust_setup.sh -y
+betik   = source "$HOME/.cargo/env"
+betik   = cd api/cpp
+tip     = cmake
+betik   = cd $SRC/slint/tools/viewer
+betik   = cargo build --release
+
+[pakur]
+betik   = cd api/cpp
+tip     = cmake
+betik   = cp $SRC/slint/target/release/slint-viewer $PKG/usr/bin/

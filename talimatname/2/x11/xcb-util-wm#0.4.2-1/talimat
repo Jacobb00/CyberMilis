@@ -1,0 +1,22 @@
+[paket]
+tanim   = XCB- ICCCM için istemci ve pencere yöneticisi yardımcıları
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = xorg-util-macros libxcb
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 	    = 62c34e21d06264687faea7edbf63632c9f04d55e72114aa4a57bb95e4f888a0b
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

@@ -1,0 +1,23 @@
+[paket]
+tanim   = Basit ini dosyası ayrıştırıcı kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/benhoyt/inih
+arsiv   = inih-r${surum}
+
+[gerek]
+derleme = meson
+calisma =
+
+[kaynak]
+1       = ${url}/archive/r${surum}.tar.gz
+
+[sha256]
+1       = f03f98ca35c3adb56b2358573c8d3eda319ccd5287243d691e724b7eafa970b3
+
+[derle]
+ekconf  = -Ddistro_install=true -Ddefault_library=shared -Dwith_INIReader=true
+tip     = meson
+
+[pakur]
+tip     = meson

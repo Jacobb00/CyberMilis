@@ -1,0 +1,23 @@
+[paket]
+tanim   = PKCS#11 modül yükleme ve yönetim aracı
+paketci = milisarge
+grup 	= temel
+url     = https://p11-glue.freedesktop.org
+
+[gerek]
+derleme = libtasn1 libffi 
+calisma = 
+
+[kaynak]
+xz      = https://github.com/p11-glue/p11-kit/releases/download/$surum
+
+;[sha256]
+;1 		= 8a8f40153dd5a3f8e7c03e641f8db400133fb2a6a9ab2aee1b6d0cb0495ec6b6
+
+[derle]
+ekconf  = --with-module-path=/usr/lib/pkcs11 --with-trust-paths=/etc/pki/anchors
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
+

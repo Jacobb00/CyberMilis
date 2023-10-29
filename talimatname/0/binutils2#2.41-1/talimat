@@ -1,0 +1,21 @@
+[paket]
+tanim   = Bağlayıcı, assembler ve nesne dosyalarını işleme araçları. Pass-2
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu
+arsiv   = binutils-$surum
+
+[kaynak]
+1       = http://ftp.gnu.org/gnu/binutils/binutils-$surum.tar.xz
+
+;[sha256]
+;1 		= 5788292cc5bbcca0848545af05986f6b17058b105be59e99ba7d0f9eb5336fb8
+
+[derle]
+noflag  = 1
+dosya   = derle.sh
+	      
+[pakur]
+betik   = rm -fv /tools/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
+betik   = echo "paketleme yok"
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

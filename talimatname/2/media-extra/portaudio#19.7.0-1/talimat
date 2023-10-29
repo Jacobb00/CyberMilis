@@ -1,0 +1,24 @@
+[paket]
+tanim   = Taşınabilir çapraz platform ses I/O kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.portaudio.com
+
+[gerek]
+derleme = cmake automake alsa-lib jack
+calisma =
+
+[kaynak]
+1       = https://github.com/${isim}/${isim}/archive/refs/tags/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
+
+[derle]
+jobs    = 1
+betik   = cd bindings/cpp;autoreconf -fiv;cd -
+ekconf  = --enable-cxx
+tip     = gnu
+
+[pakur]
+tip     = gnu

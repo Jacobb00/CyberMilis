@@ -1,0 +1,22 @@
+[paket]
+tanim   = IANA Zaman bölgeleri için veritabanı
+paketci = milisarge
+grup 	= temel
+url     = https://www.gnu.org/software/libc
+arsiv   = .
+
+[kaynak]
+1       = http://www.iana.org/time-zones/repository/releases/$isim$surum.tar.gz
+2		= https://www.iana.org/time-zones/repository/releases/tzcode${surum}.tar.gz
+
+;[sha256]
+;1 		= 39e7d2ba08c68cbaefc8de3227aab0dec2521be8042cf56855f7dc3a9fb14e08
+;2		= eb46bfa124b5b6bd13d61a609bfde8351bd192894708d33aa06e5c1e255802d0
+
+[derle]
+betik	= sed -i "s:sbin:bin:g" Makefile
+betik	= make LFLAGS=${LDFLAGS}
+	      
+[pakur]
+tip     = gnu
+dosya   = pakur.sh

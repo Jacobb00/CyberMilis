@@ -1,0 +1,22 @@
+[paket]
+tanim   = Wayland için arkaplan ayarlama aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://github.com/swaywm/swaybg
+
+[gerek]
+derleme = meson wayland-protocols wayland cairo gdk-pixbuf
+calisma = 
+
+[kaynak]
+github  = swaywm/swaybg
+
+;[sha256]
+;1 	    = 71cc8fc2cb7ae5ad3af772ab286b0b42f1c7cb17bea131e78c2d40a2fb8e6c59
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+	      
+[pakur]
+tip     = meson

@@ -1,0 +1,24 @@
+[paket]
+tanim   = Wlroots tabanlı pencere yöneticileri için bildirim yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/ErikReider/SwayNotificationCenter
+arsiv   = SwayNotificationCenter
+
+[gerek]
+derleme = meson gtk3 gtk-layer-shell dbus glib gobject-introspection libgee json-glib libhandy pulseaudio
+calisma =
+
+[kaynak]
+git       = $url
+
+;[sha256]
+;1       = 138bec94e66d15a7a19350b65845d4529bcd969ea913ab3eb438f56fe47d5d37
+
+[derle]
+betik   = sed -i "s/No Notifications/Bildirim Yok/g" $SRC/SwayNotificationCenter/src/controlCenter/controlCenter.ui
+ekconf  = -Dman-pages=false -Dscripting=true
+tip     = meson
+
+[pakur]
+tip     = meson

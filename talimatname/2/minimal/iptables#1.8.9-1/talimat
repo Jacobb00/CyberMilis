@@ -1,0 +1,36 @@
+[paket]
+tanim   = Linux çekirdeği paket filtreleme ve kontrol aracı
+paketci = milisarge
+grup 	= temel
+url     = http://www.iptables.org
+
+[gerek]
+derleme = libmnl libnftnl
+calisma = 
+
+
+[kaynak]
+xz      = https://www.netfilter.org/projects/iptables/files
+dosya   = empty.rules
+dosya   = empty-filter.rules
+dosya   = empty-mangle.rules
+dosya   = empty-nat.rules
+dosya   = empty-raw.rules
+dosya   = empty-security.rules
+dosya   = simple_firewall.rules
+
+[sha256]
+1   	= ef6639a43be8325a4f8ea68123ffac236cb696e8c78501b64e8106afb008c87f
+
+[derle]
+betik   = rm include/linux/types.h
+ekconf  = --enable-libipq --enable-shared --enable-devel
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
+betik   = cd ${SRC}
+betik   = install -Dm644 empty.rules "$PKG/etc/iptables/iptables.rules"
+betik   = install -Dm644 empty.rules "$PKG/etc/iptables/ip6tables.rules"
+betik   = install -Dt "$PKG/usr/share/iptables" -m644 *.rules
+betik   = ln -srt "$PKG/etc/iptables" "$PKG"/usr/share/iptables/{empty,simple_firewall}.rules

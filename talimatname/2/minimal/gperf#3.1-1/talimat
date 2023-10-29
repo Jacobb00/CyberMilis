@@ -1,0 +1,17 @@
+[paket]
+tanim   = Anahtar kümesinden hash üreteci
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/gperf/gperf.html
+
+[kaynak]
+gz      = https://ftp.gnu.org/gnu/$isim
+
+[sha256]
+1	= 588546b945bba4b70b6a3a616e80b4ab466e3f33024a352fc2198112cdbb3ae2
+
+[derle]
+tip     = gnu
+      
+[pakur]
+tip     = gnu

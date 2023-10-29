@@ -1,0 +1,25 @@
+[paket]
+tanim   = Kullanıcı alanında(userspace) dosya sistemi gerçekleme kütüphanesi
+paketci = milisarge
+grup 	= sistem
+url     = https://github.com/libfuse/libfuse
+arsiv   = fuse-$surum
+
+[gerek]
+derleme = meson eudev
+calisma = 
+
+[kaynak]
+1       = https://github.com/libfuse/libfuse/releases/download/fuse-$surum/fuse-$surum.tar.gz
+
+[sha256]
+1 		= 75a7140ce2d4589eda2784d2279be9d2b273a9b6b0f79ecb871dc4dded046fb5
+
+[derle]
+betik   = export MOUNT_FUSE_PATH=/usr/bin
+ekconf  = -D examples=false
+tip     = meson
+	      
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/etc;rm ${PKG}/usr/bin/mount.fuse ; rm -rf $PKG/dev

@@ -1,0 +1,5 @@
+libcrypto.so.3
+libc.so.6
+libzstd.so.1
+liblzma.so.5
+libz.so.1

@@ -1,0 +1,23 @@
+[paket]
+tanim   = OpenCL (Open Computing Language) başlık dosyaları
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/KhronosGroup/OpenCL-Headers
+arsiv   = OpenCL-Headers-${surum}
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = ${url}/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 0ce992f4167f958f68a37918dec6325be18f848dee29a4521c633aae3304915d
+
+[derle]
+betik   = echo "derleme yok"
+
+[pakur]
+betik   = install -m 0644 -D -t ${PKG}/usr/include/CL CL/*.h
+

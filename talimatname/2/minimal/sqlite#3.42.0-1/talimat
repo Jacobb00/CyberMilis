@@ -1,0 +1,22 @@
+[paket]
+tanim   = SQL veritabanı altyapısı uygulayan bir C kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.sqlite.org
+arsiv   = sqlite-autoconf-3350000
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1       = $url/2021/sqlite-autoconf-3350000.tar.gz
+
+[sha256]
+1	    = 3dfb3f143c83695a555c7dd9e06ed924f9d273c287989874e102656724baf2d0
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+tip     = gnu

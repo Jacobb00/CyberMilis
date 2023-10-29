@@ -1,0 +1,32 @@
+[paket]
+tanim   = Yazı tipi pikselleştirme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.freetype.org/
+
+[gerek]
+derleme = libx11 libpng gperf
+calisma = 
+
+[kaynak]
+xz      = https://download-mirror.savannah.gnu.org/releases/$isim
+dosya   = 0001-Enable-table-validation-modules.patch
+dosya   = 0002-Enable-subpixel-rendering.patch
+dosya   = 0003-Enable-infinality-subpixel-hinting.patch
+dosya   = 0004-Enable-long-PCF-family-names.patch
+dosya   = freetype.sh
+
+[sha256]
+1       = ea67e3b019b1104d1667aa274f5dc307d8cbd606b399bc32df308a77f1a564bf
+
+[derle]
+yama    = 0001-Enable-table-validation-modules.patch
+yama    = 0002-Enable-subpixel-rendering.patch
+yama    = 0003-Enable-infinality-subpixel-hinting.patch
+yama    = 0004-Enable-long-PCF-family-names.patch 
+ekconf  = --with-harfbuzz=no --enable-freetype-config --disable-static
+tip     = gnu
+      
+[pakur]
+tip 	= gnu
+betik   = install -Dt "$PKG/etc/profile.d" -m644 $SRC/freetype.sh

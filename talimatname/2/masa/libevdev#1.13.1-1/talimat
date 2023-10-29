@@ -1,0 +1,21 @@
+[paket]
+tanim   = Evdev olaylarını yakalayan kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.freedesktop.org/wiki/Software/libevdev
+
+[gerek]
+derleme = python
+
+[kaynak]
+xz      = https://freedesktop.org/software/$isim
+
+[sha256]
+1 		= 06a77bf2ac5c993305882bc1641017f5bec1592d6d1b64787bad492ab34f2f36
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

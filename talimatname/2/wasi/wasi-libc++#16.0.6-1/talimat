@@ -1,0 +1,24 @@
+[paket]
+tanim   = WASI WebAssembly için libc++ kütüphanesi
+paketci = milisarge
+grup 	= geliştirme
+url     = https://github.com/WebAssembly/wasi-libc
+arsiv   = llvm-project-$surum.src
+
+[gerek]
+derleme = llvm wasi-libc wasi-compiler-rt ninja
+calisma = 
+
+[kaynak]
+1     = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-project-$surum.src.tar.xz
+2     = https://github.com/WebAssembly/wasi-sdk/archive/refs/tags/wasi-sdk-20.tar.gz
+
+;[sha256]
+;1 	    = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+nostrip = 1
+dosya   = pakur.sh

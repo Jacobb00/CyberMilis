@@ -1,0 +1,35 @@
+[paket]
+tanim   = Linux IEEE1394 (FireWire) sürücüsü için gerekli kütüphaneler
+paketci = milisarge  
+grup    = kütüphane 
+url     = https://ieee1394.wiki.kernel.org/index.php/Main_Page
+
+[gerek]
+derleme  = libusb
+calisma  = 
+
+[kaynak]
+1   = https://www.kernel.org/pub/linux/libs/ieee1394/libraw1394-2.1.2.tar.xz
+2   = https://downloads.sourceforge.net/sourceforge/libavc1394/libavc1394-0.5.4.tar.gz
+3   = https://www.kernel.org/pub/linux/libs/ieee1394/libiec61883-1.2.0.tar.xz
+4   = https://downloads.sourceforge.net/libdc1394/libdc1394-2.2.7.tar.gz
+
+[sha256]
+1  = 03ccc69761d22c7deb1127fc301010dd13e70e44bb7134b8ff0d07590259a55e
+2  = 7cb1ff09506ae911ca9860bef4af08c2403f3e131f6c913a2cbd6ddca4215b53
+3  = d1e02c7e276fac37313a2f8c1c33d7a9e19282ff16f32e72435428ff5121f09e
+4  = 537ceb78dd3cef271a183f4a176191d1cecf85f025520e6bd3758b0e19e6609f
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+export  = LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+
+gnu  = libraw1394-2.1.2
+gnu  = libavc1394-0.5.4
+gnu  = libiec61883-1.2.0
+gnu  = libdc1394-2.2.7
+
+[pakur]
+betik = echo "pakur yok"

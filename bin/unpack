@@ -1,0 +1,92 @@
+#!/bin/bash
+# source: https://gist.github.com/markusfisch/871266/d522bf6589197724d8fcccb2b6c6e2a93bb366fc
+##
+# Unpack archive safely (means always in its own directory)
+#
+# @param 1 - name and path of archive to extract
+#
+unpack()
+{
+	local ARCHIVE=$1
+	local TMP=.unpack-$USER-$$
+	local EXTRACT=`basename "$ARCHIVE" | cut -d '.' -f 1`
+
+	[ -f "$ARCHIVE" ] || {
+		echo "$ARCHIVE not found"
+		return 1
+	}
+
+	# ensure extracted directory is not yet there
+	{
+		local BASE="$EXTRACT"
+		local N=2
+
+		while [ -d "$EXTRACT" ]; do
+			EXTRACT="$BASE-$N"
+			(( N++ ))
+		done
+	}
+
+	mkdir $TMP || {
+		echo "cannot create temporary directory"
+		return 1
+	}
+
+	cd $TMP || {
+		echo "cannot change into temporary directory"
+		return 1
+	}
+
+	case "$ARCHIVE" in
+		*.zip)
+			unzip "../$ARCHIVE"
+			;;
+		*.rar)
+			unrar x "../$ARCHIVE"
+			;;
+		*.tbz2|*.tar.bz2)
+			tar xjvf "../$ARCHIVE"
+			;;
+		*.tgz|*.tar.gz)
+			tar xzvf "../$ARCHIVE"
+			;;
+		*.lz)
+			tar xvf "../$ARCHIVE"
+			;;
+		*.gz)
+			gzip -d "../$ARCHIVE"
+			;;
+		*.bzip2|*.bz2)
+			bzip2 -d "../$ARCHIVE"
+			;;
+	esac
+
+	# move into place
+	{
+		local FILES=0
+
+		for FILE in *
+		do
+			(( FILES++ ))
+		done
+
+		cd ..
+
+		if (( FILES == 1 )); then
+			mv -i $TMP/* .
+			mv -i $TMP/.[!.]* .
+			rmdir $TMP
+		else
+			mv -i $TMP $EXTRACT
+		fi
+	}
+
+	return 0
+}
+
+for ARCHIVE in $@
+do
+	# milisarge fixed this for full path extract
+	cd `dirname $ARCHIVE`
+	unpack "`basename $ARCHIVE`" || exit 1
+done

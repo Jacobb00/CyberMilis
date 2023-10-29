@@ -1,0 +1,23 @@
+[paket]
+tanim   = PulseAudio Ses Seviyesi Kontrolü
+paketci = milisarge
+grup    = kütüphane
+url     = https://freedesktop.org/software/pulseaudio/pavucontrol/
+arsiv   = $isim
+
+[gerek]
+derleme = automake gtkmm libcanberra gtk3 pulseaudio json-glib
+calisma = alsa-utils
+
+[kaynak]
+;1       = ${FREEDESKTOP_SITE}/pulseaudio/pavucontrol/pavucontrol-${surum}.tar.xz
+git      = https://github.com/pulseaudio/pavucontrol
+
+[derle]
+; kapanma sorunu için
+betik   = sed -i "s/ca_gtk_play_for_widget(GTK_WIDGET(gobj())/ca_context_play(ca_gtk_context_get()/g" src/sinkwidget.cc
+betik   = ./autogen.sh
+tip     = gnu
+
+[pakur]
+tip     = gnu

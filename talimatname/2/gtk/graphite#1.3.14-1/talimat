@@ -1,0 +1,23 @@
+[paket]
+tanim   = Yeni SIL Graphite metin işleme motoru uygulaması
+paketci = milisarge
+grup 	= kütüphane
+url     = https://github.com/silnrsi/graphite
+
+[gerek]
+derleme = cmake freetype python
+calisma = 
+
+[kaynak]
+1       = $url/releases/download/${surum}/graphite2-${surum}.tgz
+
+[sha256]
+1 		= f99d1c13aa5fa296898a181dff9b82fb25f6cc0933dbaa7a475d8109bd54209d
+
+[derle]
+betik   = cd $SRC;mkdir build;cd build
+betik   = cmake -G "Unix Makefiles" ../graphite2-${surum} -DCMAKE_C_FLAGS:STRING="${CFLAGS}" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE:STRING=Release -DGRAPHITE2_COMPARE_RENDERER=OFF
+	      
+[pakur]
+betik   = cd ${SRC}/build
+tip 	= gnu

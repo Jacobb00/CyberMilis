@@ -1,0 +1,23 @@
+[paket]
+tanim   = Yüksek performanslı web ve ters vekil sunucusu
+paketci = milisarge
+grup    = ağ
+url     = https://nginx.org
+
+[gerek]
+derleme = openssl pcre geoip
+calisma =
+
+[kaynak]
+gz      = $url/download
+dosya   = nginx-logrotate
+dosya   = nginx.conf
+
+[sha256]
+1       = 05dd6d9356d66a74e61035f2a42162f8c754c97cf1ba64e7a801ba158d6c0711
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

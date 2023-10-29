@@ -1,0 +1,26 @@
+[paket]
+tanim   = XML-PO dosyaları arası çevirici
+paketci = milisarge
+grup    = kütüphane
+url     = http://itstool.org/
+
+[gerek]
+derleme = python libxml2 automake
+calisma =
+
+[kaynak]
+bz2     = http://files.itstool.org/itstool
+dosya   = fix_crash_918953.patch
+dosya   = fix_crash_912099.patch
+
+[sha256]
+1       = 6b9a7cd29a12bb95598f5750e8763cee78836a1a207f85b74d8b3275b27e87ca
+
+[derle]
+yama    = fix_crash_918953.patch
+yama    = fix_crash_912099.patch
+betik   = autoreconf -fvi
+tip     = gnu
+
+[pakur]
+tip     = gnu

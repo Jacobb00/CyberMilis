@@ -1,0 +1,27 @@
+[paket]
+tanim   = Minimal ve esnek oturum açma yöneticisi arka plan programı
+paketci = milisarge
+grup    = sistem
+url     = https://git.sr.ht/~kennylevinsen/greetd
+
+[gerek]
+derleme = pam
+calisma =
+
+[kaynak]
+1       = https://git.sr.ht/~kennylevinsen/greetd/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+dosya   = greetd-config.toml
+
+;[sha256]
+;1       = 47a73709df60f04b63fc50cfc409e47a451a9620777638f527b9d9333256035f
+
+[derle]
+betik   = rust_setup.sh -y
+betik   = export PATH=$PATH:$HOME/.cargo/bin
+betik   = cargo build --release
+
+[pakur]
+betik   = install -Dm755 target/release/agreety $PKG/usr/bin/agretty
+betik   = install -Dm755 target/release/fakegreet $PKG/usr/bin/fakegreet
+betik   = install -Dm755 target/release/greetd $PKG/usr/bin/greetd
+betik   = install -Dm644 $SRC/greetd-config.toml $PKG/etc/greetd/config.toml

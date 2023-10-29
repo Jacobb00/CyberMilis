@@ -1,0 +1,20 @@
+[paket]
+tanim   = Perl için LALR kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://metacpan.org/release/Parse-Yapp
+arsiv   = Parse-Yapp-$surum
+
+[kaynak]
+1       = https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-$surum.tar.gz
+
+[sha256]
+1       = 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
+
+[derle]
+betik   = perl Makefile.PL INSTALLDIRS=vendor
+betik   = make
+
+[pakur]
+tip     = gnu
+betik   = rm -f $PKG/usr/lib/perl5/5.36/core_perl/perllocal.pod

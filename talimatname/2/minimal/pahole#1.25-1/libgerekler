@@ -1,0 +1,7 @@
+libz.so.1
+libdwarves.so.1
+libc.so.6
+libdwarves_emit.so.1
+libdwarves_reorganize.so.1
+libelf.so.1
+libdw.so.1

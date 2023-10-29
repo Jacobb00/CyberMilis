@@ -1,0 +1,26 @@
+[paket]
+tanim   = Milis Linux için tema seti
+paketci = milisarge
+grup    = tasarım
+url     = https://mls.akdeniz.edu.tr/git/sonakinci41
+
+[gerek]
+derleme = 
+calisma = librsvg
+
+[kaynak]
+git     = $url/Arc_Milis
+git     = $url/Papirus_Milis
+git     = $url/Volantes_Cursors_Milis
+
+[derle]
+betik   = echo "Derleme olmayacak"
+
+[pakur]
+strip   = 0
+betik	= mkdir -p $PKG/usr/share/{themes,icons}
+betik   = cp -r /sources/Arc_Milis/Arc-* $PKG/usr/share/themes/
+betik   = cp -r /sources/Papirus_Milis/Papirus* $PKG/usr/share/icons/
+betik   = cp -r /sources/Papirus_Milis/ePapirus* $PKG/usr/share/icons/
+betik   = cp -r /sources/Volantes_Cursors_Milis/volantes* $PKG/usr/share/icons/
+

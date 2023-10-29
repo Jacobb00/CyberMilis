@@ -1,0 +1,21 @@
+[paket]
+tanim   = Intel CPU'ları için mikrokod paketi
+paketci = milisarge
+grup 	= temel
+url     = https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files
+
+[kaynak]
+1       = $url/archive/microcode-$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1   	= 894d822d2347222a2595d4fc47d358e01d35a54780123100c317dfc31b1b0cc9
+
+[derle]
+betik   = echo "derle"
+	      
+[pakur]
+betik   = cd ${SRC}/Intel-Linux-Processor-Microcode-Data-Files-microcode-${surum}
+betik	= install -d -m755 ${PKG}/usr/lib/firmware/intel-ucode/
+betik   = cp intel-ucode/* ${PKG}/usr/lib/firmware/intel-ucode/
+betik   = mkdir -p $PKG/usr/lib/dracut/dracut.conf.d
+betik   = echo "early_microcode=yes" >> ${PKG}/usr/lib/dracut/dracut.conf.d/intel_ucode.conf

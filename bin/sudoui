@@ -1,0 +1,269 @@
+#!/usr/bin/python3
+
+import gi, subprocess, os, sys, locale
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gio, Gtk, Gdk, GLib, GdkPixbuf
+
+
+translate = {"tr":{0:"Yetkili Çalıştırma",1:"Tamam",2:"Vazgeç"},
+			"en":{0:"Root Password",1:"OK",2:"Cancel"}}
+
+l = locale.getdefaultlocale()
+l = l[0].split("_")[0]
+locales = list(translate.keys())
+if l not in locales:
+	l = "en"
+_ = translate[l]
+
+
+class ROR(Gtk.ApplicationWindow):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.set_title(_[0])
+		self.set_default_size(300,70)
+
+		box = Gtk.VBox()
+		self.add(box)
+
+		i_box = Gtk.HBox()
+		box.pack_start(i_box,1,1,5)
+		img = Gtk.Image()
+		img.set_from_stock(Gtk.STOCK_EXECUTE,Gtk.IconLookupFlags.FORCE_SIZE)
+		self.image_button = Gtk.Button()
+		self.image_button.set_image(img)
+		self.image_button.connect("clicked",self.image_button_clicked)
+		i_box.pack_start(self.image_button,0,0,5)
+		self.command_entry = Gtk.Entry()
+		i_box.pack_start(self.command_entry,1,1,5)
+
+		t_box = Gtk.HBox()
+		box.pack_start(t_box,1,1,5)
+		key_img = Gtk.Image()
+		key_img.set_from_stock(Gtk.STOCK_DIALOG_AUTHENTICATION,Gtk.IconLookupFlags.FORCE_SIZE)
+		t_box.pack_start(key_img,1,1,5)
+		self.password_entry = Gtk.Entry()
+		self.password_entry.set_visibility(False)
+		t_box.pack_start(self.password_entry,1,1,5)
+
+		show_hide_button = Gtk.Button()
+		show_hide_button.set_label("*")
+		show_hide_button.connect("clicked",self.show_hide_text)
+		t_box.pack_start(show_hide_button,0,0,5)
+
+		b_box = Gtk.HBox()
+		box.pack_start(b_box,1,1,5)
+		ok_button = Gtk.Button()
+		ok_button.set_label(_[1])
+		ok_button.connect("clicked",self.run_application)
+		cancel_button = Gtk.Button()
+		cancel_button.connect("clicked",self.destroy_window)
+		cancel_button.set_label(_[2])
+		b_box.pack_start(ok_button,1,1,5)
+		b_box.pack_start(cancel_button,1,1,5)
+
+		self.password_entry.grab_focus()
+		self.connect("key-press-event",self.key_press)
+
+	def image_button_clicked(self,widget):
+		appslist = ApplicationsList(self)
+		appslist.set_position(Gtk.PositionType.RIGHT)
+		appslist.set_relative_to(widget)
+		appslist.show_all()
+		appslist.popup()
+
+	def get_icon_in_theme(self, icon_name):
+		try:
+			icon = self.default_theme.load_icon(icon_name,
+						24,
+						Gtk.IconLookupFlags.FORCE_SIZE)
+			return icon
+		except:
+			return False
+
+	def set_command(self,command):
+		self.command = command
+		try:
+			img = Gtk.Image()
+			icon = self.default_theme.load_icon(self.command,24,Gtk.IconLookupFlags.FORCE_SIZE)
+			img.set_from_pixbuf(icon)
+			self.image_button.set_image(img)
+		except:
+			pass
+		self.command_entry.set_text(command)
+
+	def key_press(self, widget, event):
+		key_name = Gdk.keyval_name(event.keyval)
+		if key_name == "Return" or key_name=="KP_Enter":
+			self.run_application(None)
+		elif key_name == "Escape":
+			self.destroy()
+
+
+	def show_hide_text(self,widget):
+		if self.password_entry.get_visibility():
+			self.password_entry.set_visibility(False)
+		else:
+			self.password_entry.set_visibility(True)
+
+
+	def run_application(self,widget):
+		passwd = self.password_entry.get_text()
+		try:
+			text = self.command_entry.get_text()
+			if text != "":
+				if text == "pcmanfm":
+					subprocess.Popen(["sh","-c","echo {}|sudo -SE {}".format(passwd,text)], stdout=subprocess.PIPE)
+				else:
+					subprocess.Popen(["sh","-c","echo {}|sudo -SEH DISPLAY= {}".format(passwd,text)], stdout=subprocess.PIPE)
+				self.destroy()
+		except:
+			return False
+
+	def destroy_window(self,widget):
+		self.destroy()
+
+
+class ApplicationsList(Gtk.Popover):
+	def __init__(self,parent):
+		super(ApplicationsList,self).__init__()
+		self.parent = parent
+		self.set_size_request(240,480)
+
+		self.apps = []
+
+		#Tüm Uygulamalar
+		self.all_apps = Gio.DesktopAppInfo.get_all()
+		#Theme
+		self.icon_theme = Gtk.IconTheme.get_default()
+		#Simge Büyüklüğü
+		self.icon_size = 24
+
+		#Ana yerleşim için yatay bir kutu ve penceereye ekleme
+		main_box = Gtk.VBox()
+		self.add(main_box)
+
+		#Arama için bir entry
+		self.search_entry = Gtk.SearchEntry()
+		self.search_entry.connect("search-changed",self.change_search_entry)
+		main_box.pack_start(self.search_entry,False,True,5)
+
+		#Uygulamalar
+		self.apps_iw_store = Gtk.ListStore(str,GdkPixbuf.Pixbuf,Gio.DesktopAppInfo)
+		self.apps_iw = Gtk.IconView(model=self.apps_iw_store)
+		self.apps_iw.set_item_width(130)
+		self.apps_iw.set_item_orientation(Gtk.Orientation.HORIZONTAL)
+		self.apps_iw.connect("item-activated",self.apps_iw_activate)
+		self.apps_iw.set_text_column(0)
+		self.apps_iw.set_pixbuf_column(1)
+
+		self.apps_store_up()
+		main_box.pack_start(self.set_scroll_win(self.apps_iw),1,1,5)
+		self.connect("key-press-event",self.key_press)
+
+	def key_press(self, widget, event):
+		key_name = Gdk.keyval_name(event.keyval)
+		arrow_keys = ["Up","Down","Left","Right"]
+		if key_name in arrow_keys:
+			self.apps_iw.grab_focus()
+		elif key_name == "Return":
+			self.apps_iw_activate(self.apps_iw,self.apps_iw.get_selected_items()[0])
+		elif key_name == "Escape":
+			self.destroy()
+		else:
+			if not self.search_entry.is_focus():
+				self.search_entry.grab_focus()
+
+
+	def change_search_entry(self,widget):
+		text = widget.get_text().lower()
+		self.apps_store_up(text)
+
+	def set_scroll_win(self,list_):
+		scroll = Gtk.ScrolledWindow()
+		scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+		scroll.add(list_)
+		return scroll
+
+	def set_iw_select_item(self,iw,index):
+		try:
+			model = iw.get_model()
+			if model != None:
+				iter = model[index]
+				iw.select_path(iter.path)
+		except:
+			pass
+
+	def apps_store_up(self,search=""):
+		self.apps_iw_store.clear()
+		for app in self.all_apps:
+			name = app.get_name()
+			desc = app.get_description()
+			if name == None:
+				name = ""
+			if desc == None:
+				desc = ""
+			if search == "" or search.lower() in name.lower() or search.lower() in desc.lower():
+				icon_names = [name,name.lower(),app.get_executable()]
+				icon = app.get_icon()
+				if icon != None:
+					icon_string = icon.to_string()
+					icon_names.insert(0,icon_string)
+				for n in icon_names:
+					icon = self.get_icon_in_theme(n)
+					if icon:
+						break
+				if icon:
+					self.apps_iw_store.append([name,icon,app])
+				else:
+					continue
+		self.set_iw_select_item(self.apps_iw,0)
+
+	def get_icon_in_theme(self, icon_name):
+		try:
+			icon = self.icon_theme.load_icon(icon_name,
+						self.icon_size,
+						Gtk.IconLookupFlags.FORCE_SIZE)
+			return icon
+		except:
+			return False
+
+	def apps_iw_activate(self,widget,path):
+		model = widget.get_model()
+		icon = model[path][1]
+		app = model[path][2]
+		exec_ = app.get_executable()
+		img = Gtk.Image()
+		img.set_from_pixbuf(icon)
+		self.parent.image_button.set_image(img)
+		self.parent.command_entry.set_text(exec_)
+		self.destroy()
+
+class Application(Gtk.Application):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, application_id="mls.akdeniz.edu.tr.gmenu", flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE, **kwargs)
+
+		self.win = None
+		self.add_main_option("command", ord("c"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING, "Command", None)
+
+	def do_start_up(self):
+		Gtk.Application.do_startup(self)
+
+	def do_activate(self):
+		if not self.win:
+			self.win = ROR(application=self)
+			self.win.connect("destroy", Gtk.main_quit)
+			self.win.show_all()
+
+	def do_command_line(self, command_line):
+		options = command_line.get_options_dict()
+		options = options.end().unpack()
+		if self.win == None:
+			self.do_activate()
+		if "command" in options:
+			self.win.set_command(options["command"])
+		return False
+
+
+if __name__ == '__main__':
+	app = Application()
+	app.run(sys.argv)

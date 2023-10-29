@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 çeşitli uzantılar kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXext-$surum
+
+[gerek]
+derleme = xorgproto libx11 xorg-util-macros
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXext-$surum.tar.xz
+
+[sha256]
+1 		= db14c0c895c57ea33a8559de8cb2b93dc76c42ea4a39e294d175938a133d7bca
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

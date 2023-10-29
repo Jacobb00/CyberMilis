@@ -1,0 +1,9 @@
+libmbedcrypto.so
+libmbedcrypto.so.15
+libmbedcrypto.so.3.5.0
+libmbedtls.so
+libmbedtls.so.20
+libmbedtls.so.3.5.0
+libmbedx509.so
+libmbedx509.so.3.5.0
+libmbedx509.so.6

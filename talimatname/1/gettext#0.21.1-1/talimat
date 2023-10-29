@@ -1,0 +1,17 @@
+[paket]
+tanim   = Uluslararası ve yerelleştirme araçları
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/gettext
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/gettext
+
+;[sha256]
+;1 		= d20fcbb537e02dcf1383197ba05bd0734ef7bf5db06bdb241eb69b7d16b73192
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip     = gnu

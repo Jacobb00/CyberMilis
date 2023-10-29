@@ -1,0 +1,18 @@
+[paket]
+tanim   = Unicode ve C metin tanimlamalarını işlemek için kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.gnu.org/software/libunistring
+
+[kaynak]
+xz      = https://ftp.gnu.org/gnu/$isim
+
+[sha256]
+1	    = 827c1eb9cb6e7c738b171745dac0888aa58c5924df2e59239318383de0729b98
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip     = gnu

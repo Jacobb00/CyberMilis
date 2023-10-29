@@ -1,0 +1,22 @@
+[paket]
+tanim   = MPRIS komut satırı denetleyicisi ve kitaplığı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/acrisci/playerctl
+
+[gerek]
+derleme = glib meson gobject-introspection
+calisma =
+
+[kaynak]
+1       = https://github.com/acrisci/playerctl/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 75957ad5071956f563542c7557af16a57e40b4a7f66bc9b6373d022ec5eef548
+
+[derle]
+ekconf  = -Dintrospection=true -Dgtk-doc=false
+tip     = meson
+
+[pakur]
+tip     = meson

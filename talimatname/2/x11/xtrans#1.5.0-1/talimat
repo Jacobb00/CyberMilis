@@ -1,0 +1,19 @@
+[paket]
+tanim   = X transport kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+
+[kaynak]
+xz      = $url/releases/individual/lib
+
+[sha256]
+1 		= 1ba4b703696bfddbf40bacf25bce4e3efb2a0088878f017a50e9884b0c8fb1bd
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu
+betik   = install -m755 -d "${PKG}/usr/lib"
+betik   = mv "${PKG}/usr/share/pkgconfig" "${PKG}/usr/lib/pkgconfig"

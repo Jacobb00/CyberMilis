@@ -1,0 +1,18 @@
+[paket]
+tanim   = X11 derlenmesi için gerekli makrolar
+paketci = milisarge
+grup 	= sistem
+url     = http://xorg.freedesktop.org
+arsiv   = ${isim/xorg-/}-${surum}
+
+[kaynak]
+1       = ${XORG_SITE}/util/util-macros-$surum.tar.xz
+
+[sha256]
+1       = 0b86b262dbe971edb4ff233bc370dfad9f241d09f078a3f6d5b7f4b8ea4430db
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip     = gnu

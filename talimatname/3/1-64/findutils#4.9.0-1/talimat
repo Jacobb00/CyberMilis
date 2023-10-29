@@ -1,0 +1,20 @@
+[paket]
+tanim   = Dosyaları bulma/konumlandırma uygulaması
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/findutils/
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/findutils
+
+;[sha256]
+;1 		= 57127b7e97d91282c6ace556378d5455a9509898297e46e10443016ea1387164
+
+[derle]
+betik   = sed -e '/^SUBDIRS/s/locate//' -e 's/frcode locate updatedb//' -i Makefile.in
+betik   = ./configure --prefix=/usr
+betik   = make -C locate dblocation.texi
+betik   = make
+	      
+[pakur]
+tip     = gnu

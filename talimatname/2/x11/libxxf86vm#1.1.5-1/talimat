@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Ekran Koruyucu uzantı kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXxf86vm-$surum
+
+[gerek]
+derleme = libxext xorg-util-macros xorgproto
+calisma =
+
+[kaynak]
+1       = $url/releases/individual/lib/libXxf86vm-$surum.tar.xz
+
+[sha256]
+1 		= 247fef48b3e0e7e67129e41f1e789e8d006ba47dba1c0cdce684b9b703f888e7
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

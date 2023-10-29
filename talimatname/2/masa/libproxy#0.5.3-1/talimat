@@ -1,0 +1,23 @@
+[paket]
+tanim   = Otomatik vekil sunucu ayarlama kütüphanesi
+paketci = milisarge  
+grup    = kütüphane  
+url     = https://libproxy.github.io/libproxy/
+
+[gerek]
+derleme = meson gsettings-desktop-schemas duktape
+calisma =  
+
+[kaynak]
+1       = https://github.com/libproxy/libproxy/archive/$surum.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 88c624711412665515e2800a7e564aabb5b3ee781b9820eca9168035b0de60a9
+
+[derle]
+ekconf  = -Dtests=false -Ddocs=false
+tip     = meson
+
+[pakur]
+tip     = meson
+

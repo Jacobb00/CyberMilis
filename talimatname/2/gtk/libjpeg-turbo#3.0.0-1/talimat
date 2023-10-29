@@ -1,0 +1,22 @@
+[paket]
+tanim   = JPEG işleme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://libjpeg-turbo.org
+
+[gerek]
+derleme = cmake nasm
+calisma = 
+
+[kaynak]
+gz      = https://downloads.sourceforge.net/$isim
+
+[sha256]
+1 		= c77c65fcce3d33417b2e90432e7a0eb05f59a7fff884022a9d931775d583bfaa
+
+[derle]
+betik   = cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="$CFLAGS" -DWITH_JPEG8=1
+	      
+[pakur]
+tip 	= gnu
+betik   = install -m 644 jpegint.h ${PKG}/usr/include

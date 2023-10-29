@@ -1,0 +1,27 @@
+[paket]
+tanim   = Multimedya altyapısı için sunucu ve kullanıcı alanı için API
+paketci = milisarge
+grup    = kütüphane
+url     = https://pipewire.org/
+
+[gerek]
+derleme = cmake meson sdl2 gstreamer mesa bluez ncurses fdk-aac libsndfile libldac ffmpeg vulkan libusb avahi pulseaudio lilv libmysofa jack
+calisma =
+
+[kaynak]
+gz      = https://github.com/PipeWire/pipewire/archive/$surum
+
+;[sha256]
+;1       = 7e405d84cf3535d1f1a5fff01c13b2cb7f420b1a9242469d56ac8fd5b2f36139
+
+[derle]
+betik   = mv $SRC/media-session-* subprojects/media-session
+ekconf  = -Dtests=disabled -Dman=disabled -Dgstreamer=enabled -Ddocs=disabled -Dsystemd=disabled -Dbluez5-codec-lc3=disabled -Dlibffado=disabled -Dbluez5=enabled -Dffmpeg=enabled -Dpipewire-alsa=enabled -Djack=enabled -Dlibcamera=disabled -Dudevrulesdir=/usr/lib/udev/rules.d -Decho-cancel-webrtc=disabled -Dbluez5-codec-aptx=disabled -Droc=disabled -Dsdl2=enabled -Dvulkan=enabled -Dbluez5-codec-lc3plus=disabled -Dsession-managers="" -Dmedia-session:systemd=disabled -Dlibcanberra=disabled
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = touch $PKG/etc/pipewire/media-session.d/with-alsa
+betik   = mkdir -p $PKG/etc/alsa/conf.d
+betik   = ln -st $PKG/etc/alsa/conf.d /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf
+betik   = ln -st $PKG/etc/alsa/conf.d /usr/share/alsa/alsa.conf.d/50-pipewire.conf

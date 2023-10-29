@@ -1,0 +1,24 @@
+[paket]
+tanim   = Dosyaları sıkıştırma ve açma programları.
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.bzip.org/
+
+[kaynak]
+gz      = https://sourceware.org/pub/bzip2
+
+[sha256]
+1 		= ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269
+
+[derle]
+;export  = CC=$ONSISTEM_TARGET-gcc
+;export  = AR=$ONSISTEM_TARGET-ar
+;export  = RANLIB=$ONSISTEM_TARGET-ranlib
+betik = sed -i "s/CC=/CC=\$\$ONSISTEM_TARGET-/g" Makefile
+betik = sed -i "s/AR=/AR=\$\$ONSISTEM_TARGET-/g" Makefile
+betik = sed -i "s/RANLIB=/RANLIB=\$\$ONSISTEM_TARGET-/g" Makefile
+betik 	= make
+	      
+[pakur]
+betik   = make PREFIX=$PKG/tools install
+betik   = rm -f $PKG/tools/lib/*.a

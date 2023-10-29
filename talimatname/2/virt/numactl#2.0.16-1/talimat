@@ -1,0 +1,18 @@
+[paket]
+tanim   = Basit NUMA politika desteği
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/numactl/numactl
+
+[kaynak]
+1       = https://github.com/numactl/numactl/releases/download/v${surum}/${isim}-${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 1b242f893af977a1d31af6ce9d6b8dafdd2d8ec3dc9207f7c2dc0d3446e7c7c8
+
+[derle]
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

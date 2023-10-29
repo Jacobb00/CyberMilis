@@ -1,0 +1,22 @@
+[paket]
+tanim   = IEEE çiftleri için verimli ikili ondalık ve ondalık ikili rutinler
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/google/double-conversion
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+gz      = https://github.com/google/double-conversion/archive/v$surum 
+
+[sha256]
+1       = 04ec44461850abbf33824da84978043b22554896b552c5fd11a9c5ae4b4d296e
+
+[derle]
+ekconf  = -DBUILD_SHARED_LIBS=ON
+tip     = cmake
+
+[pakur]
+tip     = cmake

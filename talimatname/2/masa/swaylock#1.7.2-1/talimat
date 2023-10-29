@@ -1,0 +1,23 @@
+[paket]
+tanim   = Wayland için ekran kitleyici
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/swaywm/swaylock
+
+[gerek]
+derleme = meson wayland-protocols cairo gdk-pixbuf pam libxkbcommon wayland
+calisma =
+
+[kaynak]
+gz      = https://github.com/swaywm/${isim}/releases/download/v$surum
+
+[sha256]
+1       = bf965d47fb6fc1402f854d4679d21a9459713fc0f330bc607c9585db097b4304
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/usr/share

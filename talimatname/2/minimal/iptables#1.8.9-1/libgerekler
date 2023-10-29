@@ -1,0 +1,7 @@
+libm.so.6
+libxtables.so.12
+libmnl.so.0
+libnftnl.so.11
+libc.so.6
+libip4tc.so.2
+libip6tc.so.2

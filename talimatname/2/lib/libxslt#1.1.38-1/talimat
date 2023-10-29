@@ -1,0 +1,22 @@
+[paket]
+tanim   = XML dönüştürme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.xmlsoft.org/
+
+[gerek]
+derleme = libxml2 gnupg python
+calisma = 
+
+[kaynak]
+xz      = https://download.gnome.org/sources/libxslt/${surum:0:3}/
+
+;[sha256]
+;1 		= 98b1bd46d6792925ad2dfe9a87452ea2adebf69dcb9919ffd55bf926a7f93f7f
+
+[derle]
+ekconf  = --disable-static
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

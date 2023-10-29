@@ -1,0 +1,29 @@
+[paket]
+tanim   = Yazdırma biriktiricisi ve ilgili yardımcı programlar
+paketci = milisarge
+grup    = sistem
+url     = http://www.cups.org
+
+[gerek]
+derleme = automake libpaper dbus libjpeg-turbo gnupg gnutls libusb tiff libpng avahi
+calisma =
+
+[kaynak]
+1       = https://github.com/OpenPrinting/cups/releases/download/v${surum}/cups-${surum}-source.tar.gz
+dosya   = cups-2.4.0-statedir.patch
+dosya   = cups-freebind.patch
+dosya   = cups-guid.patch
+dosya   = cups.pam
+dosya   = cups.logrotate
+
+[sha256]
+1       = 58e970cf1955e1cc87d0847c32526d9c2ccee335e5f0e3882b283138ba0e7262
+
+[derle]
+yama    = cups-2.4.0-statedir.patch
+yama    = cups-freebind.patch
+yama    = cups-guid.patch
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

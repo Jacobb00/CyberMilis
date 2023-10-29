@@ -1,0 +1,22 @@
+[paket]
+tanim   = Modern uyarlanabilir uygulamalar için GTK4 yapı taşları
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.gnome.org/GNOME/libadwaita
+
+[gerek]
+derleme = meson sassc appstream gtk4 gobject-introspection graphene vala
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/libadwaita/${surum%.*}/libadwaita-${surum}.tar.xz
+
+;[sha256]
+;1       = 6b8bbf413c501b46c8616a0e5b836d7a34091140941412520bbd9ddda6df8cbd
+
+[derle]
+ekconf  = -Dexamples=false -Dtests=false -Dgtk_doc=false
+tip     = meson
+
+[pakur]
+tip     = meson

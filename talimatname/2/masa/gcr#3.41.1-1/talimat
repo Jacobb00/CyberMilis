@@ -1,0 +1,23 @@
+[paket]
+tanim   = GNOME kripto kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = https://developer.gnome.org/notification-spec
+
+[gerek]
+derleme = meson gnupg gtk3 gnupg p11-kit gobject-introspection vala libsecret openssh
+calisma =
+
+[kaynak]
+xz      = http://ftp.gnome.org/pub/gnome/sources/${isim}/${surum%.*}
+dosya   = 10-gcr.conf
+
+;[sha256]
+;1       = 7e06e86e12aadaac6a72f2ee7eeaaaa6228a0ba3b92cadd50b45c0f05f0d91c6
+
+[derle]
+ekconf  = -Dgtk_doc=false -Dsystemd=disabled
+tip     = meson
+[pakur]
+tip     = meson
+betik   = install -Dt "$PKG/etc/security/limits.d" -m644 $SRC/10-gcr.conf

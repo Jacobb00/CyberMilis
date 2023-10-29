@@ -1,0 +1,59 @@
+[paket]
+tanim   = 0ad gerçek zamanlı strateji oyunu
+paketci = milisarge
+grup    = oyun
+url     = https://play0ad.com
+arsiv   = ${isim}-${surum}-alpha
+
+[gerek]
+derleme = perl cmake nss python sdl2 boost openal libpng libsodium libxml2 miniupnpc wxgtk3 libxcursor fmt libidn2 gnutls
+calisma =
+
+[kaynak]
+1       = https://releases.wildfiregames.com/${isim}-${surum}-alpha-unix-build.tar.xz
+2       = http://enet.bespin.org/download/enet-1.3.17.tar.gz
+3       = https://camaya.net/download/gloox-1.0.27.tar.bz2
+dosya   = update-workspaces.sh
+4       = https://gitlab.archlinux.org/archlinux/packaging/packages/0ad/-/raw/main/fix_python_3.11_ftbfs.patch!
+5       = https://gitlab.archlinux.org/archlinux/packaging/packages/0ad/-/raw/main/mozjs_virtualenv.patch!
+6       = https://github.com/0ad/0ad/commit/839edc3a.patch!
+7       = https://github.com/0ad/0ad/commit/093e1eb2.patch!
+
+[sha256]
+1       = 2e1c6df7e3312e77c5f82788664cffc3a78d3bf60606c00039275e1d13c0ee4b
+
+[derle]
+export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+gnu     = enet-1.3.17
+gnu     = gloox-1.0.27
+
+betik   = rust_setup.sh -y
+betik   = export PATH=$PATH:$HOME/.cargo/bin
+betik   = export SHELL=/bin/bash
+betik   = export WX_CONFIG="wx-config"
+betik   = cd $SRC/${isim}-${surum}-alpha
+
+betik   = patch -Np1 -i /sources/fix_python_3.11_ftbfs.patch
+betik   = cp /sources/mozjs_virtualenv.patch libraries/source/spidermonkey
+betik   = patch -p1 -i /sources/839edc3a.patch # Fix build with fmt 10
+betik   = patch -p1 -i /sources/093e1eb2.patch # Fix build with GCC 13
+
+betik   = cd build/workspaces
+export  = CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+export  = CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+betik   = chmod +x $SRC/update-workspaces.sh;cp -f $SRC/update-workspaces.sh .
+betik   = ./update-workspaces.sh -j$(nproc) --without-pch --bindir=/usr/bin --libdir=/usr/lib/0ad --datadir=/usr/share/0ad/data
+betik   = cd gcc && VERBOSE=1 make
+
+[pakur]
+betik = install -d "${PKG}"/usr/{bin,lib/0ad,share/0ad/data}
+betik = install -Dm755 binaries/system/pyrogenesis "${PKG}/usr/bin"
+betik = install -Dm755 binaries/system/*.so "${PKG}/usr/lib/0ad"
+betik = cp -r binaries/data/l10n/ "${PKG}/usr/share/0ad/data/"
+betik = install -Dm755 build/resources/0ad.sh "${PKG}/usr/bin/0ad"
+betik = install -Dm644 build/resources/0ad.desktop "${PKG}/usr/share/applications/0ad.desktop"
+betik = install -Dm644 build/resources/0ad.png "${PKG}/usr/share/pixmaps/0ad.png"

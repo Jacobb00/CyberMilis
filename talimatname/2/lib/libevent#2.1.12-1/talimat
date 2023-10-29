@@ -1,0 +1,23 @@
+[paket]
+tanim 	= Olay bildirim kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url 	= https://libevent.org
+arsiv   = ${isim}-${surum}-stable
+
+[gerek]
+derleme = cmake 
+calisma = 
+
+[kaynak]
+1	= https://github.com/libevent/libevent/releases/download/release-$surum-stable/$isim-$surum-stable.tar.gz
+
+[sha256]
+1 	= 92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
+
+[derle]
+ekconf  = -DEVENT__LIBRARY_TYPE=SHARED
+tip 	= cmake
+
+[pakur]
+tip 	= cmake

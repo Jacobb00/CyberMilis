@@ -1,0 +1,23 @@
+[paket]
+tanim   = JPEG 2000 kodek sürüm2
+paketci = milisarge
+grup 	= kütüphane
+url     = https://github.com/uclouvain/openjpeg
+
+[gerek]
+derleme = cmake libpng tiff lcms2 jbigkit
+calisma = 
+
+[kaynak]
+1       = https://github.com/uclouvain/openjpeg/archive/v$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1 		= 0333806d6adecc6f7a91243b2b839ff4d2053823634d4f6ed7a59bc87409122a
+
+[derle]
+betik   = mkdir $SRC/build && cd $SRC/build
+betik   = cmake "../openjpeg-${surum}" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=OFF -DBUILD_DOC=OFF
+	      
+[pakur]
+betik   = cd $SRC/build
+tip 	= gnu

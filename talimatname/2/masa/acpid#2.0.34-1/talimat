@@ -1,0 +1,23 @@
+[paket]
+tanim   = Netlink Destekli ACPI Daemon (acpid)
+paketci = milisarge
+grup    = sistem
+url     = https://sourceforge.net/projects/acpid2/
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+xz      = ${SOURCEFORGE_SITE}/acpid2
+dosya   = acpi-anything
+
+[sha256]
+1       = 2d095c8cfcbc847caec746d62cdc8d0bff1ec1bc72ef7c674c721e04da6ab333
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -Dm644 $SRC/acpi-anything $PKG/etc/acpi/events/anything

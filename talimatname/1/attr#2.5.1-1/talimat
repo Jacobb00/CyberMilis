@@ -1,0 +1,16 @@
+[paket]
+tanim   = Genişletilmiş öznitelikleri dosya sistemi nesneleri üzerinde yönetmek için kullanılan yardımcı programlar
+paketci = milisarge
+grup 	= temel
+url     = http://savannah.nongnu.org/projects/attr
+
+[kaynak]
+gz      = http://download.savannah.gnu.org/releases/$isim
+
+;[sha256]
+;1 		= 5ead72b358ec709ed00bbf7a9eaef1654baad937c001c044fe8b74c57f5324e7
+
+[derle]
+tip     = gnu
+[pakur]
+tip     = gnu

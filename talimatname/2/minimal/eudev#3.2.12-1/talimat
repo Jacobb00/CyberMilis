@@ -1,0 +1,23 @@
+[paket]
+tanim   = Dinamik aygıt düğümleri oluşturma araçları
+paketci = milisarge
+grup 	= temel
+url     = https://github.com/eudev-project/eudev
+
+[gerek]
+derleme = gperf kmod
+calisma = 
+
+[kaynak]
+gz     	= https://github.com/eudev-project/eudev/releases/download/v${surum}
+
+[sha256]
+1       = ccdd64ec3c381d3c3ed0e99d2e70d1f62988c7763de89ca7bdffafa5eacb9ad8
+
+[derle]
+ekconf  = --with-rootprefix=/usr --enable-kmod --enable-split-usr
+tip     = gnu
+     
+[pakur]
+tip     = gnu
+betik   = mv "${PKG}/etc/udev/hwdb.d" "${PKG}/usr/lib/udev"

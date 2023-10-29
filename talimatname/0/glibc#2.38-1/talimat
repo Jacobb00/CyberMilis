@@ -1,0 +1,25 @@
+[paket]
+tanim   = Ana C kütüphaneleri
+paketci = milisarge
+grup 	= onsistem
+url     = https://www.gnu.org/software/libc
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/glibc
+
+;[sha256]
+;1 		= 2e2556000e105dbd57f0b6b2a32ff2cf173bde4f0d85dffccfd8b7e51a0677ff
+
+[derle]
+bayrak  = 0
+dosya   = derle.sh
+	      
+[pakur]
+nostrip = 1
+betik   = cd build32;make install
+;tip     = gnu
+betik   = cd ../build;make install
+;tip     = gnu
+betik   = rm -rf /tools/share/info
+;betik   = sed '/RTLDLIST=/s@/tools@@g' -i $PKG/tools/bin/ldd
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

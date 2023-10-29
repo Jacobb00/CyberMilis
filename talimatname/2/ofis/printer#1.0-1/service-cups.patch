@@ -1,0 +1,25 @@
+--- /usr/share/system-config-printer/system-config-printer.py	2022-10-21 07:01:41.000000000 +0300
++++ system-config-printer.py	2023-01-19 13:26:07.606666535 +0300
+@@ -132,11 +132,6 @@
+         return proxy
+ 
+     def can_start (self):
+-        try:
+-            proxy = self._get_iface (dbus.INTROSPECTABLE_IFACE)
+-            introspect = proxy.Introspect()
+-        except:
+-            return False
+         return True
+ 
+     def start(self, reply_handler, error_handler):
+@@ -2068,8 +2063,8 @@
+     ## Service start-up
+     def on_start_service_clicked (self, button):
+         button.set_sensitive (False)
+-        self.servicestart.start (reply_handler=self.on_start_service_reply,
+-                                 error_handler=self.on_start_service_reply)
++        os.system("sudoui -c 'service add cups'")
++        os.system("sudoui -c 'service start cups'")
+ 
+     def on_start_service_reply (self, *args):
+         GLib.timeout_add_seconds (1, self.service_started_try)

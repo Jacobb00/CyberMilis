@@ -1,0 +1,27 @@
+[paket]
+tanim   = H264/AVC video akış çözücü kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.videolan.org/developers/x264.html
+arsiv   = x264-master
+
+[gerek]
+derleme = nasm
+calisma = 
+
+[kaynak]
+1      = https://code.videolan.org/videolan/x264/-/archive/master/x264-master.tar.gz
+
+;[sha256]
+;1      = 1ceb653aff74e7e858a65775e9ac6c741f39332c1fbe78167fc927512e6c5d07
+
+[derle]
+betik  = export AS=nasm
+ekconf = --disable-swscale --enable-static --enable-pic --enable-shared 
+tip    = gnu
+
+[pakur]
+betik  = make DESTDIR=${PKG} bindir=/usr/bin libdir=/usr/lib includedir=/usr/include install
+betik  = sed -i -e "s|0.142.x|0.142.0|" ${PKG}/usr/lib/pkgconfig/x264.pc
+betik  = rm -f $PKG/usr/lib/libx264.a
+

@@ -1,0 +1,7 @@
+libmariadb.so
+libmysqlclient_r.so
+libmysqlclient.so
+libmariadbd.so
+libmysqld.so
+libmariadbd.so.19
+libmariadb.so.3

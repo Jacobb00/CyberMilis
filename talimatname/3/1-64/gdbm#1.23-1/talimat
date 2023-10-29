@@ -1,0 +1,18 @@
+[paket]
+tanim   = GNU veritabanı yöneticisi
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/gdbm/gdbm.html
+
+[kaynak]
+gz      = http://ftp.gnu.org/gnu/gdbm
+
+;[sha256]
+;1 		= 37ed12214122b972e18a0d94995039e57748191939ef74115b1d41d8811364bc
+
+[derle]
+betik   = ./configure --prefix=/usr --enable-libgdbm-compat
+betik   = make
+	      
+[pakur]
+tip	    = gnu

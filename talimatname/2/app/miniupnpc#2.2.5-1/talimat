@@ -1,0 +1,21 @@
+[paket]
+tanim   = Ağ geçidi cihazlarına erişmek için küçük bir UPnP istemci kitaplığı/aracı
+paketci = milisarge
+grup    = kütüphane
+url     = http://miniupnp.free.fr
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+gz      = $url/files/
+
+;[sha256]
+;1       = 888fb0976ba61518276fe1eda988589c700a3f2a69d71089260d75562afd3687
+
+[derle]
+betik   = make
+
+[pakur]
+tip     = gnu

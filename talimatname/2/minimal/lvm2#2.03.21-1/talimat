@@ -1,0 +1,24 @@
+[paket]
+tanim   = Dosya sistemlerinin birden çok fiziksel disk ve bölüm arasında yayılmasını sağlayan araçlar
+paketci = milisarge
+grup    = temel
+url     = http://sourceware.org/lvm2
+arsiv   = LVM2.$surum
+
+[gerek]
+derleme = libaio eudev
+calisma =
+
+[kaynak]
+1       = https://mirrors.kernel.org/sourceware/lvm2/releases/LVM2.$surum.tgz
+
+[sha256]
+1       = 1e261921d621998adc37960c615de784c6145c7f737a80b781f3108fbec67a7e
+
+[derle]
+betik   = export LC_ALL=C
+ekconf  = --exec-prefix= --with-libexecdir=/usr/lib --enable-cmdlib --enable-pkgconfig --enable-udev_sync --enable-dmeventd --with-thin=internal --with-udev-prefix=/usr
+tip     = gnu
+
+[pakur]
+tip     = gnu

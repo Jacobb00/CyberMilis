@@ -1,0 +1,27 @@
+[paket]
+tanim   = C++ için bir JSON uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/open-source-parsers/jsoncpp
+
+[gerek]
+derleme = meson
+calisma =
+
+[kaynak]
+gz      = https://github.com/open-source-parsers/${isim}/archive/${surum}
+
+[sha256]
+1       = f409856e5920c18d0c2fb85276e24ee607d2a09b5e7d5f0a371368903c275da2
+
+[derle]
+betik   = milis-meson --default-library shared build
+betik   = ninja -C build
+betik   = milis-meson --default-library static build-static
+betik   = ninja -C build-static
+
+
+[pakur]
+betik   = DESTDIR="${PKG}" ninja -C build install
+betik   = DESTDIR="${PKG}" ninja -C build-static install
+

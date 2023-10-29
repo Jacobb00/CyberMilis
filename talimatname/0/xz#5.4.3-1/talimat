@@ -1,0 +1,18 @@
+[paket]
+tanim   = Yüksek sıkıştırma oranına sahip sıkıştırma uygulaması
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.gnu.org/software/texinfo
+
+[kaynak]
+xz      = http://tukaani.org/xz
+
+;[sha256]
+;1 		= 9717ae363760dedf573dad241420c5fea86256b65bc21d2cf71b2b12f0544f4b
+
+[derle]
+betik 	= ./configure --prefix=/tools 
+betik   = make $MAKEJOBS && make install
+	      
+[pakur]
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

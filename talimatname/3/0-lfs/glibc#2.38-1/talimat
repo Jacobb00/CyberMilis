@@ -1,0 +1,27 @@
+[paket]
+tanim   = Ana C kütüphaneleri
+paketci = milisarge
+grup 	= onsistem
+url     = https://www.gnu.org/software/libc
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/glibc
+
+;[sha256]
+;1 		= 2e2556000e105dbd57f0b6b2a32ff2cf173bde4f0d85dffccfd8b7e51a0677ff
+
+[derle]
+bayrak  = 0
+betik   = mkdir -v build ;cd build
+;betik   = ln -sfv ../lib/ld-linux-x86-64.so.2 /tools/lib64
+;betik   = ln -sfv ../lib/ld-linux-x86-64.so.2 /tools/lib64/ld-lsb-x86-64.so.3
+betik   = echo "rootsbindir=/tools/bin" > configparms
+export  = M4=m4
+betik   = ../configure --prefix=/tools --host=$ONSISTEM_TARGET --build=$(../scripts/config.guess) --enable-kernel=4.14 --with-headers=/tools/include libc_cv_slibdir=/tools/lib
+betik   = make $MAKEJOBS
+	      
+[pakur]
+nostrip = 1
+betik   = cd build
+tip     = gnu
+betik   = sed '/RTLDLIST=/s@/tools@@g' -i $PKG/tools/bin/ldd

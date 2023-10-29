@@ -1,0 +1,22 @@
+[paket]
+tanim   = LBreakout2 tuğla kırma oyunu
+paketci = milisarge
+grup    = oyun
+url     = http://lgames.sourceforge.net/LBreakoutHD/
+
+[gerek]
+derleme = sdl2 sdl2-extra
+calisma =
+
+[kaynak]
+gz      = ${SOURCEFORGE_SITE}/lgames
+
+[sha256]
+1       = 7c91a11a0e9d6bf95e1c8e767c37959511ceaeb574c5e75210c1f20b53e93482
+
+[derle]
+ekconf  = --localstatedir=/var/${isim}
+tip     = gnu
+
+[pakur]
+tip     = gnu

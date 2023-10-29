@@ -1,0 +1,22 @@
+[paket]
+tanim   = SSA/ASS altyazı işleme kütüphanesi
+paketci = milisarge 
+grup    = medya
+url     = https://github.com/libass/libass/
+
+[gerek]
+derleme = nasm fontconfig fribidi harfbuzz
+calisma =  
+
+[kaynak]
+gz      = https://github.com/libass/libass/releases/download/$surum
+
+[sha256]
+1       = d653be97198a0543c69111122173c41a99e0b91426f9e17f06a858982c2fb03d
+
+[derle]
+ekconf  = --enable-harfbuzz --enable-fontconfig
+tip     = gnu
+
+[pakur]
+tip     = gnu

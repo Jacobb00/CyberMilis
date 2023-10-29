@@ -1,0 +1,39 @@
+[paket]
+tanim   = Linux cgroup sanallaştırma uygulaması
+paketci = milisarge
+grup 	= sistem
+url     = https://linuxcontainers.org/lxc
+
+[gerek]
+derleme = gnupg libseccomp
+calisma = dnsmasq
+
+[kaynak]
+gz      = https://linuxcontainers.org/downloads/$isim
+dosya   = lxc-default.conf 
+dosya   = lxc-usernet 
+dosya   = lxc-users-setup
+dosya   = lxc-users 
+dosya   = lxc-cgroups 
+dosya   = lxc-net
+
+[sha256]
+1       = 2693a4c654dcfdafb3aa95c262051d8122afa1b6f5cef1920221ebbdee934d07
+
+[derle]
+betik   = sed "/pam_security/s/libdir/'\/', 'usr/lib'/" -i $SRC/$isim-$surum/meson.build
+ekconf  =-Dsd-bus=disabled -Druntime-path=/run -Dman=false -Ddistrosysconfdir=/etc/default -Dapparmor=false -Dpam-cgroup=true -Dinit-script=sysvinit -Ddata-path=/var/lib/lxc -Dlog-path=/var/log/lxc -Drootfs-mount-path=/usr/lib/lxc/rootfs
+meson   = $isim-$surum
+	      
+[pakur]
+betik   = install -d -m755 $PKG/var/lib/lxc
+betik   = install -d -m755 $PKG/usr/lib/lxc/rootfs/dev
+betik   = install -m755 $SRC/lxc-users-setup $PKG/usr/bin/
+betik   = install -m755 $SRC/lxc-cgroups $PKG/usr/bin/
+betik   = install -m755 $SRC/lxc-users $PKG/usr/bin/
+betik   = install -m644 $SRC/lxc-net $PKG/etc/default/
+betik   = rm $PKG/etc/lxc/default.conf
+betik   = install -m644 $SRC/lxc-default.conf $PKG/etc/lxc/default.conf
+betik   = install -m644 $SRC/lxc-usernet $PKG/etc/lxc/
+betik   = rm -rf $PKG/etc/init.d
+betik   = rm -rf $PKG/usr/lib/*.a

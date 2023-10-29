@@ -1,0 +1,18 @@
+[paket]
+tanim   = Çoğul kesinlik matematik kütüphaneleri
+paketci = milisarge
+grup 	= temel
+url     = https://www.mpfr.org
+
+[kaynak]
+xz      = $url/mpfr-$surum
+
+;[sha256]
+;1 		= 0c98a3f1732ff6ca4ea690552079da9c597872d30e96ec28414ee23c95558a7f
+
+[derle]
+ekconf  = --enable-thread-safe --enable-shared
+tip		= gnu
+	      
+[pakur]
+tip		= gnu

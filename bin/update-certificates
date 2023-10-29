@@ -1,0 +1,2 @@
+#!/bin/bash
+update-ca-certificates --fresh && mps kur p11-kit && make-ca -g

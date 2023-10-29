@@ -1,0 +1,21 @@
+[paket]
+tanim   = C ve C++ programcıları için sayısal bir kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.gnu.org/software/gsl/gsl.html
+
+[gerek]
+derleme = lapack
+calisma = 
+
+[kaynak]
+gz      = ${GNU_SITE}/$isim
+
+;[sha256]
+;1       = dcb0fbd43048832b757ff9942691a8dd70026d5da0ff85601e52687f6deeb34b
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu

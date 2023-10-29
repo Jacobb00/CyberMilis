@@ -1,0 +1,23 @@
+[paket]
+tanim   = C de HTTP kütüphane uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://wiki.gnome.org/Projects/libsoup
+
+[gerek]
+derleme = meson glib libxml2 sqlite vala libpsl krb5 gobject-introspection glib-networking
+calisma = glib-networking
+
+[kaynak]
+xz      = ${GNOME_SITE}/${isim}/${surum%.*}
+
+[sha256]
+1       = e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13
+
+[derle]
+betik   = cd $SRC;milis-meson $isim-$surum build -Dsysprof=disabled -Dntlm=disabled -Dbrotli=disabled
+betik   = sed -i 's|-R/usr/lib||g' $SRC/build/build.ninja
+betik   = meson compile -C build -j2
+
+[pakur]
+tip     = meson

@@ -1,0 +1,22 @@
+[paket]
+tanim   = DBUS için Python bağları
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.freedesktop.org/wiki/Software/DBusBindings
+arsiv   = dbus-python-$surum
+
+[gerek]
+derleme = python glib dbus
+calisma =
+
+[kaynak]
+1       = https://dbus.freedesktop.org/releases/dbus-python/dbus-python-${surum}.tar.gz
+
+[sha256]
+1       = ad67819308618b5069537be237f8e68ca1c7fcc95ee4a121fe6845b1418248f8
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu

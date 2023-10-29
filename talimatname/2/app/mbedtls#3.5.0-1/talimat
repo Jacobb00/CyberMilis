@@ -1,0 +1,25 @@
+[paket]
+tanim   = Taşınabilir şifreleme TLS kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://tls.mbed.org
+arsiv   = mbedtls-mbedtls-$surum
+
+[gerek]
+derleme = cmake python
+calisma =
+
+[kaynak]
+gz      = https://github.com/ARMmbed/mbedtls/archive
+
+[sha256]
+1       = 02311fc8bd032d89ff9aee535dddb55458108dc0d4c5280638fc611aea7c5e4a
+
+[derle]
+ekconf  = -D USE_SHARED_MBEDTLS_LIBRARY=ON -D USE_STATIC_MBEDTLS_LIBRARY=ON -D ENABLE_ZLIB_SUPPORT=ON -D INSTALL_MBEDTLS_HEADERS=ON -D MBEDTLS_FATAL_WARNINGS=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake
+betik   = for _prog in $PKG/usr/bin/*; do _baseprog=$(basename "$_prog"); mv -v "$_prog" "${_prog//$_baseprog/mbedtls_$_baseprog}"; done
+betik   = chmod 644 $PKG/usr/lib/*.a

@@ -1,0 +1,23 @@
+[paket]
+tanim 	= Donanım belirleme veritabanı
+paketci = milisarge
+grup 	= sistem
+url 	= https://github.com/vcrhonek/hwdata
+arsiv   = hwdata-$surum
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+github  = vcrhonek/hwdata
+
+[sha256]
+1       = aff121c1c7a7dec58414c5e21151a180d3a23628e21c12e3bef58e063a0dc228
+
+[derle]
+ekconf  = --disable-blacklist
+tip     = gnu
+
+[pakur]
+tip     = gnu

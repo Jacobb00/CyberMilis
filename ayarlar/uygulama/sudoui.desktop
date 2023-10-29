@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=sudoui
+Name[tr]=Yetkili Çalıştırma
+GenericName=Sudo GUI
+GenericName[en_US]=Sudo GUI
+GenericName[tr]=Sudo Arayüzü
+Comment=Authorized Application Run
+Comment[tr]=Uygulama Yetkili Çalıştırma
+Exec=/usr/milis/bin/sudoui
+Terminal=false
+Type=Application
+Categories=System;
+Icon=gnome-encfs-manager
+Keywords=system;sudo;

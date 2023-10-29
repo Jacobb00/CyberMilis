@@ -1,0 +1,21 @@
+[paket]
+tanim 	= Linux anahtar yönetim araçları
+paketci = milisarge
+grup 	= sistem
+url 	= https://www.kernel.org
+
+[kaynak]
+gz 		= https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot
+dosya   = request-key.conf.patch
+dosya   = reproducible.patch
+
+[sha256]
+1 		= a61d5706136ae4c05bd48f86186bcfdbd88dd8bd5107e3e195c924cfc1b39bb4
+
+[derle]
+betik   = patch -Np0 -i ../request-key.conf.patch
+betik   = patch -Np1 -i ../reproducible.patch
+betik   = make CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" SBINDIR='/usr/bin' BINDIR='/usr/bin'
+
+[pakur]
+betik   = make DESTDIR="${PKG}" SBINDIR='/usr/bin' BINDIR='/usr/bin' LIBDIR='/usr/lib' USRLIBDIR='/usr/lib' install

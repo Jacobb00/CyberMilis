@@ -1,0 +1,24 @@
+[paket]
+tanim   = Terminal çoğaltıcı uygulama
+paketci = milisarge
+grup    = sistem  
+url     = https://github.com/tmux/tmux/wiki
+
+[gerek]
+derleme = libevent libutempter 
+calisma =  
+
+[kaynak]
+gz     = https://github.com/tmux/tmux/releases/download/${surum}
+
+
+[sha256]
+1      = e4fd347843bd0772c4f48d6dde625b0b109b7a380ff15db21e97c11a4dcdf93f
+
+[derle]
+ekconf = --enable-utempter
+tip    = gnu
+
+[pakur]
+tip    = gnu
+

@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wayland için paneller ve diğer masaüstü bileşenleri oluşturmak için kitaplık
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/wmww/gtk-layer-shell
+
+[gerek]
+derleme = meson gobject-introspection wayland gtk3 wayland vala
+calisma =
+
+[kaynak]
+github  = wmww/gtk-layer-shell
+
+[sha256]
+1       = c329fac878a1731cb23ad7365f2f2a35e4ab26e72b4e69458e06afd825baad48
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson

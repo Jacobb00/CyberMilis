@@ -1,0 +1,22 @@
+[paket]
+tanim   = XCB Image kütüphaneleri
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = xorg-util-macros xorgproto libxcb xcb-util
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 	    = ccad8ee5dadb1271fd4727ad14d9bd77a64e505608766c4e98267d9aede40d3d
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

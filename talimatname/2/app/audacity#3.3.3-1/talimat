@@ -1,0 +1,50 @@
+[paket]
+tanim   = Grafikler arası platform ses editörü
+paketci = milisarge
+grup    = medya
+url     = https://www.audacityteam.org
+
+[gerek]
+derleme = automake cmake python wxgtk3 gtk3 gtkmm ffmpeg media-extra libsamplerate libsoxr desktop-file-utils xiph lame lilv portmidi xcb-util xcb-util-cursor xcb-util-keysyms
+calisma =
+
+[kaynak]
+1       = https://github.com/audacity/audacity/archive/refs/tags/Audacity-$surum.tar.gz
+2       = https://github.com/audacity/audacity/commit/e181ee115e727b4754619b04aa6e8ad872113592.patch!
+3       = https://code.soundsoftware.ac.uk/attachments/download/2691/vamp-plugin-sdk-2.10.0.tar.gz
+4       = https://github.com/Bonstra/portsmf/archive/refs/heads/master.tar.gz
+5       = https://github.com/claytonotey/libsbsms/archive/refs/tags/2.3.0.tar.gz::libsbsms-2.3.0.tar.gz
+
+;[sha256]
+;1       = 50240f07471373a7e5c2df65cc26eeeaaced9a0850ad1f95cb795f171ea3009f
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+;export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+;vst3sdk
+dosya   = vst3sdk.sh
+
+;portsmf
+;dosya   = portsmf.sh
+
+; libsbsms
+betik   = cmake -B buildsb -S $SRC/libsbsms-2.3.0 $CMAKE_OPT
+betik   = cmake --build buildsb && DESTDIR="$PKG" cmake --install buildsb
+
+;wamp
+gnu     = vamp-plugin-sdk-2.10.0
+
+; audacity
+dosya   = derle.sh
+
+
+[pakur]
+betik   = cd $SRC/$isim-Audacity-${surum}
+betik   = install -vDm 644 plug-ins/*.ny -t "${PKG}/usr/share/${isim}/plug-ins"
+betik   = install -vDm 644 nyquist/*.lsp -t "${PKG}/usr/share/${isim}/nyquist"
+betik   = rm -rf $PKG/usr/lib/*.a
+betik   = sed -i "s#Exec=env#Exec=env LD_LIBRARY_PATH=/usr/lib/audacity#g" $PKG/usr/share/applications/audacity.desktop

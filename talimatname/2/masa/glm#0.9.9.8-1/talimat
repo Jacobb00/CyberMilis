@@ -1,0 +1,19 @@
+[paket]
+tanim    = OpenGL Gölgeleme Dili (GLSL) spesifikasyonuna dayalı 3B yazılım için C ++ matematik kütüphanesi
+paketci  = milisarge
+grup     = kütüphane 
+url      = http://glm.g-truc.net
+
+[kaynak]
+1      =  https://github.com/g-truc/glm/archive/$surum.tar.gz::$isim-$surum.tar.gz
+dosya  =  glm.pc.in
+dosya  =  glmConfigVersion.cmake.in
+dosya  =  glmConfig.cmake.in
+dosya  =  glmTargets.cmake
+
+[derle]
+betik  = echo "derleme yok"
+
+[pakur]
+dosya  = pakur.sh
+

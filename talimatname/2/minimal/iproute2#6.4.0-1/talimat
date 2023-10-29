@@ -1,0 +1,29 @@
+[paket]
+tanim   = Temel ağ yönlendirme araçları
+paketci = milisarge
+grup 	= ağ
+url     = http://linux-net.osdl.org/index.php/Iproute2
+
+[gerek]
+derleme = linux-atm iptables
+calisma =  
+
+
+[kaynak]
+xz     	= http://www.kernel.org/pub/linux/utils/net/$isim
+dosya   = 0001-make-iproute2-fhs-compliant.patch
+
+[sha256]
+1       = 4c51b8decbc7e4da159ffb066f590cfb93dbf9af7ff86b1647ce42b7c179a272
+2       = f60fefe4c17d3b768824bb50ae6416292bcebba06d73452e23f4147b46b827d3
+
+[derle]
+yama    = 0001-make-iproute2-fhs-compliant.patch
+betik   = sed -i 's/-Werror//' Makefile
+betik   = ./configure ; make
+     
+[pakur]
+betik   = make DESTDIR="${PKG}" SBINDIR="/usr/bin" install
+betik   = rm -rf $PKG/usr/share/bash-completion
+betik   = install -Dm644 include/libnetlink.h ${PKG}/usr/include/libnetlink.h
+betik   = install -Dm644 lib/libnetlink.a ${PKG}/usr/lib/libnetlink.a

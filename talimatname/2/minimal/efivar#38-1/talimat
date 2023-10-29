@@ -1,0 +1,21 @@
+[paket]
+tanim   = EFI değişkenlerini işlemek için kütüphane-geliştirme dosyaları
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/rhinstaller/efivar
+
+[kaynak]
+bz2     = $url/releases/download/${surum}
+
+[sha256]
+1       = f018ed6e49c5f1c16d336d9fd7687ce87023276591921db1e49a314ad6515349
+
+[derle]
+betik   = sed -e 's/-Werror//g' -i gcc.specs
+betik   = sed -e 's/SUBDIRS := src docs/SUBDIRS := src/g' -i Makefile
+betik   = sed -e 's/.PHONY: clean deps install test/.PHONY: clean deps install/g' -i src/Makefile
+betik   = sed 's|-rpath,$(TOPDIR)/src|-rpath,$(libdir)|g' -i src/test/Makefile
+betik   = make libdir="/usr/lib/" bindir="/usr/bin/" mandir="/usr/share/man/" includedir="/usr/include/"
+
+[pakur]
+betik   = make DESTDIR="${PKG}/" libdir="/usr/lib/" bindir="/usr/bin/" includedir="/usr/include/" install -j1 V=1

@@ -1,0 +1,27 @@
+[paket]
+tanim   = 7zip sıkıştırılmış dosya arşivinin komut satırı versiyonu
+paketci = milisarge
+grup    = kütüphane
+url     = http://p7zip.sourceforge.net/
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = https://github.com/p7zip-project/p7zip/archive/v$surum/$isim-v$surum.tar.gz
+dosya   = c104127e6a93.patch
+dosya   = 0e0a1a8316b6.patch
+dosya   = 334a01e3f8bc.patch
+
+;[sha256]
+;1       = 9473e324de6a87d89cb7ff65b0fec4ae3f147f03ffc138189c336a4650d74804
+
+[derle]
+betik   = patch -Rp1 -i ../c104127e6a93.patch
+betik   = patch -Rp1 -i ../0e0a1a8316b6.patch
+betik   = patch -Rp1 -i ../334a01e3f8bc.patch
+betik   = make OPTFLAGS="$CPPFLAGS $CFLAGS" 7z 7zr 7za
+
+[pakur]
+betik   = make install DEST_DIR="$PKG" DEST_HOME=/usr DEST_MAN=/usr/share/man

@@ -1,0 +1,11 @@
+libm.so.6
+libasound.so.2
+libFLAC.so.12
+libopus.so.0
+libvorbis.so.0
+libsndfile.so.1
+libc.so.6
+libogg.so.0
+libvorbisenc.so.2
+libmpg123.so.0
+libmp3lame.so.0

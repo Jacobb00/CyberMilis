@@ -1,0 +1,17 @@
+[paket]
+tanim   = Alt süreçlerin esnek bir şekilde borulama yapmasını sağlayan kütüphane
+paketci = milisarge
+grup 	= temel
+url     = http://libpipeline.nongnu.org
+
+[kaynak]
+gz      = http://download.savannah.gnu.org/releases/libpipeline
+
+;[sha256]
+;1 		= 5dbf08faf50fad853754293e57fd4e6c69bb8e486f176596d682c67e02a0adb0
+
+[derle]
+tip	    = gnu
+	      
+[pakur]
+tip	    = gnu

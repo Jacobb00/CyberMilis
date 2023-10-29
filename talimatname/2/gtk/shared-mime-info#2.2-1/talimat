@@ -1,0 +1,26 @@
+[paket]
+tanim   = X için MIME Bilgileri
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec
+
+[gerek]
+derleme = libxml2 glib meson itstool
+calisma = 
+
+[kaynak]
+bz2     = https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/$surum
+2       = https://gitlab.freedesktop.org/xdg/xdgmime/-/archive/fe2f298fa691b225bdea31d816cf6728df91ba6d/xdgmime-fe2f298fa691b225bdea31d816cf6728df91ba6d.tar.bz2
+
+[sha256]
+1 		= 418c480019d9865f67f922dfb88de00e9f38bf971205d55cdffab50432919e61
+2 		= 7487ef577c6143639ec30f43d79aa538d97f9c0d3340a873731b7072696a4ef0
+
+[derle]
+betik   = cd $SRC;meson setup xdgmime-fe2f298fa691b225bdea31d816cf6728df91ba6d xdgmime-build --prefix=/usr --buildtype=plain --wrap-mode nodownload -D b_pie=true
+betik   = meson compile -C xdgmime-build
+ekconf  = -Dupdate-mimedb=false -D xdgmime-path=$SRC/xdgmime-build
+tip     = meson
+	      
+[pakur]
+tip 	= meson

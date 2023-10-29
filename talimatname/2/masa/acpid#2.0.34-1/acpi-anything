@@ -1,0 +1,3 @@
+# Pass all events to our one handler script
+event=.*
+action=/usr/milis/bin/acpi-handler.lua %e

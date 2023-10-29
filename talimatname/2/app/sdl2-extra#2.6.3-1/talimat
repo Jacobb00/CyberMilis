@@ -1,0 +1,35 @@
+[paket]
+tanim   = SDL 2.x ek kütüphaneler
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/libsdl-org
+
+[gerek]
+derleme = libpng tiff sdl2 libwebp mpg123 xiph libmodplug fluidsynth freetype
+calisma =
+
+[kaynak]
+1      = https://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-1.0.4.tar.gz
+2      = $url/SDL_image/releases/download/release-2.6.3/SDL2_image-2.6.3.tar.gz
+3      = $url/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.tar.gz
+4      = $url/SDL_net/releases/download/release-2.2.0/SDL2_net-2.2.0.tar.gz
+5      = $url/SDL_ttf/releases/download/release-2.20.2/SDL2_ttf-2.20.2.tar.gz
+
+;[sha256]
+;1      = 48355fb4d8d00bac639cd1c4f4a7661c4afef2c212af60b340e06b7059814777
+
+[derle]
+gnu    = SDL2_gfx-1.0.4
+
+ekconf = --disable-static --disable-jpg-shared --disable-png-shared --disable-webp-shared --disable-tif-shared
+gnu    = SDL2_image-2.6.3
+
+ekconf = --enable-music-ogg-vorbis --enable-music-flac-libflac --enable-music-mp3-mpg123 --disable-music-ogg-stb --disable-music-flac-drflac --disable-music-mp3-drmp3
+gnu    = SDL2_mixer-2.6.3
+
+gnu    = SDL2_net-2.2.0
+
+gnu    = SDL2_ttf-2.20.2
+
+[pakur]
+betik  = echo "pakur yok"

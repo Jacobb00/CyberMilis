@@ -1,0 +1,32 @@
+[paket]
+tanim   = Hızlı ve güvenilir FTP, FTPS ve SFTP istemcisi
+paketci = milisarge
+grup    = ağ
+url     = https://filezilla-project.org
+
+[gerek]
+derleme = gettext gnutls dbus libidn2 sqlite gtk3 wxgtk3 desktop-file-utils nettle boost xdg-utils
+calisma =
+
+[kaynak]
+1       = https://download.filezilla-project.org/client/FileZilla_${surum}_src.tar.xz
+2       = https://download.filezilla-project.org/libfilezilla/libfilezilla-0.45.0.tar.xz
+
+[sha256]
+1       = d2bce4dbaa80fe035836db19441e90befcbabdef5556e9a4b3d4dd233638bdea
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+ekconf  = --disable-static
+gnu     = libfilezilla-0.45.0
+
+ekconf  = --disable-static --disable-manualupdatecheck --disable-autoupdatecheck --with-pugixml=builtin
+gnu     = filezilla-$surum
+
+[pakur]
+betik   = echo "pakur yok"

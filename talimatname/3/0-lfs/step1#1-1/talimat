@@ -1,0 +1,65 @@
+[paket]
+tanim   = Bağlayıcı, assembler ve nesne dosyalarını işleme araçları. Pass-1
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu
+
+[kaynak]
+1       = $url/binutils/binutils-2.41.tar.xz
+2      = $url/gmp/gmp-6.3.0.tar.xz
+3      = https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.xz
+4      = https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
+5      = https://sourceware.org/pub/gcc/releases/gcc-13.2.0/gcc-13.2.0.tar.xz
+6      = http://www.kernel.org/pub/linux/kernel/v6.x/linux-6.4.12.tar.xz
+7      = http://ftp.gnu.org/gnu/glibc/glibc-2.38.tar.xz
+
+[derle]
+bayrak  = 0
+betik   = echo "---------- binutils ----------"
+betik   = cp -r $SRC/binutils-2.41 $SRC/_binutils-2.41
+betik   = cd $SRC/binutils-2.41
+betik   = mkdir build;cd build
+betik   = ../configure --prefix=/tools --with-sysroot=$ONSISTEM_CHROOT --target=$ONSISTEM_TARGET --disable-nls --enable-gprofng=no --disable-werror
+betik   = make $MAKEJOBS && make install
+betik   = mkdir -pv /tools/lib && ln -sv lib /tools/lib64
+
+betik   = echo "---------- gcc1 ----------"
+betik   = cp -r $SRC/gcc-13.2.0 $SRC/_gcc-13.2.0
+betik   = cd $SRC/gcc-13.2.0
+dosya   = gcc-derle.sh
+
+betik   = echo "---------- linux-header ----------"
+betik   = cd $SRC/linux-6.4.12
+betik 	= make mrproper
+betik   = make INSTALL_HDR_PATH=dest headers_install;mkdir -p /tools/include
+betik   = cp -rv dest/include/* /tools/include
+
+betik   = echo "---------- glibc ----------"
+betik   = cd $SRC/glibc-2.38
+betik   = mkdir -v build ;cd build
+betik   = ln -sfv ../lib/ld-linux-x86-64.so.2 /tools/lib64
+betik   = ln -sfv ../lib/ld-linux-x86-64.so.2 /tools/lib64/ld-lsb-x86-64.so.3
+betik   = echo "rootsbindir=/tools/bin" > configparms
+export  = M4=m4
+betik   = ../configure --prefix=/tools --host=$ONSISTEM_TARGET --build=$(../scripts/config.guess) --enable-kernel=4.14 --with-headers=/tools/include libc_cv_slibdir=/tools/lib
+betik   = make $MAKEJOBS && make install
+
+betik   = echo "---------- libstdc++ ----------"
+betik   = cd $SRC/_gcc-13.2.0
+betik   = mkdir -v build;cd build
+betik   = ../libstdc++-v3/configure --host=$ONSISTEM_TARGET --prefix=/tools --disable-multilib --disable-nls --disable-libstdcxx-pch --with-gxx-include-dir=/tools/$ONSISTEM_TARGET/include/c++/13.2.0
+betik   = make $MAKEJOBS && make install
+
+betik   = echo "---------- binutils2 ----------"
+betik   = cd $SRC/_binutils-2.41
+betik   = sed '6009s/$add_dir//' -i ltmain.sh
+betik   = mkdir build; cd build
+betik   = ../configure --prefix=/tools --build=$(../config.guess) --host=$ONSISTEM_TARGET --disable-nls --enable-shared --enable-gprofng=no --disable-werror --enable-64-bit-bfd
+
+betik   = echo "---------- gcc2 ----------"
+betik   = cd $SRC/_gcc-13.2.0
+dosya   = gcc2-derle.sh
+betik   = ln -sv gcc /tools/bin/cc
+
+[pakur]
+betik   = echo ""

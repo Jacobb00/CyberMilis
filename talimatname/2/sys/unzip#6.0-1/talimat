@@ -1,0 +1,34 @@
+[paket]
+tanim   = Zip arşivindeki dosyaları açmak ve görüntülemek için
+paketci = milisarge
+grup 	= sistem
+url     = http://www.info-zip.org
+
+[kaynak]
+1       = http://downloads.sourceforge.net/infozip/unzip60.tar.gz
+dosya   = crc32.patch
+dosya   = csiz-underflow.patch
+dosya   = cve20149636.patch
+dosya   = empty-input.patch
+dosya   = getZip64Data.patch
+dosya   = nextbyte-overflow.patch
+dosya   = overflow-fsize.patch
+dosya   = test_compr_eb.patch
+
+[sha256]
+1 		= 036d96991646d0449ed0aa952e4fbe21b476ce994abc276e49d30e686708bd37
+2 		= 5598c4124ec5865745bad5bf80c48f92cafd55363d5e140e5abca801815b0ce6
+3 		= 95dd15d5d9cdf5cea18c357b152930d6d52660599e0fd4907d6405870fdd9fe1
+4 		= c9a863e570bdaf2637c43bf1bba3d97808a1b0504d85418f6a8550ac286788f2
+5 		= 9bdea454a3677e00fc81b8ffe534040b2a250ae0d76437d38e41f849997668ae
+6 		= f598f2c1c840c845f9e9d08fc14d358b87c002cfaff021c4b4a7086ecbe337c8
+7 		= 788c29727ff0689c3b1828466127758426f6d2c769048aa985950373747c76f3
+8 		= e2a10fa494c39fb3f311d0f2d7db775bdecbc8d5b9d298c7bd035ace1f1713d5
+9 		= 1a1390390402e674ef7b143705ade0e9aa082131bb9686e95fb7985310def885
+
+
+[derle]
+dosya 	= derle.sh
+	      
+[pakur]
+dosya 	= pakur.sh

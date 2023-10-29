@@ -1,0 +1,19 @@
+[paket]
+tanim   = Elf dosyalarını işleme araç ve kütüphaneleri
+paketci = milisarge
+grup 	= temel
+url     = https://sourceware.org/elfutils
+
+[kaynak]
+bz2     = https://sourceware.org/elfutils/ftp/${surum}
+
+;[sha256]
+;1 		= c3637c208d309d58714a51e61e63f1958808fead882e9b607506a29e5474f2c5
+
+[derle]
+ekconf  = --disable-debuginfod --disable-libdebuginfod --program-prefix="eu-" --enable-deterministic-archives
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
+betik   = rm -r $PKG/usr/lib/*.a

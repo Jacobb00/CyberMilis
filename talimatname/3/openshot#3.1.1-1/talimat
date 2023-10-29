@@ -1,0 +1,22 @@
+[paket]
+tanim   = Linux için açık kaynaklı, doğrusal olmayan video düzenleyici
+paketci = milisarge
+grup    = medya
+url     = https://www.openshot.org
+arsiv   = ${isim}-qt-${surum}
+
+[gerek]
+derleme = python
+calisma = ffmpeg python-qt5
+
+[kaynak]
+github  = OpenShot/openshot-qt
+
+[sha256]
+1       = 2b67cb4fc78863911b0263364240947b6331a976aad74943e8f6e46221b52e91
+
+[derle]
+tip     = py3
+
+[pakur]
+tip     = py3

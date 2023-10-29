@@ -1,0 +1,23 @@
+[paket]
+tanim   = Weebp formatı için kütüphane ve çevirici aracı
+paketci = milisarge
+grup 	= kütüphane
+url     = https://developers.google.com/speed/webp
+
+[gerek]
+derleme = mesa libpng tiff giflib
+calisma = 
+
+[kaynak]
+gz      = https://storage.googleapis.com/downloads.webmproject.org/releases/webp
+
+[sha256]
+1 		= b3779627c2dfd31e3d8c4485962c2efe17785ef975e2be5c8c0c9e6cd3c4ef66
+
+[derle]
+betik   = NOCONFIGURE=1 ./autogen.sh
+ekconf  = --disable-static --enable-swap-16bit-csp --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder --enable-libwebpextras
+tip     = gnu
+      
+[pakur]
+tip     = gnu

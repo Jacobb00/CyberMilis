@@ -1,0 +1,6 @@
+libfuse.so.2
+libntfs-3g.so.89
+libc.so.6
+libuuid.so.1
+libgnutls.so.30
+libgcrypt.so.20

@@ -1,0 +1,20 @@
+[paket]
+tanim   = Metin tarama uygulaması üreten araç
+paketci = milisarge
+grup 	= temel
+url     = http://flex.sourceforge.net
+
+[kaynak]
+gz      = https://github.com/westes/flex/releases/download/v$surum
+
+[sha256]
+1 	    = e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
+betik 	= ln -s flex ${PKG}/usr/bin/lex 
+betik 	= chmod -v 755 $PKG/usr/bin/lex
+;betik 	= rm -r $PKG/usr/lib/*.a

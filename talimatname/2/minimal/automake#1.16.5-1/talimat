@@ -1,0 +1,21 @@
+[paket]
+tanim   = Autoconf ile kullanılacak Makefile üreteci
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/automake
+
+[gerek]
+derleme = autoconf
+calisma = autoconf
+
+[kaynak]
+xz      = http://ftp.gnu.org/gnu/$isim
+
+[sha256]
+1       = f01d58cd6d9d77fbdca9eb4bbd5ead1988228fdb73d6f7a201f5f8d6b118b469
+
+[derle]
+tip	    = gnu
+      
+[pakur]
+tip	    = gnu

@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 Oturum Yönetimi kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libSM-$surum
+
+[gerek]
+derleme = xorg-util-macros libice xtrans xorgproto
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libSM-$surum.tar.xz
+
+[sha256]
+1 		= fdcbe51e4d1276b1183da77a8a4e74a137ca203e0bcfb20972dd5f3347e97b84
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

@@ -1,0 +1,22 @@
+[paket]
+tanim   = Genel amaçlı kayıpsız sıkıştırma algoritması
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/google/brotli
+
+[gerek]
+derleme = cmake
+calisma  =
+
+[kaynak]
+1       = https://github.com/google/${isim}/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = f9e8d81d0405ba66d181529af42a3354f838c939095ff99930da6aa9cdf6fe46
+
+[derle]
+ekconf  = -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib
+tip     = cmake
+
+[pakur]
+tip     = cmake

@@ -1,0 +1,25 @@
+[paket]
+tanim   = MIT Kerberos ağ kimlik doğrulama uygulaması
+paketci = milisarge
+grup 	= sistem
+url     = http://web.mit.edu/kerberos
+
+[gerek]
+derleme = openldap e2fsprogs keyutils
+calisma = 
+
+[kaynak]
+gz      = ${url}/dist/krb5/1.21
+
+[sha256]
+1       = 7881c3aaaa1b329bd27dbc6bf2bf1c85c5d0b6c7358aff2b35d513ec2d50fa1f
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+betik   = cd src
+tip     = gnu
+betik   = install -Dpm 644 config-files/krb5.conf -t "${PKG}/etc"
+betik   = install -Dpm 644 config-files/kdc.conf -t "${PKG}/var/lib/krb5kdc"
+betik   = install -Dm 644 util/ac_check_krb5.m4 -t "${PKG}/usr/share/aclocal"

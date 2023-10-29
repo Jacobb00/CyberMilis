@@ -1,0 +1,22 @@
+[paket]
+tanim   = Sistem çağrı izleme ve hata ayıklama aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://strace.io
+
+[gerek]
+derleme = libunwind
+calisma = 
+
+[kaynak]
+xz      = https://github.com/strace/strace/releases/download/v$surum
+
+[sha256]
+1 		= dfb051702389e1979a151892b5901afc9e93bbc1c70d84c906ade3224ca91980
+
+[derle]
+betik 	= ./configure --prefix=/usr --with-libunwind --enable-mpers=no && make
+	      
+[pakur]
+tip 	= gnu
+betik   = rm -rf $PKG/usr/share

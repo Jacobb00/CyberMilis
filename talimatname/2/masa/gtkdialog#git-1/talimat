@@ -1,0 +1,19 @@
+[paket]
+tanim   = gtkdialog GTK basit arayüz üretme uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/puppylinux-woof-CE/gtkdialog
+
+[gerek]
+derleme = meson gtk3
+calisma =
+
+[kaynak]
+git     = $url
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/usr/share

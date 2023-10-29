@@ -1,0 +1,18 @@
+[paket]
+tanim   = Kişisel takvim uygulaması
+paketci = milisarge
+grup    = masa
+url     = https://sourceforge.net/projects/osmo-pim
+
+[gerek]
+derleme = gtk3 libnotify
+calisma =
+
+[kaynak]
+1       = $url/files/osmo-pim/${isim}-${surum}/osmo-$surum.tar.gz
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu	

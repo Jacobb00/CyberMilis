@@ -1,0 +1,10 @@
+libaio.so.1
+libm.so.6
+liblvm2cmd.so.2.03
+libblkid.so.1
+libudev.so.1
+libdevmapper-event-lvm2.so.2.03
+libdevmapper-event.so.1.02
+libdevmapper.so.1.02
+libc.so.6
+libreadline.so.8

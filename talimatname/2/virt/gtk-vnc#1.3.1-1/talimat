@@ -1,0 +1,21 @@
+[paket]
+tanim   = GTK için VNC görüntüleyici eklenti
+paketci = milisarge
+grup    = kütüphane
+url     = https://wiki.gnome.org/Projects/gtk-vnc
+
+[gerek]
+derleme = meson gettext glib intltool gnupg vala gnutls gtk3 cyrus-sasl pulseaudio gobject-introspection
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/${isim}/${surum%.*}/${isim}-${surum}.tar.xz
+
+[sha256]
+1       = 512763ac4e0559d0158b6682ca5dd1a3bd633f082f5e4349d7158e6b5f80f1ce
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson

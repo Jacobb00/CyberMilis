@@ -1,0 +1,23 @@
+[paket]
+tanim   = H265/HEVC video kodlayıcı
+paketci = milisarge 
+grup    = kütüphane  
+url     = https://bitbucket.org/multicoreware/x265
+arsiv   = .
+
+[gerek]
+derleme = cmake nasm ninja
+calisma =  
+
+[kaynak]
+1       = https://bitbucket.org/multicoreware/x265_git/get/${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 5ca3403c08de4716719575ec56c686b1eb55b078c0fe50a064dcf1ac20af1618
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = DESTDIR="${PKG}" ninja -C build install
+

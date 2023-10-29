@@ -1,0 +1,26 @@
+[paket]
+tanim   = Güçlü konsol tabanlı metin düzenleyici
+paketci = milisarge
+grup 	= sistem
+url     = https://www.vim.org
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+github  = $isim/$isim
+dosya   = vimrc
+
+;[sha256]
+;1       = aad85baa30ac3b7677fe4ab1f16f3644a27ce549766a48bb8da924fa2c3e3837
+
+[derle]
+betik   = echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+tip     = gnu
+     
+[pakur]
+tip     = gnu
+betik   = mkdir $PKG/etc ; cp $SRC/vimrc $PKG/etc/
+betik   = rm -f $PKG/usr/share/applications/gvim.desktop
+betik   = echo "NoDisplay=true" >> ${PKG}/usr/share/applications/vim.desktop

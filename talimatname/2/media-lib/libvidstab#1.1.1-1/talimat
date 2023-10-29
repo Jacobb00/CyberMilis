@@ -1,0 +1,24 @@
+[paket]
+tanim   = Video stabilizasyon kütüphanesi
+paketci = milisarge
+grup    = kütüphane 
+url     = http://public.hronopik.de/vid.stab
+arsiv   = vid.stab-${surum}
+
+[gerek]
+derleme = cmake 
+calisma =  
+
+[kaynak]
+1       = https://github.com/georgmartius/vid.stab/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 14d2a053e56edad4f397be0cb3ef8eb1ec3150404ce99a426c4eb641861dc0bb
+
+[derle]
+ekconf  = -DCMAKE_INSTALL_PREFIX='/usr'
+tip     = cmake
+
+[pakur]
+tip     = cmake
+

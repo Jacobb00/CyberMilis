@@ -1,0 +1,391 @@
+#!/usr/bin/env slua
+
+l5 = require("l5")
+
+function string.trim(self)
+  str, _ = string.gsub(self, '^%s*(.-)%s*$', '%1')
+  return str
+end
+
+function ftype(file)
+	S_IFMT = 0x0000f000
+	S_IFSOCK = 0x0000c000
+	S_IFLNK = 0x0000a000
+	S_IFREG = 0x00008000
+	S_IFBLK = 0x00006000
+	S_IFDIR = 0x00004000
+	S_IFCHR = 0x00002000
+	S_IFIFO = 0x00001000
+	
+	mode, _, _ = l5.lstat3(file)
+	if not mode then
+		return nil
+	elseif mode & S_IFMT == S_IFREG then
+		return "file"
+	elseif mode & S_IFMT == S_IFDIR then
+		return "dir"
+	elseif mode & S_IFMT == S_IFLNK then
+		return "link"
+	else
+		return "undefined"
+	end
+end
+
+-- source: https://github.com/Dynodzzo/Lua_INI_Parser/blob/master/LIP.lua
+function ini_load(fileName)
+	assert(type(fileName) == 'string', 'Parameter "fileName" must be a string.');
+	local file = assert(io.open(fileName, 'r'), 'Error loading file : ' .. fileName);
+	local data = {};
+	local section;
+	for line in file:lines() do
+		local tempSection = line:match('^%[([^%[%]]+)%]$');
+		if(tempSection)then
+			section = tonumber(tempSection) and tonumber(tempSection) or tempSection;
+			data[section] = data[section] or {};
+		end
+		local param, value = line:match('^([%w|_]+)%s-=%s-(.+)$');
+		
+		if(param and value ~= nil)then
+			param = param:trim()
+			value = value:trim()
+			if(tonumber(value))then
+				value = tonumber(value);
+			elseif(value == 'true')then
+				value = true;
+			elseif(value == 'false')then
+				value = false;
+			end
+			if(tonumber(param))then
+				param = tonumber(param);
+			end
+			if fileName:match("masa.ini") and (section == "config_files" or section == "autostart") then
+				table.insert(data[section],param .."@@"..value)
+			else
+				data[section][param] = value;
+			end
+		end
+	end
+	file:close();
+	return data;
+end
+
+function ini_save(fileName, data)
+	assert(type(fileName) == 'string', 'Parameter "fileName" must be a string.');
+	assert(type(data) == 'table', 'Parameter "data" must be a table.');
+	local file = assert(io.open(fileName, 'w+b'), 'Error loading file :' .. fileName);
+	local contents = '';
+	for section, param in pairs(data) do
+		contents = contents .. ('[%s]\n'):format(section);
+		for key, value in pairs(param) do
+			contents = contents .. ('%s=%s\n'):format(key, tostring(value));
+		end
+		contents = contents .. '\n';
+	end
+	file:write(contents);
+	file:close();
+end
+
+-- tanımlar
+config = ini_load("/home/" .. os.getenv("USER") .. "/.config/masa.ini")
+cmd = "%s > %s 2>&1 &"
+
+param    = arg[1]
+wm_param = arg[2]
+ 
+--- işlevler
+
+function initialize()
+	uid = l5.geteuid()
+	xdg_rdir = "/tmp/runtime-"..tostring(uid)
+	l5.setenv("XDG_RUNTIME_DIR",xdg_rdir)
+	l5.mkdir(xdg_rdir,448) --700
+	l5.chown(xdg_rdir, uid, uid)
+	--l5.chmod(xdg_rdir,509) -- 775
+	l5.setenv("XDG_DATA_DIRS","/usr/local/share:/usr/share")
+	l5.setenv("XDG_CONFIG_DIRS","/etc/xdg")
+	l5.setenv("XDG_DATA_HOME",os.getenv("HOME").."/.local/share")
+	l5.setenv("XDG_CONFIG_HOME",os.getenv("HOME").."/.config")
+	l5.setenv("XDG_STATE_HOME",os.getenv("HOME").."/.local/state")
+	l5.setenv("XDG_CACHE_HOME",os.getenv("HOME").."/.cache")
+end
+
+function set_keyboard()
+  if config.keyboard then
+    layout="tr"
+    variant=""
+    _variant=""
+    rules = ""
+    model = ""
+    for k,v in pairs(config.keyboard) do
+      if k == "layout" and v ~= "" then
+        layout=v	   
+      end
+      if k == "variant" and v ~= "" then
+        _variant="("..v..")"	   
+        variant = v	   
+      end
+      if k == "rules" then
+        rules = v
+      end
+      if k == "model" then
+        model = v
+      end
+    end
+    l5.setenv("XKB_DEFAULT_LAYOUT",layout.._variant)
+    wayfire_cf = "/home/" .. os.getenv("USER") .. "/.config/wayfire.ini"
+    config_w = ini_load(wayfire_cf)
+    if config_w then
+      config_w.input["xkb_layout"] = layout
+      config_w.input["xkb_model"] = model 
+      config_w.input["xkb_rules"] = rules 
+      config_w.input["xkb_variant"] = variant
+      ini_save(wayfire_cf, config_w)
+    end
+  end
+end
+
+function set_output()
+  for key,_ in pairs(config) do
+    local handle = assert(io.popen("wlr-randr", 'r'))
+    local outputs = assert(handle:read('*a'))
+    handle:close()
+    if key:find("output:") then   
+      randr_p = "" 
+      _, p=key:find(":")
+	  device=key:sub(p+1,key:len())
+	  if outputs:match(device:gsub("%-","%%-")) then
+	    randr_p = randr_p .. " --output " .. device
+	    for k,v in pairs(config[key]) do
+	      if k == "mode" then
+            if v == "off" then
+              randr_p = randr_p .. " --off"
+              break
+            end
+	        randr_p = randr_p .. " --mode " .. v .. " Hz"
+	      end
+	      if k == "position" then
+	        randr_p = randr_p .. " --pos " .. v
+	      end
+	      if k == "transform" then
+	        randr_p = randr_p .. " --transform " .. v
+	      end
+	      if k == "scale" then
+	        randr_p = randr_p .. " --scale " .. v
+	      end
+	    end
+        -- wlr-randr uygula
+        os.execute("wlr-randr" .. randr_p)
+      end 
+    end
+  end
+end
+
+function set_locale()
+  if config.localization then
+    for k,v in pairs(config.localization) do
+      if k == "language" then
+        l5.setenv("LC_ALL",v)
+        l5.setenv("LANG",v)
+	    _,p=v:find("_")
+	    v2=v:sub(0,p-1)
+        l5.setenv("LANGUAGE",v2)
+        print("e",k,v)
+        print("e",k,v2)
+      end
+    end
+  end
+end
+
+function set_userdirs()
+  dirs={
+	music    = "XDG_MUSIC_DIR",
+	document = "XDG_DOCUMENTS_DIR",
+	download = "XDG_DOWNLOAD_DIR",
+	desktop  = "XDG_DESKTOP_DIR",
+	picture  = "XDG_PICTURES_DIR",
+	public   = "XDG_PUBLICSHARE_DIR",
+	video    = "XDG_VIDEOS_DIR",
+	template = "XDG_TEMPLATES_DIR",
+  }
+  if config.user_dirs then
+    userfile= io.open(os.getenv("HOME").."/.config/user-dirs.dirs", 'w')
+    for k,v in pairs(config.user_dirs) do
+      if dirs[k] then
+      xdg_dir = os.getenv("HOME").."/"..v
+      l5.mkdir(xdg_dir,509) --775
+      l5.setenv(dirs[k],xdg_dir)
+      userfile:write(dirs[k]..("=\"$HOME/%s\"\n"):format(v))
+      print("e",k,xdg_dir)
+      end
+    end
+    userfile:close()
+  end
+end
+
+function set_config_files()
+  if config.config_files then
+    for _,value in pairs(config.config_files) do
+	  _, p1=value:find("@@")
+	  k=value:sub(0,p1-2)
+	  line=value:sub(p1+1,value:len())
+	  if k == "script" then
+	    os.execute(line)
+	  else
+	    _, p=line:find(":")
+	    source=line:sub(0,p-1)
+	    target=line:sub(p+1,line:len())
+	    target=os.getenv("HOME").."/"..target
+	
+	    cmd_cp_file = "install -Dm644 %s %s"
+	    cmd_cp_dir = "cp -r %s %s"
+	    if ftype(source) and not ftype(target) then
+		  if ftype(source) == "dir" then
+			  cmd = cmd_cp_dir:format(source,target)
+			  os.execute(cmd)
+		  elseif ftype(source) == "file" then
+			  cmd = cmd_cp_file:format(source,target)
+			  os.execute(cmd)
+		  else
+			  print("error:",source,ftype(source))
+		  end
+	    end
+	    --print(source,ftype(source), target, ftype(target))
+	  end
+    end
+  end
+end
+
+function set_milis_apps()
+  desktop_list="/usr/milis/ayarlar/uygulama/desktop.list"
+  user_app_dir=os.getenv("HOME").."/.local/share/applications/"
+  user_cache_dir=os.getenv("HOME").."/.cache"
+  os.execute(("mkdir -p %s"):format(user_app_dir))
+  os.execute(("mkdir -p %s"):format(user_cache_dir))
+  if ftype(desktop_list) == "file" then
+    file = io.open(desktop_list,"r")
+    for app in file:lines() do
+      if ftype(app) == "file" then
+        os.execute(("cp -vf %s %s"):format(app,user_app_dir))
+      end
+      if not ftype(app) then
+		os.execute(("rm -vf %s/`basename %s`"):format(user_app_dir,app))
+      end
+    end
+  end
+end
+
+function set_environment()
+  -- genel ortam değişkenleri
+  if config.environment then
+    for k,v in pairs(config.environment) do
+      l5.setenv(k,v)
+      print("e",k,v)
+    end
+  end
+  -- gömülü yamalar ayara aktarılacak todo!
+  -- sanal makine ve bazı donanımlarda fare gözükmeme sorunu
+  -- [ -f /sys/class/dmi/id/board_name ] && [[ $(cat /sys/class/dmi/id/board_name) =~ VirtualBox|PAV10 ]] && export WLR_NO_HARDWARE_CURSORS=1
+  board_sys_f = "/sys/class/dmi/id/board_name"
+  if ftype(board_sys_f) == "file" then
+    file = io.open(board_sys_f,"r")
+    for line in file:lines() do
+      if line:match("VirtualBox") or line:match("PAV10") then
+		l5.setenv("WLR_NO_HARDWARE_CURSORS",1)
+      end
+    end
+  end
+end
+
+function do_configuration()
+  set_environment()
+  set_locale()
+  set_config_files()
+  set_keyboard()
+  set_userdirs()
+  set_milis_apps()
+end
+
+function autostart()
+  if config.autostart then
+    for _,value in pairs(config.autostart) do
+      _, p1=value:find("@@")
+	  k=value:sub(0,p1-2)
+	  v=value:sub(p1+1,value:len())
+      if config.log[k] then
+        _cmd = cmd:format(v, config.log[k])
+      else
+        _cmd = cmd:format(v, "/dev/null")
+      end
+      print("a",_cmd)
+      os.execute(_cmd)
+    end
+  end
+end
+
+function session()
+  if config.session then
+    for k,v in pairs(config.session) do
+      _cmd = cmd:format(v, "/dev/null")
+      print("s",_cmd)
+      os.execute(_cmd)
+    end
+  end
+end
+
+function start_wm()
+  _cmd = "dbus-run-session %s"
+  masa = ""
+  for k,v in pairs(config.desktop) do
+    masa = v
+  end
+
+  if wm_param ~= nil then
+    masa= wm_param
+  end
+  -- Exec değerini al ve dbus-run a ver
+  -- masa wayland-sessions altındaki dosya ismi olmalı
+  local exec_str = ""
+  file = io.open("/usr/share/wayland-sessions/".. masa .. ".desktop","r")
+  for line in file:lines() do
+    if line:match("Exec=") then
+	  exec_str,_ = line:match("^Exec=(.*)")
+      break
+    end
+  end
+  print("d",_cmd:format(masa))
+  os.execute(_cmd:format(exec_str))
+end
+
+
+------ işlem
+
+if param == "--init" then
+	initialize()
+end
+
+if param == "--wm" then	
+	initialize()	
+	do_configuration()
+	start_wm()
+end
+
+if param == "--start" then
+  set_output()
+  autostart()
+  os.execute("sleep 0.5")
+  session()
+end
+
+if param == "--get" then
+  getp = arg[2]
+  _, p=getp:find("%.")
+  secp=getp:sub(0,p-1)
+  keyp=getp:sub(p+1,getp:len())
+  if config[secp] then
+    if config[secp][keyp] then
+      print(config[secp][keyp])
+    else
+      print("echo")
+    end
+  end
+end

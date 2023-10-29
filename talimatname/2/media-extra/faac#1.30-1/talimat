@@ -1,0 +1,31 @@
+[paket]
+tanim   = AAC ses kodlayıcı kitaplık seti
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.audiocoding.com
+arsiv   = faac-1_30
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+1       = https://github.com/knik0/faac/archive/${surum//./_}.tar.gz
+2       = https://github.com/knik0/faad2/archive/2.10.1.tar.gz::faad2-2.10.1.tar.gz
+3       = https://github.com/knik0/faac/commit/11215a2dc792d28a8fa7bbef059c6798d248a0ea.patch!
+
+[sha256]
+1       = adc387ce588cca16d98c03b6ec1e58f0ffd9fc6eadb00e254157d6b16203b2d2
+
+[derle]
+betik   = patch -Np1 -i /sources/11215a2dc792d28a8fa7bbef059c6798d248a0ea.patch
+betik   = autoreconf -vfi
+tip     = gnu
+betik   = cd $SRC/faad2-2.10.1            
+betik   = autoreconf -vfi
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = cd $SRC/faad2-2.10.1
+tip     = gnu

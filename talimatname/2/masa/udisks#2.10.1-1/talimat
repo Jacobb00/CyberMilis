@@ -1,0 +1,27 @@
+[paket]
+tanim   = Diskler ve depolama aygıtlarına erişmek ve bunları değiştirmek için uygulama, araçlar ve kitaplıklar.
+paketci = milisarge
+grup    = sistem
+url     = http://www.freedesktop.org/wiki/Software/udisks
+
+[gerek]
+derleme = automake pcre2 parted cryptsetup nvme-cli nss ndctl gobject-introspection libgudev parted polkit acl ntfs-3g
+calisma = ntfs-3g btrfs-progs gptfdisk dosfstools less
+
+[kaynak]
+bz2     = https://github.com/storaged-project/udisks/releases/download/udisks-$surum
+2       = https://github.com/storaged-project/libbytesize/archive/2.9/libbytesize-2.9.tar.gz
+3       = https://releases.pagure.org/volume_key/volume_key-0.3.12.tar.xz
+4       = https://github.com/storaged-project/libblockdev/releases/download/3.0.2-1/libblockdev-3.0.2.tar.gz
+5       = http://0pointer.de/public/libatasmart-0.19.tar.xz
+dosya   = 0001-Dont-test-undefined-bits.patch
+dosya   = 0002-Drop-our-own-many-bad-sectors-heuristic.patch
+
+;[sha256]
+;1       = 4f5a7a592526f7f32795a1f2211c67b9a649ab40386752f9a71ebaa2fc2090bc
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+tip     = gnu

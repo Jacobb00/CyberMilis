@@ -1,0 +1,18 @@
+[paket]
+tanim 	= Freedesktop.org için mesaj iletim sistemi
+paketci = milisarge
+grup 	= sistem
+url 	= https://www.freedesktop.org/Software/dbus
+
+[kaynak]
+xz	    = https://dbus.freedesktop.org/releases/dbus/
+
+[sha256]
+1       = a6bd5bac5cf19f0c3c594bdae2565a095696980a683a0ef37cb6212e093bde35
+
+[derle]
+dosya 	= derle.sh
+
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/etc/sysconfig

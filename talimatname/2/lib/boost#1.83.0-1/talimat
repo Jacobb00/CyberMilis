@@ -1,0 +1,25 @@
+[paket]
+tanim   = Taşınabilir C ++ kaynak kitaplıkları
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.boost.org/
+
+[gerek]
+derleme = icu python zstd
+calisma =
+
+[kaynak]
+1       = https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.bz2
+dosya   = boost-1.81.0-phoenix-multiple-definitions.patch
+2       = https://github.com/boostorg/function/commit/7ca2310b15e3.patch::$isim-support-fn.contains-f-where-f-is-a-function.patch!
+3       = https://github.com/boostorg/ublas/commit/a31e5cffa85f.patch::$isim-ublas-c++20-iterator.patch!
+
+
+[sha256]
+1       = 6478edfe2f3305127cffe8caf73ea0176c53769f4bf1585be237eb30798c3b8e
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+dosya   = pakur.sh

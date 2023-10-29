@@ -1,0 +1,28 @@
+[paket]
+tanim   = GStreamer Extra (good-bad) multimedya kütüphaneleri
+paketci = milisarge  
+grup    = kütüphane 
+url     = https://gstreamer.freedesktop.org/
+;arsiv   = gstreamer-main
+
+[gerek]
+derleme  = automake cmake meson nasm python libpcap aom chromaprint faac fluidsynth gsm json-glib lcms2 libass libbs2b ieee1394 libheif libdvd fdk-aac xiph libldac libmodplug librsvg nss libunwind mesa libvpx lilv mpg123 nettle opencore-amr shaderc v4l-utils vulkan wayland wayland-protocols x264 media-extra iso-codes gtk3 openal imagemagick
+calisma  = 
+
+[kaynak]
+1     = https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-$surum.tar.xz
+2     = https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-$surum.tar.xz
+3     = https://gstreamer.freedesktop.org/src/gst-editing-services/gst-editing-services-$surum.tar.xz
+4     = https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-$surum.tar.xz
+5     = https://gstreamer.freedesktop.org/src/gstreamer-vaapi/gstreamer-vaapi-$surum.tar.xz
+6     = https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-$surum.tar.xz
+
+[sha256]
+1 = b4029cd2908a089c55f1d902a565d007495c95b1442d838485dc47fb12df7137
+2 = b3b07fe3f1ce7fe93aa9be7217866044548f35c4a7792280eec7e108a32f9817
+
+[derle]
+dosya = derle.sh
+
+[pakur]
+betik = echo "pakur yok"

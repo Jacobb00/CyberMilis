@@ -1,0 +1,46 @@
+#!/bin/sh
+
+ayguci_path="/usr/milis/ayguci"
+
+auth_check(){
+  if [[ `id -g` -ne 0 ]]; then
+    echo "yetkili çalıştırınız!"
+    exit 0
+  fi
+}
+
+info(){
+	echo "güncelleme     : ayguci update"
+	echo "konsol istemci : ayguci cli"
+	echo  "kabuk istemci  : ayguci shell"
+	#echo "grafiksel arayüz : ayguci gui"
+	exit 1
+}
+
+update(){
+	mps gun -B
+	cd $ayguci_path
+	./setup.sh
+}
+
+if [ -d $ayguci_path/server ];then
+	subcmd=$1
+	[ -z $subcmd ] && exit 0 
+	if [ $subcmd = "cli" ];then
+		shift
+		$ayguci_path/client/ayguci-client $@ 
+	elif [ $subcmd = "shell" ];then
+		python3 $ayguci_path/client/ayguci-shell.py
+	elif [ $subcmd = "update" ];then
+        auth_check	
+	  	update
+    else
+		info
+	fi
+	exit 1
+else
+    auth_check 
+	mpsc betikdepo.ayguci https://mls.akdeniz.edu.tr/git/milislinux/ayguci
+	update
+	info
+fi

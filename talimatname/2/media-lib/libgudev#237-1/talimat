@@ -1,0 +1,22 @@
+[paket]
+tanim   = Libudev için gobject bağ kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://wiki.gnome.org/Projects/libgudev
+
+[gerek]
+derleme = meson glib python gobject-introspection eudev
+calisma = 
+
+[kaynak]
+xz      = http://ftp.gnome.org/pub/gnome/sources/libgudev/$surum
+
+[sha256]
+1 		= 0d06b21170d20c93e4f0534dbb9b0a8b4f1119ffb00b4031aaeb5b9148b686aa
+
+[derle]
+ekconf  = -Dtests=disabled -Dvapi=disabled
+tip 	= meson
+	      
+[pakur]
+tip 	= meson

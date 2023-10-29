@@ -1,0 +1,21 @@
+[paket]
+tanim   = Basit GObject oyun kumandası kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.gnome.org/aplazas/libmanette
+
+[gerek]
+derleme = meson glib gobject-introspection vala libgudev libevdev
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/${isim}/${surum%.*}/${isim}-${surum}.tar.xz
+
+[sha256]
+1       = 63653259a821ec7d90d681e52e757e2219d462828c9d74b056a5f53267636bac
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson

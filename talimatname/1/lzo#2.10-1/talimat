@@ -1,0 +1,25 @@
+[paket]
+tanim   = Lzo taşınabilir kayıpsız veri sıkıştırma uygulaması
+paketci = milisarge
+grup 	= temel
+url     = http://www.oberhumer.com/opensource/lzo
+
+[kaynak]
+gz		= $url/download
+
+;[sha256]
+;1 		= c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
+
+[derle]
+betik   = ./configure --prefix=/usr --enable-shared
+betik   = make
+betik   = gcc $CPPFLAGS $CFLAGS -fpic -Iinclude/lzo -o minilzo/minilzo.o -c minilzo/minilzo.c
+betik   = gcc $LDFLAGS -shared -o libminilzo.so.0 -Wl,-soname,libminilzo.so.0 minilzo/minilzo.o
+	      
+[pakur]
+tip 	= gnu
+betik   = install -m 755 libminilzo.so.0 ${PKG}/usr/lib
+betik   = install -p -m 644 minilzo/minilzo.h ${PKG}/usr/include/lzo
+betik   = cd ${PKG}/usr/lib
+betik   = ln -s libminilzo.so.0 libminilzo.so
+betik   = rm -rf $PKG/usr/lib/*.a

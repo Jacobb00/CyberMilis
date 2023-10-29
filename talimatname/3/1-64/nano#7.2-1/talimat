@@ -1,0 +1,20 @@
+[paket]
+tanim   = Basit metin düzenleyici
+paketci = milisarge
+grup 	= temel
+url     = http://www.nano-editor.org
+
+[kaynak]
+xz     	= http://ftp.gnu.org/gnu/$isim
+
+;[sha256]
+;1 		= fce183e4a7034d07d219c79aa2f579005d1fd49f156db6e50f53543a87637a32
+
+[derle]
+ekconf  = --enable-color --enable-nanorc --enable-multibuffer
+tip     = gnu
+     
+[pakur]
+tip     = gnu
+betik   = mkdir -p $PKG/etc/nano
+betik   = install -v -m644 -D doc/sample.nanorc $PKG/etc/nano/nanorc.sample

@@ -1,0 +1,30 @@
+[paket]
+tanim   = PDF belge görüntüleyici
+paketci = milisarge
+grup    = ofis
+url     = https://mate-desktop.org
+
+[gerek]
+derleme = gtk3 glib itstool perl-xml-parser gobject-introspection imagemagick libsm libnotify libsecret dbus poppler
+calisma =
+
+[kaynak]
+1       = https://pub.mate-desktop.org/releases/${surum%.*}/${isim}-${surum}.tar.xz
+2       = https://libspectre.freedesktop.org/releases/libspectre-0.2.12.tar.gz
+
+[sha256]
+1       = a53a613acb9701a18ad671bf590254d1ce836ba0ae1be2c0bd8948fdf6b491a4
+2       = 55a7517cd3572bd2565df0cf450944a04d5273b279ebb369a895391957f0f960
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CPPFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+gnu     = libspectre-0.2.12
+ekconf  = --disable-schemas-compile --enable-djvu --enable-synctex=no --enable-dvi --enable-t1lib --enable-pixbuf --enable-comics --enable-xps --disable-caja
+tip     = gnu
+
+[pakur]
+tip     = gnu

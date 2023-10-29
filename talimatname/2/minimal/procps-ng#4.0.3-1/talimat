@@ -1,0 +1,24 @@
+[paket]
+tanim   = Sistem ve süreç yönetim araçları
+paketci = milisarge
+grup 	= temel
+url     = http://procps.sourceforge.net
+
+[gerek]
+derleme = autoconf
+calisma =
+
+[kaynak]
+xz     	= http://downloads.sourceforge.net/project/$isim/Production
+
+[sha256]
+1	    = 303c8ec4f96ae18d8eaef86c2bd0986938764a45dc505fe0a0af868c674dba92
+
+[derle]
+betik   = sed 's:<ncursesw/:<:g' -i src/watch.c
+betik   = autoreconf -fi
+ekconf  = --exec-prefix=/ --enable-watch8bit --without-systemd --disable-modern-top --disable-kill
+tip     = gnu    
+    
+[pakur]
+tip     = gnu

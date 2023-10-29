@@ -1,0 +1,25 @@
+[paket]
+tanim   = Python hızlı ve sofistike dizi tesisi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.numpy.org/
+arsiv   = numpy-$surum
+
+[gerek]
+derleme = cython python lapack patchelf meson
+calisma =
+
+[kaynak]
+1       = https://github.com/numpy/numpy/releases/download/v$surum/numpy-$surum.tar.gz
+
+[sha256]
+1       = f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
+
+[derle]
+betik = pip3 install pyproject_metadata
+betik = pip3 install build
+betik =  LC_ALL=C python -m build --wheel --no-isolation -Csetup-args="-Dblas=blas" -Csetup-args="-Dlapack=lapack"
+
+[pakur]
+betik = pip3 install installer
+betik = python -m installer --destdir=$PKG dist/*.whl

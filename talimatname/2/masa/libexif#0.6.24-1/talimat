@@ -1,0 +1,23 @@
+[paket]
+tanim   = EXIF dosyasını ayrıştırmak ve bu etiketlerden verileri okumak için bir kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/libexif/libexif
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+bz2     = https://github.com/$isim/$isim/releases/download/v$surum
+
+;[sha256]
+;1       = d47564c433b733d83b6704c70477e0a4067811d184ec565258ac563d8223f6ae>
+
+[derle]
+betik   = autoreconf -i
+ekconf  = --disable-static
+tip     = gnu
+
+[pakur]
+tip     = gnu

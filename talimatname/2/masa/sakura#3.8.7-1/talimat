@@ -1,0 +1,23 @@
+[paket]
+tanim   = GTK-VTE tabanlı terminal uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://launchpad.net/sakura
+
+[gerek]
+derleme = cmake libxft vte3
+calisma =
+
+[kaynak]
+bz2     = https://launchpad.net/sakura/trunk/${surum}/+download
+
+[sha256]
+1       = ba7009ff03cacc19149d82f280413defb019540d2409e6cb9243f0d7ac812922
+
+[derle]
+betik   = sed -i "s#Name=Sakura#Name=Terminal\nName[tr]=Uçbirim#g" sakura.desktop
+betik   = sed -i "s#Ubuntu Mono,monospace 13#Monospace 10#g" src/sakura.c
+tip     = cmake
+
+[pakur]
+tip     = cmake

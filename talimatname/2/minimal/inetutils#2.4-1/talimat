@@ -1,0 +1,17 @@
+[paket]
+tanim   = Temel ağ araçları
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/inetutils
+
+[kaynak]
+xz      = https://mirrors.dotsrc.org/gnu/inetutils
+
+[sha256]
+1	= 1789d6b1b1a57dfe2a7ab7b533ee9f5dfd9cbf5b59bb1bb3c2612ed08d0f68b2
+
+[derle]
+dosya   = derle.sh
+      
+[pakur]
+tip    = gnu

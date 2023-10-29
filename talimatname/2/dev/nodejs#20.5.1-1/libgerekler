@@ -1,0 +1,16 @@
+libgcc_s.so.1
+libnode.so.115
+libc.so.6
+libbrotlidec.so.1
+libicui18n.so.73
+libz.so.1
+libbrotlienc.so.1
+libcares.so.2
+libm.so.6
+ld-linux-x86-64.so.2
+libuv.so.1
+libssl.so.3
+libicuuc.so.73
+libstdc++.so.6
+libnghttp2.so.14
+libcrypto.so.3

@@ -1,0 +1,26 @@
+[paket]
+tanim   = GUID Partition Table (GPT) disklerinde çalışan bir metin modu bölümleme aracı
+paketci = milisarge
+grup    = sistem
+url     = https://www.rodsbooks.com/gdisk
+
+[kaynak]
+gz      = https://downloads.sourceforge.net/project/$isim/$isim/$surum
+dosya   = popt-1.19.patch
+dosya   = popt-1.19-follow-up.patch
+dosya   = util-linux-2.38.patch
+
+[sha256]
+1       = dafead2693faeb8e8b97832b23407f6ed5b3219bc1784f482dd855774e2d50c2
+
+[derle]
+yama    = popt-1.19.patch
+yama    = util-linux-2.38.patch
+yama    = popt-1.19-follow-up.patch
+betik   = sed -i 's#<ncursesw/ncurses.h>#<ncurses.h>#' gptcurses.cc
+betik   = make
+
+[pakur]
+betik   = install -d "$PKG"/usr/{bin,share/man/man8}
+betik   = install -t "$PKG/usr/bin" {,c,s}gdisk fixparts
+betik   = install -m644 -t "$PKG/usr/share/man/man8" {{,c,s}gdisk,fixparts}.8

@@ -1,0 +1,25 @@
+[paket]
+tanim   = Device-mapper RAID kütüphane ve aracı
+paketci = milisarge
+grup 	= sistem
+url     = https://people.redhat.com/~heinzm/sw/dmraid
+arsiv   = $isim/1.0.0.rc16-3/$isim
+
+[gerek]
+derleme = lvm2
+calisma =
+
+[kaynak]
+1       = https://people.redhat.com/~heinzm/sw/dmraid/src/dmraid-1.0.0.rc16-3.tar.bz2
+
+[sha256]
+1 		= 93421bd169d71ff5e7d2db95b62b030bfa205a12010b6468dcdef80337d6fbd8
+
+[derle]
+betik   = ./configure --enable-led --enable-intel_led && make -j1
+
+	      
+[pakur]
+betik   = make DESTDIR="$PKG" sbindir=/usr/bin prefix=/usr libdir=/usr/lib mandir=/usr/share/man includedir=/usr/include install
+betik   = chmod 644 "$PKG"/usr/include/dmraid/*
+betik   = rm -f "$PKG"/usr/lib/libdmraid.a

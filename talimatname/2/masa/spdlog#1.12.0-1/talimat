@@ -1,0 +1,22 @@
+[paket]
+tanim   = Hızlı C++ günlük kaydı kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/gabime/spdlog
+
+[gerek]
+derleme = cmake fmt
+calisma = 
+
+[kaynak]
+github  = gabime/spdlog
+
+;[sha256]
+;1       = ca5cae8d6cac15dae0ec63b21d6ad3530070650f68076f3a4a862ca293a858bb
+
+[derle]
+ekconf  = -DSPDLOG_BUILD_EXAMPLE=OFF -DSPDLOG_BUILD_BENCH=OFF -DSPDLOG_FMT_EXTERNAL=ON -DSPDLOG_BUILD_SHARED=ON -DSPDLOG_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=None -Wno-dev
+tip     = cmake
+
+[pakur]
+tip     = cmake

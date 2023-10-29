@@ -1,0 +1,22 @@
+[paket]
+tanim   = XCB hata kütüphaneleri
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = xorgproto libxcb xcb-proto
+calisma = 
+
+[kaynak]
+xz      = $url/dist
+
+[sha256]
+1 	    = 5628c87b984259ad927bacd8a42958319c36bdf4b065887803c9d820fb80f357
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

@@ -1,0 +1,22 @@
+[paket]
+tanim   = LDAC Bluetooth şifreleme kütüphanesi
+paketci = milisarge  
+grup    = kütüphane 
+url     = https://github.com/EHfive/ldacBT
+arsiv   = ldacBT
+[gerek]
+derleme = cmake
+calisma =  
+
+[kaynak]
+1       = $url/releases/download/v$surum/ldacBT-$surum.tar.gz 
+
+[sha256]
+1       = 4bd8eece78bb5c1361fab95743e7100506e2408a25c4a592a0f8d349746dc5b4
+
+[derle]
+ekconf  = -DLDAC_SOFT_FLOAT=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake

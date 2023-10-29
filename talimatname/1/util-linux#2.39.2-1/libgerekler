@@ -1,0 +1,13 @@
+libfdisk.so.1
+libz.so.1
+ld-linux-x86-64.so.2
+libuuid.so.1
+libmagic.so.1
+libc.so.6
+libblkid.so.1
+libsmartcols.so.1
+libm.so.6
+libcrypt.so.2
+libncursesw.so.6
+libmount.so.1
+libreadline.so.8

@@ -1,0 +1,18 @@
+[paket]
+tanim   = Taşınabilir dış yordamlar için arayüz sağlayan kütüphane
+paketci = milisarge
+grup 	= temel
+url     = http://sourceware.org/libffi
+
+[kaynak]
+gz      = https://github.com/$isim/$isim/releases/download/v$surum
+
+;[sha256]
+;1 		= 72fba7922703ddfa7a028d513ac15a85c8d54c8d67f55fa5a4802885dc652056
+
+[derle]
+betik   = ./configure --prefix=/usr --disable-static --enable-pax_emutramp
+betik   = make
+	      
+[pakur]
+tip     = gnu

@@ -1,0 +1,24 @@
+[paket]
+tanim   = GTK+ Web içerik motoru
+paketci = milisarge  
+grup    = ağ 
+url     = https://webkitgtk.org
+
+[gerek]
+derleme = llvm ninja gperf gobject-introspection cmake python enchant gstreamer gstreamer-extra flatpak libxslt libsecret wpebackend-fdo openjpeg2 harfbuzz gtk3 libnotify libseccomp libsoup libxt libmanette woff2 ruby bubblewrap
+calisma = 
+
+[kaynak]
+1       = https://webkitgtk.org/releases/webkitgtk-${surum}.tar.xz
+2       =
+
+[sha256]
+1       = 6f41fac9989d3ee51c08c48de1d439cdeddecbc757e34b6180987d99b16d2499
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = cd $SRC
+tip     = cmake
+

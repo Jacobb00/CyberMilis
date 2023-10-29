@@ -1,0 +1,20 @@
+[paket]
+tanim   = KMS kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.freedesktop.org/emersion/libliftoff
+arsiv   = $isim-v$surum
+
+[gerek]
+derleme = meson libdrm
+calisma =
+
+[kaynak]
+1       = https://gitlab.freedesktop.org/emersion/libliftoff/-/archive/v$surum/libliftoff-v$surum.tar.bz2
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson
+

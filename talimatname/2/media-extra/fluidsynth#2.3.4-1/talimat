@@ -1,0 +1,30 @@
+[paket]
+tanim   = SoundFont2 tabanlı gerçek zamanlı yazılım sentezleyicisi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.fluidsynth.org
+
+[gerek]
+derleme = cmake glib alsa-lib ladspa libsndfile portaudio jack pulseaudio pipewire sdl2
+calisma =
+
+[kaynak]
+gz      = https://github.com/FluidSynth/fluidsynth/archive/v${surum}
+2       = https://github.com/swami/libinstpatch/archive/v1.1.6/libinstpatch-v1.1.6.tar.gz::libinstpatch-1.1.6.tar.gz
+
+[sha256]
+1       = 1529ef5bc3b9ef3adc2a7964505912f7305103e269e50cc0316f500b22053ac9
+
+[derle]
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+betik  = cd $SRC/
+betik  = cmake -B buildinst -D CMAKE_INSTALL_PREFIX=/usr -D LIB_INSTALL_DIR=/usr/lib -D CMAKE_BUILD_TYPE=None -S libinstpatch-1.1.6 -W no-dev
+betik  = cmake --build buildinst --verbose;DESTDIR="$PKG" cmake --install buildinst
+betik  = cmake -B build $CMAKE_OPT -D enable-ladspa=ON -D enable-portaudio=ON -DInstPatch_LIBRARY=$PKG/usr/lib/libinstpatch-1.0.so -DInstPatch_INCLUDE_DIR=$PKG/usr/include/libinstpatch-2 -S $isim-$surum -W no-dev
+betik  = cmake --build build --verbose;DESTDIR="$PKG" cmake --install build
+
+[pakur]
+betik  = echo "pakur yok"

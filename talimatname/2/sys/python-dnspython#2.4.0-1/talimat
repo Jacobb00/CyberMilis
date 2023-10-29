@@ -1,0 +1,22 @@
+[paket]
+tanim   = DNS araç seti Python için
+paketci = milisarge
+grup 	= kütüphane
+url     = https://www.dnspython.org
+arsiv   = dnspython-$surum
+
+[gerek]
+derleme = python
+calisma = python
+
+[kaynak]
+1       = https://pypi.python.org/packages/source/d/dnspython/dnspython-$surum.tar.gz
+
+[sha256]
+1 		= 758e691dbb454d5ccf4e1b154a19e52847f79e21a42fef17b969144af29a4e6c
+
+[derle]
+betik   = pip3 install --isolate --root=${PKG} --no-warn-script-location --ignore-installed --no-deps dnspython
+
+[pakur]
+betik   = echo "pakur yok"

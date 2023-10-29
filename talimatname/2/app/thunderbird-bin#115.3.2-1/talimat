@@ -1,0 +1,25 @@
+[paket]
+tanim   = E-Posta istemci uygulaması (derlenmiş)
+paketci = milisarge
+grup 	= ağ
+url     = https://www.thunderbird.net
+
+[gerek]
+derleme = 
+calisma = libxt libxcursor
+
+[kaynak]
+1       = https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/${surum}/linux-x86_64/tr/thunderbird-${surum}.tar.bz2
+dosya   = thunderbird-bin.desktop 
+
+[sha256]
+1       = 90031892a6f843af09ac2e77e90f26eb65d0f2b2075db505668274a86dad39a4
+
+[derle]
+betik   = echo "derleme yok"
+	      
+[pakur]
+strip   = 0
+betik   = mkdir -p $PKG/usr/share/applications
+betik   = mv $SRC/thunderbird $PKG/usr/share/
+betik   = cp $SRC/thunderbird-bin.desktop $PKG/usr/share/applications/

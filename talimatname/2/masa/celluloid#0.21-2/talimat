@@ -1,0 +1,26 @@
+[paket]
+tanim   = GTK tabanlı Mpv önyüz medya oynatıcısı
+paketci = milisarge
+grup    = medya
+url     = https://celluloid-player.github.io
+
+[gerek]
+derleme = meson gtk3 mpv
+calisma =
+
+[kaynak]
+xz      = https://github.com/celluloid-player/$isim/releases/download/v$surum
+2       = https://raw.githubusercontent.com/celluloid-player/celluloid/master/po/tr.po::celluloid-tr.po!
+
+[sha256]
+1       = 2299d8cc1a5a620cc3686495da22ac4ccd6dd020827d9dd27e19a61d83707eb7
+
+[derle]
+betik   = sed -i "s/Name=Celluloid/Name=Multimedia Player/g" data/io.github.celluloid_player.Celluloid.desktop.in
+betik   = sed -i "/^Name=*/a Name[tr]=Medya Oynatıcı" data/io.github.celluloid_player.Celluloid.desktop.in
+betik   = mv $KAYNAK_DIZIN/celluloid-tr.po po/tr.po
+betik   = sed -i 's/#~ //g' po/tr.po
+tip     = meson
+
+[pakur]
+tip     = meson

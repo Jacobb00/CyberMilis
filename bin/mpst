@@ -1,0 +1,21 @@
+#!/usr/bin/env slua
+
+--Milis Linux talimatını bulup nano düzenleyici de açar.
+
+if arg[1] == nil then
+  print("talimat eksik!")
+  os.exit()
+end
+
+find_cmd="mps ara -t "..arg[1].." | head -n1"
+
+local f = io.popen(find_cmd)
+local output = f:read("*a")
+f:close()
+
+talimat_dir=output:sub(1,-2)
+if output:find("!") == nil  then
+  os.execute("nano "..talimat_dir.."/talimat")
+else
+   print(output:sub(1,-2))
+end

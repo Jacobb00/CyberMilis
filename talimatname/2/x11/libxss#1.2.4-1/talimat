@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 Ekran Koruyucu uzantı kütüphanesi
+paketci = millisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXScrnSaver-$surum
+
+[gerek]
+derleme = xorgproto xorg-util-macros libxext
+calisma = 
+
+[kaynak]
+1       = $url/releases/individual/lib/libXScrnSaver-$surum.tar.xz
+
+[sha256]
+1 		= 75cd2859f38e207a090cac980d76bc71e9da99d48d09703584e00585abc920fe
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

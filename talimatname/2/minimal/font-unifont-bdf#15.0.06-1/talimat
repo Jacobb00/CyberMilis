@@ -1,0 +1,19 @@
+[paket]
+tanim   = GNU Unifont
+paketci = milisarge
+grup    = kütüphane
+url     = http://unifoundry.com/unifont/index.html
+arsiv   = unifont-$surum
+
+[kaynak]
+1       = https://ftp.gnu.org/gnu/unifont/unifont-$surum/unifont-$surum.tar.gz
+
+;[sha256]
+;1       = 071e2ca005d97d72e79b8cb68df886f1f730cb5f0e7739a4c6e8d068ded28212
+
+[derle]
+betik   = echo "derleme yok"
+
+[pakur]
+betik   = gzip -d font/precompiled/unifont-${surum}.bdf.gz
+betik   = install -Dm644 font/precompiled/unifont-${surum}.bdf $PKG/usr/share/fonts/misc/unifont.bdf

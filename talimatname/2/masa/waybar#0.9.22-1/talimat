@@ -1,0 +1,25 @@
+[paket]
+tanim   = Polybar benzeri panel uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/Alexays/Waybar
+;arsiv   = Waybar-${surum}
+arsiv   = Waybar
+
+[gerek]
+derleme = cmake meson libnl glib wayland gobject-introspection libinput gtkmm spdlog eudev gtk-layer-shell jsoncpp pulseaudio playerctl wireplumber jack libindicator
+calisma = awesome-fonts
+
+[kaynak]
+;1       = $url/archive/${surum}.tar.gz::$isim-$surum.tar.gz
+git      = $url
+
+;[sha256]
+;1       = 61e8d934c178b9da8212162398d2be44c5606c92b9a3503526993bb204206c6b
+
+[derle]
+ekconf  = -Dtests=disabled -Dsystemd=disabled -Dsndio=disabled -Dmpd=disabled -Dupower_glib=disabled -Dpulseaudio=enabled -Ddbusmenu-gtk=enabled -Dgtk-layer-shell=enabled -Dlibudev=enabled -Dman-pages=disabled -Djack=enabled -Dcava=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

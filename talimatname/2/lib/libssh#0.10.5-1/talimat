@@ -1,0 +1,22 @@
+[paket]
+tanim 	= SSH bağlantıları için C programlama arayüzü
+paketci = milisarge
+grup 	= kütüphane
+url 	= https://www.libssh.org
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+xz     	= $url/files/${surum%.*}
+
+[sha256]
+1       = b60e2ff7f367b9eee2b5634d3a63303ddfede0e6a18dfca88c44a8770e7e4234
+
+[derle]
+ekconf  = -DCMAKE_INSTALL_PREFIX=/usr -DWITH_GSSAPI=OFF -DUNIT_TESTING=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake

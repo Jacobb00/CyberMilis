@@ -1,0 +1,22 @@
+[paket]
+tanim   = XML-XCB protokol tanımlamaları
+paketci = milisarge
+grup 	= kütüphane
+url     = https://xcb.freedesktop.org
+
+[gerek]
+derleme = python libxml2
+calisma = 
+
+[kaynak]
+xz      = https://xorg.freedesktop.org/archive/individual/proto
+
+[sha256]
+1 	   = 7072beb1f680a2fe3f9e535b797c146d22528990c72f63ddb49d2f350a3653ed
+
+[derle]
+tip     = gnu
+
+	      
+[pakur]
+tip     = gnu

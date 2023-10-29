@@ -1,0 +1,125 @@
+#!/bin/bash
+# temel sistemin bash i yapılmadan önce kullanılacak.
+# http://www.linuxfromscratch.org/lfs/view/development/chapter06/chroot.html
+# http://www.linuxfromscratch.org/lfs/view/development/chapter06/kernfs.html#ch-system-kernfsmount
+# https://notabug.org/dragora/dragora/src/master/enter-chroot
+
+hata_olustu(){
+	echo $1
+	exit 1
+}
+
+[ -z $ONSISTEM_CHROOT ] && hata_olustu "ONSISTEM_CHROOT tanmlı değil!"
+[ ! -d $ONSISTEM_CHROOT/tools ] && hata_olustu "$ONSISTEM_CHROOT/tools dizini mevcut değil!"
+
+# Herhangi bir hatada çıkış için
+set -e
+
+LC_ALL=C
+export LC_ALL
+
+unmount_ortam()
+{
+    for node in "${ONSISTEM_CHROOT}/sources" \
+                "${ONSISTEM_CHROOT}/sys" \
+                "${ONSISTEM_CHROOT}/proc" \
+                "${ONSISTEM_CHROOT}/dev/pts" \
+                "${ONSISTEM_CHROOT}/dev"  \
+                "${ONSISTEM_CHROOT}/run" ; \
+    do
+        if mount | grep -q "$node"
+        then
+            echo "Çözülüyor ${node} ..."
+            if ! umount "$node"
+            then
+                echo "Sorunlu $node çözülüyor ..."
+                umount -l "$node"
+            fi
+        fi
+    done
+}
+
+# chroot girerken eski bağlar temizlenir.
+unmount_ortam
+
+# chroot için gerekli dizinlerin oluşturulması
+# Create required directory for destination
+mkdir -p -- "${ONSISTEM_CHROOT}/dev"                 \
+            "${ONSISTEM_CHROOT}/dev/pts"             \
+            "${ONSISTEM_CHROOT}/proc"                \
+            "${ONSISTEM_CHROOT}/sys"                 \
+            "${ONSISTEM_CHROOT}/run"                 \
+            "${ONSISTEM_CHROOT}/sources" 
+
+if [ -h $ONSISTEM_CHROOT/dev/shm ]; then
+  mkdir -pv $ONSISTEM_CHROOT/$(readlink $ONSISTEM_CHROOT/dev/shm)
+fi
+
+rm -f ${ONSISTEM_CHROOT}/dev/console
+rm -f ${ONSISTEM_CHROOT}/dev/null
+mknod -m 600 ${ONSISTEM_CHROOT}/dev/console c 5 1
+mknod -m 666 ${ONSISTEM_CHROOT}/dev/null c 1 3
+
+
+echo "Chroot ortamı bağlanıyor..."
+mount -v --bind /dev $ONSISTEM_CHROOT/dev
+mount -vt devpts devpts $ONSISTEM_CHROOT/dev/pts -o gid=5,mode=620
+mount -vt proc proc $ONSISTEM_CHROOT/proc
+mount -vt sysfs sysfs $ONSISTEM_CHROOT/sys
+mount -vt tmpfs tmpfs $ONSISTEM_CHROOT/run
+
+mount -o bind "/sources" "$ONSISTEM_CHROOT/sources"
+
+
+_MPS_PATH="/tools/share/mps"
+# mps nin tools içine kopyalanması
+if [ ! -d $ONSISTEM_CHROOT/${_MPS_PATH} ];then
+	mkdir -p $ONSISTEM_CHROOT/${_MPS_PATH}
+	cp -rf $MPS_PATH/* $ONSISTEM_CHROOT/${_MPS_PATH}/
+fi
+
+# temel dosya sistemi için betik ataması
+if [ -d $ONSISTEM_CHROOT/tools/bin ];then
+	cp -f $MILIS_REPO/ayarlar/onsistem/03-* $ONSISTEM_CHROOT/tools/bin/
+	cp -f $MILIS_REPO/ayarlar/onsistem/05-* $ONSISTEM_CHROOT/tools/bin/
+fi
+
+_TALIMATNAME="/tools/share/talimatname"
+
+# temel sistem talimatlarının yüklenmesi
+if [ ! -d $ONSISTEM_CHROOT/${_TALIMATNAME}/1 ];then
+	mkdir -p $ONSISTEM_CHROOT/${_TALIMATNAME}
+	if [ -d ${MILIS_REPO}/talimatname/1 ];then
+		cp -rf ${MILIS_REPO}/talimatname/1 $ONSISTEM_CHROOT/${_TALIMATNAME}/
+		echo "temel sistem talimatları kopyalandı."
+	else
+		echo "$TALIMATNAME/1 bulunamadı"
+	fi
+fi
+
+# önsisteme wget kurulduysa sertifika ve resolv.conf ayarlarının kopyalanması
+mkdir -p $ONSISTEM_CHROOT/etc/ssl/certs
+[ -f /etc/ssl/certs/ca-certificates.crt ] && \
+cp -fv /etc/ssl/certs/ca-certificates.crt $ONSISTEM_CHROOT/etc/ssl/certs/
+cp -fv /etc/resolv.conf $ONSISTEM_CHROOT/tools/etc/
+
+# bin dir
+mkdir -p $ONSISTEM_CHROOT/tools/share/bin
+[ -d ${MILIS_REPO}/bin ] && cp -rvf ${MILIS_REPO}/bin/* $ONSISTEM_CHROOT/tools/share/bin/
+
+# ayarlar dir
+mkdir -p $ONSISTEM_CHROOT/tools/share/ayarlar
+[ -d ${MILIS_REPO}/ayarlar ] && cp -rvf ${MILIS_REPO}/ayarlar/* $ONSISTEM_CHROOT/tools/share/ayarlar/
+
+# Çıkışları yakalamak için bash tuzak(trap) eklenir.
+trap 'echo ; unmount_ortam' EXIT HUP QUIT ABRT TERM
+
+chroot "$ONSISTEM_CHROOT" /tools/bin/env -i \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='(temel) \u:\w\$ ' \
+    MPS_PATH=${_MPS_PATH} \
+    TALIMATNAME="/usr/milis/talimatname" \
+    PATH=${_MPS_PATH}/static:${_MPS_PATH}/bin:/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin:/tools/sbin \
+    USER=root \
+    /tools/bin/bash --login +h

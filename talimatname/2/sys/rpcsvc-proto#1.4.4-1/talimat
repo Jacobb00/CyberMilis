@@ -1,0 +1,22 @@
+[paket]
+tanim   = Glibc'den Rpcsvc protokol tanımları
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/thkukuk/rpcsvc-proto
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+xz      = https://github.com/thkukuk/rpcsvc-proto/releases/download/v${surum}
+
+[sha256]
+1       = 81c3aa27edb5d8a18ef027081ebb984234d5b5860c65bd99d4ac8f03145a558b
+
+[derle]
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

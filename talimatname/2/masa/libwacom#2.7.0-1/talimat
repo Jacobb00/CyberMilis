@@ -1,0 +1,22 @@
+[paket]
+tanim   = Wacom tabletlerini tanımlamak için kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/linuxwacom/libwacom
+
+[gerek]
+derleme = meson libgudev
+calisma =
+
+[kaynak]
+xz      = https://github.com/linuxwacom/libwacom/releases/download/${isim}-${surum}
+
+[sha256]
+1       = 853929bd73fba2064b12142dbbee4b3bf84509197ff46a4da559eddf62d32cdf
+
+[derle]
+ekconf  = -Dtests=disabled -Ddocumentation=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

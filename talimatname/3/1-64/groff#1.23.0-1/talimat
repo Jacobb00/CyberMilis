@@ -1,0 +1,18 @@
+[paket]
+tanim   = Metin işleme ve formatlama araçları
+paketci = milisarge
+grup 	= temel
+url     = http://www.gnu.org/software/patch/patch.html
+
+[kaynak]
+gz      = http://ftp.gnu.org/gnu/groff
+
+;[sha256]
+;1 		= e78e7b4cb7dec310849004fa88847c44701e8d133b5d4c13057d876c1bad0293
+
+[derle]
+betik   = PAGE="A4" ./configure --prefix=/usr
+betik   = make
+
+[pakur]
+tip     = gnu

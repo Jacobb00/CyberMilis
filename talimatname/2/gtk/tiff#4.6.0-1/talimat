@@ -1,0 +1,21 @@
+[paket]
+tanim   = TIFF resim işleme kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.simplesystems.org/libtiff/
+
+[gerek]
+derleme = mesa jbigkit libjpeg-turbo  
+calisma = 
+
+[kaynak]
+gz      = https://download.osgeo.org/libtiff
+
+[sha256]
+1 		= 88b3979e6d5c7e32b50d7ec72fb15af724f6ab2cbf7e10880c360a77e4b5d99a
+
+[derle]
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

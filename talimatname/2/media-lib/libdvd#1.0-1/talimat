@@ -1,0 +1,30 @@
+[paket]
+tanim   = DVD aygıtları için kütüphane seti
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.videolan.org/developers
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1     = https://download.videolan.org/pub/videolan/libdvdcss/1.4.3/libdvdcss-1.4.3.tar.bz2
+2     = https://download.videolan.org/pub/videolan/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
+3     = https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
+
+;[sha256]
+;1       = c191a7475947d323ff7680cf92c0fb1be8237701885f37656c64d04e98d18d48	
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+export  = LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+
+gnu = libdvdcss-1.4.3
+gnu = libdvdread-6.1.3
+gnu = libdvdnav-6.1.1
+
+[pakur]
+betik = echo "pakur yok"

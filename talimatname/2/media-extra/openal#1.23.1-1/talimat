@@ -1,0 +1,23 @@
+[paket]
+tanim   = Çapraz platform 3D ses kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://openal-soft.org
+arsiv   = openal-soft-$surum
+
+[gerek]
+derleme = cmake alsa-lib pulseaudio sdl2 ffmpeg portaudio sdl2 fluidsynth pipewire libmysofa jack openal gstreamer bluez
+calisma =
+
+[kaynak]
+1       = http://openal-soft.org/openal-releases/openal-soft-$surum.tar.bz2
+
+;[sha256]
+;1       = c8ad767e9a3230df66756a21cc8ebf218a9d47288f2514014832204e666af5d8
+
+[derle]
+ekconf  = -DALSOFT_EXAMPLES=OFF -DALSOFT_TESTS=OFF
+tip     = cmake
+
+[pakur]
+tip     = cmake

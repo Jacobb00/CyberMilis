@@ -1,0 +1,23 @@
+[paket]
+tanim   = GObject tip sistemi için derleyici
+paketci = milisarge
+grup 	= geliştirme
+url     = https://wiki.gnome.org/Projects/Vala
+
+[gerek]
+derleme = glib automake
+calisma = 
+
+[kaynak]
+xz      = https://ftp.gnome.org/pub/gnome/sources/vala/${surum%.*}
+
+[sha256]
+1 		= 4988223036c7e1e4874c476d0de8bd9cbe500ee25ef19a76e560dc0b6d56ae07
+
+[derle]
+betik   = NOCONFIGURE=1 ./autogen.sh
+ekconf  = --disable-valadoc
+tip 	= gnu
+	      
+[pakur]
+tip 	= gnu

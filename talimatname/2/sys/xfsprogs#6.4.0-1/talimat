@@ -1,0 +1,28 @@
+[paket]
+tanim   = XFS dosya sistemini yönetmek için yardımcı programlar
+paketci = milisarge
+grup    = sistem
+url     = http://xfs.org/index.php/Main_Page
+
+[gerek]
+derleme = libinih icu liburcu
+calisma =
+
+[kaynak]
+xz      = ${KERNEL_SITE}/utils/fs/xfs/$isim
+
+[sha256]
+1       = c31868418bfbf49a3a9c47fc70cdffde9d96f4ff0051bd04a0881e6654648104
+
+[derle]
+betik   = make configure
+betik   = export OPTIMIZER="-march=${CARCH/_/-} -O1"
+betik   = export DEBUG=-DNDEBUG
+betik   = ./configure --prefix=/usr --sbindir=/usr/bin
+betik   = make
+
+
+[pakur]
+betik   = make DIST_ROOT="${PKG}" PKG_ROOT_SBIN_DIR="/usr/bin" install install-dev
+betik   = mv "${PKG}"/lib/libhandle.so* "${PKG}/usr/lib/"
+betik   = rm -rf "${PKG}/lib"

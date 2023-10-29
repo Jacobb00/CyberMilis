@@ -1,0 +1,21 @@
+[paket]
+tanim   = Linux API başlıkları(headers)
+paketci = milisarge
+grup 	= onsistem
+url     = http://www.kernel.org
+arsiv   = linux-$surum
+
+[kaynak]
+1      = $url/pub/linux/kernel/v6.x/linux-$surum.tar.xz
+
+;[sha256]
+;1 		= 7656733b316562662026ac82a7c0be41440e16bbf1bdc5447b119e34ff3b86a6
+
+[derle]
+betik 	= make mrproper && make headers
+	      
+[pakur]
+betik   = find usr/include -name '.*' -delete ; rm usr/include/Makefile
+betik   = mkdir -p /tools/include
+betik   = cp -rv usr/include/* /tools/include
+betik   = mkdir -p $PKG/tools/share/package/$isim-$surum

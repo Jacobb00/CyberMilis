@@ -1,0 +1,27 @@
+[paket]
+tanim   = Pulseaudio ses kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.pulseaudio.org
+
+[gerek]
+derleme = meson dbus eudev glib alsa-lib perl-xml-parser alsa-utils avahi libxtst bluez libcap glib libsndfile libsoxr xiph gdbm gstreamer
+calisma = 
+
+[kaynak]
+xz      = http://freedesktop.org/software/pulseaudio/releases
+
+[sha256]
+1       = 8eef32ce91d47979f95fd9a935e738cd7eb7463430dabc72863251751e504ae4
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+tip     = meson
+betik   = rm -rf $PKG/etc/dbus-1
+betik   = rm -f $PKG/etc/pulse/{system.pa,default.pa,daemon.conf}
+betik   = rm -rf $PKG/usr/share/{bash-completion,zsh}
+betik   = rm -f $PKG/usr/bin/{pulseaudio,pa-info,pasuspender,pacmd}
+betik   = rm -rf $PKG/usr/lib/{pulse-$surum,pulse,udev}
+;betik   = rm -f $PKG/usr/lib/pulseaudio/libpulsecore-$surum.so

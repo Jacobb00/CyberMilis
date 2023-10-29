@@ -1,0 +1,22 @@
+[paket]
+tanim   = Wayland için gündüz/gece gamma renk ayarlayıcısı
+paketci = milisarge
+grup    = sistem
+url     = https://git.sr.ht/~kennylevinsen/wlsunset
+
+[gerek]
+derleme = meson wayland-protocols wayland
+calisma =
+
+[kaynak]
+1       = $url/archive/$surum.tar.gz
+
+[sha256]
+1       = 9ece2570c3427888a493cd33a129e82634475e6e9286ed729af24fba07ab5424
+
+[derle]
+ekconf  = -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson

@@ -1,0 +1,22 @@
+[paket]
+tanim   = Çoklu çıktı aygıtlarını destekleyen 2D grafik kitaplığıdır.
+paketci	= milisarge
+grup	= kütüphane
+url	    = http://www.cairographics.org/
+
+[gerek]
+derleme	= meson glib libpng pixman freetype fontconfig libxrender xcb-util libxext
+calisma	= 
+
+[kaynak]
+bz2	    = https://gitlab.freedesktop.org/cairo/cairo/-/archive/$surum
+
+[sha256]
+1       = ead4724423eb969f98b456fe1e3ee1e1741fe1c8dfb1a41ca12afa81a6c1665f
+
+[derle]
+ekconf	= -D dwrite=disabled -D gtk_doc=false -D spectre=disabled -D symbol-lookup=disabled -D tests=disabled
+tip  	= meson
+
+[pakur]
+tip	    = meson

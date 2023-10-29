@@ -1,0 +1,18 @@
+[paket]
+tanim 	= SMBIOS/DMI standartında sistem bilgi uygulaması
+paketci = milisarge
+grup 	= sistem
+url 	= https://www.nongnu.org/dmidecode 
+
+[kaynak]
+xz 	    = http://download.savannah.nongnu.org/releases/$isim
+
+[sha256]
+1       = 79d76735ee8e25196e2a722964cf9683f5a09581503537884b256b01389cc073
+
+[derle]
+betik   = sed -i "s:sbin:bin:g" Makefile
+betik   = make prefix=/usr CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+
+[pakur]
+betik 	= make prefix=/usr DESTDIR="$PKG" install

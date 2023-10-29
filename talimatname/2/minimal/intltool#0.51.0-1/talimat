@@ -1,0 +1,29 @@
+[paket]
+tanim   = Kaynak koddan çevrilebilir kelime çıkaran uluslararası dil aracı
+paketci = milisarge
+grup 	= temel
+url     = http://freedesktop.org/wiki/Software/intltool
+
+[gerek]
+derleme = perl-xml-parser
+calisma = perl-xml-parser
+
+[kaynak]
+gz      = http://edge.launchpad.net/intltool/trunk/$surum/+download
+dosya   = intltool-0.51.0-perl-5.26.patch
+dosya   = intltool_distcheck-fix.patch
+dosya   = intltool-fixrace.patch
+dosya   = intltool-merge-Create-cache-file-atomically.patch
+
+[sha256]
+1	= 67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd
+
+[derle]
+yama    = intltool-0.51.0-perl-5.26.patch
+yama    = intltool_distcheck-fix.patch
+yama    = intltool-fixrace.patch
+yama    = intltool-merge-Create-cache-file-atomically.patch
+tip	= gnu
+      
+[pakur]
+tip	= gnu

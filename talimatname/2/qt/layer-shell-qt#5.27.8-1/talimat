@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wayland wl-layer-shell protokolünü açığa çıkaran Qt bileşeni
+paketci = milisarge
+grup    = kütüphane
+url     = https://invent.kde.org/plasma/layer-shell-qt
+
+[gerek]
+derleme = cmake extra-cmake-modules qt5-extra wayland-protocols
+calisma =
+
+[kaynak]
+xz      = ${KDE_SITE}/plasma/${surum}
+
+[sha256]
+1       = 772f2aba1710bab59f4c948a8e9628f205a7c6a4dabeb418b3249c5990c688ab
+
+[derle]
+tip     = cmake
+
+[pakur]
+tip     = cmake

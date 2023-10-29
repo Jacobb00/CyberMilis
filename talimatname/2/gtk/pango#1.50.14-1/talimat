@@ -1,0 +1,22 @@
+[paket]
+tanim	= Metin düzeni ve sunumu için bir kütüphane
+paketci	= milisarge
+grup	= kütüphane
+url	    = http://www.gtk.org
+
+[gerek]
+derleme	= meson cairo gobject-introspection fontconfig freetype glib harfbuzz libxft fribidi
+calisma =
+
+[kaynak]
+xz  	= http://ftp.gnome.org/pub/gnome/sources/$isim/${surum%.*}
+
+[sha256]
+1       = 1d67f205bfc318c27a29cfdfb6828568df566795df0cb51d2189cde7f2d581e8
+
+[derle]
+betik	= milis-meson -Dlibthai=disabled build
+tip     = ninja
+
+[pakur]
+tip     = ninja

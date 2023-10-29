@@ -1,0 +1,11 @@
+snappy
+libiscsi
+libcacard
+vde2
+usbredir
+libslirp
+virglrenderer
+spice-protocol
+spice-server
+spice-gtk
+qemu

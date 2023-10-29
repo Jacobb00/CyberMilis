@@ -1,0 +1,25 @@
+[paket]
+tanim   = Bağlayıcı, assembler ve nesne dosyalarını işleme araçları. Pass-2
+paketci = milisarge
+grup 	= onsistem
+url     = http://ftp.gnu.org/gnu
+arsiv   = binutils-$surum
+
+[kaynak]
+1       = http://ftp.gnu.org/gnu/binutils/binutils-$surum.tar.xz
+
+;[sha256]
+;1 		= 5788292cc5bbcca0848545af05986f6b17058b105be59e99ba7d0f9eb5336fb8
+
+[derle]
+noflag  = 1
+betik   = sed '6009s/$add_dir//' -i ltmain.sh
+betik   = mkdir build; cd build
+betik   = ../configure --prefix=/tools --build=$(../config.guess) --host=$ONSISTEM_TARGET --disable-nls --enable-shared --enable-gprofng=no --disable-werror --enable-64-bit-bfd
+betik   = make $MAKEJOBS
+	      
+[pakur]
+betik   = cd build
+tip     = gnu
+betik   = rm -v $PKG/tools/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
+

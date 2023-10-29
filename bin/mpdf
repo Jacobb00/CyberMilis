@@ -1,0 +1,509 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+import gi, sys, os, locale, cairo
+gi.require_version("Gtk","3.0")
+from gi.repository import Gio, Gtk, GLib, GdkPixbuf, Gdk, Poppler, GObject
+
+translate = {"tr":{0:"Sayfa Genişliği",
+					1:"Sayfa Yüksekliği",
+					2:"Orjinal Boyut",
+					3:"Pdf Dosyası Seçiniz",
+					4:"Yazı Kopyalandı",
+					5:"Sayfa No",
+					6:"Bulunan İfade Sayısı",
+					7:"Tüm Dökümanda Ara",
+					8:"Aranıyor",
+					9:"Milis Linux için Poppler ile yazılmış basit bir pdf görüntüleyici."},
+			"en":{0:"Page Width",
+					1:"Page Height",
+					2:"Original Size",
+					3:"Select Pdf File",
+					4:"Text Copied",
+					5:"Page Number",
+					6:"Number of Expressions Found",
+					7:"Search All Documents",
+					8:"Searching",
+					9:"A simple pdf viewer for Milis Linux written in Poppler."}}
+
+l = locale.getdefaultlocale()
+l = l[0].split("_")[0]
+locales = list(translate.keys())
+if l not in locales:
+	l = "en"
+_ = translate[l]
+
+
+class MPdf(Gtk.Window):
+	def __init__(self):
+		super(MPdf, self).__init__()
+		self.scale_factor = 1
+		self.is_full_screen = 0
+		self.document = False
+		self.selection = False
+		self.selection_texts = [[],0]
+		self.sizes = [_[0],_[1],_[2],"%75","%100","%125","%150","%200","%300","%400","%500"]
+
+		self.h_bar = Gtk.HeaderBar()
+		self.h_bar.set_title("MPdf")
+		self.set_titlebar(self.h_bar)
+		self.h_bar.set_show_close_button(True)
+
+		self.open_pdf_file_button = Gtk.ToolButton()
+		self.open_pdf_file_button.set_stock_id(Gtk.STOCK_FILE)
+		self.open_pdf_file_button.connect("clicked", self.open_pdf_file)
+		self.h_bar.pack_start(self.open_pdf_file_button)
+
+		self.print_button = Gtk.ToolButton()
+		self.print_button.connect("clicked",self.print_button_show)
+		self.print_button.set_stock_id(Gtk.STOCK_PRINT)
+		self.h_bar.pack_start(self.print_button)
+
+		self.about_button = Gtk.ToolButton()
+		self.about_button.connect("clicked",self.about_button_show)
+		self.about_button.set_stock_id(Gtk.STOCK_ABOUT)
+		self.h_bar.pack_end(self.about_button)
+
+		self.pages_sb = Gtk.SpinButton(climb_rate=1, digits=0)
+		self.pages_sb.set_wrap(True)
+		self.h_bar.pack_start(self.pages_sb)
+
+		self.max_page_lb = Gtk.Label()
+		self.h_bar.pack_start(self.max_page_lb)
+
+		self.search_entry = Gtk.SearchEntry()
+		self.search_entry.connect("search-changed",self.change_search_entry)
+		self.h_bar.pack_start(self.search_entry)
+
+		self.spinner = Gtk.Spinner()
+		self.spinner.start()
+		self.h_bar.pack_start(self.spinner)
+		
+
+		self.search_up_button = Gtk.ToolButton()
+		self.search_up_button.set_stock_id(Gtk.STOCK_GO_UP)
+		self.search_up_button.connect("clicked", self.search_up_func)
+		self.h_bar.pack_start(self.search_up_button)
+
+		self.search_down_button = Gtk.ToolButton()
+		self.search_down_button.set_stock_id(Gtk.STOCK_GO_DOWN)
+		self.search_down_button.connect("clicked", self.search_down_func)
+		self.h_bar.pack_start(self.search_down_button)
+
+		self.scale_combo = Gtk.ComboBoxText.new_with_entry()
+		self.scale_combo.connect("changed", self.scale_combo_changed)
+		for size in self.sizes:
+			self.scale_combo.append_text(size)
+		self.h_bar.pack_end(self.scale_combo)
+		self.scale_combo.set_active(2)
+
+		self.info_bar = Gtk.Label()
+		self.h_bar.pack_end(self.info_bar)
+
+		h_box = Gtk.HBox()
+		v_box = Gtk.VBox()
+		v_box.pack_start(h_box, True, False, 0)
+
+		self.scroll = Gtk.ScrolledWindow()
+		self.scroll.connect("edge-overshot",self.scroll_max_position)
+		self.scroll.connect("scroll-event", self.on_scroll)
+		self.scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+		self.doc_viewer = Gtk.DrawingArea()
+		self.doc_viewer.set_events(Gdk.EventMask.BUTTON_PRESS_MASK|Gdk.EventMask.BUTTON_MOTION_MASK|Gdk.EventMask.BUTTON_RELEASE_MASK|Gdk.EventMask.KEY_PRESS_MASK )
+		self.doc_viewer.connect("draw", self.draw_pdf_file)
+		self.doc_viewer.connect("button_press_event", self.selection_start)
+		self.doc_viewer.connect("motion-notify-event", self.selection_move)
+		self.doc_viewer.connect("button-release-event", self.selection_stop)
+		self.scroll.add_with_viewport(self.doc_viewer)
+		self.scroll.set_propagate_natural_width(True)
+		self.scroll.set_propagate_natural_height(True)
+
+		h_box.pack_start(self.scroll, True, False, 0)
+		self.add(v_box)
+
+		self.set_default_size(640,480)
+		self.control_is_press = False
+		self.connect('size-allocate', self.size_changed)
+		self.connect("key-press-event",self.key_press)
+		self.connect("key-release-event",self.key_release)
+
+	def about_button_show(self, widget):
+		about = Gtk.AboutDialog()
+		about.set_program_name("MPdf")
+		about.set_version("1.0")
+		about.set_logo_icon_name("qpdfview")
+		about.set_authors(["SonAkinci41"])
+		about.set_comments(_[9])
+		about.set_copyright("(c) 2021 Fatih Kaya <sonakinci41@gmail.com>")
+		about.set_license(" GPL-3.0 License ")
+		about.set_website("https://mls.akdeniz.edu.tr/git/sonakinci41/MPdf")
+		about.run()
+		about.destroy()
+
+	def print_button_show(self, widget):
+		if self.document:
+			pd = Gtk.PrintOperation()
+			pd.set_n_pages(self.document_pages)
+			pd.connect("draw_page",self.draw_page)
+			result = pd.run(Gtk.PrintOperationAction.PRINT_DIALOG, self)
+
+	def draw_page(self, operation, print_ctx, page_num):
+		cr = print_ctx.get_cairo_context()
+		page = self.document.get_page(page_num)
+		page.render(cr)
+
+
+	def on_scroll(self,widget,scroll):
+		if self.control_is_press:
+			self.scale_factor -= scroll.delta_y
+			self.scale_combo.get_child().set_text("% "+str(int(self.scale_factor*100)))
+			return True
+		else:
+			return False
+
+	def search_up_func(self, widget):
+		if self.document:
+			if (self.selection_texts[1] - 1) != -1:
+				self.selection_texts = [self.selection_texts[0], self.selection_texts[1] - 1]
+				self.doc_viewer.queue_draw()
+			else:
+				if (self.current_page - 1) != -1:
+					self.search_next_or_prev("prev")
+			self.scroll_focus_selected()
+
+	def search_down_func(self, widget):
+		if self.document:
+			if (self.selection_texts[1] + 1) != len(self.selection_texts[0]):
+				self.selection_texts = [self.selection_texts[0], self.selection_texts[1] + 1]
+				self.doc_viewer.queue_draw()
+			else:
+				if (self.current_page + 1) != self.document_pages:
+					self.search_next_or_prev("next")
+			self.scroll_focus_selected()
+
+	def scroll_focus_selected(self):
+		if self.selection_texts[0] != []:
+			w, he = self.get_size()
+			v_adj = self.scroll.get_vadjustment()
+			h_adj = self.scroll.get_hadjustment()
+			s_rec = self.selection_texts[0][self.selection_texts[1]]
+			h = ((s_rec.x1 + s_rec.x2) / 2) / self.doc_width
+			v = (self.doc_height - ( (s_rec.y1 + s_rec.y2)) / 2) / self.doc_height
+
+			v_adj.set_value(v*v_adj.get_upper()- (he / 2))
+			self.scroll.set_vadjustment(v_adj)
+
+			h_adj.set_value(h*h_adj.get_upper() - (w / 2))
+			self.scroll.set_hadjustment(h_adj)
+
+	def scroll_max_position(self, widget, pos):
+		if pos == Gtk.PositionType.BOTTOM:
+			if self.document and self.current_page != self.document_pages - 1:
+				v_adj = self.scroll.get_vadjustment()
+				v_adj.set_value(v_adj.get_lower())
+				self.scroll.set_vadjustment(v_adj)
+				self.pages_sb.set_value(self.current_page + 2)
+		elif pos == Gtk.PositionType.TOP :
+			if self.document and self.current_page != 0:
+				v_adj = self.scroll.get_vadjustment()
+				v_adj.set_value(v_adj.get_upper())
+				self.scroll.set_vadjustment(v_adj)
+				self.pages_sb.set_value(self.current_page)
+
+	def key_release(self, widget, event):
+		key_name = Gdk.keyval_name(event.keyval)
+		if key_name == "Control_L" or key_name == "Control_R":
+			self.control_is_press = False
+
+	def key_press(self, widget, event):
+		key_name = Gdk.keyval_name(event.keyval)
+		if not self.search_entry.is_focus() and not self.pages_sb.is_focus() and not self.scale_combo.is_focus():
+			if key_name == "Left":
+				if self.document and self.current_page != 0:
+					self.pages_sb.set_value(self.current_page)
+			elif key_name == "Right":
+				if self.document and self.current_page != self.document_pages - 1:
+					self.pages_sb.set_value(self.current_page + 2)
+			elif key_name == "Up":
+				v_adj = self.scroll.get_vadjustment()
+				v_val = v_adj.get_value()
+				if v_val - 20 > v_adj.get_lower():
+					v_val -= 20
+				else:
+					v_val = v_adj.get_upper()
+					self.pages_sb.set_value(self.current_page)
+				v_adj.set_value(v_val)
+				self.scroll.set_vadjustment(v_adj)
+			elif key_name == "Down":
+				v_adj = self.scroll.get_vadjustment()
+				v_val = v_adj.get_value()
+				n_val = v_val + 20
+				v_adj.set_value(n_val)
+				self.scroll.set_vadjustment(v_adj)
+				if self.scroll.get_vadjustment().get_value() != n_val and self.current_page != self.document_pages - 1:
+					v_adj.set_value(v_adj.get_lower())
+					self.scroll.set_vadjustment(v_adj)
+					self.pages_sb.set_value(self.current_page + 2)
+			elif key_name == "Control_L" or key_name == "Control_R":
+				self.control_is_press = True
+
+	def search_next_or_prev(self, next_prev):
+		if next_prev == "next":
+			self.search_page_number = self.current_page + 1
+		else:
+			self.search_page_number = self.current_page - 1
+		text = self.search_entry.get_text().lower()
+		self.spinner.show()
+		GObject.timeout_add(10, self.search_thread,text,next_prev)
+
+	def search_thread(self,text,next_prev):
+		a_page = self.document.get_page(self.search_page_number)
+		s_text = a_page.find_text(text)
+		if len(s_text) != 0:
+			self.spinner.hide()
+			self.pages_sb.set_value(self.search_page_number+1)
+			return False
+		if next_prev == "next":
+			self.search_page_number += 1
+		else:
+			self.search_page_number -= 1
+		if self.search_page_number == self.document_pages or self.search_page_number == -1:
+			self.spinner.hide()
+			return False
+		else:
+			return True
+		
+	def change_search_entry(self,widget):
+		text = widget.get_text().lower()
+		if self.document and text != "":
+			finding = self.active_page.find_text(text)
+			self.selection_texts = [finding, 0]
+			if finding == []:
+				self.search_next_or_prev("next")
+			self.doc_viewer.queue_draw()
+		elif text == "":
+			self.selection_texts = [[], 0]
+			self.doc_viewer.queue_draw()
+			#self.search_all_func(None)
+
+	def selection_start(self,widget,pos):
+		self.selection = [pos.x,pos.y,pos.x,pos.y]
+		self.doc_viewer.queue_draw()
+
+	def selection_move(self,widget,pos):
+		self.selection[2] = pos.x
+		self.selection[3] = pos.y
+		self.doc_viewer.queue_draw()
+
+	def selection_stop(self,widget,pos):
+		self.selection[2] = pos.x
+		self.selection[3] = pos.y
+		self.doc_viewer.queue_draw()
+		calc_rect = self.calc_selection(self.selection)
+		p_rect = Poppler.Rectangle()
+		p_rect.x1 = calc_rect[0]
+		p_rect.x2 = calc_rect[0] + calc_rect[2]
+		p_rect.y1 = calc_rect[1]
+		p_rect.y2 = calc_rect[1] + calc_rect[3]
+		s_text = self.active_page.get_selected_text(Poppler.SelectionStyle.GLYPH ,p_rect)
+		if s_text != " " and s_text != "" and s_text != "\n":
+			os.system("wl-copy '{}'".format(s_text))
+			self.info_bar.set_text(_[4])
+			GObject.timeout_add(2000, self.hide_info_bar)
+		self.selection = False
+		self.scroll.grab_focus()
+
+	def hide_info_bar(self):
+		self.info_bar.set_text("")
+		return False
+
+	def open_pdf_file(self,widget):
+		dialog = Gtk.FileChooserDialog(_[3], self, Gtk.FileChooserAction.OPEN,
+		(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+		filter_ = Gtk.FileFilter()
+		filter_.set_name(_[2])
+		filter_.add_pattern("*.pdf")
+		dialog.add_filter(filter_)
+		return_dialog = dialog.run()
+		if return_dialog == Gtk.ResponseType.OK:
+			self.load_pdf_file(dialog.get_filename())
+		dialog.destroy()
+
+	def size_changed(self, widget, alloc):
+		if self.document:
+			text = self.scale_combo.get_active_text()
+			old_scale_factor = self.scale_factor
+			w,h = self.get_size()
+			if text == self.sizes[0]:
+				self.scale_factor = w/self.doc_width
+			elif text == self.sizes[1]:
+				self.scale_factor = h/self.doc_height
+			if old_scale_factor != self.scale_factor:
+				self.doc_viewer.set_size_request(self.doc_width*self.scale_factor, self.doc_height*self.scale_factor)
+				self.doc_viewer.queue_draw()
+
+	def scale_combo_changed(self,widget):
+		if self.document:
+			text = widget.get_active_text()
+			old_scale_factor = self.scale_factor
+			w,h = self.get_size()
+			if text == self.sizes[0]:
+				self.scale_factor = w/self.doc_width
+			elif text == self.sizes[1]:
+				self.scale_factor = h/self.doc_height
+			elif text == self.sizes[2]:
+				self.scale_factor = 1
+			elif "%" in text:
+				text = text.replace("%","")
+				text = text.replace(" ","")
+				try:
+					t = int(text)
+					if t < 25:
+						t = 25
+					elif t > 750:
+						t = 750
+					self.scale_factor = t/100
+				except:
+					pass
+			else:
+				text = text.replace("%","")
+				text = text.replace(" ","")
+				try:
+					t = int(text)
+					if t < 25:
+						t = 25
+					elif t > 750:
+						t = 750
+					self.scale_factor = t/100
+				except:
+					pass
+			if old_scale_factor != self.scale_factor:
+				self.doc_viewer.set_size_request(self.doc_width*self.scale_factor, self.doc_height*self.scale_factor)
+				self.doc_viewer.queue_draw()
+			self.scroll.grab_focus()
+
+	def load_pdf_file(self,f):
+		self.current_file = f
+		self.current_page = 0
+		cache_file = os.path.expanduser("~/.config/MPdf/cache")
+		self.settings = GLib.KeyFile()
+
+		g_file = Gio.File.new_for_path(f)
+		self.document = Poppler.Document.new_from_gfile(g_file, None, None)
+		self.document_pages = self.document.get_n_pages()
+		if os.path.exists(cache_file):
+			self.settings.load_from_file(cache_file, GLib.KeyFileFlags.NONE)
+			try:
+				acts_ = self.settings.get_keys("pagenum")
+				for key in acts_[0]:
+					if f == key:
+						self.current_page = self.settings.get_integer("pagenum",key)
+						if self.current_page > self.document_pages:
+							self.current_page = 0
+			except:
+				print("{} dosyasıyla ilgili kayıt yok".format(f))
+
+
+		#Sayfa değiştirici
+		ad = Gtk.Adjustment(0, 1, self.document_pages, 1, 0, 0)
+		self.pages_sb.set_adjustment(ad)
+		self.pages_sb.set_value(self.current_page+1)
+		self.pages_sb.connect("value-changed",self.change_current_page)
+
+		self.max_page_lb.set_text("/ {}".format(str(self.document_pages)))
+		self.h_bar.set_title(os.path.split(f)[-1])
+		#Aktif sayfayı ve boyutunu getirelim
+		self.get_pdf_page()
+		self.search_entry.set_text("")
+
+	def change_current_page(self,widget):
+		n_current_page = int(widget.get_text()) - 1
+		if self.current_page != n_current_page:
+			self.current_page = n_current_page
+			self.get_pdf_page()
+			finding = self.active_page.find_text(self.search_entry.get_text())
+			self.selection_texts = [finding, 0]
+			self.doc_viewer.queue_draw()
+			self.scroll_focus_selected()
+
+	def get_pdf_page(self):
+		self.active_page = self.document.get_page(self.current_page)
+		self.doc_width, self.doc_height = self.active_page.get_size()
+		self.doc_viewer.set_size_request(self.doc_width*self.scale_factor, self.doc_height*self.scale_factor)
+		self.doc_viewer.queue_draw()
+
+	def draw_pdf_file(self, widget, cr):
+		if self.document:
+			cr.scale(self.scale_factor,self.scale_factor)
+			cr.set_source_rgba(1, 1, 1, 1)
+			cr.rectangle(0, 0, self.doc_width, self.doc_height)
+			cr.fill()
+			cr.set_source_rgba(0, 0, 0, 1)
+			cr.rectangle(0, 0, self.doc_width, self.doc_height)
+			cr.stroke()
+			self.active_page.render_for_printing(cr)
+			if self.selection:
+				cr.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+				cr.rectangle(*self.calc_selection(self.selection))
+				cr.fill()
+			for s_text in self.selection_texts[0]:
+				if s_text == self.selection_texts[0][self.selection_texts[1]]:
+					cr.set_source_rgba(0.21, 0.68, 0.56, 0.5)
+				else:
+					cr.set_source_rgba(0.5, 0.5, 0.5, 0.5)
+				cr.rectangle(*self.calc_selection([s_text.x1,self.doc_height-s_text.y1,s_text.x2,self.doc_height-s_text.y2],True))
+				cr.fill()
+
+	def calc_selection(self,selection,find=False):
+		if selection[0] > selection[2]:
+			start_x = selection[2]
+			x_size = selection[0] - selection[2]
+		else:
+			start_x = selection[0]
+			x_size = selection[2] - selection[0]
+		if selection[1] > selection[3]:
+			start_y = selection[3]
+			y_size = selection[1] - selection[3]
+		else:
+			start_y = selection[1]
+			y_size = selection[3] - selection[1]
+		if find:
+			return (start_x,start_y,x_size,y_size)
+		else:
+			return (start_x/self.scale_factor,start_y/self.scale_factor,x_size/self.scale_factor,y_size/self.scale_factor)
+
+apps = []
+
+def load_pdf_file(files):
+	for f in files:
+		f_type = os.path.splitext(f)
+		if os.path.exists(f) and os.path.isfile(f) and f_type[-1] == ".pdf":
+			app = MPdf()
+			app.load_pdf_file(f)
+			app.connect("delete-event", close_window)
+			app.show_all()
+			app.spinner.hide()
+			apps.append(app)
+		else:
+			print("Dosya bulunamadı!")
+
+def close_window(win,x):
+	cache_dir = os.path.expanduser("~/.config/MPdf")
+	if not os.path.exists(cache_dir):
+		os.mkdir(cache_dir)
+	win.settings.set_integer("pagenum",win.current_file,win.current_page)
+	win.settings.save_to_file(os.path.expanduser("~/.config/MPdf/cache"))
+	apps.remove(win)
+	if len(apps) == 0:
+		Gtk.main_quit()
+
+if __name__ == '__main__':
+	args = sys.argv
+	if len(args) > 1:
+		load_pdf_file(args[1:])
+	else:
+		app = MPdf()
+		app.connect("delete-event", close_window)
+		app.show_all()
+		app.spinner.hide()
+		apps.append(app)
+	Gtk.main()

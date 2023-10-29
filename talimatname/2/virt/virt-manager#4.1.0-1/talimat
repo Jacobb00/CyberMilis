@@ -1,0 +1,37 @@
+[paket]
+tanim   = Sanal makineleri yönetmek için uygulama seti
+paketci = milisarge
+grup    = sistem
+url     = https://virt-manager.org
+
+[gerek]
+derleme = meson libxslt glib intltool libsoup hwids vala gobject-introspection json-glib
+calisma = cpio python-requests libvirt python-gobject gtksourceview4 gtk-vnc qemu
+
+[kaynak]
+gz      = https://releases.pagure.org/virt-manager
+2       = https://gitlab.com/libosinfo/libosinfo/-/archive/v1.10.0/libosinfo-v1.10.0.tar.gz
+3       = https://releases.pagure.org/libosinfo/osinfo-db-tools-1.10.0.tar.xz
+4       = https://releases.pagure.org/libosinfo/osinfo-db-20230518.tar.xz!
+
+;[sha256]
+;1       = 2b6fe3d90d89e1130227e4b05c51e6642d89c839d3ea063e0e29475fd9bf7b86
+
+[derle]
+;osinfo-db-tools
+meson    = osinfo-db-tools-1.10.0
+
+;osinfo-db
+betik   = $PKG/usr/bin/osinfo-db-import --root $PKG --system /sources/osinfo-db-20230518.tar.xz
+
+; libosinfo
+ekconf  = -Denable-gtk-doc=false -D with-usb-ids-path=/usr/share/hwdata/usb.ids -D with-pci-ids-path=/usr/share/hwdata/pci.ids
+meson   = libosinfo-v1.10.0
+betik   = cd $SRC/$isim-$surum; pip3 install docutils
+betik   = python setup.py configure --default-hvs qemu,lxc
+betik   = python setup.py build
+
+[pakur]
+betik   = python setup.py --no-update-icon-cache --no-compile-schemas install --root "${PKG}"
+betik   = python -m compileall "${PKG}"/usr/share/virt-manager
+betik   = python -O -m compileall "${PKG}"/usr/share/virt-manager

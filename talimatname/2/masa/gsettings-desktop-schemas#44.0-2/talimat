@@ -1,0 +1,24 @@
+[paket]
+tanim   = GSettings şemalarının toplanması
+paketci = milisarge
+grup    = kütüphane
+url     = https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas
+
+[gerek]
+derleme = meson glib gobject-introspection
+calisma =
+
+[kaynak]
+1       = ${GNOME_SITE}/${isim}/${surum%.*}/${isim}-${surum}.tar.xz
+
+[sha256]
+1       = eb2de45cad905994849e642a623adeb75d41b21b0626d40d2a07b8ea281fec0e
+
+[derle]
+ekconf  = -Dintrospection=true
+tip     = meson
+
+[pakur]
+tip     = meson
+;betik   = rm -f $PKG/usr/share/glib-2.0/schemas/org.gnome.system.*
+;betik   = rm -f $PKG/usr/share/glib-2.0/schemas/org.gnome.desktop.*

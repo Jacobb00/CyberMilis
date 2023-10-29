@@ -1,0 +1,22 @@
+[paket]
+tanim    = Blu-Ray diskleri oynatmak için erişim kütüphanesi
+paketci  = milisarge 
+grup     = medya
+url      = https://www.videolan.org/developers/libbluray.html
+
+[gerek]
+derleme  = libxml2 fontconfig
+calisma  =  
+
+[kaynak]
+bz2      = https://download.videolan.org/pub/videolan/libbluray/$surum
+
+[sha256]
+1        = 478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b
+
+[derle]
+ekconf   = --disable-optimizations --disable-bdjava-jar
+tip      = gnu
+
+[pakur]
+tip      = gnu

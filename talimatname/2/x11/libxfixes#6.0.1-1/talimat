@@ -1,0 +1,22 @@
+[paket]
+tanim   = X11 çeşitli düzeltme uzantı kütüphanesi
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+arsiv   = libXfixes-$surum
+
+[gerek]
+derleme = xorg-util-macros libx11 xorgproto
+
+[kaynak]
+1       = $url/releases/individual/lib/libXfixes-$surum.tar.xz
+
+[sha256]
+1 		= b695f93cd2499421ab02d22744458e650ccc88c1d4c8130d60200213abc02d58
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+	      
+[pakur]
+tip 	= gnu

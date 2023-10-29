@@ -1,0 +1,26 @@
+[paket]
+tanim   = X11 gelistiricileri icin protokol dosyalari
+paketci = milisarge
+grup 	= kütüphane
+url     = http://xorg.freedesktop.org
+
+[gerek]
+derleme = xorg-util-macros meson
+calisma = 
+
+[kaynak]
+xz      = https://xorg.freedesktop.org/archive/individual/proto
+
+[sha256]
+1       = b61fbc7db82b14ce2dc705ab590efc32b9ad800037113d1973811781d5118c2c
+
+[derle]
+ekconf  = -Dlegacy=true
+tip     = meson
+	      
+[pakur]
+tip     = meson
+betik   = rm -f ${PKG}/usr/include/X11/extensions/{apple,windows}*
+betik   = rm -f ${PKG}/usr/share/pkgconfig/{apple,windows}wmproto.pc
+betik   = rm -f ${PKG}/usr/include/X11/extensions/XKBgeom.h
+betik   = rm -f ${PKG}/usr/include/X11/extensions/vldXvMC.h

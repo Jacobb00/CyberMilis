@@ -1,0 +1,14 @@
+[paket]
+tanim   = Zlib sıkıştırma kütüphanesi
+paketci = milisarge
+grup 	= temel
+url     = http://www.zlib.net
+
+[kaynak]
+xz      = $url
+
+[derle]
+betik	= ./configure --prefix=/usr && make && make check
+	      
+[pakur]
+betik 	= make prefix=$PKG/usr install

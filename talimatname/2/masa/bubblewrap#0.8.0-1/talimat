@@ -1,0 +1,24 @@
+[paket]
+tanim   = Ayrıcalıklı sandboxing aracı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/projectatomic/bubblewrap
+
+[gerek]
+derleme = automake libcap
+calisma =
+
+[kaynak]
+xz      = https://github.com/projectatomic/bubblewrap/releases/download/v$surum
+
+[sha256]
+1       = 957ad1149db9033db88e988b12bcebe349a445e1efc8a9b59ad2939a113d333a
+
+[derle]
+betik   = autoreconf -fi
+ekconf  = --disable-man
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/usr/share
