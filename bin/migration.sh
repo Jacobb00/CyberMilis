@@ -15,7 +15,7 @@ mkdir -p /usr/milis
 git clone https://gitlab.com/milislinux/mps23 /usr/milis/mps
 
 # mps ayar güncellenir
-cp -f https://gitlab.com/milislinux/milis23/-/raw/main/ayarlar/mps/mps.ini /usr/milis/mps/conf/mps.ini
+cp -f https://gitlab.com/milislinux/milis23/-/raw/main/ayarlar/mps/mps.ini /usr/milis/mps/conf/mps.ini.sablon
 
 # ilkleme - 2.3 görülmeli
 /usr/milis/mps/bin/mps -v
