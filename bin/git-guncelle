@@ -1,6 +1,7 @@
 #!/bin/bash
-#ack="guncelleme"
+remote=$(cat .git/config | grep "merge = refs/heads/" | cut -d/ -f3)
 ack=$1
+[ -z $1 ] && ack="guncelleme"
 git add . 
 git commit -a -m "$ack"
-git push origin master
+git push origin $remote
