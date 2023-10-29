@@ -81,8 +81,8 @@ ortam_bagla(){
 	
 	# ana sistemden milis23 reposu kopyalanır.
 	mkdir -p $rootdir/sources
-	[ ! -d /sources/mls.akdeniz.edu.tr.git.milislinux.milis23 ] && git clone https://mls.akdeniz.edu.tr/git/milislinux/milis23  /sources/mls.akdeniz.edu.tr.git.milislinux.milis23
-	[ ! -d $sources/mls.akdeniz.edu.tr.git.milislinux.milis23 ] && cp -r /sources/mls.akdeniz.edu.tr.git.milislinux.milis23 $sources/
+	[ ! -d /sources/gitlab.com.milislinux.milis23 ] && git clone https://gitlab.com/milislinux/milis23  /sources/gitlab.com.milislinux.milis23
+	[ ! -d $sources/gitlab.com.milislinux.milis23 ] && cp -r /sources/gitlab.com.milislinux.milis23 $sources/
 	
 	mount -t overlay overlay -o index=off,lowerdir=${sources_ro},upperdir=$sources,workdir=$workdir/2 $rootdir/sources
 	mount -t overlay overlay -o index=off,lowerdir=${opt_ro},upperdir=$opt,workdir=$workdir/3 $rootdir/opt

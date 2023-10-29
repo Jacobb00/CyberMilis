@@ -23,7 +23,7 @@ export MILIS_PATH=$MSYS/usr/milis
 2- Güncel MPS kaynak kodu indirilir:
 
 ```
-git clone https://mls.akdeniz.edu.tr/git/milislinux/mps23 $MPS_PATH
+git clone https://gitlab.com/milislinux/mps23 $MPS_PATH
 ```
 
 3- MPS gerekli konfigürasyon ayarlarını yaptğınından dolayı ilk çalıştığında:

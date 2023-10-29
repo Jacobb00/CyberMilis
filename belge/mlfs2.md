@@ -14,8 +14,8 @@ mps kur python
 1- Milis 2.3 Depoyu klonlayıp önsistem için gerekli dizinleri oluşturuyoruz.
 ```
 cd /opt
-git clone https://mls.akdeniz.edu.tr/git/milislinux/milis23
-git clone https://mls.akdeniz.edu.tr/git/milislinux/mps23
+git clone https://gitlab.com/milislinux/milis23
+git clone https://gitlab.com/milislinux/mps23
 
 source milis23/ayarlar/onsistem/mpsdo.bashrc
 
@@ -260,8 +260,8 @@ mksquashfs $MSYS milis23-"$(date -d "$D" '+%m-%d')"-base.sfs -comp xz
 cd /mnt
 cp mpsdo21/rw/opt/milis23-07-03-base.sfs .
 cd /opt
-git clone https://mls.akdeniz.edu.tr/git/milislinux/milis23
-git clone https://mls.akdeniz.edu.tr/git/milislinux/mps23
+git clone https://gitlab.com/milislinux/milis23
+git clone https://gitlab.com/milislinux/mps23
 cd -
 cp /opt/milis23/bin/mpsdo mpsdo_2.3
 cp /opt/milis23/ayarlar/mps/conf23.lua conf23.lua

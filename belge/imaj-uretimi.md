@@ -151,7 +151,7 @@ rm -f $MSYS/root/.bash_history
 
 ```
 cd /opt
-git clone https://mls.akdeniz.edu.tr/git/milislinux/imaj-uretici23
+git clone https://gitlab.com/milislinux/imaj-uretici23
 ```
 
 19- Imaj oluşturma betiğiyle imaj oluşturma işlemi başlatılır:

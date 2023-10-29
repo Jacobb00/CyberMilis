@@ -15,7 +15,7 @@ Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik di
 - Pencere yöneticisi(Yığın): [labwc](https://github.com/labwc/labwc)
 - Panel : [waybar](https://github.com/Alexays/Waybar)
 - Menü: [nwg-drawer](https://github.com/nwg-piotr/nwg-drawer)
-- Giriş yöneticisi arayüzü:[milis-greeter](https://mls.akdeniz.edu.tr/git/milisarge/milis-greeter)
+- Giriş yöneticisi arayüzü:[milis-greeter](https://gitlab.com/milisarge/milis-greeter)
 - Giriş yöneticisi arkaucu:[greetd](https://sr.ht/~kennylevinsen/greetd)
 - Oturum yöneticisi: [seatd](https://git.sr.ht/~kennylevinsen/seatd)
 - Bildirim sunucusu: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
@@ -26,21 +26,21 @@ Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik di
 - İnternet tarayıcısı: [firefox](mozilla.org)
 - Dosya yöneticisi: [thunar](https://docs.xfce.org/xfce/thunar/start)
 - Metin düzenleyici: [geany](https://geany.org)
-- PDF görüntüleyici: [mpdf](https://mls.akdeniz.edu.tr/git/milislinux/milis21/src/branch/master/bin/mpdf)
+- PDF görüntüleyici: [mpdf](https://gitlab.com/milislinux/milis23/src/branch/master/bin/mpdf)
 - Terminal uygulaması:[lxterminal](https://github.com/milisarge/lxterminal)
 - Görev yöneticisi: [lxtask](https://wiki.lxde.org/en/LXTask),[htop](https://github.com/htop-dev/htop)
 - Resim uygulaması: [mypaint](https://mypaint.app)
 - Görüntü işleme uygulaması: [gimp](https://www.gimp.org)
 - Medya oynatıcısı: [celluloid](https://celluloid-player.github.io)
 - Tema ve simge seti: [milis-gtk-theme](https://github.com/sonakinci41/milis-gtk-theme),[milis-simge](https://github.com/sonakinci41/Milis-Simge)
-- Resim gösterici: [resimlik](https://mls.akdeniz.edu.tr/git/milislinux/milis21/src/branch/master/bin/resimlik)
-- Ekran boyutlandırma: [ayar merkezi](https://mls.akdeniz.edu.tr/git/milislinux/ayguciui)
+- Resim gösterici: [resimlik](https://gitlab.com/milislinux/milis23/src/branch/master/bin/resimlik)
+- Ekran boyutlandırma: [ayar merkezi](https://gitlab.com/milislinux/ayguciui)
 - Ekran parlaklık: [light](https://github.com/haikarainen/light)
 - Ekran kitleme: [swaylock](https://github.com/swaywm/swaylock)
 - Ekran kayıt edici: [wf-recorder](https://github.com/ammen99/wf-recorder)
 - Ekran yakalayıcı:[grim](https://github.com/emersion/grim)
 - Ekran alanı seçicisi:[slurp](https://github.com/emersion/slurp)
-- Ekran alıntılama: [meg](https://mls.akdeniz.edu.tr/git/milislinux/milis21/src/branch/master/bin/meg)
+- Ekran alıntılama: [meg](https://gitlab.com/milislinux/milis23/src/branch/master/bin/meg)
 - Ekran alıntılama-2: [swappy](https://github.com/jtheoof/swappy)
 - Pano dinleyici: [clipman](https://github.com/yory8/clipman)
 - Pano uygulaması: [wf-clipboard](https://github.com/bugaevc/wl-clipboard)
@@ -50,7 +50,7 @@ Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik di
 
 Masaüstü ortamının ayarları sistem canlı imaj ile ilk açıldığında yapılır.
 Giriş yöneticisinde kullanıcı giriş yaptıktan sonra Milis'in masaüstü ayarları aktarılarak çalıştırılır.
-Bu ayarların atanması [dinit](https://mls.akdeniz.edu.tr/git/milislinux/milis21/src/branch/master/bin/dinit) betiği tarafından *.config/masa.ini* ayar dosyası ile yapılır.
+Bu ayarların atanması [dinit](https://gitlab.com/milislinux/milis23/src/branch/master/bin/dinit) betiği tarafından *.config/masa.ini* ayar dosyası ile yapılır.
 Bu dosya içinde yer alan ilgili ayar sekmeleri elle veya ayar merkezi yardımıyla düzenlenebilir.
 Bu ayarlar imaj üretilirken */etc/skel* altında gelir ve kullanıcı *.config* dizini altına gerekli kontroller yapılarak kopyalanır.
 Bu ayarların kontrolü her oturum açıldığında yapılmaktadır. 
