@@ -11,7 +11,7 @@ if [ ! -f $mpsconf ];then
 fi
 
 surum="10-30"
-ortam_sha="cb6767cce7ce1cce093188fcb18f2bdf9c8decc07c3205220c0bcd103d77dc42"
+ortam_sha="f3d95dd7cb37fcbc19871f3d498b6329bf3b885d08c88d2f1a6c0d18542c51ee"
 
 ortam_adres="https://mls.akdeniz.edu.tr/iso/2.3/base/milis23-${surum}-base.sfs"
 ortam=/mnt/milis23-${surum}-base.sfs
