@@ -119,8 +119,8 @@ mps kur --dosya ofis.liste
 
 ```
 mps yaz betik mservice @mservice
-mps yaz betik ayguciui @ayar-merkezi
-mps yaz betik mpsui @mps-ui
+mps yaz betik ayguciui @ayguciui
+mps yaz betik mpsui @mpsui
 mps gun -B
 ```
 
