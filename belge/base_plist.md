@@ -72,4 +72,4 @@ git
 ### mps
 wget
 libidn2
-lua
+curl

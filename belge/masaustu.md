@@ -9,7 +9,7 @@ kendi masaüstü ortamının oluşturulmasına karar verilmiştir. Bunun için f
 Ayrıca bu sayede son kullanıcı için daha iyi bir masaüstü ortamının araştırılıp geliştirilmesi sağlanacaktır. 
 
 Aşağıda masaüstü ortamının içerdiği bileşenler ve varsayılan olarak kullanılan uygulamalar yer almaktadır. 
-Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik dikkate alınarak değiştirilebilir.
+Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı kullanılabilirliği ve sağladığı işlevsellik dikkate alınarak değiştirilebilir.
 
 - Pencere yöneticisi(Döşeme): [wayfire](https://github.com/WayfireWM/wayfire)
 - Pencere yöneticisi(Yığın): [labwc](https://github.com/labwc/labwc)
@@ -27,7 +27,7 @@ Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik di
 - Dosya yöneticisi: [thunar](https://docs.xfce.org/xfce/thunar/start)
 - Metin düzenleyici: [geany](https://geany.org)
 - PDF görüntüleyici: [mpdf](https://gitlab.com/milislinux/milis23/src/branch/master/bin/mpdf)
-- Terminal uygulaması:[lxterminal](https://github.com/milisarge/lxterminal)
+- Terminal uygulaması:[sakura](https://github.com/dabisu/sakura)
 - Görev yöneticisi: [lxtask](https://wiki.lxde.org/en/LXTask),[htop](https://github.com/htop-dev/htop)
 - Resim uygulaması: [mypaint](https://mypaint.app)
 - Görüntü işleme uygulaması: [gimp](https://www.gimp.org)
@@ -41,16 +41,18 @@ Bu uygulamalar kullanıcı kullanılabilirliği ve sağladığı işlevsellik di
 - Ekran yakalayıcı:[grim](https://github.com/emersion/grim)
 - Ekran alanı seçicisi:[slurp](https://github.com/emersion/slurp)
 - Ekran alıntılama: [meg](https://gitlab.com/milislinux/milis23/src/branch/master/bin/meg)
-- Ekran alıntılama-2: [swappy](https://github.com/jtheoof/swappy)
+- Ekran alıntı düzenleyici: [swappy](https://github.com/jtheoof/swappy)
 - Pano dinleyici: [clipman](https://github.com/yory8/clipman)
 - Pano uygulaması: [wf-clipboard](https://github.com/bugaevc/wl-clipboard)
 - Takvim yöneticisi: [osmo](https://osmo-pim.sourceforge.net)
+- Servis yöneticisi: [mservice](https://gitlab.com/milislinux/mservice)
+- Paket yönetici arayüzü: [mservice](https://gitlab.com/milislinux/mpsui)
 
 #### Masaüstü Ortamının Ayarlanması
 
 Masaüstü ortamının ayarları sistem canlı imaj ile ilk açıldığında yapılır.
 Giriş yöneticisinde kullanıcı giriş yaptıktan sonra Milis'in masaüstü ayarları aktarılarak çalıştırılır.
-Bu ayarların atanması [dinit](https://gitlab.com/milislinux/milis23/src/branch/master/bin/dinit) betiği tarafından *.config/masa.ini* ayar dosyası ile yapılır.
+Bu ayarların atanması [dinit](https://gitlab.com/milislinux/milis23/-/blob/main/bin/dinit) betiği tarafından *.config/masa.ini* ayar dosyası ile yapılır.
 Bu dosya içinde yer alan ilgili ayar sekmeleri elle veya ayar merkezi yardımıyla düzenlenebilir.
 Bu ayarlar imaj üretilirken */etc/skel* altında gelir ve kullanıcı *.config* dizini altına gerekli kontroller yapılarak kopyalanır.
 Bu ayarların kontrolü her oturum açıldığında yapılmaktadır. 

@@ -82,105 +82,95 @@ kurarak gerekli paket güncelleme işlemlerini gerçekleştirebilirsiniz. Aşağ
 	mps in @paket      # paketi önbellek paket dizinine (/var/cache/mps/depo) indirir.
 ```
 
+#### Ayarlama:
+
+```
+	mps oku bölüm.anahtar        # mps.ini ayarlarında ilgili bölümdeki anahtarın değerini gösterir.
+	mps yaz bölüm anahtar deger  # mps.ini ayarlarında ilgili bölümdeki anahtara ilgili değeri atar.
+	mps yaz bölüm anahtar ""     # mps.ini ayarlarında ilgili bölümdeki anahtarı siler.
+```
+
+
 ### Arayüz Uygulaması
 
 MPS için ayrıca Python programlama dilinde GTK arayüz kütüphanesi kullanılarak yazılmış bir arayüz uygulaması mevcuttur.
 Aşağıdaki komut ile kurulabilir. Arayüz uygulaması güncel geliştirilmektedir. 
-Sorun ve istekler için [sayfasından](https://mls.akdeniz.edu.tr/git/milislinux/mps-ui/issues/new>) hata kaydı oluşturunuz.
-
-```
-	mps kur mps-ui
-```
+Arayüz uygulaması mps ayarlarında betik bölümünde mpsui anahtarı ile yer alır ve MPS güncellemeleriyle güncellenir.
+Sorun ve istekler için [sayfasından](https://gitlab.com/milislinux/mpsui/-/issues) hata kaydı oluşturunuz.
 
 ### Yapılandırma
 
-MPS paket yöneticisinin ayarları /usr/milis/mps/conf dizini altında conf.lua dosyası içinde bulunmaktadır. 
-Lua programlama dili sözdiziminin ayar dosyası biçimine uygun olmasından dolayı ayar dosyasının kendisi de bir Lua programıdır.
+MPS paket yöneticisinin ayarları /usr/milis/mps/conf dizini altında mps.ini dosyası içinde bulunmaktadır. 
+INI biçimine ait ayar yapısı içeren ayar dosyası elle veya mps oku/yaz komutlarıyla düzenlenebilir.
 Aşağıda yer alan varsayılan ayar içeriği üzerinden ayrıntılı olarak ilgili alt ayarlar açıklanmıştır.
 
 ```
+[sunucu]
+1 = https://mls.akdeniz.edu.tr/paketler23
+;2 = https://mls.akdeniz.edu.tr/mkd23
+;3 = http://localhost:9900
 
-#!/usr/bin/env lua
+[betik]
+ayarlar  = https://gitlab.com/milislinux/milis23::ayarlar
+bin      = https://gitlab.com/milislinux/milis23::bin
+mservice = https://gitlab.com/milislinux/mservice
+ayguciui = https://gitlab.com/milislinux/ayguciui
+mpsui    = https://gitlab.com/milislinux/mpsui
 
-local mpsconf={
-	repo_dizin="/sources",
-	sunucu={
-		[1]="https://mls.akdeniz.edu.tr/paketler",
-	},
-	talimatdepo={
-		[1]={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="talimatname/1"},
-	[2]={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="talimatname/2"},
-	-- -- ile başlayan satırlar Lua'da yorum satırıdır. 
-	-- [3]={
-	--	["https://notabug.org/abc/milis"]="2/pentest",
-	-- ["https://notabug.org/def/milis"]="2/games",
-	--},
-	},
-	betikdepo={
-	bin={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="bin"},
-	ayarlar={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="ayarlar"},
-	ayguci={["https://mls.akdeniz.edu.tr/git/milislinux/ayguci"]=""},
-	},
-}
+[talimat]
+1   = https://gitlab.com/milislinux/milis23::talimatname/1
+2   = https://gitlab.com/milislinux/milis23::talimatname/2
+;3   = https://gitlab.com/milislinux/mkd23
 
-return mpsconf
+[repo]
+dizin = /sources
+resmi = https://gitlab.com/milislinux
 ```
  
 Milis Linux'ta özgün kodlar ve talimatname Git sürüm kontrol sistemi üzerinden yürütülür. 
 Dolayısıyla Git depolarının kayıt edildiği bir yerel dizin değişkeni vardır. 
-Bu değişken ayar dosyasında **repo_dizin** olarak yer alır ve yerel dizinde **/sources** altında toplanır.
-Örneğin Milis resmi Git deposu /sources altında mls.akdeniz.edu.tr.git.milislinux.milis21 olarak kayıt edilir.
+Bu değişken ayar dosyasında **repo** bölümünde **dizin** anahtarı olarak yer alır ve yerel dizinde **/sources** altında toplanır.
+Örneğin Milis resmi Git deposu /sources altında gitlab.com.milislinux.milis23 olarak kayıt edilir.
 Bu dizin üzerinden Git güncellemesi yapılır ve sisteme (/usr/milis/ altına) kopyalanır.
  
-Ayar dosyasında ikili paket deposu **sunucu** tablo değişkeni üzerinden ikili depoların ayarlarını kayıt etmektedir.
-Tablo tipi değişken kullanılmasının nedeni birden fazla ikili depo desteğinin sunulabilmesidir.
+Ayar dosyasında ikili paket deposu bilgileri **sunucu** bölümünde sayısal öncelik sağlayacak şekilde 1,2,3.. şeklinde anahtar değerlere ayarlanır.
 MPS talimatnamedeki önceliğe göre paket bağımlılıklarını hesapladıktan sonra ikili depo sırasına göre gerekli paketleri sunuculardan çeker.
-Bunun için **[sırano]=** biçiminde ikili depo sunucu adresi tanımlanmalıdır. Örneğin:
-
-```
-sunucu={
-	[1]="https://mls.akdeniz.edu.tr/paketler",
-	[2]="https://sunucum.org/paketlerim",
-	[3]="http://localhost:8888",
-},
-
-```
-
 Sunucu adresleri IPv4 ve IPv6 biçim kuralına uygun olmalıdır.
-Sunucu adresi tanımlanırken dikkat edilmesi gereken bir noktada sunucu kök dizin altında paket.vt dosyasının bulunması gerekliliğidir.
+Sunucu adresi tanımlanırken dikkat edilmesi gereken bir noktada sunucunun kök dizininde paket.vt dosyasının bulunması gerekliliğidir.
 Yukarı örneğe göre paket veritabanı **http://localhost:8888/paket.vt** ve **https://sunucum.org/paketlerim/paket.vt** şeklinde indirilebilir olmalıdır.
 
 Çoklu ikili depo desteği gibi talimatname düzeyinde de MPS çoklu talimatnameleri desteklemektedir. 
-Aynı şekilde **talimatdepo** değişkeni de tablo tipi değişkeni şeklinde tanımlanmaktadır. 
-Fakat buradaki [] ayraçları arasındaki sıra numaraları talimatname içindeki seviyeleri ifade etmektedir.
-Talimatname Git depoları /sources (repo_dizin) altına toplu şekilde klonlanır ve güncellenir. Fakat
-**[1]={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="talimatname/1"}** satırında belirtildiği şekilde,
-https://mls.akdeniz.edu.tr/git/milislinux/milis21 Git deposu altından talimatname dizini altındaki 1 dizini /usr/milis/talimatname 
-altına kopyalanır. Varsayılan olarak 1.seviye temel sistem paketlerini, 2.seviye ise resmi diğer talimatları ifade etmektedir. 
-Bu arada **talimatdepo** değişkeni içinde  **[sırano]={}** şeklinde değişken tanımlaması kullanılmıştır.
+Aynı şekilde **talimat** bölümü altında anahtar değerler ile tanımlanmaktadır. 
+Fakat buradaki sayısal değerli anahtar değerler talimatname içindeki seviyeleri ifade etmektedir.
+Talimatname Git depoları /sources (repo_dizin) altına toplu şekilde klonlanır ve güncellenir. 
+Buna göre **1 = https://gitlab.com/milislinux/milis23::talimatname/1** satırında belirtildiği şekilde,
+https://gitlab.com/milislinux/milis23 Git deposu altından talimatname dizini altındaki 1 dizini /usr/milis/talimatname 
+altına kopyalanır. Varsayılan olarak 1.seviye temel sistem paketlerini, 2.seviye ise resmi diğer talimatları ifade etmektedir.
+Bu arada **talimat** bölümünde **sayısal sıra** şeklinde değişken tanımlaması kullanılmaktadır.
 Bu esnek değişken tanımlaması sayesinde talimat seviyeleri farklı Git depolarıyla beslenebilmektedir.
 
 ```
-[3]={
-	["https://notabug.org/abc/milis"]="2/oyun",
-	["https://notabug.org/def/milis"]="2/pentest",
-},
+3a   = https://gitlab.com/milislinux/mkd23
+3b   = https://gitlab.com/aliveli/repo::talimatlar
 ```
 
-Örneğin yukarıdaki **talimatdepo** ayarına göre, /usr/milis/talimatname/3 dizini altına https://notabug.org/abc/milis Git deposunda
-2 dizini altındaki oyun ve https://notabug.org/def/milis Git deposunda 2 dizini altındaki pentest dizinlerinde bulunan talimatlar 
-kopyalanır.
+Örneğin yukarıdaki **talimat** depoları ayarına göre, /usr/milis/talimatname/3a dizini altına https://gitlab.com/milislinux/mkd23 Git deposunda
+kök dizin altında yer alan talimatlar kopyalanmaktadır.
+Alttaki ayara göre de 3b dizini altına https://gitlab.com/aliveli/repo Git deposunda yer alan talimatlar dizini içeriği kopyalanmaktadır. 
+Dikkat edildiği üzere **::** ayracı bir Git deposu altındaki dizini ifade etmektedir.
 
-Ayrıca ayar dosyası içinde Milis sisteminde kullanılan betik ve ayarları tanımlayan **betikdepo** değişkeni bulunmaktadır.
+Ayrıca ayar dosyası içinde Milis sisteminde kullanılan betik ve ayarları tanımlayan **betik** bölümü bulunmaktadır.
 Bu değişken /usr/milis/ altında yerleşecek dizin isimleri değişken adı olmak kaydıyla çoklu Git depolarını tanımlamaktadır.
 
 ```
-betikdepo={
-	bin={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="bin"},
-	ayarlar={["https://mls.akdeniz.edu.tr/git/milislinux/milis21"]="ayarlar"},
-	ayguci={["https://mls.akdeniz.edu.tr/git/milislinux/ayguci"]=""},
-},
+[betik]
+ayarlar  = https://gitlab.com/milislinux/milis23::ayarlar
+bin      = https://gitlab.com/milislinux/milis23::bin
+mservice = https://gitlab.com/milislinux/mservice
+ayguciui = https://gitlab.com/milislinux/ayguciui
+mpsui    = https://gitlab.com/milislinux/mpsui
 ```
 
-Yukarıdaki örneğe göre https://mls.akdeniz.edu.tr/git/milislinux/milis21 Git deposu altından bin dizini /usr/milis/bin altına kopyalanacaktır.
-İstenirse farklı Git depolarıyla bin, ayarlar dizini beslenebilir.
+Yukarıdaki örneğe göre https://gitlab.com/milislinux/milis23 Git deposu altından yer alan bin ve ayarlar dizinleri anahtar değere göre 
+sırasıyla /usr/milis/bin ve /usr/milis/ayarlar olarak kopyalanacaktır. İstenirse farklı Git depolarıyla bin, ayarlar dizini beslenebilir.
+Alttaki diğer anahtar değerler de sistem için gerekli olan uygulamaların eklenerek MPS üzerinden güncellenmesini sağlamak için kullanılmaktadır.

@@ -85,6 +85,9 @@ enter-chroot $MSYS
 10- Gerekli güncellemeler çalıştırılır:
 
 ```
+sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen
+sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen
+locale-gen
 update-ca-certificates --fresh && make-ca -g
 ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
