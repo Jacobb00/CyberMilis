@@ -3,7 +3,7 @@
 # Milis 2.1 Derleme Ortam Kurulması
 # derleme ortamının indirilmesi
 #set -e -x
-mpsconf="/usr/milis/mps/conf/conf.lua"
+mpsconf="/usr/milis/mps/conf/mps.ini"
 [ ! -z $1 ] && mpsconf=$1
 
 if [ ! -f $mpsconf ];then
@@ -119,7 +119,7 @@ ortam_bagla_son(){
 	# ana sistem gitconfig
 	[ -f /root/.gitconfig ] && cp /root/.gitconfig $rootdir/root/
 	# ana sistemin mps ayarlarını kullanmak için
-	cp -f -v $mpsconf $rootdir/usr/milis/mps/conf/conf.lua
+	cp -f -v $mpsconf $rootdir/usr/milis/mps/conf/mps.ini
 	#mkdir -p $rootdir/sources
 	
 	mount -v -B /dev $rootdir/dev
