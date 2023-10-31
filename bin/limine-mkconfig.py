@@ -6,7 +6,7 @@ import sys
 limine_item = """
 :{}
   PROTOCOL={}
-  KERNEL=guid://{}{}
+  KERNEL_PATH=guid://{}{}
   MODULE_PATH=guid://{}{}
   CMDLINE={}
 """
