@@ -1136,20 +1136,18 @@ set_bootloader() {
 		cp /usr/milis/ayarlar/limine/limine.cfg.sample $HEDEF/boot/limine.cfg
 		sed -i "s/__uuid__/`cat $HEDEF/etc/fstab | grep "defaults 0 1" | cut -d= -f2 | cut -d' ' -f1`/g" $HEDEF/boot/limine.cfg
 		sed -i "s/__kversion__/`uname -r | cut -d- -f1`/g" $HEDEF/boot/limine.cfg
-	fi 
-	
+		limine-mkconfig.py >> $HEDEF/boot/limine.cfg
+    # limine kurulu değilse grub-mkconfig ile ayarlanması
+    elif [ -f /usr/bin/grub-mkconfig ] ;then
+		echo "`printf "$LANG_GRUBMKCONF" "$HEDEF"`" >>$LOG
+		chroot $HEDEF grub-mkconfig -o /boot/grub/grub.cfg >>$LOG 2>&1
+	else
+		echo "missing bootloader configer" >>$LOG
+    fi
+    
     if [ $? -ne 0 ]; then
         DIALOG --msgbox "`printf "$LANG_GRUBFAIL" "${BOLD}${RED}" "${RESET}" "$dev" "$LOG"`" ${MSGBOXSIZE}
         DIE 1
-    fi
-    
-    if [ -f /usr/bin/grub-mkconfig ] ;then
-		echo "`printf "$LANG_GRUBMKCONF" "$HEDEF"`" >>$LOG
-		chroot $HEDEF grub-mkconfig -o /boot/grub/grub.cfg >>$LOG 2>&1
-		if [ $? -ne 0 ]; then
-			DIALOG --msgbox "`printf "$LANG_GRUBMKCONFFAIL" "${BOLD}${RED}" "${RESET}" "$LOG"`" ${MSGBOXSIZE}
-			DIE 1
-		fi
     fi
 }
 

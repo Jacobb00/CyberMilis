@@ -6,8 +6,8 @@ import sys
 limine_item = """
 :{}
   PROTOCOL={}
-  KERNEL=guid://{}
-  MODULE_PATH=guid://{}
+  KERNEL=guid://{}{}
+  MODULE_PATH=guid://{}{}
   CMDLINE={}
 """
 
@@ -26,14 +26,16 @@ for sistem in sistemler:
 
 # cmdline kernel initrd analiz
 for disk in disks:
-  print("#",disk)
+  #print("#",disk)
   result = subprocess.run(["linux-boot-prober",disk],capture_output=True)
   infos = result.stdout.decode().split("\n")[0:-1]
   for info in infos:
     protocol = disks[disk]
     label = info.split(":")[2]
     kernel = info.split(":")[3]
-    cmdline = info.split(":")[4]
-    initrd = info.split(":")[5]
-    print(limine_item.format(label,protocol,kernel,cmdline,initrd))
+    initrd = info.split(":")[4]
+    cmdline = info.split(":")[5]
+    if label != "":
+      uuid = cmdline.split("UUID=")[1].split()[0]
+      print(limine_item.format(label,protocol,uuid,kernel,uuid,initrd,cmdline))
   print()
