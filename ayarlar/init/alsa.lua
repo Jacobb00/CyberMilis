@@ -8,7 +8,7 @@ local task={
 		cmd="alsactl restore",
 	},
 	stop={
-		cmd="alsactl save",
+		cmd="alsactl store",
 	},
 	
 }
