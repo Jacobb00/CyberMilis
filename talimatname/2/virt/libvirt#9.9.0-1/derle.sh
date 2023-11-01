@@ -2,6 +2,10 @@ pip3 install docutils
 
 cd $SRC/libvirt-$surum
 
+sed -i 's|/usr/libexec/qemu-bridge-helper|/usr/lib/qemu/qemu-bridge-helper|g' \
+    src/qemu/qemu.conf.in \
+    src/qemu/test_libvirtd_qemu.aug.in
+
 patch src/remote/libvirtd.rules < $SRC/libvirt-polkit-group.patch
 
 milis-meson build --libexecdir=lib/libvirt \

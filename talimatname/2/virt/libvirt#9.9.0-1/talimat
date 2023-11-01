@@ -16,7 +16,7 @@ dosya   = libvirt-polkit-group.patch
 4       = https://libvirt.org/sources/python/libvirt-python-${surum}.tar.gz
 
 [sha256]
-1       = 7aa90d133bb301e94663a45c36176f46f4a9fc1b34d77d2e22b7a2517106f506
+1       = cb83be795548161af6718a6db75ee40719a87bcd6f9207a3565db2fc0e53a52e
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
@@ -37,3 +37,6 @@ betik   = python3 setup.py install --root=/tmp/work/pkg --optimize=1 --skip-buil
 [pakur]
 betik   = echo "pakur yok"
 betik   = rm -f $PKG/usr/lib/python[0-9].[0-9]/site-packages/libvirt.pyc
+betik   = rm -rf "$PKG/run" "$PKG/var/lib/libvirt/qemu" "$PKG/var/cache/libvirt/qemu" "$PKG/etc/logrotate.d/libvirtd.libxl"
+betik   = rm -f "$PKG/etc/libvirt/qemu/networks/autostart/default.xml"
+
