@@ -9,10 +9,6 @@ local task={
 	},
 	stop={
 		cmd="alsactl store",
-	},
-	reload={
-		cmd="alsactl store && alsactl restore",
-	},
-	
+	},	
 }
 return task
