@@ -12,7 +12,7 @@ rm -rf /usr/milis
 mkdir -p /usr/milis
 
 # mps güncel depo adresi ile güncellenir
-git clone https://gitlab.com/milislinux/mps23 /usr/milis/mps
+git clone https://gitlab.com/milislinux/mps23.git /usr/milis/mps
 
 # mps ayar güncellenir
 curl https://gitlab.com/milislinux/milis23/-/raw/main/ayarlar/mps/mps.ini > /usr/milis/mps/conf/mps.ini.sablon
