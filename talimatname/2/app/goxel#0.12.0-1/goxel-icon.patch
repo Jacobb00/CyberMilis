@@ -1,0 +1,12 @@
+--- /usr/share/applications/goxel.desktop	2021-09-28 05:06:10.000000000 +0300
++++ goxel.desktop	2021-09-28 05:11:53.359885731 +0300
+@@ -4,7 +4,7 @@
+ Name=goxel
+ GenericName=Voxel graphics editor
+ Comment=3D Voxel Editor
+-Exec=goxel
+-Icon=${SNAP}/icon.png
++Exec=LC_ALL=C goxel
++Icon=goxel
+ Type=Application
+ Categories=Graphics;3DGraphics;

@@ -1,0 +1,24 @@
+[paket]
+tanim   = Açık Kaynak 3D voksel düzenleyici
+paketci = milisarge
+grup    = oyun
+url     = https://guillaumechereau.github.io/goxel
+
+[gerek]
+derleme = glfw gtk3
+calisma =
+
+[kaynak]
+1       = https://github.com/guillaumechereau/goxel/archive/refs/tags/v$surum.tar.gz::$isim-$surum.tar.gz
+dosya   = goxel-icon.patch
+
+[sha256]
+1       = e3825625e1af9f58593695b0129e39f68a8f3c7d5696c096b8ed2d8b9ac69430
+
+[derle]
+betik   = pip3 install scons
+betik   = make $MAKEJOBS
+
+[pakur]
+betik   = make DESTDIR="$PKG" PREFIX=/usr install
+betik   = patch $PKG/usr/share/applications/goxel.desktop < $SRC/goxel-icon.patch
