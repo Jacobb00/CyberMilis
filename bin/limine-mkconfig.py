@@ -35,7 +35,7 @@ for disk in disks:
     kernel = info.split(":")[3]
     initrd = info.split(":")[4]
     cmdline = info.split(":")[5]
-    if label != "":
+    if label != "" and cmdline != "":
       uuid = cmdline.split("UUID=")[1].split()[0]
       print(limine_item.format(label,protocol,uuid,kernel,uuid,initrd,cmdline))
   print()
