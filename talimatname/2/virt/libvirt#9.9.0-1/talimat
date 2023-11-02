@@ -37,6 +37,5 @@ betik   = python3 setup.py install --root=/tmp/work/pkg --optimize=1 --skip-buil
 [pakur]
 betik   = echo "pakur yok"
 betik   = rm -f $PKG/usr/lib/python[0-9].[0-9]/site-packages/libvirt.pyc
-betik   = rm -rf "$PKG/run" "$PKG/var/lib/libvirt/qemu" "$PKG/var/cache/libvirt/qemu" "$PKG/etc/logrotate.d/libvirtd.libxl"
-betik   = rm -f "$PKG/etc/libvirt/qemu/networks/autostart/default.xml"
+betik   = rm -rf $PKG/run $PKG/etc/logrotate.d/libvirtd.libxl
 
