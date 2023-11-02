@@ -5,7 +5,7 @@ grup    = oyun
 url     = https://guillaumechereau.github.io/goxel
 
 [gerek]
-derleme = glfw gtk3
+derleme = python glfw gtk3
 calisma =
 
 [kaynak]
