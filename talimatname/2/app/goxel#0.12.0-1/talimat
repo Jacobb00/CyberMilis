@@ -10,15 +10,17 @@ calisma =
 
 [kaynak]
 1       = https://github.com/guillaumechereau/goxel/archive/refs/tags/v$surum.tar.gz::$isim-$surum.tar.gz
-dosya   = goxel-icon.patch
 
 [sha256]
 1       = e3825625e1af9f58593695b0129e39f68a8f3c7d5696c096b8ed2d8b9ac69430
 
 [derle]
 betik   = pip3 install scons
-betik   = make $MAKEJOBS
+betik   = sed -i 's|\${SNAP}/icon.png|goxel|;s|Name=goxel|Name=Goxel|' snap/gui/goxel.desktop
+betik   = sed -i 's|/share/applications/goxel.desktop|/share/applications/io.github.guillaumechereau.Goxel.desktop|g' Makefile
+export  = CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+export  = CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+betik   = scons mode=release werror=n
 
 [pakur]
 betik   = make DESTDIR="$PKG" PREFIX=/usr install
-betik   = patch $PKG/usr/share/applications/goxel.desktop < $SRC/goxel-icon.patch
