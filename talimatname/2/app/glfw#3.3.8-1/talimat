@@ -1,0 +1,22 @@
+[paket]
+tanim   = OpenGL içerikli pencere üretici kütüphane
+paketci = milisarge
+grup 	= kütüphane
+url     = http://www.glfw.org
+
+[gerek]
+derleme = cmake extra-cmake-modules mesa libxkbcommon wayland wayland-protocols
+calisma =
+
+[kaynak]
+bz2     = ${SOURCEFORGE_SITE}/${isim}
+
+[sha256]
+1       = 02ad725feecd4e02db7ec63302cce50bc3862e7278df4d55f999f090b9a8eb51
+
+[derle]
+ekconf  = -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_SHARED_LIBS=ON -DGLFW_USE_WAYLAND=ON
+tip     = cmake
+	      
+[pakur]
+tip     = cmake
