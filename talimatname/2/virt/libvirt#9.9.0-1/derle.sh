@@ -2,7 +2,7 @@ pip3 install docutils
 
 cd $SRC/libvirt-$surum
 
-sed -i 's|/usr/libexec/qemu-bridge-helper|/usr/lib/qemu/qemu-bridge-helper|g' \
+sed -i 's|qemu-bridge-helper|/usr/lib/qemu/qemu-bridge-helper|g' \
     src/qemu/qemu.conf.in \
     src/qemu/test_libvirtd_qemu.aug.in
 
@@ -18,7 +18,7 @@ milis-meson build --libexecdir=lib/libvirt \
 -Dglusterfs=disabled \
 -Daudit=disabled \
 -Dinit_script=none \
--Ddocs=enabled \
+-Ddocs=disabled \
 -Dnetcf=disabled \
 -Dopenwsman=disabled \
 -Dapparmor=disabled \
