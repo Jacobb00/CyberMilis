@@ -13,7 +13,7 @@ xz      = ${KERNEL_SITE}/network/${isim}
 dosya   = connmand.conf
 
 [sha256]
-1       = 79fb40f4fdd5530c45aa8e592fb16ba23d3674f3a98cf10b89a6576f198de589
+1       = a3e6bae46fc081ef2e9dae3caa4f7649de892c3de622c20283ac0ca81423c2aa
 
 [derle]
 betik   = export CFLAGS+=" -D_GNU_SOURCE"
@@ -24,4 +24,5 @@ tip     = gnu
 [pakur]
 tip     = gnu
 betik   = install -Dm755 client/connmanctl $PKG/usr/bin/connmanctl
+betik   = install -Dm644 src/main.conf $PKG/etc/connman/main.conf
 betik   = install -Dm755 ${SRC}/connmand.conf $PKG/usr/share/dbus-1/system.d/connmand.conf
