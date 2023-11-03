@@ -6,7 +6,7 @@ url     = https://tox.chat
 arsiv   = c-toxcore-$surum
 
 [gerek]
-derleme = cmake libsodium libvpx xiph
+derleme = cmake libsodium libvpx xiph libconfig
 
 [kaynak]
 1      = https://github.com/TokTok/c-toxcore/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
