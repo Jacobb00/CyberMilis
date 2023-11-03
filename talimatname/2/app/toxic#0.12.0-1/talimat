@@ -19,3 +19,5 @@ betik   = make PREFIX=/usr ${MAKEJOBS}
 
 [pakur]
 betik   = make PREFIX=/usr DESTDIR="$PKG" install
+betik   = sed -i "s/Exec=toxic/Exec=xterm -x toxic/g" $PKG/usr/share/applications/toxic.desktop
+betik   = sed -i "s/Terminal=true/Terminal=false/g" $PKG/usr/share/applications/toxic.desktop
