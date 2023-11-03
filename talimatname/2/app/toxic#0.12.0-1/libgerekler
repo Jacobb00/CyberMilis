@@ -1,0 +1,13 @@
+libncursesw.so.6
+libX11.so.6
+libalut.so.0
+libc.so.6
+libm.so.6
+libconfig.so.11
+libcurl.so.4
+libvpx.so.8
+libopenal.so.1
+libnotify.so.4
+libqrencode.so.4
+libpng16.so.16
+libtoxcore.so.2

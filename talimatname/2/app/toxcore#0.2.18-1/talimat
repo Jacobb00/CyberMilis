@@ -9,15 +9,18 @@ arsiv   = c-toxcore-$surum
 derleme = cmake libsodium libvpx xiph libconfig
 
 [kaynak]
-1      = https://github.com/TokTok/c-toxcore/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+git     = https://github.com/TokTok/c-toxcore
 
 [sha256]
 1      = 1fba883638fd18985fd41acd35fed198c2cdd6e91651eb1c3fe602b610b535fe
 
 [derle]
-ekconf = -DMUST_BUILD_TOXAV=ON -DBUILD_TOXAV=ON -DBUILD_AV_TEST=OFF
+betik  = sed -i "/Rpath/d;/RPATH/d" CMakeLists.txt
+betik  = rmdir third_party/cmp;git clone https://github.com/camgunz/cmp third_party/cmp
+ekconf = -DMUST_BUILD_TOXAV=ON -DBUILD_TOXAV=ON -DBUILD_AV_TEST=OFF -DDHT_BOOTSTRAP=on -DBOOTSTRAP_DAEMON=on
 tip    = cmake
 
 [pakur]
 tip    = cmake
-betik  = install -Dm644 $SRC/c-toxcore-$surum/other/bootstrap_daemon/tox-bootstrapd.conf "$PKG/etc/tox-bootstrapd.conf"
+betik  = install -Dm644 ../other/bootstrap_daemon/tox-bootstrapd.conf $PKG/etc/tox-bootstrapd.conf
+betik  = rm -f $PKG/usr/lib/*.a
