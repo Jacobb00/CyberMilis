@@ -1,5 +1,5 @@
 [Waydroid](https://waydro.id), Linux konteyner altyapısını kullanarak Android imajını Linux üzerinde çalıştırmayı sağlayan uygulamadır.
-Kurulum ve yapılandırma için aşağıdaki adımları uygulanmalıdır.
+Kurulum ve yapılandırma için aşağıdaki adımlar yetkili terminalde uygulanmalıdır.
 
 
 #### Kurulum
@@ -10,8 +10,7 @@ Kurulum ve yapılandırma için aşağıdaki adımları uygulanmalıdır.
 
 #### Servis İşlemleri
 ```
-[ ~ ]# servis ekle lxc
-[ ~ ]# servis kos lxc
+[ ~ ]# servis ekle lxc && servis kos lxc
 ```
 
 #### Waydroid Ayarları
@@ -22,9 +21,6 @@ Kurulum ve yapılandırma için aşağıdaki adımları uygulanmalıdır.
 #lxc.apparmor.profile = unconfined
 
 ```
-
-#### Ağ Ayarları
-Arayüz ayarlarından veth ile atanan kablolu ağın DNS ayarları 8.8.8.8 olarak ayarlanacak.
 
 #### Waydroid Başlatma
 ```
