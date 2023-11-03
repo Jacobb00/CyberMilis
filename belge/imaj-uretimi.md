@@ -118,9 +118,9 @@ mps kur --dosya ofis.liste
 13- MPS ile kurulacak Milis uygulamaları eklenir.
 
 ```
-mps yaz betik mservice @mservice
-mps yaz betik ayguciui @ayguciui
-mps yaz betik mpsui @mpsui
+mps yaz betik mservice @mservice.git
+mps yaz betik ayguciui @ayguciui.git
+mps yaz betik mpsui @mpsui.git
 mps gun -B
 ```
 
