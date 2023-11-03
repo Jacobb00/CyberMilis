@@ -1,0 +1,23 @@
+[paket]
+tanim   = Şifrelenmiş eşler arası anlık mesajlaşma protokolü kütüphanesi
+paketci = milisarge
+grup    = ağ
+url     = https://tox.chat
+arsiv   = c-toxcore-$surum
+
+[gerek]
+derleme = cmake libsodium libvpx xiph
+
+[kaynak]
+1      = https://github.com/TokTok/c-toxcore/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1      = 1fba883638fd18985fd41acd35fed198c2cdd6e91651eb1c3fe602b610b535fe
+
+[derle]
+ekconf = -DMUST_BUILD_TOXAV=ON -DBUILD_TOXAV=ON -DBUILD_AV_TEST=OFF
+tip    = cmake
+
+[pakur]
+tip    = cmake
+betik  = install -Dm644 $SRC/c-toxcore-$surum/other/bootstrap_daemon/tox-bootstrapd.conf "$PKG/etc/tox-bootstrapd.conf"

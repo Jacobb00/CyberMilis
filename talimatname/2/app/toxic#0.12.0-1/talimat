@@ -1,0 +1,21 @@
+[paket]
+tanim   = Ncurses tabanlı Tox anlık mesajlaşma istemcisi
+paketci = milisarge
+grup    = ağ
+url     = https://github.com/JFreegman/toxic/
+
+[gerek]
+derleme = toxcore openal media-extra ncurses openal libnotify libvpx libsodium
+calisma =
+
+[kaynak]
+1       = https://github.com/JFreegman/toxic/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = fd239f0bbf55d6a04b591841294c64643c667f7bb5b753ef0b83dbd9ec1e689c
+
+[derle]
+betik   = make PREFIX=/usr ${MAKEJOBS}
+
+[pakur]
+betik   = make PREFIX=/usr DESTDIR="$PKG" install
