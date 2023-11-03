@@ -6,19 +6,19 @@ url     = http://hyperrealm.com/libconfig/libconfig.html
 
 [gerek]
 derleme  = automake
-calisma  =  
+calisma  =
 
 [kaynak]
 1        = https://github.com/hyperrealm/libconfig/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
 
-;[sha256]
-;1        = f67ac44099916ae260a6c9e290a90809e7d782d96cdd462cac656ebc5b685726
+[sha256]
+1        = 68757e37c567fd026330c8a8449aa5f9cac08a642f213f2687186b903bd7e94e
 
 [derle]
 betik    = autoreconf -vi
-betik    = ./configure --prefix=/usr
+betik    = ./configure --prefix=/usr --disable-doc --disable-static
 betik    = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-betik    = make
+betik    = make $MAKEJOBS
 
 [pakur]
 tip      = gnu
