@@ -1,0 +1,51 @@
+[paket]
+tanim   = X uygulamaları Wayland altında çalıştıran uygulama
+paketci = milisarge
+grup    = kütüphane
+url     = https://xorg.freedesktop.org
+
+[gerek]
+derleme = xorg-util-macros mesa libx11 xtrans libxkbfile libxfont2
+calisma = xkbcomp 
+
+[kaynak]
+xz      = https://xorg.freedesktop.org/archive/individual/xserver
+2       = $XORG_SITE/lib/libxcvt-0.1.2.tar.xz
+3       = https://github.com/NVIDIA/egl-wayland/archive/1.1.13/egl-wayland-1.1.13-1.tar.gz
+4       = https://github.com/NVIDIA/eglexternalplatform/archive/1.1/eglexternalplatform-1.1.tar.gz
+dosya   = egl-wayland-glvnd.diff
+5       = https://www.x.org/releases/individual/lib/libXfont2-2.0.6.tar.xz
+6       = $XORG_SITE/lib/libfontenc-1.1.7.tar.xz
+
+;[sha256]
+;1       = e3825625e1af9f58593695b0129e39f68a8f3c7d5696c096b8ed2d8b9ac69430
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/EGL"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig:$PKG/usr/share/pkgconfig
+;export  = LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
+
+ekconf  = --disable-static --with-encodingsdir=/usr/share/fonts/encodings
+gnu     = libfontenc-1.1.7
+gnu     = libXfont2-2.0.6
+
+meson   = libxcvt-0.1.2
+
+betik   = install -Dt $PKG/usr/include/EGL -m644 $SRC/eglexternalplatform-1.1/interface/*
+betik   = install -Dt $PKG/usr/share/pkgconfig -m644 $SRC/eglexternalplatform-1.1/*.pc
+
+betik   = patch -Np1 -d $SRC/egl-wayland-1.1.13 -i $SRC/egl-wayland-glvnd.diff
+meson   = egl-wayland-1.1.13
+
+;betik   = sed -i "s#eglstream_protodir,#'/tmp/work/pkg/', eglstream_protodir,#g" $SRC/$isim-$surum/hw/xwayland/meson.build
+betik   = sed -i "s^eglstream_xml =^eglstream_xml ='/tmp/work/pkg/usr/share/wayland-eglstream/wayland-eglstream.xml'#^g" $SRC/$isim-$surum/hw/xwayland/meson.build
+betik   = sed -i "s^eglstream_controller_xml =^eglstream_controller_xml ='/tmp/work/pkg/usr/share/wayland-eglstream/wayland-eglstream-controller.xml'#^g" $SRC/$isim-$surum/hw/xwayland/meson.build
+ekconf  = -Ddocs=false -D ipv6=true -D xvfb=false -D xdmcp=false -D xcsecurity=true -D dri3=true -D xwayland_eglstream=true -D glamor=true -D xkb_dir=/usr/share/X11/xkb -D xkb_output_dir=/var/lib/xkb
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = rm -f $PKG/usr/lib/xorg/protocol.txt
+betik   = rmdir $PKG/usr/lib/xorg
