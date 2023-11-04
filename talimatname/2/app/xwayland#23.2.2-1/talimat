@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://xorg.freedesktop.org
 
 [gerek]
-derleme = xorg-util-macros mesa libx11 xtrans libxkbfile libxfont2
+derleme = meson xorg-util-macros mesa libx11 xtrans libxkbfile wayland-protocols
 calisma = xkbcomp 
 
 [kaynak]
