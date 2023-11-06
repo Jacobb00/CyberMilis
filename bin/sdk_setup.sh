@@ -1,3 +1,3 @@
 #!/bin/sh
-mps kur unzip
+mps kur zip unzip
 curl -s "https://get.sdkman.io" | bash
