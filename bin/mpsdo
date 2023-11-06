@@ -10,8 +10,8 @@ if [ ! -f $mpsconf ];then
  echo "$mpsconf geçerli yol değil!"
 fi
 
-surum="10-30"
-ortam_sha="f3d95dd7cb37fcbc19871f3d498b6329bf3b885d08c88d2f1a6c0d18542c51ee"
+surum="11-06"
+ortam_sha="425ddaf906327a67b26dbbd7516b3546170baa0d30002c321a260c0cf8cea72d"
 
 ortam_adres="https://mls.akdeniz.edu.tr/iso/2.3/base/milis23-${surum}-base.sfs"
 ortam=/mnt/milis23-${surum}-base.sfs
