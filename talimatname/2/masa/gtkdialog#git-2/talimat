@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://github.com/puppylinux-woof-CE/gtkdialog
 
 [gerek]
-derleme = meson gtk3
+derleme = meson gtk3 vte3
 calisma =
 
 [kaynak]
