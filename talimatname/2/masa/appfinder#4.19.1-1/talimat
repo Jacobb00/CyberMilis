@@ -27,5 +27,8 @@ gnu     = garcon-4.18.1
 gnu     = xfce4-appfinder-4.19.1
 
 [pakur]
-betik   = echo 1 
+betik   = echo 1
 betik   = mv $PKG/usr/bin/xfce4-appfinder $PKG/usr/bin/appfinder
+betik   = rm $PKG/usr/bin/xfrun4
+betik   = sed -i "s/Exec=xfce4-appfinder/Exec=appfinder/g" $PKG/usr/share/applications/xfce4-appfinder.desktop
+betik   = rm $PKG/usr/share/applications/xfce4-run.desktop

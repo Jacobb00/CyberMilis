@@ -1,0 +1,20 @@
+[paket]
+tanim   = Wayland wlroots pencere uygulamaları
+paketci = milisarge
+grup    = sistem
+url     = https://git.sr.ht/~brocellous/wlrctl
+
+[gerek]
+derleme = wayland-protocols wayland wlroots
+calisma =
+
+[kaynak]
+1      = https://git.sr.ht/~leon_plickat/lswt/archive/master.tar.gz::lswt-master-$devir.tar.gz
+2      = https://git.sr.ht/~brocellous/wlrctl/archive/master.tar.gz::wlrctl-master-$devir.tar.gz
+
+[derle]
+betik   = cd $SRC/lswt-master;make
+meson   = wlrctl-master
+
+[pakur]
+betik   = install -Dm755 $SRC/lswt-master/lswt $PKG/usr/bin/lswt
