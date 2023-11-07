@@ -46,7 +46,7 @@ MPS 2.x.x - Milis Paket Sistemi milisarge@gmail.com
 4- MPS’in paketleri nereden alacağını belirlemek için gerekli ayarlar yapılır:
 
 ```
-nano conf/conf.lua
+nano conf/mps.ini
 # talimatdepoları milis21->milis23 çevrilir.
 # sunucu yerel depo için [1]="http://localhost:9911" ayarlanır.
 ```

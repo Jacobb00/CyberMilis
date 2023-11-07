@@ -623,15 +623,16 @@ Tekli derlemede talimat dizini yerel dizinde yer alırken Git depodan derlemede 
 Örnek *htop* uygulamamız için Git depo derlemesi için *notabug.org* git sunucusu, *aliveli* hesabı ve *talimatname* deposu kullanılacaksa,
 *htop#3.0.5-1* adlı talimat dizini *https://notabug.org/aliveli/talimatname* deposu altında *sistem* dizini altına kopyalanmalıdır.
 Depo altında ayrıca bir *sistem* dizin ioluşturmamızın amacı talimatların gruplanmasını sağlamaktır.
-Talimat dizini için gerekli Git konuşlandırması yyapıldıktan sonra MPS için gerekli ayar, /usr/milis/mps/conf/conf.lua dosyasına belirtilmelidir.
+Talimat dizini için gerekli Git konuşlandırması yyapıldıktan sonra MPS için gerekli ayar, /usr/milis/mps/conf/mps.ini dosyasına belirtilmelidir.
 Örnek için gerekli MPS ayarı:
 
     ...
-    [3]={["https://notabug.org/aliveli/talimatname"]="sistem"},
+    [talimat]
+    3 =https://notabug.org/aliveli/talimatname::sistem
     ...
 
 şeklinde olacaktır. 
-Anahtar değerin 3 verilmesi genellikle test ve topluluk talimatlarının, talimatnamede 3.seviyesinde toplanmasıdır.
+Anahtar değerin 3 verilmesi genellikle test ve topluluk talimatlarının, talimatnamede 3.seviye dizini olarak toplanmasıdır.
 Dolayıyla yukarıdaki ayara göre *https://notabug.org/aliveli/talimatname* deposu */sources* altına kopyalanarak(clone/pull)
 *sistem* dizini altında yer alan talimat_dizinleri */usr/milis/talimatname/3* altına kopyalanacaktır. 
 Yapılan ayarın işleme alınması için betikdepo güncellemesi yapılmalıdır.
@@ -685,14 +686,14 @@ Sıfırlanmayan dizinler:
 	
 Sıfırlanmayan dizinlerin ana sistem bağlantı dizinleri:
 
-	- /mnt/mpsdo21/rw/opt
-	- /mnt/mpsdo21/rw/sources
-	- /mnt/mpsdo21/rw/cache
+	- /mnt/mpsdo23/rw/opt
+	- /mnt/mpsdo23/rw/sources
+	- /mnt/mpsdo23/rw/cache
 
 Bu dizinlerin ana sisteme bağlanma amacı oluşturulmuş paket, arşiv ve diğer dosyaların muhafaza edilmesidir.
 Ortama her girişte sıfırlama olacağı için MPS her girişte güncellenmelidir.
 MPS sürekli klonlama yapmayıp sonraki girişlerde sadece eşleme işlemi ile ortamı güncelleyecektir.
-Ortamda paket derlemek için konak bilgisayarın /mnt/mpsdo21/system/usr/milis/talimatname altındaki sayısal dizinler kullanılır. 
+Ortamda paket derlemek için konak bilgisayarın /mnt/mpsdo23/system/usr/milis/talimatname altındaki sayısal dizinler kullanılır. 
 
 Paketlerin oluşturulacağı */opt* dizinine geçilerek, paket üretim işlemleri başlatılabilir.
 Derleme dizini ile derleme yönteminden farklı olarak bu yöntemde mps komutu kullanılmaktadır.
@@ -717,7 +718,7 @@ exit
 ```
 
 
-Bu adımdan sonra uygulama, */mnt/mpsdo21/rw/opt* altından ana sisteme aktarılıp kurulup test edilebilir.
+Bu adımdan sonra uygulama, */mnt/mpsdo23/rw/opt* altından ana sisteme aktarılıp kurulup test edilebilir.
 Eğer çalışması için başka paketler de üretilmişse onlar da aynı şekilde kurulup hedef paket kurulup test edilmelidir.
 
 ```

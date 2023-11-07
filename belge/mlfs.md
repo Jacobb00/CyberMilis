@@ -186,7 +186,7 @@ export PATH=$MPS_PATH/bin:$PATH
 17- MPS’in paketleri nereden alacağını belirlemek için gerekli ayarlar yapılır:
 
 ```
-nano /opt/mps/conf/conf.lua
+nano /opt/mps/conf/mps.ini
 # talimatdepoları milis21->milis23 çevrilir.
 # sunucu yerel depo için [1]="http://localhost:9911" ayarlanır.
 ```
