@@ -1,0 +1,30 @@
+[paket]
+tanim   = Uygulama Bulucu
+paketci = milisarge
+grup    = sistem  
+url     = https://docs.xfce.org/xfce/xfce4-appfinder
+
+[gerek]
+derleme = thunar
+calisma = 
+
+[kaynak]
+1       = https://archive.xfce.org/src/xfce/garcon/4.18/garcon-4.18.1.tar.bz2
+2       = https://archive.xfce.org/src/xfce/xfce4-appfinder/4.19/xfce4-appfinder-4.19.1.tar.bz2
+
+[sha256]
+1	    = fe7a932a6dac95eb1438f3fbfd53096756ff2e1cb179d10d0fb796cefbb4c20b
+2	    = d8bd2a1dd9d193eb25e8e5e68b1beae3578a46d1c5eeee30bec7dabbf4330648
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include" 
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/xfce4" 
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+
+gnu     = garcon-4.18.1
+gnu     = xfce4-appfinder-4.19.1
+
+[pakur]
+betik   = echo 1 
+betik   = mv $PKG/usr/bin/xfce4-appfinder $PKG/usr/bin/appfinder
