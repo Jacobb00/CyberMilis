@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://docs.xfce.org/xfce/xfce4-appfinder
 
 [gerek]
-derleme = thunar
+derleme = intltool thunar
 calisma = 
 
 [kaynak]
@@ -18,8 +18,9 @@ calisma =
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
-export  = CFLAGS="$CFLAGS -I$PKG/usr/include" 
-export  = CFLAGS="$CFLAGS -I$PKG/usr/include/xfce4" 
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/garcon-1"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/garcon-gtk3-1"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
 
 gnu     = garcon-4.18.1
