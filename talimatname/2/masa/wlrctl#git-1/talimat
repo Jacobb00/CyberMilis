@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://git.sr.ht/~brocellous/wlrctl
 
 [gerek]
-derleme = wayland-protocols wayland wlroots
+derleme = meson wayland-protocols wayland wlroots
 calisma =
 
 [kaynak]
@@ -13,8 +13,10 @@ calisma =
 2      = https://git.sr.ht/~brocellous/wlrctl/archive/master.tar.gz::wlrctl-master-$devir.tar.gz
 
 [derle]
-betik   = cd $SRC/lswt-master;make
+betik   = cd $SRC/lswt-master;CPPFLAGS="" make
+ekconf  = -Dman-pages=disabled
 meson   = wlrctl-master
 
 [pakur]
 betik   = install -Dm755 $SRC/lswt-master/lswt $PKG/usr/bin/lswt
+betik   = rm -rf $PKG/usr/share
