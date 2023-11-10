@@ -18,6 +18,7 @@ xz      = https://github.com/celluloid-player/$isim/releases/download/v$surum
 [derle]
 betik   = sed -i "s/Name=Celluloid/Name=Multimedia Player/g" data/io.github.celluloid_player.Celluloid.desktop.in
 betik   = sed -i "/^Name=*/a Name[tr]=Medya Oynatıcı" data/io.github.celluloid_player.Celluloid.desktop.in
+betik   = sed -i "s/DBus/;DBus/g" data/io.github.celluloid_player.Celluloid.desktop.in
 betik   = mv $KAYNAK_DIZIN/celluloid-tr.po po/tr.po
 betik   = sed -i 's/#~ //g' po/tr.po
 tip     = meson
