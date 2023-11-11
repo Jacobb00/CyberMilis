@@ -5,6 +5,77 @@ gi.require_version("GtkLayerShell","0.1")
 from gi.repository import Gio, Gtk, Gdk, GdkPixbuf, GtkLayerShell
 import configparser
 
+icon_text = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   version="1"
+   id="svg12"
+   sodipodi:docname="System.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1908"
+     inkscape:window-height="1044"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="3.6875"
+     inkscape:cx="-14.915254"
+     inkscape:cy="32"
+     inkscape:window-x="4"
+     inkscape:window-y="28"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12" />
+  <path
+     style="opacity:0.2"
+     d="M 30.599609,5 C 27.497209,5 25,7.4972093 25,10.599609 v 2.625 a 21,21 0 0 0 -6.623047,3.826172 l -2.275391,-1.3125 c -2.686757,-1.5512 -6.09919,-0.635976 -7.6503901,2.050781 l -1.4003907,2.421876 c -1.5511999,2.686758 -0.6359758,6.09919 2.0507813,7.65039 l 2.2656255,1.308594 A 21,21 0 0 0 11,33 a 21,21 0 0 0 0.367188,3.830078 l -2.2656255,1.308594 c -2.6867571,1.5512 -3.6019813,4.963633 -2.0507813,7.65039 l 1.4003907,2.421876 c 1.5512001,2.686757 4.9636331,3.601981 7.6503901,2.050781 l 2.259766,-1.304688 A 21,21 0 0 0 25,52.769531 v 2.63086 C 25,58.502791 27.497209,61 30.599609,61 h 2.800782 C 36.502791,61 39,58.502791 39,55.400391 v -2.640625 a 21,21 0 0 0 6.623047,-3.810547 l 2.275391,1.3125 c 2.686757,1.5512 6.09919,0.635977 7.65039,-2.050781 l 1.400391,-2.421876 c 1.5512,-2.686757 0.635975,-6.09919 -2.050781,-7.65039 L 52.632812,36.830078 A 21,21 0 0 0 53,33 21,21 0 0 0 52.632812,29.169922 l 2.265626,-1.308594 c 2.686757,-1.5512 3.601981,-4.963632 2.050781,-7.65039 l -1.400391,-2.421876 c -1.5512,-2.686758 -4.963633,-3.601981 -7.65039,-2.050781 l -2.259766,1.304688 A 21,21 0 0 0 39,13.228516 V 10.599609 C 39,7.4972093 36.502791,5 33.400391,5 Z"
+     id="path2" />
+  <path
+     style="fill:#546e7a"
+     d="M 30.599609,4 C 27.497209,4 25,6.4972094 25,9.5996094 v 2.6249996 a 21,21 0 0 0 -6.623047,3.826172 l -2.275391,-1.3125 c -2.686757,-1.5512 -6.09919,-0.635976 -7.6503901,2.050781 l -1.4003907,2.421876 c -1.5511999,2.686758 -0.6359758,6.09919 2.0507813,7.65039 l 2.2656255,1.308594 A 21,21 0 0 0 11,32 a 21,21 0 0 0 0.367188,3.830078 l -2.2656255,1.308594 c -2.6867571,1.5512 -3.6019813,4.963633 -2.0507813,7.65039 l 1.4003907,2.421876 c 1.5512001,2.686757 4.9636331,3.601981 7.6503901,2.050781 l 2.259766,-1.304688 A 21,21 0 0 0 25,51.769531 v 2.63086 C 25,57.502791 27.497209,60 30.599609,60 h 2.800782 C 36.502791,60 39,57.502791 39,54.400391 v -2.640625 a 21,21 0 0 0 6.623047,-3.810547 l 2.275391,1.3125 c 2.686757,1.5512 6.09919,0.635976 7.65039,-2.050781 l 1.400391,-2.421876 c 1.5512,-2.686757 0.635975,-6.09919 -2.050781,-7.65039 L 52.632812,35.830078 A 21,21 0 0 0 53,32 21,21 0 0 0 52.632812,28.169922 l 2.265626,-1.308594 c 2.686757,-1.5512 3.601981,-4.963632 2.050781,-7.65039 l -1.400391,-2.421876 c -1.5512,-2.686758 -4.963634,-3.601981 -7.65039,-2.050781 l -2.259766,1.304688 A 21,21 0 0 0 39,12.228516 V 9.5996094 C 39,6.4972094 36.502791,4 33.400391,4 Z"
+     id="path4" />
+  <path
+     style="opacity:0.1;fill:#ffffff"
+     d="M 30.599609,4 C 27.497209,4 25,6.4972094 25,9.5996094 V 10.599609 C 25,7.4972094 27.497209,5 30.599609,5 h 2.800782 C 36.502791,5 39,7.4972094 39,10.599609 V 9.5996094 C 39,6.4972094 36.502791,4 33.400391,4 Z M 25,12.224609 a 21,21 0 0 0 -6.623047,3.826172 l -2.275391,-1.3125 c -2.686757,-1.5512 -6.09919,-0.635976 -7.6503901,2.050781 l -1.4003907,2.421876 c -0.6033566,1.045044 -0.8286088,2.200037 -0.7265624,3.3125 0.069736,-0.789767 0.3027074,-1.578362 0.7265624,-2.3125 l 1.4003907,-2.421876 c 1.5512001,-2.686757 4.9636331,-3.601981 7.6503901,-2.050781 l 2.275391,1.3125 A 21,21 0 0 1 25,13.224609 Z m 14,0.0039 v 1 a 21,21 0 0 1 6.638672,3.814453 l 2.259766,-1.304688 c 2.686757,-1.5512 6.09919,-0.635977 7.65039,2.050781 l 1.400391,2.421876 c 0.423855,0.734138 0.656827,1.522733 0.726562,2.3125 0.102046,-1.112463 -0.123206,-2.267456 -0.726562,-3.3125 l -1.400391,-2.421876 c -1.5512,-2.686758 -4.963633,-3.601981 -7.65039,-2.050781 l -2.259766,1.304688 A 21,21 0 0 0 39,12.228516 Z M 52.767578,29.09179 52.632812,29.16992 A 21,21 0 0 1 52.974609,32.541016 21,21 0 0 0 53,32 21,21 0 0 0 52.767578,29.091797 Z m -41.529297,0.0039 A 21,21 0 0 0 11,32 a 21,21 0 0 0 0.02539,0.458984 21,21 0 0 1 0.341797,-3.289062 z m 41.523438,6.808594 a 21,21 0 0 1 -0.128907,0.925781 l 2.265626,1.308594 c 1.641712,0.947843 2.617034,2.590267 2.777343,4.33789 0.185479,-2.100574 -0.824725,-4.210545 -2.777343,-5.33789 z m -41.529297,0.0039 -2.1308595,1.230469 c -1.9526187,1.127345 -2.9628223,3.237316 -2.7773437,5.33789 0.1603097,-1.747623 1.1356309,-3.390047 2.7773437,-4.33789 l 2.2656255,-1.308594 a 21,21 0 0 1 -0.134766,-0.921875 z"
+     id="path6" />
+  <path
+     style="opacity:0.2"
+     d="m 32.000237,21.00088 c 6.627221,0 11.999676,5.372455 11.999676,11.999676 0,6.627221 -5.372455,11.999676 -11.999676,11.999676 -6.627221,0 -11.999676,-5.372455 -11.999676,-11.999676 0,-6.627221 5.372455,-11.999676 11.999676,-11.999676 z"
+     id="path8" />
+  <path
+     style="fill:#ffffff"
+     d="m 32.000237,20.001334 c 6.627221,0 11.999676,5.372455 11.999676,11.999676 0,6.627221 -5.372455,11.999676 -11.999676,11.999676 -6.627221,0 -11.999676,-5.372455 -11.999676,-11.999676 0,-6.627221 5.372455,-11.999676 11.999676,-11.999676 z"
+     id="path10" />
+</svg>"""
+
 config = configparser.ConfigParser()
 
 lang = {
@@ -89,6 +160,7 @@ class MMenu(Gtk.Window):
 		self.show_description = False
 		self.horizontal = False
 		self.hide_categories = True
+		self.menu_position = 0
 		self.d_icon_theme = Gtk.IconTheme.get_default()
 
 		self.config_file = os.path.expanduser("~/.config/menu.ini")
@@ -106,6 +178,7 @@ show_description = 0
 show_generic_name = 0
 horizontal = 0
 hide_categories = 0
+menu_position = 0
 """)
 			f.close()
 
@@ -136,14 +209,14 @@ hide_categories = 0
 		self.logout_button = Gtk.Button()
 		self.logout_button.connect("clicked",self.click_logout_button)
 		#image = self.get_pixbuf_to_image("Log-out.svg")
-		image =  Gtk.Image.new_from_pixbuf(self.get_icon("off-outline",16))
+		image =  Gtk.Image.new_from_pixbuf(self.get_icon("system-log-out",16))
 		self.logout_button.set_image(image)
 		s_box.pack_start(self.logout_button,False,False,2)
 
 		self.restart_button = Gtk.Button()
 		self.restart_button.connect("clicked",self.click_restart_button)
 		#image = self.get_pixbuf_to_image("Reboot.svg")
-		image =  Gtk.Image.new_from_pixbuf(self.get_icon("system-reboot-symbolic",16))
+		image =  Gtk.Image.new_from_pixbuf(self.get_icon("system-reboot",16))
 
 		self.restart_button.set_image(image)
 		s_box.pack_start(self.restart_button,False,False,2)
@@ -151,7 +224,7 @@ hide_categories = 0
 		self.shutdown_button = Gtk.Button()
 		self.shutdown_button.connect("clicked",self.click_shutdown_button)
 		#image = self.get_pixbuf_to_image("Shutdown.svg")
-		image =  Gtk.Image.new_from_pixbuf(self.get_icon("system-shutdown-symbolic",16))
+		image =  Gtk.Image.new_from_pixbuf(self.get_icon("system-shutdown",16))
 
 		self.shutdown_button.set_image(image)
 		s_box.pack_start(self.shutdown_button,False,False,2)
@@ -234,9 +307,11 @@ hide_categories = 0
 				if "show_description" in settings:
 					self.show_description = int(settings["show_description"])
 				if "horizontal" in settings:
-					self.horizontal = int(settings["horizontal"])		
+					self.horizontal = int(settings["horizontal"])
 				if "hide_categories" in settings:
-					self.hide_categories = int(settings["hide_categories"])		
+					self.hide_categories = int(settings["hide_categories"])
+				if "menu_position" in settings:
+					self.menu_position = int(settings["menu_position"])
 		except Exception as e:
 			print("Not read config file:", e)
 
@@ -329,9 +404,13 @@ hide_categories = 0
 			icon = self.d_icon_theme.load_icon(icon_name,size,Gtk.IconLookupFlags.FORCE_REGULAR)
 		except:
 			if os.path.exists(icon_name):
-				icon =  GdkPixbuf.Pixbuf.new_from_file_at_size(icon_name,self.icon_size,size)
+				icon =  GdkPixbuf.Pixbuf.new_from_file_at_size(icon_name,size,size)
 			else:
-				icon = self.d_icon_theme.load_icon("system",size,Gtk.IconLookupFlags.FORCE_REGULAR)
+				loader = GdkPixbuf.PixbufLoader()
+				loader.set_size(size,size)
+				loader.write(icon_text.encode())
+				loader.close()
+				icon = loader.get_pixbuf()
 		return icon
 
 
@@ -443,8 +522,9 @@ hide_categories = 0
 				name += app[1]
 			self.apps_store.append([name,p_b,app[3]])
 		model = self.apps_list.get_model()
-		iter = model[0]
-		self.apps_list.select_path(iter.path)
+		if len(model) != 0:
+			iter = model[0]
+			self.apps_list.select_path(iter.path)
 
 
 
@@ -462,16 +542,40 @@ if __name__ == '__main__':
 	print(SIZE.width,SIZE.height)
 	
 	if win.is_full_screen == 0:
-		w_space = (SIZE.width - win.menu_width) // 2
-		h_space = (SIZE.height - win.menu_height) // 2
+		w_space_l = 10
+		w_space_r = 10
+		h_space_t = 10
+		h_space_b = 10
+		if win.menu_position == 0:
+			w_space_l = (SIZE.width - win.menu_width) // 2
+			w_space_r = (SIZE.width - win.menu_width) // 2
+			h_space_t = (SIZE.height - win.menu_height) // 2
+			h_space_b = (SIZE.height - win.menu_height) // 2
+		# 1 sol alt köşe
+		elif win.menu_position == 1:
+			w_space_r = (SIZE.width - (win.menu_width+10))
+			h_space_t = (SIZE.height - (win.menu_height+10))
+		# 2 sol üst köşe
+		elif win.menu_position == 2:
+			w_space_r = (SIZE.width - (win.menu_width+10))
+			h_space_b = (SIZE.height - (win.menu_height+10))
+		# 3 sağ alt köşe
+		elif win.menu_position == 3:
+			w_space_l = (SIZE.width - (win.menu_width+10))
+			h_space_t = (SIZE.height - (win.menu_height+10))
+		# 4 sağ üst köşe
+		elif win.menu_position == 4:
+			w_space_l = (SIZE.width - (win.menu_width+10))
+			h_space_b = (SIZE.height - (win.menu_height+10))
+
 	else:
 		w_space = 0
 		h_space = 0
 
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.TOP, h_space)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.BOTTOM, h_space)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.LEFT, w_space)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.RIGHT, w_space)
+	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.TOP, h_space_t)
+	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.BOTTOM, h_space_b)
+	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.LEFT, w_space_l)
+	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.RIGHT, w_space_r)
 	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.TOP, 1)
 	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.BOTTOM, 1)
 	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.LEFT, 1)
