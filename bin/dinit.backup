@@ -86,34 +86,13 @@ function ini_save(fileName, data)
 end
 
 -- tanımlar
-config_file = "/home/" .. os.getenv("USER") .. "/.config/masa.ini"
-config = ini_load(config_file)
+config = ini_load("/home/" .. os.getenv("USER") .. "/.config/masa.ini")
 cmd = "%s > %s 2>&1 &"
 
 param    = arg[1]
 wm_param = arg[2]
  
 --- işlevler
-
---split string
-function string:split(delimiter)
-  local result = {}
-  if delimiter == "." then  
-    for i in string.gmatch(self, "[^%.]+") do
-	  table.insert(result,i)
-    end
-  else
-    local from  = 1
-    local delim_from, delim_to = string.find( self, delimiter, from  )
-    while delim_from do
-      table.insert( result, string.sub( self, from , delim_from-1 ) )
-      from  = delim_to + 1
-      delim_from, delim_to = string.find( self, delimiter, from  )
-    end
-    table.insert( result, string.sub( self, from  ) )
-  end
-  return result
-end
 
 function initialize()
 	uid = l5.geteuid()
@@ -377,100 +356,6 @@ function start_wm()
   os.execute(_cmd:format(exec_str))
 end
 
-function cfgget(sect,key)	
-	local str = ""
-	if not config[sect] then
-		return
-	end
-	for k,v in pairs(config[sect]) do
-		--print("v",v)
-		_, p1=tostring(v):find("@@")
-		if p1 then
-			k=v:sub(0,p1-2)
-			v=v:sub(p1+1,v:len())
-		end
-		if key then
-			if k == key then
-				str = str..v
-				break
-			end
-		else
-			str = str .. ("%-14s = %s\n"):format(k,v)
-		end
-	end
-	return str
-end
-
-function cfgprint(sec)
-	local str = ""
-	configx = {}
-	if sec then
-		configx[sec] = config[sec]
-	else
-		configx = config
-	end
-	for sect, tab in pairs(configx) do
-		if sec then 
-			if sect == sec then
-				str = str .. ("[%s]\n"):format(sect)
-			end
-		else
-			str = str .. ("[%s]\n"):format(sect)
-		end
-		str = str .. cfgget(sect)
-		str = str.."\n"	
-	end
-	return str
-end
-
-function cfgread(arg)
-	input = arg
-	if not input then
-		print(cfgprint())
-		return
-	end
-	_, p=input:find("%.")
-	sec = input
-	key = nil
-	-- bu section.key
-	if p then
-		sec=input:sub(0,p-1)
-		key=input:sub(p+1,input:len())
-		return cfgget(sec,key)
-	-- section
-	else
-		return cfgprint(sec)
-	end
-end
-
-function cfgwrite()
-	-- direk konsoldan girilen anahtar girdi analiz
-	local sect    = arg[2]
-	local anahtar = arg[3]
-	local deger   = arg[4]
-	if not sect or not anahtar or not deger then
-		return
-	end
-	-- section len 0 ise key,value yoksa list
-	if #config[sect] == 0 then
-		config[sect][anahtar] = deger
-		if deger == "" then
-			config[sect][anahtar] = nil
-		end
-		print(cfgread(sect))
-		cfgstore()
-	else
-		print(sect,"not support yet")
-	end
-end
-
-function cfgstore()
-	cfgw = io.open(config_file, "w")
-	for sect, tab in pairs(config) do
-		cfgw:write(cfgread(sect))
-	end
-	cfgw:close();
-end
 
 ------ işlem
 
@@ -503,12 +388,4 @@ if param == "--get" then
       print("echo")
     end
   end
-end
-
-if param == "oku" or param == "read" then
-	print(cfgread(arg[2]))
-end
-
-if param == "yaz" or param == "store" then
-	cfgwrite()
 end
