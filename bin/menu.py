@@ -166,19 +166,19 @@ class MMenu(Gtk.Window):
 		self.config_file = os.path.expanduser("~/.config/menu.ini")
 		if not os.path.exists(self.config_file):
 			f = open(self.config_file, "w")
-			f.write("""
-[settings]
+			f.write("""[settings]
 width = 640
 height = 400
 fullscreen = 0
 menu_close = 1
 icon_size = 32
-single_click = 0
+single_click = 1
 show_description = 0
 show_generic_name = 0
 horizontal = 0
 hide_categories = 0
-menu_position = 0
+;0 orta, 1 sol-alt, 2 sol-üst, 3 sağ-alt, 4 sağ-üst
+menu_position = 1
 """)
 			f.close()
 
