@@ -317,7 +317,7 @@ menu_position = 0
 
 	def click_settings_button(self,widget):
 		subprocess.Popen(["xdg-open",self.config_file])
-
+		self.destroy()
 
 	def click_logout_button(self,widget):
 		if self.logout_command != "":
