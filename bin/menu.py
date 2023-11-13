@@ -569,8 +569,10 @@ if __name__ == '__main__':
 			h_space_b = (SIZE.height - (win.menu_height+10))
 
 	else:
-		w_space = 0
-		h_space = 0
+		w_space_l = 0
+		w_space_r = 0
+		h_space_b = 0
+		h_space_t = 0
 
 	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.TOP, h_space_t)
 	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.BOTTOM, h_space_b)
