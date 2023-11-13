@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import gi, subprocess, os
 gi.require_version('Gtk', '3.0')
 gi.require_version("GtkLayerShell","0.1")
