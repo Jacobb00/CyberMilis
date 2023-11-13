@@ -169,9 +169,9 @@ class MMenu(Gtk.Window):
 			f.write("""[settings]
 width = 640
 height = 400
-fullscreen = 0
+fullscreen = 1
 menu_close = 1
-icon_size = 32
+icon_size = 64
 single_click = 1
 show_description = 0
 show_generic_name = 0
