@@ -1,0 +1,24 @@
+[paket]
+tanim   = brother-hl2130 yazıcı paketi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.brother.com/pub/bsc/linux/dlf
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = $url/hl2130lpr-2.1.0-1.i386.deb!
+2       = $url/cupswrapperHL2130-2.0.4-2.i386.deb!
+
+[derle]
+betik   = cd $SRC
+betik   = ar x /sources/l2130lpr-2.1.0-1.i386.deb
+betik   = tar xf data.tar.gz;rm data*
+betik   = ar x /sources/cupswrapperHL2130-2.0.4-2.i386.deb
+betik   = tar xf data.tar.gz
+dosya   = derle.sh
+
+[pakur]
+betik   = echo 1	
