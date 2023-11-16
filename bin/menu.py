@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
-import gi, subprocess, os
+#!/usr/bin/python3
+import gi, subprocess, os, sys
 gi.require_version('Gtk', '3.0')
 gi.require_version("GtkLayerShell","0.1")
-from gi.repository import Gio, Gtk, Gdk, GdkPixbuf, GtkLayerShell
+from gi.repository import Gio, Gtk, Gdk, GdkPixbuf, GtkLayerShell, GLib
 import configparser
 
 icon_text = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -109,9 +109,9 @@ def rtranslate(str):
 		return	list(lang[lg].keys())[list(lang[lg].values()).index(str)]
 	return str
 
-class MMenu(Gtk.Window):
-	def __init__(self):
-		Gtk.Window.__init__(self)
+class MMenu(Gtk.ApplicationWindow):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
 		self.categories = {
 		"All":[],
 		"Favorites":[],
@@ -529,66 +529,86 @@ menu_position = 1
 
 
 
+
+
+class Application(Gtk.Application):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, application_id="gitlab.com.milislinux.menu", flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE, **kwargs)
+		GLib.set_application_name("menu")
+		GLib.set_prgname('menu')
+		self.settings = GLib.KeyFile()
+
+		self.win = None
+		self.add_main_option("new", ord("n"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING, "NewWindow", None)
+
+	def do_start_up(self):
+		Gtk.Application.do_startup(self)
+
+	def do_activate(self):
+		if not self.win:
+			self.win = MMenu(application=self)
+			GtkLayerShell.init_for_window(self.win)
+			screen = Gdk.Display.get_default()
+			monitors = screen.get_n_monitors()
+			active_monitor = screen.get_monitor(0)
+			SIZE = active_monitor.get_geometry()
+			if self.win.is_full_screen == 0:
+				w_space_l = 10
+				w_space_r = 10
+				h_space_t = 10
+				h_space_b = 10
+				if self.win.menu_position == 0:
+					w_space_l = (SIZE.width - self.win.menu_width) // 2
+					w_space_r = (SIZE.width - self.win.menu_width) // 2
+					h_space_t = (SIZE.height - self.win.menu_height) // 2
+					h_space_b = (SIZE.height - self.win.menu_height) // 2
+				# 1 sol alt köşe
+				elif self.win.menu_position == 1:
+					w_space_r = (SIZE.width - (self.win.menu_width+10))
+					h_space_t = (SIZE.height - (self.win.menu_height+10))
+				# 2 sol üst köşe
+				elif self.win.menu_position == 2:
+					w_space_r = (SIZE.width - (self.win.menu_width+10))
+					h_space_b = (SIZE.height - (self.win.menu_height+10))
+				# 3 sağ alt köşe
+				elif self.win.menu_position == 3:
+					w_space_l = (SIZE.width - (self.win.menu_width+10))
+					h_space_t = (SIZE.height - (self.win.menu_height+10))
+				# 4 sağ üst köşe
+				elif self.win.menu_position == 4:
+					w_space_l = (SIZE.width - (self.win.menu_width+10))
+					h_space_b = (SIZE.height - (self.win.menu_height+10))
+
+			else:
+				w_space_l = 0
+				w_space_r = 0
+				h_space_b = 0
+				h_space_t = 0
+
+			GtkLayerShell.set_margin(self.win, GtkLayerShell.Edge.TOP, h_space_t)
+			GtkLayerShell.set_margin(self.win, GtkLayerShell.Edge.BOTTOM, h_space_b)
+			GtkLayerShell.set_margin(self.win, GtkLayerShell.Edge.LEFT, w_space_l)
+			GtkLayerShell.set_margin(self.win, GtkLayerShell.Edge.RIGHT, w_space_r)
+			GtkLayerShell.set_anchor(self.win, GtkLayerShell.Edge.TOP, 1)
+			GtkLayerShell.set_anchor(self.win, GtkLayerShell.Edge.BOTTOM, 1)
+			GtkLayerShell.set_anchor(self.win, GtkLayerShell.Edge.LEFT, 1)
+			GtkLayerShell.set_anchor(self.win, GtkLayerShell.Edge.RIGHT, 1)
+			GtkLayerShell.set_keyboard_mode(self.win, GtkLayerShell.KeyboardMode.EXCLUSIVE)
+
+			
+			#win.maximize()
+			self.win.show_all()
+			if not self.win.hide_categories:
+				self.win.paned.set_position(150)
+			self.win.connect("destroy", Gtk.main_quit)
+		else:
+			self.win.destroy()
+
+	def do_command_line(self, command_line):
+		options = command_line.get_options_dict()
+		options = options.end().unpack()
+		self.do_activate()
+
 if __name__ == '__main__':
-	win = MMenu()
-	GtkLayerShell.init_for_window(win)
-	#GtkLayerShell.auto_exclusive_zone_enable(win)
-	#GtkLayerShell.set_keyboard_mode(pen,GtkLayerShell.KeyboardMode.EXCLUSIVE )
-
-	screen = Gdk.Display.get_default()
-	monitors = screen.get_n_monitors()
-	active_monitor = screen.get_monitor(0)
-	SIZE = active_monitor.get_geometry()
-	print(SIZE.width,SIZE.height)
-	
-	if win.is_full_screen == 0:
-		w_space_l = 10
-		w_space_r = 10
-		h_space_t = 10
-		h_space_b = 10
-		if win.menu_position == 0:
-			w_space_l = (SIZE.width - win.menu_width) // 2
-			w_space_r = (SIZE.width - win.menu_width) // 2
-			h_space_t = (SIZE.height - win.menu_height) // 2
-			h_space_b = (SIZE.height - win.menu_height) // 2
-		# 1 sol alt köşe
-		elif win.menu_position == 1:
-			w_space_r = (SIZE.width - (win.menu_width+10))
-			h_space_t = (SIZE.height - (win.menu_height+10))
-		# 2 sol üst köşe
-		elif win.menu_position == 2:
-			w_space_r = (SIZE.width - (win.menu_width+10))
-			h_space_b = (SIZE.height - (win.menu_height+10))
-		# 3 sağ alt köşe
-		elif win.menu_position == 3:
-			w_space_l = (SIZE.width - (win.menu_width+10))
-			h_space_t = (SIZE.height - (win.menu_height+10))
-		# 4 sağ üst köşe
-		elif win.menu_position == 4:
-			w_space_l = (SIZE.width - (win.menu_width+10))
-			h_space_b = (SIZE.height - (win.menu_height+10))
-
-	else:
-		w_space_l = 0
-		w_space_r = 0
-		h_space_b = 0
-		h_space_t = 0
-
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.TOP, h_space_t)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.BOTTOM, h_space_b)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.LEFT, w_space_l)
-	GtkLayerShell.set_margin(win, GtkLayerShell.Edge.RIGHT, w_space_r)
-	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.TOP, 1)
-	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.BOTTOM, 1)
-	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.LEFT, 1)
-	GtkLayerShell.set_anchor(win, GtkLayerShell.Edge.RIGHT, 1)
-	GtkLayerShell.set_keyboard_mode(win, GtkLayerShell.KeyboardMode.EXCLUSIVE)
-
-	
-	#win.maximize()
-	win.show_all()
-	if not win.hide_categories:
-		win.paned.set_position(150)
-	win.connect("destroy", Gtk.main_quit)
-
-	Gtk.main()
+	app = Application()
+	app.run(sys.argv)
