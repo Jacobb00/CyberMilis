@@ -14,7 +14,7 @@ calisma =
 
 [derle]
 betik   = cd $SRC
-betik   = ar x /sources/l2130lpr-2.1.0-1.i386.deb
+betik   = ar x /sources/hl2130lpr-2.1.0-1.i386.deb
 betik   = tar xf data.tar.gz;rm data*
 betik   = ar x /sources/cupswrapperHL2130-2.0.4-2.i386.deb
 betik   = tar xf data.tar.gz
