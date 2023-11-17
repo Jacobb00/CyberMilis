@@ -14,7 +14,7 @@ yapısı gibi düşünülebilir.
 Paket yöneticisinin alt bir uygulaması olan mpsd aracı ile talimatname
 kullanılarak paketlerin üretimi sağlanır. Mps paket yöneticisi ise
 üretilen paketlerin sisteme kurulması, silinmesi gibi paket yönetim
-işlemlerine bakar. Dolayısıyla Milis Linux ikili paket deposu olmasa da
+işlemlerini yürütür. Dolayısıyla Milis Linux ikili paket deposu olmasa da
 kaynak koddan derleme yoluyla çalışabilecek yapıdadır. Fakat günümüz
 işletim sistemi kullanımında her paketin kullanıcı tarafından derlenmesi
 beklenemez. Bunun için ikili paket depoları kullanılır. Merkezi derleme
@@ -34,11 +34,12 @@ talimatların MPS tarafından tanınması sağlanır veya kişisel GIT depoları
 da yeni düzey altına eklenebilir. Burada dikkat edilmesi gereken MPS
 talimatları düzey numaralarına göre tarar, onun için önceliği düzey
 numaraları ve altındaki kategorilerin alfabetik sıralamasına göre
-verecektir.
+verecektir. Sadece alfabetik düzey adları da kullanılabilir ama
+numaralandırma önceliğin daha rahat görülmesi için tercih edilmektedir.
 
 Talimatnamede paket temsilleri talimat dizini olarak yer alır. Örneğin
 Geany metin düzenleyici paketi talimatname altında
-/usr/milis/talimatname/2/app-text/geany#1.36-1 olarak yer alır. Talimat
+/usr/milis/talimatname/2/masa/geany#1.38-1 olarak yer alır. Talimat
 dizinleri paket_adı#sürüm#devir biçiminde adlandırılmalıdır. Talimat
 dizinin altında ise başta talimat dosyası olmak üzere ilişkili dosyalar
 bulunur. Bu dosyalar koşuk/derleme betikleri, yama, servis ve ayar
@@ -46,7 +47,7 @@ dosyaları olabilir. Genelde internetten çekilebilecek dosyaların talimat
 dizini içinde bulunmasına gerek yoktur. Daha çok Milis ilişkili
 dosyalara yer verilir. Aşağıda örnek bir talimat dizini gösterilmiştir.
 
-    geany#1.36-1
+    geany#1.38-1
     ├── talimat
     ├── xyz.patch
     ├── kurkos.sh
@@ -99,7 +100,7 @@ yazılır.
 
     [gerek]
     derleme = Bir paketin derlenmesi için kurulması gereken kütüphane ve derleme araçları paketleri
-    calisma = Paketin sistemde çalışırken ihtiyacı olan paketler  
+    calisma = Paketin çalışması için gerekli olan paketler  
 
 örnek:
 
