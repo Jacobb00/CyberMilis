@@ -1,0 +1,23 @@
+[paket]
+tanim   = Komut satırı JSON işlemcisi
+paketci = milisarge
+grup    = sistem
+url     = http://stedolan.github.io/jq/
+
+[gerek]
+derleme = oniguruma
+calisma =
+
+[kaynak]
+1       = https://github.com/stedolan/jq/releases/download/jq-${surum}/jq-${surum}.tar.gz
+
+[sha256]
+1       = 402a0d6975d946e6f4e484d1a84320414a0ff8eb6cf49d2c11d144d4d344db62
+
+[derle]
+betik   = autoreconf -fi
+betik   = echo "echo $version" >scripts/version
+tip     = gnu
+
+[pakur]
+tip     = gnu

@@ -1,0 +1,19 @@
+[paket]
+tanim   = Çok karakterli normal ifadeler kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/kkos/oniguruma
+arsiv   = onig-${surum%.1}
+
+[kaynak]
+1       = https://github.com/kkos/oniguruma/releases/download/v${surum}/onig-${surum}.tar.gz
+
+[sha256]
+1       = 60162bd3b9fc6f4886d4c7a07925ffd374167732f55dce8c491bfd9cd818a6cf
+
+[derle]
+ekconf  = --enable-posix-api
+tip     = gnu
+
+[pakur]
+tip     = gnu
