@@ -1,6 +1,6 @@
 #!/bin/sh
 # Milis Linux Hızlı IPFS Kurucu 2023
-[ -z $1 ] && exit 1
+[ $UID -ne 0 ] && exit 1
 
 version="0.24.0"
 mkdir -p $HOME/{.cache,.local}
