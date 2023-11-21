@@ -12,7 +12,7 @@ calisma =
 1       = https://github.com/kellyjonbrazil/jc/archive/refs/tags/v$surum.tar.gz
 
 [derle]
-betik   = pip3 install jc --root=$PKG/usr
+betik   = pip3 install jc --root=$PKG
 
 [pakur]
 betik   = echo 1
