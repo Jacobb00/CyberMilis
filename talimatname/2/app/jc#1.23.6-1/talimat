@@ -1,0 +1,18 @@
+[paket]
+tanim   = Komutların JSON biçiminde çıktı vermesini sağlar
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/kellyjonbrazil/jc
+
+[gerek]
+derleme = python
+calisma =
+
+[kaynak]
+1       = https://github.com/kellyjonbrazil/jc/archive/refs/tags/v$surum.tar.gz
+
+[derle]
+betik   = pip3 install jc --root=$PKG/usr
+
+[pakur]
+betik   = echo 1
