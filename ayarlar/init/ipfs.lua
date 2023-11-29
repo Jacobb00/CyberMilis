@@ -4,7 +4,6 @@ local task={
 	start=function()
 		_,control=l5.readlink("/usr/local/bin/ipfs")
 		if control == 2 then
-			print("ipfs kuruluyor:")
 			action("ipfs_setup.sh")
 		end
 		_,control=l5.readlink("/root/.ipfs/version")

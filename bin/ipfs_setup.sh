@@ -10,9 +10,9 @@ if [ ! -f kubo_v${version}_linux-amd64.tar.gz ];then
   wget https://dist.ipfs.tech/kubo/v${version}/kubo_v${version}_linux-amd64.tar.gz
 fi
 
-tar -xvzf kubo_v${version}_linux-amd64.tar.gz
+tar -xzf kubo_v${version}_linux-amd64.tar.gz
 cd kubo
-cp -f ipfs /usr/local/bin/
+cp -fv ipfs /usr/local/bin/
 chmod +x /usr/local/bin/ipfs
 cd ..; rm -rf kubo
 # ipfs init-daemon
