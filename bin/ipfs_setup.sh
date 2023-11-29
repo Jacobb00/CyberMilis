@@ -15,6 +15,5 @@ cd kubo
 cp -f ipfs /usr/local/bin/
 chmod +x /usr/local/bin/ipfs
 cd ..; rm -rf kubo
-
 # ipfs init-daemon
 
