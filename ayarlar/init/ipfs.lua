@@ -6,11 +6,7 @@ local task={
 		if control == 2 then
 			action("ipfs_setup.sh")
 		end
-		_,control=l5.readlink("/root/.ipfs/version")
-		if control == 2 then
-			action("ipfs init")
-		end
-		action("ipfs daemon")
+		action("ipfs daemon --init &")
 		result=0
 		return result
 	end,
