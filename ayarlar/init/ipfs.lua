@@ -6,8 +6,6 @@ local task={
 		if control == 2 then
 			print("ipfs kuruluyor:")
 			action("ipfs_setup.sh")
-			result=false
-			return result
 		end
 		_,control=l5.readlink("/root/.ipfs/version")
 		if control == 2 then
