@@ -5,9 +5,12 @@ local task={
 	program="/usr/lib/bluetooth/bluetoothd",
 			
 	start={
-		type="program",
-		-- rfkill bloke var ise kaldırmak için
-		cmd ="rfkill unblock all",
+		cmd ={
+		  "rfkill unblock all",
+		  "nice -n 0 /usr/lib/bluetooth/bluetoothd 2>&1 >/dev/null &",
+		  "sleep 1",
+		  "rfkill unblock bluetooth",
+		},
 	},
 	stop={
 		type="program",
