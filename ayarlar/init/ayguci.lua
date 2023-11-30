@@ -7,7 +7,7 @@ local task={
 		type="program",
 	},
 	stop={
-		type="program",
+		cmd="killall ayguci",
 	},
 	status={type="program"}
 }
