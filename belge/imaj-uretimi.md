@@ -113,6 +113,10 @@ mps kur --dosya ofis.liste
 
 # grafik sistem için
 /usr/milis/ayarlar/init/setup.sh desktop
+
+# ek servisler
+servis ekle bluetooth
+servis ekle ipfs
 ```
 
 13- MPS ile kurulacak Milis uygulamaları eklenir.
