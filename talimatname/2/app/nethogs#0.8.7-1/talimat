@@ -9,7 +9,7 @@ derleme = libpcap ncurses
 calisma =
 
 [kaynak]
-1       = https://github.com/raboof/nethogs/archive/v${surum}.tar.gz::nethogs-$surum.tgz
+git     = $url
 
 [sha256]
 1       = 957d6afcc220dfbba44c819162f44818051c5b4fb793c47ba98294393986617d
