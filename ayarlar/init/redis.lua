@@ -1,6 +1,6 @@
 local task={
 	
-	desc="Seatd Daemon",
+	desc="Redis Server",
 	program="redis-server",
 	start={type="program"},
 	stop={type="program"},
