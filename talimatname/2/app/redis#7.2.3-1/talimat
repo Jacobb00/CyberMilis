@@ -10,10 +10,10 @@ calisma =
 
 [kaynak]
 gz      = http://download.redis.io/releases
-2       = redis.conf-sane-defaults.patch
+dosya   = redis.conf-sane-defaults.patch
 
-;[sha256]
-;1       = 61db74eabf6801f057fd24b590232f2f337d422280fd19486eca03be87d3a82b
+[sha256]
+1       = 3e2b196d6eb4ddb9e743088bfc2915ccbb42d40f5a8a3edd8cb69c716ec34be7
 
 [derle]
 betik   = patch -Np1 < $SRC/redis.conf-sane-defaults.patch
