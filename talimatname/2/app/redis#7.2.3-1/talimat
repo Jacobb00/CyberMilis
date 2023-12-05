@@ -1,0 +1,24 @@
+[paket]
+tanim   = Gelişmiş anahtar/değer çifti uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://redis.io
+
+[gerek]
+derleme =
+calisma =
+
+[kaynak]
+gz      = http://download.redis.io/releases
+2       = redis.conf-sane-defaults.patch
+
+;[sha256]
+;1       = 61db74eabf6801f057fd24b590232f2f337d422280fd19486eca03be87d3a82b
+
+[derle]
+betik   = patch -Np1 < $SRC/redis.conf-sane-defaults.patch
+betik   = make V=1 ${MAKEJOBS}
+
+[pakur]
+betik   = make PREFIX="$PKG"/usr install
+betik   = install -Dm644 redis.conf $PKG/etc/redis/redis.conf
