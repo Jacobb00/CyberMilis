@@ -1,0 +1,23 @@
+[paket]
+tanim   = Donanım listeleyici uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://ezix.org/project/wiki/HardwareLiSter
+
+[gerek]
+derleme = 
+calisma = hwids
+
+[kaynak]
+1       = https://ezix.org/software/files/lshw-${surum}.tar.gz
+
+[sha256]
+1       = 9bb347ac87142339a366a1759ac845e3dbb337ec000aa1b99b50ac6758a80f80
+
+[derle]
+betik   = export VERSION=$surum
+betik   = make SBINDIR=/usr/bin $MAKEJOBS
+
+[pakur]
+betik   = make DESTDIR=$PKG SBINDIR=/usr/bin install
+betik   = rm -f $PKG /usr/share/lshw/{pci,usb}.ids
