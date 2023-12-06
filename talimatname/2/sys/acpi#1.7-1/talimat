@@ -1,0 +1,21 @@
+[paket]
+tanim   = ACPI cihazları hakkında bilgiler (pil, termal sensörler ve güç)
+paketci = milisarge
+grup    = sistem
+url     = https://sourceforge.net/projects/acpiclient/
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = ${SOURCEFORGE_SITE}/acpiclient/acpi-${surum}.tar.gz
+
+[sha256]
+1       = d7a504b61c716ae5b7e81a0c67a50a51f06c7326f197b66a4b823de076a35005
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
