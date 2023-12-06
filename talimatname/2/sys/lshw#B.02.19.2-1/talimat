@@ -20,4 +20,5 @@ betik   = make SBINDIR=/usr/bin $MAKEJOBS
 
 [pakur]
 betik   = make DESTDIR=$PKG SBINDIR=/usr/bin install
-betik   = rm -f $PKG /usr/share/lshw/{pci,usb}.ids
+betik   = rm -f $PKG/usr/share/lshw/{pci,usb}.ids
+betik   = rm -rf $PKG/usr/share/locale
