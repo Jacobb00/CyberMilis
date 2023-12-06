@@ -1,0 +1,25 @@
+[paket]
+tanim   = WWW için bir metin tarayıcısı
+paketci = milisarge
+grup    = ağ
+url     = http://lynx.invisible-island.net/
+arsiv   = lynx${surum}rel.1
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = http://invisible-mirror.net/archives/lynx/tarballs/${isim}${surum}rel.1.tar.bz2
+dosya   = CVE-2021-38165.diff
+
+[sha256]
+1       = 387f193d7792f9cfada14c60b0e5c0bff18f227d9257a39483e14fa1aaf79595
+
+[derle]
+betik   = patch --forward --strip=1 --input=${SRC}/CVE-2021-38165.diff
+ekconf  = --with-ssl=/usr --enable-nls --enable-ipv6
+tip     = gnu
+
+[pakur]
+tip     = gnu
