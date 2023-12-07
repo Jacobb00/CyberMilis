@@ -9,13 +9,13 @@ derleme =
 calisma = hwids
 
 [kaynak]
-1       = https://ezix.org/software/files/lshw-${surum}.tar.gz
+git     = https://github.com/lyonel/lshw
 
 [sha256]
 1       = 9bb347ac87142339a366a1759ac845e3dbb337ec000aa1b99b50ac6758a80f80
 
 [derle]
-betik   = export VERSION=$surum
+;betik   = export VERSION=$surum
 betik   = make SBINDIR=/usr/bin $MAKEJOBS
 
 [pakur]
