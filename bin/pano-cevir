@@ -1,3 +1,3 @@
 #!/bin/sh
 ceviri "`wl-paste`" | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g" > /tmp/ceviri.out
-echo '<window width-request="400"  height-request="480"  title="Pano Çevirici" icon-name="gtk-dialog-info"><vbox><edit><input file>/tmp/ceviri.out</input><variable>editor1var</variable></edit></vbox></window>' | gtkdialog -s
+echo '<window width-request="700"  height-request="500"  title="Pano Çevirici" icon-name="gtk-dialog-info"><vbox><edit><input file>/tmp/ceviri.out</input><variable>editor1var</variable></edit></vbox></window>' | gtkdialog -s
