@@ -10,7 +10,7 @@ calisma =
 
 [kaynak]
 gz     = https://downloads.sourceforge.net/$isim
-;2      = https://mls.akdeniz.edu.tr/git/milislinux/dosyalar/raw/branch/master/libmtp-rules.tar.gz
+2      = https://mls.akdeniz.edu.tr/git/milislinux/dosyalar/raw/branch/master/libmtp-rules.tar.gz
 
 [sha256]
 1      = c4ffa5ab8c8f48c91b0047f2e253c101c418d5696a5ed65c839922a4280872a7
@@ -22,4 +22,4 @@ tip    = gnu
 
 [pakur]
 tip    = gnu
-;betik  = cp -f $SRC/69-libmtp.rules $PKG/usr/lib/udev/rules.d/69-libmtp.rules
+betik  = cp -f $SRC/69-libmtp.rules $PKG/usr/lib/udev/rules.d/69-libmtp.rules
