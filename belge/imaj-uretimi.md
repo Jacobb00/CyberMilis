@@ -123,9 +123,13 @@ servis ekle ipfs
 
 ```
 mps yaz betik mservice @mservice.git
-mps yaz betik ayguciui @ayguciui.git
+mps yaz betik ayguci @ayguci.git
 mps yaz betik mpsui @mpsui.git
 mps gun -B
+#
+servis ekle ayguci
+servis aktif ayguci
+mps kur jc jq lshw acpi lm_sensors
 ```
 
 14- mls kullanıcısı oluşturulur.(Canlı masaüstü kullanımı için test kullanıcısı)
