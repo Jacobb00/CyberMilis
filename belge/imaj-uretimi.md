@@ -116,6 +116,7 @@ mps kur --dosya ofis.liste
 
 # ek servisler
 servis ekle bluetooth
+ipfs_setup.sh
 servis ekle ipfs
 ```
 
