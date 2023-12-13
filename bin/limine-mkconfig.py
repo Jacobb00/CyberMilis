@@ -5,6 +5,11 @@ import sys
 import json
 import os
 
+param = ""
+
+if len(sys.argv) > 1:
+  param = sys.argv[1]
+
 linux_item = """
 :{}
   PROTOCOL=linux
@@ -24,7 +29,8 @@ cmd = "lsblk -o TYPE,NAME,FSTYPE,LABEL,PARTLABEL,UUID,FSSIZE,FSUSED,FSAVAIL,FSUS
 result = subprocess.run(cmd.split(),capture_output=True)
 #print(result)
 blocks =json.loads(result.stdout.decode())
-#print(blocks)
+if param == "+b":
+  print(blocks)
 if "blockdevices" in blocks:
   for block in blocks["blockdevices"]:
     if "children" in block and block["type"] == "disk":
@@ -35,7 +41,8 @@ if "blockdevices" in blocks:
           if mntp == None:
             result = subprocess.run(["udisksctl","mount","-b","/dev/"+child["name"]],capture_output=True)
             mntp = result.stdout.decode().split()[3]
-          print("#",child["name"],mntp)
+          if param == "+d":
+            print("#",child["name"],mntp)
           label = "/dev/"+child["name"]
           cmdline=""
           # canlı imaj değilse kontrolü
