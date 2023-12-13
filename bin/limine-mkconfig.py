@@ -74,4 +74,10 @@ if "blockdevices" in blocks:
                 cmdline += "init=/usr/bin/init quiet"
                 with open(mntp+"/etc/milis-surum") as f:
                   label = f.read().strip()
+              elif os.path.exists(mntp+"/etc/lsb-release"):
+                with open("/etc/lsb-release") as f:
+                  cnt = f.read().split("\n")
+                  label += cnt[0].split("=")[1]+" "
+                  label += cnt[1].split("=")[1]
+                  label = label.replace('"',"")
               print(linux_item.format(label,uuid,kernel,uuid,initrd,uuid,cmdline))
