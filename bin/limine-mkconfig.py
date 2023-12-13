@@ -86,6 +86,8 @@ if "blockdevices" in blocks:
                   break
               uuid = child["uuid"]
               if child["label"]: label=child["label"]
+              if os.path.exists(mntp+"/etc/milis-surum"):
+                cmdline += "init=/usr/bin/init quiet"
               if os.path.exists(mntp+"/etc/lsb-release"):
                 with open(mntp+"/etc/lsb-release") as f:
                   cnt = f.read().split("\n")

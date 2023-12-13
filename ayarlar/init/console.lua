@@ -1,6 +1,6 @@
 -- linux console
 
-local console={
+local task={
 	desc="to set up Linux console",
 			
 	start=function()
@@ -23,4 +23,4 @@ local console={
 		return result
 	end,
 }
-return console
+return task
