@@ -40,12 +40,17 @@ if "blockdevices" in blocks:
           cmdline=""
           if child["fstype"] == "vfat":
             # find gubx64
-            result = subprocess.run(["find",mntp,"-name","grubx64.efi"],capture_output=True)
-            grubx = result.stdout.decode()
-            gpath = grubx.split(mntp)[1]
+            gpath=""
+            for efi in ["grubx64.efi","bootmgfw.efi"]:
+                result = subprocess.run(["find",mntp,"-name",efi],capture_output=True)
+                result = result.stdout.decode()
+                if result != "":
+                  gpath = result.split("\n")[0].strip().split("EFI")[-1]
+                  # bir kernel bulunca çık
+                  break
             uuid = child["uuid"]
             if child["label"]: label=child["label"]
-            print(chainload_item.format(label,uuid,gpath))
+            print(chainload_item.format(label,uuid,"/EFI/"+gpath))
           # sadece ext4 olan linux noktalarına bak
           if child["fstype"] == "ext4":
             # find kernel-initrd
