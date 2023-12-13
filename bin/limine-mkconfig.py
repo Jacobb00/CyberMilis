@@ -51,11 +51,11 @@ if "blockdevices" in blocks:
           if child["fstype"] == "vfat" and child["label"] != "Milis_EFI":
             # find gubx64
             gpath=""
-            for efi in ["grubx64.efi","bootmgfw.efi"]:
+            for efi in ["grubx64.efi","bootmgfw.efi","BOOTX64.EFI"]:
                 result = subprocess.run(["find",mntp,"-name",efi],capture_output=True)
                 result = result.stdout.decode()
                 if result != "":
-                  gpath = result.split("\n")[0].strip().split("EFI")[-1]
+                  gpath = result.split("\n")[0].strip().split("/EFI")[-1]
                   # bir kernel bulunca çık
                   break
             uuid = child["uuid"]
@@ -86,11 +86,7 @@ if "blockdevices" in blocks:
                   break
               uuid = child["uuid"]
               if child["label"]: label=child["label"]
-              if os.path.exists(mntp+"/etc/milis-surum"):
-                cmdline += "init=/usr/bin/init quiet"
-                with open(mntp+"/etc/milis-surum") as f:
-                  label = f.read().strip()
-              elif os.path.exists(mntp+"/etc/lsb-release"):
+              if os.path.exists(mntp+"/etc/lsb-release"):
                 with open(mntp+"/etc/lsb-release") as f:
                   cnt = f.read().split("\n")
                   label = cnt[0].split("=")[1]+" "
