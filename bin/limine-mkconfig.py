@@ -40,6 +40,8 @@ if "blockdevices" in blocks:
           mntp = child["mountpoint"]
           if mntp == None:
             result = subprocess.run(["udisksctl","mount","-b","/dev/"+child["name"]],capture_output=True)
+            # udisksctl çıktı vermiyosa bağlama olmadı, bir sonrakine geçilir.
+            if result.stdout.decode() == "" : continue
             mntp = result.stdout.decode().split()[3]
           if param == "+d":
             print("#",child["name"],mntp)
@@ -59,7 +61,7 @@ if "blockdevices" in blocks:
             uuid = child["uuid"]
             if child["label"]: label=child["label"]
             label = "EFI " + label
-            print(chainload_item.format(label,uuid,"/EFI/"+gpath))
+            print(chainload_item.format(label,uuid,"/EFI"+gpath))
           # sadece ext4 olan linux noktalarına bak
           if child["fstype"] == "ext4":
             # find kernel-initrd
