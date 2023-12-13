@@ -36,7 +36,7 @@ if "blockdevices" in blocks:
     if "children" in block and block["type"] == "disk":
       for child in block["children"]: 
         #print(block["name"],child["name"])
-        if child["fstype"] in ["ext4","vfat"] or child["type"] == "part":
+        if child["fstype"] in ["ext4","vfat"]:
           mntp = child["mountpoint"]
           if mntp == None:
             result = subprocess.run(["udisksctl","mount","-b","/dev/"+child["name"]],capture_output=True)
