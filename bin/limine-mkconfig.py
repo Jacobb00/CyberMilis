@@ -23,7 +23,7 @@ chainload_item = """
 cmd = "lsblk -o TYPE,NAME,FSTYPE,LABEL,PARTLABEL,UUID,FSSIZE,FSUSED,FSAVAIL,FSUSE%,MOUNTPOINT -J"
 result = subprocess.run(cmd.split(),capture_output=True)
 #print(result)
-blocks =json.loads(result.stdout.decode().lower())
+blocks =json.loads(result.stdout.decode())
 #print(blocks)
 if "blockdevices" in blocks:
   for block in blocks["blockdevices"]:
