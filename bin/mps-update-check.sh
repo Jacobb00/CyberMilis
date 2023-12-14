@@ -1,4 +1,6 @@
 #!/bin/sh
+# https://gitlab.com/api/v4/projects/milislinux%2Fmilis23 | jq .id
+
 milis="/sources/gitlab.com.milislinux.milis23.git"
 if [ -d $milis ];then
 milisj="{\"milis\":\"güncel değil\"}"
