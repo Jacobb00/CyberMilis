@@ -1,5 +1,5 @@
 #!/bin/sh
-milis="/sources/gitlab.com/milislinux.milis23.git"
+milis="/sources/gitlab.com.milislinux.milis23.git"
 if [ -d $milis ];then
 milisj="{\"milis\":\"güncel değil\"}"
 
