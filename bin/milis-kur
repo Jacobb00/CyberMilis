@@ -1134,8 +1134,8 @@ set_bootloader() {
 	# limine kurulu ise ayarların kopyalanması
 	if [ -f /usr/bin/limine ];then
 		cp /usr/milis/ayarlar/limine/limine.cfg.sample $HEDEF/boot/limine.cfg
-		sed -i "s/__uuid__/`cat $HEDEF/etc/fstab | grep "defaults 0 1" | cut -d= -f2 | cut -d' ' -f1`/g" $HEDEF/boot/limine.cfg
-		sed -i "s/__kversion__/`uname -r | cut -d- -f1`/g" $HEDEF/boot/limine.cfg
+		#sed -i "s/__uuid__/`cat $HEDEF/etc/fstab | grep "defaults 0 1" | cut -d= -f2 | cut -d' ' -f1`/g" $HEDEF/boot/limine.cfg
+		#sed -i "s/__kversion__/`uname -r | cut -d- -f1`/g" $HEDEF/boot/limine.cfg
 		limine-mkconfig.py >> $HEDEF/boot/limine.cfg
     # limine kurulu değilse grub-mkconfig ile ayarlanması
     elif [ -f /usr/bin/grub-mkconfig ] ;then
