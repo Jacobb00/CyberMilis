@@ -3,16 +3,17 @@ tanim   = Wayland için RandR ayarlayıcısı
 paketci = milisarge
 grup    = sistem
 url     = https://git.sr.ht/~emersion/wlr-randr
+arsiv   = $isim-d1c54cdc
 
 [gerek]
 derleme = meson wayland-protocols wayland
 calisma =
 
 [kaynak]
-1       = https://git.sr.ht/~emersion/wlr-randr/refs/download/v$surum/$isim-$surum.tar.gz
+1       = https://git.sr.ht/~emersion/wlr-randr/archive/d1c54cdc.tar.gz::$isim-$surum.tar.gz
 
 [sha256]
-1       = 1796008aa2ff272803f008cf71c4336553a4e48f519c76b0c65ab169ad71cdad
+1       = 99d9f8cb86c33ad4403b423359265c4391d81d0637468bc822992f6ae8e84596
 
 [derle]
 tip     = meson
