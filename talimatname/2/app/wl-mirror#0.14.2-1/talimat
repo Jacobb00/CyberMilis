@@ -18,7 +18,7 @@ calisma =
 [derle]
 ekconf  = -D INSTALL_DOCUMENTATION=OFF
 cmake   = pipectl-0.4.1
-ekconf  = -DINSTALL_EXAMPLE_SCRIPTS=OFF
+ekconf  = -DINSTALL_EXAMPLE_SCRIPTS=ON
 cmake   = wl-mirror-$surum
 
 [pakur]
