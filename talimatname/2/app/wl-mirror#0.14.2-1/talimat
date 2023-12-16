@@ -1,0 +1,25 @@
+[paket]
+tanim   = Basit Wayland çıktı yansıtma istemcisi
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/Ferdi265/wl-mirror
+
+[gerek]
+derleme = cmake wayland mesa wayland-protocols
+calisma =
+
+[kaynak]
+1       = https://github.com/Ferdi265/wl-mirror/releases/download/v${surum}/wl-mirror-${surum}.tar.gz
+2       = https://github.com/Ferdi265/pipectl/archive/refs/tags/v0.4.1.tar.gz::pipectl-0.4.1.tar.gz
+
+[sha256]
+1       = 6eba69f51cdc6c1fec7eaf465bca8c91825d7742894c8423dea240b25b529dda
+
+[derle]
+ekconf  = -D INSTALL_DOCUMENTATION=OFF
+cmake   = pipectl-0.4.1
+ekconf  = -DINSTALL_EXAMPLE_SCRIPTS=OFF
+cmake   = wl-mirror-$surum
+
+[pakur]
+betik  = echo 1
