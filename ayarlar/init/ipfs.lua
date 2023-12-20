@@ -17,7 +17,10 @@ local task={
 		return result
 	end,
 	stop={
-		cmd = prog.." shutdown",
+		cmd = { 
+			prog.." shutdown",
+			kill -9 $(lsof -t -i:5001),
+		},
 	},
 	status={
 		type = "program",
