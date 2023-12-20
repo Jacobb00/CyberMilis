@@ -12,7 +12,7 @@ calisma =
 xz      = https://github.com/limine-bootloader/limine/releases/download/v${surum}
 
 [sha256]
-1       = 94ff31f2d2563381f87c290a458a4664835dd6c295838b23cf1061c408b28751
+1       = c3719c51332316949b48b78272f2f5fa00d707f035616b06aa55902fc47b963d
 
 [derle]
 betik   = ./configure --prefix=/usr --enable-bios-cd --enable-bios-pxe --enable-bios --enable-uefi-x86-64 --enable-uefi-cd && make
