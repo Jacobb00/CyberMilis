@@ -130,7 +130,7 @@ mps gun -B
 #
 servis ekle ayguci
 servis aktif ayguci
-mps kur jc jq lshw acpi lm_sensors
+mps kur jc jq lshw acpi lm_sensors limine
 ```
 
 14- mls kullanıcısı oluşturulur.(Canlı masaüstü kullanımı için test kullanıcısı)
