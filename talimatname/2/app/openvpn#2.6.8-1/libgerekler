@@ -1,0 +1,8 @@
+liblzo2.so.2
+liblz4.so.1
+libpkcs11-helper.so.1
+libssl.so.3
+libcrypto.so.3
+libcap-ng.so.0
+libc.so.6
+libpam.so.0

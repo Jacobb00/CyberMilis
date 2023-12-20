@@ -5,16 +5,16 @@ grup    = ağ
 url     = https://www.openvpn.net
 
 [gerek]
-derleme = openssl lzo pam iproute2
+derleme = automake openssl lzo pam iproute2 libcap-ng
 calisma =
 
 [kaynak]
-1       = http://build.openvpn.net/downloads/releases/${isim}-${surum}.tar.xz
+1       = https://github.com/OpenVPN/openvpn/releases/download/v$surum/openvpn-$surum.tar.gz
 2       = https://github.com/OpenSC/pkcs11-helper/releases/download/pkcs11-helper-1.30.0/pkcs11-helper-1.30.0.tar.bz2
 dosya   = 0001-unprivileged.patch
 
 [sha256]
-1       = b12743836901f365efaf82ab2493967e1b21c21eb43ce9a8da1002a17c9c1dc8
+1       = 5ede1565c8a6d880100f7f235317a7ee9eea83d5052db5547f13a9e76af7805d
 2       = 4c5815ba910cabf26df08d449ca2909daf4538c9899aa7f7fadc61229d3488a9 
 
 [derle]
@@ -37,4 +37,4 @@ tip     = gnu
 tip     = gnu
 betik   = install -d -m0755 $PKG/usr/share/openvpn
 betik   = cp -r sample/sample-config-files $PKG/usr/share/openvpn/examples
-
+betik   = rm -f $PKG/usr/lib/*.a
