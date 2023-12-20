@@ -1,0 +1,40 @@
+[paket]
+tanim   = Kullanımı kolay, sağlam ve yüksek düzeyde yapılandırılabilir VPN
+paketci = milisarge
+grup    = ağ
+url     = https://www.openvpn.net
+
+[gerek]
+derleme = openssl lzo pam iproute2
+calisma =
+
+[kaynak]
+1       = http://build.openvpn.net/downloads/releases/${isim}-${surum}.tar.xz
+2       = https://github.com/OpenSC/pkcs11-helper/releases/download/pkcs11-helper-1.30.0/pkcs11-helper-1.30.0.tar.bz2
+dosya   = 0001-unprivileged.patch
+
+[sha256]
+1       = b12743836901f365efaf82ab2493967e1b21c21eb43ce9a8da1002a17c9c1dc8
+2       = 4c5815ba910cabf26df08d449ca2909daf4538c9899aa7f7fadc61229d3488a9 
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig/
+
+betik   = cd $SRC/pkcs11-helper-1.30.0
+betik   = libtoolize;aclocal;autoheader;automake --add-missing;autoreconf -v
+betik   = ./configure --prefix=/usr && make && make DESTDIR=$PKG install
+
+betik   = cd $SRC/$isim-$surum
+betik   = sed -i '/^CONFIGURE_DEFINES=/s/set/env/g' configure.ac
+betik   = patch -Np1 < $SRC/0001-unprivileged.patch
+betik   = autoreconf --force --install
+ekconf  = --enable-pkcs11 --enable-iproute2 --disable-systemd --enable-plugins 
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = install -d -m0755 $PKG/usr/share/openvpn
+betik   = cp -r sample/sample-config-files $PKG/usr/share/openvpn/examples
+
