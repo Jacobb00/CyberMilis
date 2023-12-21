@@ -7,7 +7,7 @@ rm -r "$PKG"/usr/bin/{compile-et.pl,prerr.properties} "$PKG"/usr/include/nspr/md
 rm -f "$PKG"/usr/lib/*.a
 
 cd $SRC/nss-$surum
-patch -Np1 -i $SRC/nss-3.54-standalone-2.patch
+#patch -Np1 -i $SRC/nss-3.54-standalone-2.patch
 
 export NSPR_INCLUDE_DIR=$PKG/usr/include/nspr
 export NSPR_LIB_DIR=$PKG/usr/lib
