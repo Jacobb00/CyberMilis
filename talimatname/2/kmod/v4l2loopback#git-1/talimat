@@ -1,0 +1,21 @@
+[paket]
+tanim   = V4L2 loopback aygıtı için kernel modülü
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/umlaeute/v4l2loopback
+arsiv   = $isim
+
+[gerek]
+derleme =
+calisma =
+
+[kaynak]
+git     = https://github.com/umlaeute/v4l2loopback
+
+[derle]
+betik   = make
+
+[pakur]
+betik   = mkdir -p $PKG/usr/lib/modules/$(uname -r)/extra
+betik   = xz -c v4l2loopback.ko -c > $PKG/usr/lib/modules/$(uname -r)/extra/v4l2loopback.ko.xz
+betik   = make DESTDIR=${PKG} PREFIX=/usr install-utils
