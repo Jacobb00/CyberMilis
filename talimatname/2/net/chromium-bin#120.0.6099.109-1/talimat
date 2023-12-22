@@ -4,7 +4,6 @@ paketci = milisarge
 grup 	= ağ
 url     = https://github.com/ungoogled-software/ungoogled-chromium-portablelinux
 
-
 [gerek]
 derleme = 
 calisma =
