@@ -18,7 +18,7 @@ dosya   = connmand.conf
 [derle]
 ;betik   = export CFLAGS+=" -D_GNU_SOURCE"
 betik   = autoreconf -fi
-ekconf  = --enable-polkit --enable-client --enable-pie --enable-ethernet --enable-wifi --enable-bluetooth --enable-loopback --enable-nmcompat
+ekconf  = --enable-polkit --enable-client --enable-pie --enable-ethernet --enable-wifi --disable-bluetooth --enable-loopback --enable-nmcompat
 tip     = gnu
 
 [pakur]
