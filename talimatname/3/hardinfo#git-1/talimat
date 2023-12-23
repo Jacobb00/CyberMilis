@@ -1,0 +1,25 @@
+[paket]
+tanim   = Sistem bilgileri ve kıyaslama aracı
+paketci = milisarge
+grup    = sistem
+url     = https://www.berlios.de/software/hardinfo/
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+git     = https://github.com/lpereira/hardinfo
+
+
+[derle]
+betik   = cd $SRC; mkdir build;cd build
+export  = CFLAGS+=' -fcommon' 
+betik   =  cmake -DHARDINFO_GTK3=1 -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib ../$isim-git
+betik   = make -j4
+
+[pakur]
+betik = cd $SRC/build
+tip     = gnu
+betik   = mkdir $PKG/etc
+betik   = echo "Milis Linux" > ${PKG}/etc/hardinfo.distro
