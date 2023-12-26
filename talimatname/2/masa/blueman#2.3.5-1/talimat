@@ -1,0 +1,22 @@
+[paket]
+tanim   = GTK+ Bluetooth Yöneticisi
+paketci = yasarciv
+grup    = sistem
+url     = https://github.com/blueman-project/blueman
+
+[gerek]
+derleme = intltool iproute2 cython glib python gtk3 bluez libnotify python-gobject
+calisma =
+
+[kaynak]
+1       = https://github.com/blueman-project/blueman/releases/download/${surum}/blueman-${surum}.tar.xz
+
+[sha256]
+1       = b2d21afdf77a06cd86daf5402406f7d2a53459817e29e0bebc4911d4f0dcfda1
+
+[derle]
+ekconf  = --disable-static
+tip     = gnu
+
+[pakur]
+tip     = gnu
