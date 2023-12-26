@@ -25,3 +25,4 @@ betik   = mkdir -p $PKG/usr/bin $PKG/usr/share/durden
 betik   = install -D $SRC/durden/distr/durden ${PKG}/usr/bin/durden
 betik   = cp -a $SRC/durden/durden ${PKG}/usr/share/durden/
 betik   = cp -a $SRC/durden/util ${PKG}/usr/share/durden/
+betik   = cp -a $SRC/arcan-git/tests ${PKG}/usr/share/arcan/
