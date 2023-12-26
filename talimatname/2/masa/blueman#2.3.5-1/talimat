@@ -20,3 +20,4 @@ tip     = gnu
 
 [pakur]
 tip     = gnu
+betik   = rm -rf $PKG/usr/share/blueman-adapters*
