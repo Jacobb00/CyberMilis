@@ -1,0 +1,12 @@
+libarcan_a12.so
+libarcan_a12.so.0.1
+libarcan_shmif.so
+libarcan_shmif.so.0.16
+libarcan_shmif_ext.so
+libarcan_shmif_ext.so.0.16
+libarcan_shmif_intext.so
+libarcan_shmif_intext.so.0.16
+libarcan_shmif_server.so
+libarcan_shmif_server.so.0.16
+libarcan_tui.so
+libarcan_tui.so.0.16

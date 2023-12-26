@@ -1,0 +1,27 @@
+[paket]
+tanim   = Arcan grafik sunucu ve araçları
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/letoram/arcan
+
+[gerek]
+derleme = cmake openal sdl2 luajit freetype harfbuzz libxkbcommon sqlite ffmpeg libxcb xcb-util-wm
+calisma =
+
+[kaynak]
+git     = https://github.com/letoram/arcan.git
+
+[derle]
+;betik  = cd external/git && ./clone.sh && cd ../../
+betik   = cd src
+ekconf  = -DBUILD_PRESET="everything" -DHYBRID_SDL=ON -DHYBRID_HEADLESS=ON
+tip     = cmake
+betik   = git clone https://github.com/letoram/durden $SRC/durden 
+
+[pakur]
+betik   = cd src
+tip     = cmake
+betik   = mkdir -p $PKG/usr/bin $PKG/usr/share/durden
+betik   = install -D $SRC/distr/durden ${PKG}/usr/bin/durden
+betik   = cp -a $SRC/durden/durden ${PKG}/usr/share/durden/
+betik   = cp -a $SRC/durden/util ${PKG}/usr/share/durden/
