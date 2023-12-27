@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://github.com/letoram/arcan
 
 [gerek]
-derleme = cmake openal sdl2 luajit freetype harfbuzz libxkbcommon sqlite ffmpeg libxcb xcb-util-wm
+derleme = cmake openal sdl2 luajit freetype harfbuzz libxkbcommon sqlite ffmpeg libxcb xcb-util xcb-util-wm
 calisma =
 
 [kaynak]
