@@ -103,6 +103,9 @@ mps sor --gtl ofis > ofis.liste
 mps kur --dosya minimal.liste
 mps kur --dosya masa.liste
 mps kur --dosya ofis.liste
+
+# minimal sistem + limine için
+mps kur udisks
 ```
 
 12- Milis servis sistemi aşağıdaki yönergeye göre kurulur. /etc/init/system.ini kontrol edilir.
