@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wayland için GTK tabanlı kilit ekranı
+paketci = yasarciv
+grup    = sistem
+url     = https://github.com/jovanlanik/gtklock
+
+[gerek]
+derleme = meson wayland glib pam gtk3 gtk-layer-shell
+calisma =
+
+[kaynak]
+git     = $url
+
+[derle]
+betik	= sed -i 's/Unlock/Kilidi Aç/g' res/gtklock.ui
+betik	= sed -i 's/Password/Parola/g' res/gtklock.ui
+ekconf	= -Dman-pages=disabled
+tip		= meson
+
+[pakur]
+tip     = meson
