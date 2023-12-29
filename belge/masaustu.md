@@ -36,7 +36,7 @@ Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı ku
 - Resim gösterici: [resimlik](https://gitlab.com/milislinux/milis23/src/branch/master/bin/resimlik)
 - Ekran boyutlandırma: [ayar merkezi](https://gitlab.com/milislinux/ayguciui)
 - Ekran parlaklık: [light](https://github.com/haikarainen/light)
-- Ekran kitleme: [swaylock](https://github.com/swaywm/swaylock)
+- Ekran kitleme: [gtklock](https://github.com/jovanlanik/gtklock)
 - Ekran kayıt edici: [wf-recorder](https://github.com/ammen99/wf-recorder)
 - Ekran yakalayıcı:[grim](https://github.com/emersion/grim)
 - Ekran alanı seçicisi:[slurp](https://github.com/emersion/slurp)
