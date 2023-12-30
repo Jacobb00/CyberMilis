@@ -48,6 +48,7 @@ if "blockdevices" in blocks:
           label = "/dev/"+child["name"]
           cmdline=""
           # canlı imaj değilse kontrolü
+          """
           if child["fstype"] == "vfat" and child["label"] != "Milis_EFI":
             # find gubx64
             gpath=""
@@ -62,6 +63,7 @@ if "blockdevices" in blocks:
             if child["label"]: label=child["label"]
             label = "EFI " + label
             print(chainload_item.format(label,uuid,"/EFI"+gpath))
+          """
           # sadece ext4 olan linux noktalarına bak
           if child["fstype"] == "ext4":
             # find kernel-initrd
