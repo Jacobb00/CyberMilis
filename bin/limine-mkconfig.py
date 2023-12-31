@@ -6,6 +6,7 @@ import json
 import os
 
 param = ""
+menu_items = []
 
 if len(sys.argv) > 1:
   param = sys.argv[1]
@@ -35,7 +36,7 @@ if "blockdevices" in blocks:
   for block in blocks["blockdevices"]:
     if "children" in block and block["type"] == "disk":
       for child in block["children"]: 
-        #print(block["name"],child["name"])
+        #print(block["name"],child["name"],child["fstype"])
         if child["fstype"] in ["ext4","vfat"]:
           mntp = child["mountpoint"]
           if mntp == None:
@@ -96,4 +97,11 @@ if "blockdevices" in blocks:
                   label = cnt[0].split("=")[1]+" "
                   label += cnt[1].split("=")[1]
                   label = label.replace('"',"")
-              print(linux_item.format(label,uuid,kernel,uuid,initrd,uuid,cmdline))
+              item_str = linux_item.format(label,uuid,kernel,uuid,initrd,uuid,cmdline)
+              if "Milis Linux" in label:
+                  menu_items.insert(0,item_str)
+              else:
+                  menu_items.append(item_str)
+
+for istr in menu_items:
+  print(istr)
