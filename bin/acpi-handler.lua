@@ -23,7 +23,7 @@ if arg[3] ~= nil then p3=arg[3] end
 
 local mode=""
 local display=os.capture("wlopm | awk '{print $1}'| head -n 1")
-local lock_cmd="swaylock -f -c 000000"
+local lock_cmd="gtklock"
 local suspend_ram_cmd="echo -n mem | tee /sys/power/state"
 local bs_cmd="wlopm --toggle "..display
 local notify_cmd="notify-send"
