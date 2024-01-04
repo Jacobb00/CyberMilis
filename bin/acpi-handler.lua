@@ -71,10 +71,10 @@ if p1 and p2 and p3 then
 	elseif p1 == "jack/headphone" and p2 == "HEADPHONE" then
 		if p3 == "plug" then
 			mode=modes.headphone.plug
-			functions[mode]("Kulaklık","takıldı")
+			functions[mode]("Kulaklık","Kulaklık takıldı")
 		elseif p3 == "unplug" then
 			mode=modes.headphone.unplug
-			functions[mode]("Kulaklık","çıkarıldı")
+			functions[mode]("Kulaklık","Kulaklık çıkarıldı")
 		else
 			print(p1,p2,p3,"not implemented")
 		end
