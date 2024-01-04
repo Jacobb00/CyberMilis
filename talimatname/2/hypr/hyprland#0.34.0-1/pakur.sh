@@ -16,4 +16,4 @@ install -Dm0755 -t "$PKG/usr/bin" hyprctl/hyprctl
 install -Dm0644 -t "$PKG/usr/share/$isim" assets/*.png
 install -Dm0644 -t "$PKG/usr/share/wayland-sessions" "example/$isim.desktop"
 install -Dm0644 -t "$PKG/usr/share/$isim" "example/$isim.conf"
-install -Dm0755 -t "$PKG/usr/lib" "$SRC/tmpwlr/lib/libwlroots.so.12032"
+install -Dm0755 -t "$PKG/usr/lib" "$SRC/tmpwlr/lib/libwlroots.so.13032"
