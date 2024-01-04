@@ -1,0 +1,25 @@
+[paket]
+tanim   = Openbox benzeri Wayland için pencere yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/labwc/labwc
+
+[gerek]
+derleme = meson wayland wayland-protocols wlroots pango xcb-util-wm
+calisma =
+
+[kaynak]
+1       = $url/archive/$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 2607219cb766db4d258a20c62c98ea16cd6d62c735e65f35d916188cf0ccbe70
+
+[derle]
+ekconf  = -Dxwayland=disabled -Dman-pages=disabled
+tip     = meson
+
+[pakur]
+tip     = meson
+
+
+

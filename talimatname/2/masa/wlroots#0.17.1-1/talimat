@@ -1,0 +1,23 @@
+[paket]
+tanim   = Modüler Wayland compositor kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/swaywm/wlroots
+
+[gerek]
+derleme = cmake meson mesa libdrm wayland libinput libxkbcommon pixman wayland-protocols xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil seatd vulkan glslang hwids
+calisma =
+
+[kaynak]
+gz      = https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/${surum}/downloads
+
+
+[sha256]
+1       = d58d68e3f90d92de4d49fa43b4d75dc78f8af1d920d090729331cefbdfcf361b
+
+[derle]
+ekconf  = -Dexamples=false -Dwerror=false -Db_ndebug=false -Dxwayland=disabled --auto-features=enabled
+tip     = meson
+
+[pakur]
+tip     = meson
