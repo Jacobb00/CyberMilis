@@ -9,17 +9,16 @@ derleme = zlib meson alsa-lib ffmpeg lcms2 libass libbluray libcdio-paranoia lib
 calisma =
 
 [kaynak]
-github  = mpv-player/${isim}
+git      = $url
 
 ;[sha256]
 ;1       = 100a116b9f23bdcda3a596e9f26be3a69f166a4f1d00910d1789b6571c46f3a9
 
 [derle]
 ekconf  = --auto-features auto -Dlibmpv=true -Dcaca=disabled -Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled -Dlibarchive=enabled
-tip     = meson
+meson   = mpv-$surum
 
 [pakur]
-tip     = meson
 betik   = sed -i -e '/Requires.private/d' -e '/Libs.private/d' $PKG/usr/lib/pkgconfig/mpv.pc
 betik   = install -m0644 TOOLS/lua/* -D -t $PKG/usr/share/mpv/scripts
 betik   = echo "NoDisplay=true" >> $PKG/usr/share/applications/mpv.desktop
