@@ -1,0 +1,16 @@
+libvorbisfile.so.3
+ld-linux-x86-64.so.2
+libopenal.so.1
+libmpg123.so.0
+libluajit-5.1.so.2
+libfreetype.so.6
+libm.so.6
+libogg.so.0
+libstdc++.so.6
+libSDL2-2.0.so.0
+libz.so.1
+libmodplug.so.1
+libtheoradec.so.1
+libgcc_s.so.1
+liblove-11.5.so
+libc.so.6
