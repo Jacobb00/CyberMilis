@@ -9,7 +9,7 @@ derleme = meson wayland wayland-protocols wlroots
 calisma = 
 
 [kaynak]
-1       = https://github.com/kennylevinsen/cage
+git     = https://github.com/kennylevinsen/cage
 
 [derle]
 betik  = git checkout scene_upgrade
