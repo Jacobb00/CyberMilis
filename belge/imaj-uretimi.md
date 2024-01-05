@@ -148,7 +148,7 @@ dracut -N --force --xz --add 'dmsquash-live pollcdrom' --omit systemd /boot/init
 rm /boot/initrd.img-*
 ```
 
-16- /usr/milis/mps/conf/mps.ini ve /etc/hosts ayarları kontrol edilir.
+16- /usr/milis/mps/conf/mps.ini , /etc/hosts ayarları ve kırık bileşen(revdep-rebuild) kontrol edilir.
 
 17- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
 
