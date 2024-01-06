@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wayland için Swaywm
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/swaywm/sway
+
+[gerek]
+derleme = meson wayland wayland-protocols wlroots json-c pango cairo gdk-pixbuf flatpak
+calisma = 
+
+[kaynak]
+git     = $url
+
+[derle]
+betik  = git checkout v1.9
+ekconf = -Dsd-bus-provider=basu -Dxwayland=disabled -Dman-pages=disabled
+meson  = sway-$surum
+
+[pakur]
+betik  = echo "pakur yok"
+betik  = rm -rf $PKG/usr/share/{bash*,zsh,fish}
