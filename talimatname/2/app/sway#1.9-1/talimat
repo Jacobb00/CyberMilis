@@ -19,3 +19,4 @@ meson  = sway-$surum
 [pakur]
 betik  = echo "pakur yok"
 betik  = rm -rf $PKG/usr/share/{bash*,zsh,fish}
+betik  = cp -f $TDIR/milis-config $PKG/etc/sway/config
