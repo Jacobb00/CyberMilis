@@ -1,0 +1,20 @@
+[paket]
+tanim   = Rustta yapılmış bağımsız widget sistemi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/elkowar/eww
+
+[gerek]
+derleme = gtk3 gtk-layer-shell
+calisma = 
+
+[kaynak]
+git = $url
+
+[derle]
+betik = rust_setup.sh -y
+betik = source ~/.cargo/env
+betik = cargo build --release --no-default-features --features=wayland
+
+[pakur]
+betik = install -vDm755 target/release/eww -t $PKG/usr/bin/
