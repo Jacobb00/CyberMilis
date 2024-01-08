@@ -12,11 +12,11 @@ calisma =
 [kaynak]
 1       = https://nodejs.org/dist/v$surum/node-v$surum.tar.xz
 
-[sha256]
-1       = 439c71aa2f38c2861657bfa538e99191a571258066cbfd4548586049c8134190
+;[sha256]
+;1       = 439c71aa2f38c2861657bfa538e99191a571258066cbfd4548586049c8134190
 
 [derle]
-ekconf  = --with-intl=system-icu --without-npm --shared --shared-openssl --shared-zlib --shared-libuv --experimental-http-parser --shared-nghttp2 --shared-cares --shared-brotli
+ekconf  = --with-intl=system-icu --with-npm --shared --shared-openssl --shared-zlib --shared-libuv --experimental-http-parser --shared-nghttp2 --shared-cares --shared-brotli
 betik   = ./configure --prefix=/usr $EXT_OPT
 betik   = make $MAKEJOBS
 
