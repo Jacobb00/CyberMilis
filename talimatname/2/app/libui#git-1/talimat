@@ -1,0 +1,22 @@
+[paket]
+tanim   = C için taşınabilir bir GUI kütüphanesi.
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/libui-ng/libui-ng
+
+[gerek]
+derleme = gtk3 meson cmocka
+calisma = 
+
+[kaynak]
+git   = https://github.com/libui-ng/libui-ng
+
+[derle]
+meson = libui-git
+
+[pakur]
+betik = cd "$SRC/libui-ng"
+betik = install -D -m644 ui.h "$PKG/usr/include/ui.h"
+betik = install -D -m755 $SRC/build-libui-git/meson-out/libui.so "$PKG/usr/lib/libui.so"
+betik = ln -s /usr/lib/libui.so $PKG/usr/lib/libui.so.0
+betik = rm -f $PKG/usr/lib/libcmocka.a
