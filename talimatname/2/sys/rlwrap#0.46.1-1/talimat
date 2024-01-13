@@ -1,0 +1,21 @@
+[paket]
+tanim   = Programlara okuma satırı stilinde düzenleme ve geçmiş ekler
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/hanslub42/rlwrap
+
+[gerek]
+derleme = readline perl
+calisma =
+
+[kaynak]
+1       = https://github.com/hanslub42/rlwrap/releases/download/${surum}/rlwrap-${surum}.tar.gz
+
+[sha256]
+1       = 2711986a1248f6ac59e2aecf5586205835970040d300a42b4bf8014397e73e37
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
