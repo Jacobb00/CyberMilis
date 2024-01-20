@@ -5,11 +5,11 @@ grup    = kütüphane
 url     = http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
 
 [gerek]
-derleme = automake
+derleme = automake cups
 calisma =
 
 [kaynak]
-1     = https://download.ebz.epson.net/dsc/du/02/DriverDownloadInfo.do?LG2=JA&CN2=US&CTI=176&PRN=Linux%20src.rpm%20package&OSC=LX&DL::epson-inkjet-printer-escpr-$surum-1.src.rpm!
+1     = "https://download.ebz.epson.net/dsc/du/02/DriverDownloadInfo.do?LG2=JA&CN2=US&CTI=176&PRN=Linux%20src.rpm%20package&OSC=LX&DL"::epson-inkjet-printer-escpr-$surum-1.src.rpm!
 
 [derle]
 betik = cd $SRC
@@ -22,4 +22,5 @@ betik = ./configure --prefix=/usr --with-cupsfilterdir=/usr/lib/cups/filter --wi
 betik = make
   
 [pakur]
-tip = gnu
+tip   = gnu
+betik = rm -f $PKG/usr/lib/*.a
