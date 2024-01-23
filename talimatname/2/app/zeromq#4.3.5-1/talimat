@@ -1,0 +1,28 @@
+[paket]
+tanim   = ZeroMQ iletişim kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.zeromq.org
+
+[gerek]
+derleme = libsodium libunwind
+calisma = 
+
+[kaynak]
+1 = https://github.com/zeromq/libzmq/releases/download/v${surum}/zeromq-${surum}.tar.gz
+2 = https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz::cppzmq-4.10.0.tar.gz
+
+[sha256]
+1 = 6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43
+2 = c81c81bba8a7644c84932225f018b5088743a22999c6d82a2b5f5cd1e6942b74
+
+[derle]
+ekconf = --with-libsodium --disable-Werror
+gnu    = zeromq-${surum}
+betik  = rm -f $PKG/usr/lib/*.la
+
+ekconf = -DZeroMQ_LIBRARY=$PKG/usr/lib/libzmq.so.5.2.5 -DZeroMQ_INCLUDE_DIR=$PKG/usr/include
+cmake  = cppzmq-4.10.0
+
+[pakur]
+betik  = echo 1 
