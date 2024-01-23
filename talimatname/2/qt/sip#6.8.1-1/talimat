@@ -1,0 +1,21 @@
+[paket]
+tanim   = SIP - C/C++ kitaplıkları için Python 3 bağlama oluşturucusu
+paketci = milisarge
+grup    = kütüphane
+url     = https://riverbankcomputing.com/software/sip/intro
+
+[gerek]
+derleme = python
+calisma = 
+
+[kaynak]
+1       = ${PYPI_SITE}/s/sip/sip-${surum}.tar.gz
+
+[sha256]
+1       = 3002df415e168ac3ffe393942dbc7131cb82ade50000e1526f46a88ade26f598
+
+[derle]
+betik   = pip3 install --isolate --no-warn-script-location --ignore-installed --root=${PKG} sip
+
+[pakur]
+betik   = echo 1

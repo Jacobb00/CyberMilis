@@ -7,7 +7,7 @@ arsiv   = ${isim}-qt-${surum}
 
 [gerek]
 derleme = python
-calisma = ffmpeg python-pyqt5
+calisma = ffmpeg python-pyqt5 sip
 
 [kaynak]
 github  = OpenShot/openshot-qt
