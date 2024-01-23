@@ -29,3 +29,4 @@ betik = make INSTALL_ROOT=$PKG install
 betik = rm -r $PKG/usr/lib/python*/site-packages/PyQt5/uic/port_v2
 betik = python -m compileall -d / $PKG/usr/lib
 betik = python -O -m compileall -d / $PKG/usr/lib
+betik = pip3 install --isolate --no-warn-script-location --ignore-installed --root=/tmp/t pyqt5-sip
