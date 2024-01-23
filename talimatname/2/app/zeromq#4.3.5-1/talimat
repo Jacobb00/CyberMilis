@@ -5,12 +5,13 @@ grup    = kütüphane
 url     = http://www.zeromq.org
 
 [gerek]
-derleme = libsodium libunwind
+derleme = libsodium libunwind cython
 calisma = 
 
 [kaynak]
 1 = https://github.com/zeromq/libzmq/releases/download/v${surum}/zeromq-${surum}.tar.gz
 2 = https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz::cppzmq-4.10.0.tar.gz
+3 = https://github.com/zeromq/pyzmq/archive/refs/tags/v25.1.2.tar.gz::pyzmq-25.1.2.tar.gz
 
 [sha256]
 1 = 6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43
@@ -20,6 +21,13 @@ calisma =
 ekconf = --with-libsodium --disable-Werror
 gnu    = zeromq-${surum}
 betik  = rm -f $PKG/usr/lib/*.la
+
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = CPPFLAGS=$CFLAGS
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+py     = pyzmq-25.1.2
 
 ekconf = -DZeroMQ_LIBRARY=$PKG/usr/lib/libzmq.so.5.2.5 -DZeroMQ_INCLUDE_DIR=$PKG/usr/include
 cmake  = cppzmq-4.10.0
