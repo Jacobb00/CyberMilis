@@ -1,0 +1,31 @@
+[paket]
+tanim   = Qt5 araç seti için bir dizi Python bağlaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://riverbankcomputing.com/software/pyqt/intro
+arsiv   = PyQt5-$surum
+
+[gerek]
+derleme = python qt5-base qt5-multimedia qt5-extra python-dbus 
+calisma = 
+
+[kaynak]
+1 = https://pypi.python.org/packages/source/P/PyQt5/PyQt5-$surum.tar.gz
+
+[sha256]
+1 = d46b7804b1b10a4ff91753f8113e5b5580d2b4462f3226288e2d84497334898a
+
+[derle]
+betik = pip3 install sip
+betik = pip3 install pyqt-builder
+betik = sip-build --confirm-license --no-make --api-dir /usr/share/qt/qsci/api/python --pep484-pyi
+betik = cd build
+betik = make $MAKEJOBS
+
+
+[pakur]
+betik = cd build
+betik = make INSTALL_ROOT=$PKG install
+betik = rm -r $PKG/usr/lib/python*/site-packages/PyQt5/uic/port_v2
+betik = python -m compileall -d / $PKG/usr/lib
+betik = python -O -m compileall -d / $PKG/usr/lib
