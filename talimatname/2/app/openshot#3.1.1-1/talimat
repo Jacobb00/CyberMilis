@@ -16,7 +16,11 @@ github  = OpenShot/openshot-qt
 1       = 2b67cb4fc78863911b0263364240947b6331a976aad74943e8f6e46221b52e91
 
 [derle]
-tip     = py3
+[derle]
+betik   = pip3 install build
+betik   = pip3 install wheel
+betik   = pip3 install installer
+betik   = python -m build --wheel --no-isolation
 
 [pakur]
 tip     = py3
