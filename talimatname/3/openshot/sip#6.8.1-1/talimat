@@ -22,4 +22,4 @@ betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/distutils-precedence.pth
 betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/_distutils_hack
 betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/pkg_resources
 betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/setuptools*
-;betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/packaging*
+betik   = rm -rf $PKG/usr/lib/python3.11/site-packages/packaging*

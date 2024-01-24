@@ -1,0 +1,37 @@
+[paket]
+tanim   = Chromium tarayıcı altyapısı kullanan web uygulamaları için Qt5 desteği
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.qt.io
+arsiv   = qtwebengine-everywhere-src-5.15.12
+
+[gerek]
+derleme = nss qt5-base qt5-extra qt5-multimedia gperf libxcomposite libxrandr pciutils libxss libxkbfile python gperf jsoncpp ninja poppler pipewire nodejs libxcursor
+calisma = 
+
+[kaynak]
+1     = https://download.qt.io/official_releases/qt/5.15/$surum/submodules/qtwebengine-everywhere-opensource-src-$surum.tar.xz
+dosya = qt5-webengine-python3.patch
+dosya = qt5-webengine-chromium-python3.patch
+dosya = qt5-webengine-ffmpeg5.patch
+dosya = qt5-webengine-pipewire-0.3.patch
+dosya = qt5-webengine-libxml-2.12.patch
+dosya = qt5-webengine-icu-74.patch
+
+[derle]
+betik = mkdir -p build
+betik = patch -p1 -i $SRC/qt5-webengine-python3.patch # Fix build with Python 3
+betik = patch -p1 -d src/3rdparty -i $SRC/qt5-webengine-chromium-python3.patch
+betik = patch -p1 -d src/3rdparty -i $SRC/qt5-webengine-ffmpeg5.patch # Fix build with ffmpeg 5
+betik = patch -p1 -d src/3rdparty -i $SRC/qt5-webengine-pipewire-0.3.patch # Port to pipewire 0.3
+betik = patch -p1 -d src/3rdparty/chromium -i $SRC/qt5-webengine-libxml-2.12.patch # Fix build with libxml 2.12
+betik = patch -p1 -d src/3rdparty/chromium -i $SRC/qt5-webengine-icu-74.patch # Fix build with ICU 74 - patch from Alpine
+betik = cd build
+betik = LC_ALL=C qmake ../ -- -proprietary-codecs -system-ffmpeg -webp -spellchecker -webengine-icu -webengine-kerberos -webengine-webrtc-pipewire -no-feature-webengine-system-ninja
+betik = LC_ALL=C make -j2
+
+
+[pakur]
+betik = cd build
+betik = make INSTALL_ROOT=$PKG install
+betik = find "$PKG/usr/lib" -type f -name '*.prl' -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \;
