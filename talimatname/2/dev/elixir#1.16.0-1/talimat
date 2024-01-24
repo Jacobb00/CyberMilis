@@ -1,0 +1,21 @@
+[paket]
+tanim   = İşlevsel, eşzamanlı, genel amaçlı programlama dili
+paketci = milisarge
+grup    = geliştirme
+url     = http://elixir-lang.org/
+
+[gerek]
+derleme = erlang
+calisma = erlang
+
+[kaynak]
+1 = https://github.com/elixir-lang/elixir/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1     = d7fe641e3c85c9774232618d22c880c86c2f31e3508c344ce75d134cd40aea18
+
+[derle]
+betik = make
+
+[pakur]
+betik = make DESTDIR="$PKG" PREFIX=/usr install

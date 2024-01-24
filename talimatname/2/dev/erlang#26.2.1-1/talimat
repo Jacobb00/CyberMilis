@@ -1,0 +1,22 @@
+[paket]
+tanim   = Erlang programlama dili belgeleri ve örnekleri
+paketci = milisarge
+grup    = geliştirme
+url     = http://www.erlang.org/
+arsiv   = otp-OTP-$surum
+
+[gerek]
+derleme = automake libxslt openssl ncurses unixodbc zlib
+calisma =
+
+[kaynak]
+1       = https://github.com/erlang/otp/archive/OTP-${surum}.tar.gz
+
+[sha256]
+1       = d99eab3af908b41dd4d7df38f0b02a447579326dd6604f641bbe9f2789b5656b	
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
