@@ -401,7 +401,7 @@ menu_position = 1
 		if not size :
 			size = self.icon_size
 		try:
-			icon = self.d_icon_theme.load_icon(icon_name,size,Gtk.IconLookupFlags.FORCE_REGULAR)
+			icon = self.d_icon_theme.load_icon(icon_name,size,Gtk.IconLookupFlags.FORCE_SIZE)
 		except:
 			if os.path.exists(icon_name):
 				icon =  GdkPixbuf.Pixbuf.new_from_file_at_size(icon_name,size,size)
