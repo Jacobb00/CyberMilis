@@ -1,0 +1,24 @@
+[paket]
+tanim   = Apache HTTP sunucusu
+paketci = milisarge
+grup    = ağ
+url     = http://httpd.apache.org/
+arsiv   = httpd-${surum}
+
+[gerek]
+derleme = pcre libnghttp2 openssl libxml2 brotli jansson
+calisma =
+
+[kaynak]
+1       = https://archive.apache.org/dist/httpd/httpd-${surum}.tar.bz2
+dosya   = milis.layout
+
+[sha256]
+1       = fa16d72a078210a54c47dd5bef2f8b9b8a01d94909a51453956b3ec6442ea4c5
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+tip     = gnu
+dosya   = pakur.sh
