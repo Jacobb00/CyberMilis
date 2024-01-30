@@ -6,18 +6,31 @@ url     = http://httpd.apache.org/
 arsiv   = httpd-${surum}
 
 [gerek]
-derleme = pcre libnghttp2 openssl libxml2 brotli jansson
+derleme = python automake pcre libnghttp2 openssl libxml2 brotli jansson openldap gdbm unixodbc nss sqlite mariadb db postgresql
 calisma =
 
 [kaynak]
 1       = https://archive.apache.org/dist/httpd/httpd-${surum}.tar.bz2
+2       = https://archive.apache.org/dist/apr/apr-1.7.4.tar.bz2
+3       = https://archive.apache.org/dist/apr/apr-util-1.6.3.tar.bz2
+dosya   = fix_apr-config.patch
+dosya   = ship_find_apr.m4.patch
+dosya   = fix-apr.pc.patch
+dosya   = omit_extra_libs.patch
+dosya   = dont_override_external_buildflags
+dosya   = apr-1.7.0-autoconf-2.70.patch
+dosya   = disable_failing_test.patch
+dosya   = buildconf_config.guess_sub_location.patch
+dosya   = scons-python3.patch
 dosya   = milis.layout
 
 [sha256]
 1       = fa16d72a078210a54c47dd5bef2f8b9b8a01d94909a51453956b3ec6442ea4c5
 
 [derle]
-dosya   = derle.sh
+dosya   = apr-derle.sh
+dosya   = apr-util-derle.sh
+dosya   = apache-derle.sh
 
 [pakur]
 tip     = gnu
