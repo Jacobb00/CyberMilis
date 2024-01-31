@@ -18,15 +18,19 @@ dosya   = openssl3-ERR_GET_FUNC.patch
 2       = be81ef08baa2516ecda76a77adf7def7bc3227eeb578b9a33b45f7b41dc064e6
 
 [derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/serf-1"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+betik   = pip3 install scons
 betik   = cd $SRC/serf-1.3.10; patch -p1 -i $SRC/openssl3-ERR_GET_FUNC.patch
 betik   = scons CFLAGS="${CFLAGS}" LINKFLAGS="${LDFLAGS}" PREFIX=/usr GSSAPI=/usr/bin/krb5-config
 betik   = install -d "$PKG/usr"; scons install --install-sandbox="$PKG"
 betik   = rm -f $PKG/usr/lib/*.a
 
-ekconf  = --with-apx --with-serf=/usr --with-apache-libexecdir=/usr/lib/httpd/modules --with-sqlite=/usr --without-swig --with-lz4=internal --with-utf8proc=internal
-tip     = gnu
+ekconf  = --with-apx --with-serf=$PKG/usr --with-apache-libexecdir=/usr/lib/httpd/modules --with-sqlite=/usr --without-swig --with-lz4=internal --with-utf8proc=internal
+gnu     = $isim-$surum
 
 [pakur]
-tip     = gnu
 betik   = install -Dm 644 tools/client-side/bash_completion "${PKG}"/usr/share/bash-completion/completions/subversion
 betik   = for i in svn svnadmin svndumpfilter svnlook svnsync svnversion; do ln -sf subversion "${PKG}"/usr/share/bash-completion/completions/${i} ; done
