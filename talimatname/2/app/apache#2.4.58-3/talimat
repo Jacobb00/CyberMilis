@@ -6,7 +6,7 @@ url     = http://httpd.apache.org/
 arsiv   = httpd-${surum}
 
 [gerek]
-derleme = python automake pcre libnghttp2 openssl libxml2 brotli jansson openldap gdbm unixodbc nss sqlite mariadb postgresql
+derleme = python automake pcre libnghttp2 openssl libxml2 brotli jansson openldap gdbm unixodbc nss sqlite mariadb db postgresql lua
 calisma =
 
 [kaynak]
@@ -28,6 +28,11 @@ dosya   = milis.layout
 1       = fa16d72a078210a54c47dd5bef2f8b9b8a01d94909a51453956b3ec6442ea4c5
 
 [derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+;export  = PATH=$PATH:$PKG/usr/bin
+
 dosya   = apr-derle.sh
 dosya   = apr-util-derle.sh
 dosya   = apache-derle.sh

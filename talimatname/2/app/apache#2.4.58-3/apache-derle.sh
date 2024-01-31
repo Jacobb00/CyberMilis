@@ -5,6 +5,8 @@ sed -e 's#User daemon#User www-data#' \
 cat "${TDIR}/milis.layout" >> config.layout
 
 ./configure --sbindir=/usr/bin \
+	--with-apr=$PKG/usr/bin/apr-1-config \
+	--with-apr-util=$PKG/usr/bin/apu-1-config \
 	--enable-layout=Milis \
 	--enable-mpms-shared=all \
 	--enable-modules=all \
@@ -19,8 +21,6 @@ cat "${TDIR}/milis.layout" >> config.layout
 	--enable-dbd --enable-imagemap --enable-ident --enable-cern-meta \
 	--enable-lua --enable-xml2enc --enable-http2 \
 	--enable-proxy-http2 --enable-md --enable-brotli \
-	--with-apr=/usr/bin/apr-1-config \
-	--with-apr-util=/usr/bin/apu-1-config \
-	--with-pcre=/usr
+	--with-pcre2	
 
 make
