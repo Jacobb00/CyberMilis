@@ -1140,7 +1140,7 @@ set_bootloader() {
     # limine kurulu değilse grub-mkconfig ile ayarlanması
     elif [ -f /usr/bin/grub-mkconfig ] ;then
 		echo "`printf "$LANG_GRUBMKCONF" "$HEDEF"`" >>$LOG
-		chroot $HEDEF grub-mkconfig -o /boot/grub/grub.cfg >>$LOG 2>&1
+		LC_ALL=C chroot $HEDEF grub-mkconfig -o /boot/grub/grub.cfg >>$LOG 2>&1
 	else
 		echo "missing bootloader configer" >>$LOG
     fi
