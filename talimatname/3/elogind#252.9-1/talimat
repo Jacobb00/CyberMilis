@@ -1,0 +1,26 @@
+[paket]
+tanim   = Bağımsız oturum açma çatalı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/elogind/elogind
+
+[gerek]
+derleme = glib pam dbus polkit
+calisma =
+
+[kaynak]
+1       = https://github.com/${isim}/${isim}/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[derle]
+betik   = pip3 install jinja2
+ekconf  = -Dcgroup-controller=elogind -Ddefault-hierarchy=legacy -Ddefault-kill-user-processes=false -Dhalt-path=/usr/bin/halt -Dpamconfdir=/etc/pam.d -Dpolkit=true
+tip     = meson
+
+[pakur]
+tip     = meson
+betik   = ln -s libelogind.pc $PKG/usr/lib/pkgconfig/libsystemd.pc
+betik   = ln -s libelogind.pc $PKG/usr/lib/pkgconfig/libsystemd-logind.pc
+betik   = ln -sr $PKG/usr/include/elogind $PKG/usr/include/systemd
+betik   = install -Dm644 ./src/systemd/sd-id128.h $PKG/usr/include/sd-id128.h
+betik   = install -Dm644 ./src/systemd/_sd-common.h $PKG/usr/include/_sd-common.h
+betik   = install -Dm755 $TDIR/elogind.wrapper $PKG/usr/lib/elogind.wrapper
