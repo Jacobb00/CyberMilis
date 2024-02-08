@@ -1,0 +1,24 @@
+[paket]
+tanim   = Linux/macOS/Unix/Windows üzerinde çalışan C++17 tabanlı bir HTTP web uygulaması çerçevesi
+paketci = milisarge
+grup    = geliştirme
+url     = https://github.com/an-tao/drogon
+
+[gerek]
+derleme = brotli c-ares jsoncpp mariadb postgresql sqlite cmake
+calisma = 
+
+[kaynak]
+1       = $url/archive/v$surum.tar.gz::$isim-$surum.tar.gz
+2       = https://github.com/an-tao/trantor/archive/v1.5.16.tar.gz::trantor-1.5.16.tar.gz
+
+;[sha256]
+;1       = 35793c1b64c32ebbea5a6cb3b1c22bcd0820e948674ecba92022ec05b41c848b
+
+[derle]
+betik   = mv $SRC/trantor-*/* trantor/
+ekconf  = -DBUILD_SHARED_LIBS=ON -DBUILD_DOC=OFF -DUSE_SUBMODULE=ON
+cmake   = $isim-$surum
+
+[pakur]
+betik   = echo 1

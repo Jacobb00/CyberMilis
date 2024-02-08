@@ -1,0 +1,22 @@
+[paket]
+tanim   = Slint arayüz geliştirme
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/slint-ui/slint
+arsiv   = Slint-cpp-$surum-Linux-x86_64
+
+[gerek]
+derleme = 
+calisma =
+
+[kaynak]
+1       = https://github.com/slint-ui/slint/releases/download/v1.4.0/Slint-cpp-$surum-Linux-x86_64.tar.gz
+
+[derle]
+betik   = echo "derleme yok"
+
+[pakur]
+betik   = mkdir $PKG/usr
+betik   = cp -r bin $PKG/usr
+betik   = cp -r lib $PKG/usr
+betik   = cp -r include $PKG/usr
