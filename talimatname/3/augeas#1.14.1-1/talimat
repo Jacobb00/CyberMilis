@@ -1,0 +1,22 @@
+[paket]
+tanim   = Yapılandırma dosyası düzenleme aracı
+paketci = milisarge
+grup    = kütüphane
+url     = http://augeas.net
+
+[gerek]
+derleme = libxml2
+calisma = 
+
+[kaynak]
+1       = https://github.com/hercules-team/augeas/releases/download/release-$surum/augeas-$surum.tar.gz
+
+;[sha256]
+;1 = 321942c9cc32185e2e9cb72d0a70eea106635b50269075aca6714e3ec282cb87
+
+[derle]
+tip =  gnu
+
+[pakur]
+tip =  gnu
+
