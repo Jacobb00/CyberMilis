@@ -1,0 +1,4 @@
+libssl.so.3
+libcrypto.so.3
+libcoap-3-openssl.so.3
+libc.so.6
