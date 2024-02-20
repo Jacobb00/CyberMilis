@@ -1,0 +1,21 @@
+[paket]
+tanim   = Konsol tabanlı arayüz kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/gansm/finalcut
+
+[gerek]
+derleme = autoconf-archive
+calisma =
+
+[kaynak]
+git     = $url
+
+[derle]
+betik   = ./autogen.sh
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = mkdir -p $PKG/usr/share/finalcut/examples
+betik   = cp examples/*.cpp $PKG/usr/share/finalcut/examples/
