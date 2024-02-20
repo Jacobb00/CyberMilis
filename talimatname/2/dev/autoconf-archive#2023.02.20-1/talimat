@@ -1,0 +1,18 @@
+[paket]
+tanim   = Autoconf eski sürüm
+paketci = milisarge
+grup 	= sistem
+url     = http://www.gnu.org/software/autoconf
+
+[kaynak]
+xz      = https://ftpmirror.gnu.org/${isim}
+
+
+[sha256]
+1 		= 71d4048479ae28f1f5794619c3d72df9c01df49b1c628ef85fde37596dc31a33
+
+[derle]
+tip     = gnu
+	      
+[pakur]
+tip     = gnu
