@@ -1,0 +1,25 @@
+[paket]
+tanim   = Google Android SDK için Platform Araçları adb ve fastboot
+paketci = milisarge
+grup    = kütüphane
+url     = http://developer.android.com/sdk/index.html
+arsiv   = .
+
+[gerek]
+derleme = unzip 
+calisma = 
+
+[kaynak]
+1       = https://dl.google.com/android/repository/platform-tools_r$surum-linux.zip!
+
+[derle]
+betik   = unzip /sources/platform-tools_r$surum-linux.zip
+betik   = echo "derleme yok"
+
+[pakur]
+betik = install -d "$PKG/etc/profile.d"
+betik = echo 'export PATH="${PATH}:/usr/local/android-sdk/platform-tools"' >"$PKG/etc/profile.d/$isim.sh"
+betik = chmod 755 $PKG/etc/profile.d/$isim.sh
+betik = install -d $PKG/usr/local/android-sdk
+betik = cp -a $SRC/platform-tools $PKG/usr/local/android-sdk/platform-tools
+betik = chmod -R +rX $PKG/usr/local/android-sdk/platform-tools
