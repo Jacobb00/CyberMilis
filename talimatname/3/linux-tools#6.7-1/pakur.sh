@@ -1,5 +1,5 @@
 # perf
-cd linux/tools/perf
+cd tools/perf
   make -f Makefile.perf \
     prefix=/usr \
     lib=lib/perf \
@@ -8,7 +8,7 @@ cd linux/tools/perf
     NO_SDT=1 \
     BUILD_BPF_SKEL=1 \
     PYTHON=python \
-    PYTHON_CONFIG=python-config \
+    PYTHON_CONFIG=python3-config \
     DESTDIR="$PKG" \
     install install-python_ext
   cd "$PKG"
@@ -23,7 +23,7 @@ cd linux/tools/perf
 
 # cpupower
 
-  pushd linux/tools/power/cpupower
+  pushd tools/power/cpupower
   make \
     DESTDIR="$PKG" \
     sbindir='/usr/bin' \
@@ -36,11 +36,11 @@ cd linux/tools/perf
   install -Dm 644 cpupower.default "$PKG/etc/default/cpupower"
 
 # perf policy
-  cd linux/tools/power/x86/x86_energy_perf_policy
+  cd tools/power/x86/x86_energy_perf_policy
   install -Dm 755 x86_energy_perf_policy "$PKG/usr/bin/x86_energy_perf_policy"
 
 # usbip
-  pushd linux/tools/usb/usbip
+  pushd tools/usb/usbip
   make install DESTDIR="$PKG"
   popd
   # module loading
@@ -48,19 +48,19 @@ cd linux/tools/perf
   printf 'usbip-core\nusbip-host\n' > "$PKG/usr/lib/modules-load.d/usbip.conf"
 
 # tmon
-  cd linux/tools/thermal/tmon
+  cd tools/thermal/tmon
   make install INSTALL_ROOT="$PKG"
 
 # cgroup event
-  cd linux/tools/cgroup
+  cd tools/cgroup
   install -Dm755 cgroup_event_listener "$PKG/usr/bin/cgroup_event_listener"
 
 # turbostat
-  cd linux/tools/power/x86/turbostat
+  cd tools/power/x86/turbostat
   make install DESTDIR="$PKG"
 
 # hyperv
-  cd linux/tools/hv
+  cd tools/hv
   for _p in hv_fcopy_daemon hv_kvp_daemon hv_vss_daemon; do
     install -Dm755 "$_p" "$PKG/usr/bin/$_p"
   done
@@ -68,7 +68,7 @@ cd linux/tools/perf
 }
 
 # bpf
-  cd linux/tools/bpf
+  cd tools/bpf
   # skip runsqlower until disabled in build
   make -W runqslower_install install prefix=/usr DESTDIR="$PKG"
   # fix bpftool hard written path
@@ -76,6 +76,6 @@ cd linux/tools/perf
   rmdir "$PKG"/usr/sbin
 
 # bootconfig
-  cd linux/tools/bootconfig
+  cd tools/bootconfig
   install -dm755 "$PKG/usr/bin"
   make install DESTDIR="$PKG"

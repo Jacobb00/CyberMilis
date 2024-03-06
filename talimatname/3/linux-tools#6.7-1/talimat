@@ -3,9 +3,10 @@ tanim   = Linux kernel araç seti
 paketci = milisarge
 grup 	= temel
 url     = http://www.kernel.org
+arsiv   = linux-$surum
 
 [gerek]
-derleme = automake pciutils python slang llvm libunwind libcap openssl elfutils ncurses
+derleme = automake pciutils python llvm libunwind libcap openssl elfutils ncurses
 calisma = 
 
 [kaynak]
