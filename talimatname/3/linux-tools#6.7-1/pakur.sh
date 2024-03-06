@@ -65,7 +65,6 @@ cd tools/perf
     install -Dm755 "$_p" "$PKG/usr/bin/$_p"
   done
   install -dm755 "$PKG/usr/lib/hyperv/kvp_scripts"
-}
 
 # bpf
   cd tools/bpf
