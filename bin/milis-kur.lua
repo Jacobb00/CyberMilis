@@ -142,7 +142,7 @@ end
 
 function copy_rootfs()
   swrite("# 2. Sistemin kopyalanması")
-  cmd = "tar --create --one-file-system --xattrs -f - / 2>/dev/null | tar --extract --xattrs --xattrs-include='*' --preserve-permissions -v -f - -C $HEDEF"
+  cmd = "tar --create --one-file-system --xattrs -f - / 2>/dev/null | tar --extract --xattrs --xattrs-include='*' --preserve-permissions -v -f - -C $HEDEF > dev/null"
   swrite(cmd)
 end
 
