@@ -5,10 +5,10 @@ grup 	= temel
 url     = https://git.kernel.org
 
 [kaynak]
-gz   	= https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot
+gz   	= https://gitlab.com/kernel-firmware/linux-firmware/-/archive/$surum/linux-firmware-$surum.tar.gz
 
-[sha256]
-1	    = 2f609c503bde5ee6c32336a465c48e939138b8263504d3f7d03ec65ace80b130
+;[sha256]
+;1	    = 2f609c503bde5ee6c32336a465c48e939138b8263504d3f7d03ec65ace80b130
 
 [derle]
 betik   = echo "derle"
