@@ -5,7 +5,7 @@ grup    = medya
 url     = https://github.com/mpv-player/mpv
 
 [gerek]
-derleme = zlib meson alsa-lib ffmpeg lcms2 libass libbluray libcdio-paranoia libdrm libdvd libjpeg-turbo libplacebo libxkbcommon mesa pulseaudio shaderc vulkan wayland ladspa luajit pipewire
+derleme = zlib meson alsa-lib ffmpeg lcms2 libass libbluray libcdio-paranoia libdrm libdvd libjpeg-turbo libplacebo libxkbcommon mesa pulseaudio shaderc vulkan wayland wayland-protocols ladspa luajit pipewire
 calisma =
 
 [kaynak]
