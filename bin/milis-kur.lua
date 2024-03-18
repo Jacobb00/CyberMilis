@@ -87,7 +87,7 @@ end
 function create_fs()
   swrite("# 1. Dosya sistemlerinin hazırlanması")
   -- swap
-  if cfg.filesystem.swap then
+  if cfg.filesystem.swap and cfg.filesystem.swap ~= "-" then
     print(("#%s disk bölümü"):format("swap"))
     val = cfg.filesystem.swap
     swrite("swapoff "..val)
@@ -98,7 +98,7 @@ function create_fs()
     swrite(("uuid=$(blkid -o value -s UUID \"%s\")"):format(val))
     swrite("echo \"UUID=$uuid none swap sw 0 0\" >>$TARGET_FSTAB")
   end
-  if cfg.filesystem.root then
+  if cfg.filesystem.root and cfg.filesystem.root ~= "-" then
     print(("#%s disk bölümü"):format("root"))
     val = cfg.filesystem.root
     part = val:split(";")[1]
@@ -123,7 +123,7 @@ function create_fs()
     swrite(("echo \"UUID=$uuid %s %s defaults 0 1\" >>$TARGET_FSTAB"):format(mountp, fs_type))
   end
         
-  if cfg.filesystem.efi then 
+  if cfg.filesystem.efi and cfg.filesystem.efi ~= "-" then 
     print(("#%s disk bölümü"):format("EFI"))
     val = cfg.filesystem.efi
     part = val:split(";")[1]
@@ -266,7 +266,7 @@ function umount_fs()
   for _,f in ipairs(points) do
     swrite(("[ -d $HEDEF/%s ] && umount $HEDEF/%s"):format(f, f))
   end
-  if cfg.filesystem.swap then
+  if cfg.filesystem.swap and cfg.filesystem.swap ~= "-" then
     swrite("swapoff "..cfg.filesystem.swap)
   end
   swrite("[ -d $HEDEF/boot/efi ] && umount $HEDEF/boot/efi")
