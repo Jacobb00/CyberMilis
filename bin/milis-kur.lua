@@ -134,6 +134,8 @@ function create_fs()
     if fs_format == "1" then
       swrite(("mkfs.vfat -F32 %s"):format(part))
     end
+    -- efi bağlanması
+    swrite(("mkdir -p ${HEDEF}/%s"):format(mountp))
     swrite(("mount -t %s %s ${HEDEF}%s"):format(fs_type, part, mountp))
     swrite(("uuid=$(blkid -o value -s UUID \"%s\")"):format(part))
     swrite(("echo \"UUID=$uuid %s %s defaults 0 2\" >>$TARGET_FSTAB"):format(mountp, fs_type))
