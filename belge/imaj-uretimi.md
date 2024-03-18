@@ -104,8 +104,8 @@ mps kur --dosya minimal.liste
 mps kur --dosya masa.liste
 mps kur --dosya ofis.liste
 
-# minimal sistem + limine + xfs destek
-mps kur udisks xfsprogs
+# minimal sistem + limine + xfs destek + tmux
+mps kur udisks xfsprogs tmux
 ```
 
 12- Milis servis sistemi aşağıdaki yönergeye göre kurulur. /etc/init/system.ini kontrol edilir.
