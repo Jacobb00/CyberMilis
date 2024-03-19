@@ -144,7 +144,8 @@ end
 
 function copy_rootfs()
   swrite("# 2. Sistemin kopyalanması")
-  cmd = "tar --create --one-file-system --xattrs -f - / 2>/dev/null | tar --extract --xattrs --xattrs-include='*' --preserve-permissions -v -f - -C $HEDEF >/dev/null"
+  -- cmd = "tar --create --one-file-system --xattrs -f - / 2>/dev/null | tar --extract --xattrs --xattrs-include='*' --preserve-permissions -v -f - -C $HEDEF >/dev/null"
+  cmd = "tar --create --one-file-system --xattrs -f - / 2>/dev/null | tar --checkpoint=.$(du -s /usr | awk '{print int($1/10/100)}') --extract --xattrs --xattrs-include='*' --preserve-permissions -f - -C $HEDEF > /tmp/progress.log"
   swrite(cmd)
 end
 
