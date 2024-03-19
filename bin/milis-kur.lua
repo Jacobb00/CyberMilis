@@ -242,7 +242,7 @@ function set_bootloader()
     swrite("mount --bind /sys/firmware/efi/efivars $HEDEF/sys/firmware/efi/efivars")
     if cfg.bootloader.program == "limine" then
       swrite("mkdir -p $HEDEF/boot/efi/EFI/boot/")
-      swrite("cp /usr/share/limine/BOOTX64.EFI $HEDEF/boot/efi/EFI/boot/")
+      swrite("cp -f /usr/share/limine/BOOTX64.EFI $HEDEF/boot/efi/EFI/boot/")
     end
     if cfg.bootloader.program == "grub" then
       swrite(("chroot $HEDEF grub-install --force --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=boot --recheck %s"):format(cfg.bootloader.diskpart))
