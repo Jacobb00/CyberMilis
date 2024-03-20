@@ -14,7 +14,7 @@ dosya   = bluetooth.modprobe
 2       = https://www.kernel.org/pub/linux/bluetooth/sbc-2.0.tar.xz
 
 [sha256]
-1 		= bc5a35ddc7c72d0d3999a0d7b2175c8b7d57ab670774f8b5b4900ff38a2627fc
+1 		= 499d7fa345a996c1bb650f5c6749e1d929111fa6ece0be0e98687fee6124536e
 3       = 8f12368e1dbbf55e14536520473cfb338c84b392939cc9b64298360fd4a07992
 
 [derle]
