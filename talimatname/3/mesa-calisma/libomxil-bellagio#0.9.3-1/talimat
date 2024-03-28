@@ -1,0 +1,28 @@
+[paket]
+tanim   = OpenMAX entegre api gerçeklemesi
+paketci = milisarge  
+grup    = kütüphane 
+url     = http://omxil.sourceforge.net
+
+[gerek]
+derleme = automake
+calisma = 
+
+[kaynak]
+gz     = https://downloads.sourceforge.net/project/omxil/omxil/Bellagio%200.9.3
+dosya  = libomx-fedora-fixes.patch
+
+[sha256]
+1      =  593c0729c8ef8c1467b3bfefcf355ec19a46dd92e31bfc280e17d96b0934d74c
+
+[derle]
+yama   = libomx-fedora-fixes.patch
+betik  = sed -e 's/-Werror//' -i configure.ac
+betik  = autoreconf -fiv
+betik  = CFLAGS+=' -fcommon'
+ekconf = --disable-static
+tip    = gnu
+
+[pakur]
+tip    = gnu
+

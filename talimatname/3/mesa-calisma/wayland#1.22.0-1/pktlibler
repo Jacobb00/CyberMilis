@@ -1,0 +1,12 @@
+libwayland-client.so
+libwayland-client.so.0
+libwayland-client.so.0.22.0
+libwayland-cursor.so
+libwayland-cursor.so.0
+libwayland-cursor.so.0.22.0
+libwayland-egl.so
+libwayland-egl.so.1
+libwayland-egl.so.1.22.0
+libwayland-server.so
+libwayland-server.so.0
+libwayland-server.so.0.22.0

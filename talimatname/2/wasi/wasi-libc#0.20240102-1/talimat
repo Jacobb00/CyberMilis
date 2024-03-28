@@ -1,0 +1,25 @@
+[paket]
+tanim   = WASI WebAssembly için libc kütüphanesi
+paketci = milisarge
+grup 	= geliştirme
+url     = https://github.com/WebAssembly/wasi-libc
+arsiv   = $isim-c5264e2bbe532994d06b039005f2af91bedcc1a6
+
+[gerek]
+derleme = llvm
+calisma = 
+
+[kaynak]
+gz      = https://github.com/WebAssembly/wasi-libc/archive/c5264e2bbe532994d06b039005f2af91bedcc1a6
+dosya   = wasi-no-double-build.patch
+
+;[sha256]
+;1 	    = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
+
+[derle]
+patch   = wasi-no-double-build.patch
+betik   = make CC=clang BULK_MEMORY_SOURCES=
+	      
+[pakur]
+nostrip = 1
+dosya 	= pakur.sh

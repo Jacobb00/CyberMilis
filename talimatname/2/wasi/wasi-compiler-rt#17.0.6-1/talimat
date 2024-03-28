@@ -1,0 +1,27 @@
+[paket]
+tanim   = WASI WebAssembly için compiler-rt kütüphanesi
+paketci = milisarge
+grup 	= geliştirme
+url     = https://github.com/WebAssembly/wasi-libc
+arsiv   = .
+
+[gerek]
+derleme = wasi-libc ninja cmake llvm
+calisma = 
+
+[kaynak]
+1     = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/compiler-rt-$surum.src.tar.xz
+3     = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
+dosya = WASI.cmake 
+dosya = wasi-toolchain.cmake
+
+;[sha256]
+;1    = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
+
+[derle]
+dosya   = derle.sh
+	      
+[pakur]
+nostrip = 1
+betik   = DESTDIR=$PKG cmake --install build
+;betik   = /usr/bin/llvm-strip --strip-debug $PKG/usr/lib/clang/${surum%%.*}/lib/wasi/libclang_rt.builtins-wasm32.a

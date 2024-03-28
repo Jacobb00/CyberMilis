@@ -1,0 +1,23 @@
+[paket]
+tanim   = X11 için klavye işleme kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.xkbcommon.org
+
+[gerek]
+derleme = meson wayland wayland-protocols libxcb xkeyboard-config
+calisma = xkeyboard-config
+
+[kaynak]
+xz      = $url/download
+
+;[sha256]
+;1       = 0edc14eccdd391514458bc5f5a4b99863ed2d651e4dd761a90abf4f46ef99c2b
+
+[derle]
+betik   = export M4=m4
+ekconf  = -Denable-wayland=true -Denable-docs=false -Denable-x11=true
+tip     = meson
+
+[pakur]
+tip     = meson

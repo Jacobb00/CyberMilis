@@ -1,0 +1,24 @@
+[paket]
+tanim   = OpenGL ve OpenGL ES shader önyüz ve doğrulayıcı kütüphane
+paketci = milisarge  
+grup    = sistem 
+url     = https://github.com/KhronosGroup/glslang
+
+[gerek]
+derleme  = cmake ninja spirv
+calisma  = spirv
+
+[kaynak]
+1      = https://github.com/KhronosGroup/glslang/archive/$surum/$isim-sdk-$surum.tar.gz
+
+[sha256]
+1      = 80bbb916a23e94ea9cbfb1acb5d1a44a7e0c9613bcf5b5947c03f2273bdc92b0
+
+[derle]
+dosya  = derle.sh
+
+[pakur]
+betik  = DESTDIR=$PKG ninja -C build-shared install
+betik  = DESTDIR=$PKG ninja -C build-static install
+betik  = cd $PKG/usr/lib; for lib in *.so; do ln -sf "${lib}" "${lib}.0"; done
+
