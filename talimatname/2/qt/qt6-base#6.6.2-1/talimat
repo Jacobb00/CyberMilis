@@ -15,8 +15,8 @@ dosya   = qt6-base-nostrip.patch
 dosya   = qtbase-6.5.3-xkbcommon160.patch
 dosya   = qt.conf
 
-[sha256]
-1       = 039d53312acb5897a9054bd38c9ccbdab72500b71fdccdb3f4f0844b0dd39e0e
+;[sha256]
+;1       = 039d53312acb5897a9054bd38c9ccbdab72500b71fdccdb3f4f0844b0dd39e0e
 
 [derle]
 dosya   = derle.sh

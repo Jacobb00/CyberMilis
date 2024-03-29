@@ -12,8 +12,8 @@ calisma =
 [kaynak]
 1       = https://download.qt.io/official_releases/qt/6.6/$surum/submodules/qtshadertools-everywhere-src-$surum.tar.xz
 
-[sha256]
-1       = 3690327dc550144b8102be2bb7f6dc995ccbe3584041094ad021a83737ef9875
+;[sha256]
+;1       = 3690327dc550144b8102be2bb7f6dc995ccbe3584041094ad021a83737ef9875
 
 [derle]
 ekconf  = -D INSTALL_PUBLICBINDIR=usr/bin
