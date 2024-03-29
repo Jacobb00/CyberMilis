@@ -5,14 +5,14 @@ grup    = geliştirme
 url     = https://projects.kde.org/projects/kdesupport/extra-cmake-modules
 
 [gerek]
-derleme = qt5-base qt5-extra cmake
+derleme = cmake
 calisma =
 
 [kaynak]
 xz      = https://download.kde.org/stable/frameworks/${surum%.*}
 
-[sha256]
-1       = 265e5440eebeca07351a469e617a4bf35748927bd907b00ace9c018392bb3bc4
+;[sha256]
+;1       = 265e5440eebeca07351a469e617a4bf35748927bd907b00ace9c018392bb3bc4
 
 [derle]
 ekconf  = -DBUILD_HTML_DOCS=OFF -DBUILD_TESTING=OFF

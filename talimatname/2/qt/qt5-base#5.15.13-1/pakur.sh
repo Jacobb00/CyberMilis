@@ -16,5 +16,5 @@ done
 install -d -m755 $PKG/usr/include/qtxcb-private
 cp -r src/plugins/platforms/xcb/*.h $PKG/usr/include/qtxcb-private/
 
-mkdir -p $PKG/usr/lib/qt/bin
-install -m644 $SRC/qt.conf $PKG/usr/lib/qt/bin/qt.conf
+#bir sonraki derlemede
+install -m644 $SRC/qt.conf $PKG/usr/bin/qt.conf
