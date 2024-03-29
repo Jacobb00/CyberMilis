@@ -12,8 +12,8 @@ calisma =
 [kaynak]
 1       = https://download.qt.io/official_releases/qt/6.6/$surum/submodules/qttranslations-everywhere-src-$surum.tar.xz
 
-[sha256]
-1       = a0d89a236f64b810eb0fe4ae1e90db22b0e86263521b35f89e69f1392815078c
+;[sha256]
+;1       = a0d89a236f64b810eb0fe4ae1e90db22b0e86263521b35f89e69f1392815078c
 
 [derle]
 ekconf  = -DCMAKE_MESSAGE_LOG_LEVEL=STATUS
