@@ -1,0 +1,31 @@
+[paket]
+tanim   = LLVM için C dili kütüphaneleri
+paketci = milisarge
+grup    = sistem  
+url     = https://clang.llvm.org
+arsiv   = ${isim}-${surum}.src
+
+[gerek]
+derleme = llvm cmake ninja compiler-rt python
+calisma =  
+
+[kaynak]
+1  =  https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/clang-$surum.src.tar.xz
+2  =  https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/clang-tools-extra-$surum.src.tar.xz
+3  = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
+4  = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/third-party-$surum.src.tar.xz
+5  =  https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-$surum.src.tar.xz
+6  = https://github.com/llvm/llvm-project/commit/9d1dada57741.patch::clangd-handle-missing-ending-brace.patch!
+dosya = enable-fstack-protector-strong-by-default.patch
+
+;[sha256]
+;1  = def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274
+;2  = 76707c249de7a9cde3456b960c9a36ed9bbde8e3642c01f0ef61a43d61e0c1a2
+;3  = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
+;4  = 248a0e8609b00689e82ce5e05e1de58b7c8ae09a35bbb9625e9069e1f13d2fec
+
+[derle]
+dosya  =  derle.sh
+
+[pakur]
+dosya  =  pakur.sh

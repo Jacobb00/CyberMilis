@@ -1,5 +1,10 @@
-export CC=gcc
-export CXX=g++
+export CFLAGS=${CFLAGS/-g /-g1 }
+export CXXFLAGS=${CXXFLAGS/-g /-g1 }
+
+cd $SRC
+
+mv cmake-$surum.src/ cmake
+mv third-party-$surum.src/ third-party
 
 cd $isim-$surum.src
 
@@ -25,11 +30,6 @@ cmake .. -G Ninja \
 	-DLLVM_ENABLE_SPHINX=OFF \
 	-DLLVM_ENABLE_DOXYGEN=OFF \
 	-DLLVM_ENABLE_OCAMLDOC=OFF \
-	-DSPHINX_WARNINGS_AS_ERRORS=OFF \
 	-DLLVM_BINUTILS_INCDIR=/usr/include \
 	-DLLVM_USE_PERF=ON
 ninja all
-
-
-
-

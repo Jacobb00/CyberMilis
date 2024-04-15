@@ -20,5 +20,6 @@ calisma =
 dosya 	= derle.sh
 	      
 [pakur]
-betik   = cd $SRC/$isim-$surum.src/build && DESTDIR=$PKG ninja install-distribution
+betik   = cd $SRC/$isim-$surum.src/build && DESTDIR=$PKG ninja install
 betik   = pushd ../utils/lit;python3 setup.py install --root="$PKG" -O1;popd
+betik   = rm -rf $PKG/usr/lib/*.a

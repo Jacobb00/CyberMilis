@@ -1,0 +1,26 @@
+[paket]
+tanim   = Clang için derleme çalışma zamanı kütüphaneleri
+paketci = milisarge
+grup    = sistem   
+url     = https://compiler-rt.llvm.org
+arsiv   = ${isim}-${surum}.src
+
+[gerek]
+derleme = llvm cmake ninja python
+calisma =  
+
+[kaynak]
+1       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/$isim-$surum.src.tar.xz
+
+;[sha256]
+;1       = def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274
+
+[derle]
+betik   = mkdir build;cd build
+betik   = cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_SKIP_RPATH=ON -DCOMPILER_RT_INSTALL_PATH=/usr/lib/clang/${surum%%.*}
+betik   = ninja
+
+
+[pakur]
+tip     = ninja
+
