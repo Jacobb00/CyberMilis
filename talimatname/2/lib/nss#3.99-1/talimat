@@ -18,7 +18,7 @@ dosya   = nss-softokn.pc.in
 dosya   = nss-util.pc.in
 
 [sha256]
-1	= c51e89f6fbb06163f4302e368eeb672d748b52d583948bdb15ef1b069237a496
+1	= 5cd5c2c8406a376686e6fa4b9c2de38aa280bea07bf927c0d521ba07c88b09bd
 
 [derle]
 dosya   = derle.sh
