@@ -5,21 +5,13 @@ grup 	= geliştirme
 url     = http://llvm.org/
 
 [gerek]
-derleme = python cmake ninja ccache
+derleme = python ninja cmake
 calisma = 
 
 [kaynak]
 1       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-$surum.src.tar.xz
 2       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
 3       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/third-party-$surum.src.tar.xz
-4       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/clang-$surum.src.tar.xz
-5       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/clang-tools-extra-$surum.src.tar.xz
-6       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/compiler-rt-$surum.src.tar.xz
-7       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/lld-$surum.src.tar.xz
-dosya   = llvm-install-prefix.patch
-dosya   = llvm-rust-feature-tables.patch
-dosya   = llvm-config.h
-dosya   = 0002-PATCH-lld-Import-compact_unwind_encoding.h-from-libu.patch
 
 ;[sha256]
 ;1 	    = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
@@ -28,4 +20,6 @@ dosya   = 0002-PATCH-lld-Import-compact_unwind_encoding.h-from-libu.patch
 dosya 	= derle.sh
 	      
 [pakur]
-betik   = echo ""
+betik   = cd $SRC/$isim-$surum.src/build && DESTDIR=$PKG ninja install
+betik   = pushd ../utils/lit;python3 setup.py install --root="$PKG" -O1;popd
+betik   = rm -rf $PKG/usr/lib/*.a

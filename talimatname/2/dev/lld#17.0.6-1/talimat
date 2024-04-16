@@ -24,6 +24,5 @@ dosya   = https://github.com/llvmbot/llvm-project/commit/939ee549a2c4.patch::$is
 dosya   = derle.sh
 
 [pakur]
-betik   = cd build
 tip     = ninja
 

@@ -1,0 +1,12 @@
+liblldMinGW.so.17
+liblldCOFF.so.17
+libLLVM-17.so
+libc.so.6
+libz.so.1
+libzstd.so.1
+liblldELF.so.17
+liblldMachO.so.17
+liblldWasm.so.17
+liblldCommon.so.17
+libstdc++.so.6
+ld-linux-x86-64.so.2

@@ -1,0 +1,12 @@
+liblldCOFF.so
+liblldCOFF.so.17
+liblldCommon.so
+liblldCommon.so.17
+liblldELF.so
+liblldELF.so.17
+liblldMachO.so
+liblldMachO.so.17
+liblldMinGW.so
+liblldMinGW.so.17
+liblldWasm.so
+liblldWasm.so.17
