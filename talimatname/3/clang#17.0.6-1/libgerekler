@@ -1,0 +1,8 @@
+libclang.so.17
+libm.so.6
+libgcc_s.so.1
+ld-linux-x86-64.so.2
+libclang-cpp.so.17
+libLLVM-17.so
+libstdc++.so.6
+libc.so.6

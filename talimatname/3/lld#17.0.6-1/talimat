@@ -1,0 +1,29 @@
+[paket]
+tanim   = LLVM bağlayıcı araç seti
+paketci = milisarge  
+grup    = sistem
+url     = https://lld.llvm.org
+arsiv   = ${isim}-${surum}.src
+
+[gerek]
+derleme = llvm cmake ninja python
+calisma =  
+
+[kaynak]
+1       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/${isim}-${surum}.src.tar.xz
+2       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-$surum.src.tar.xz
+3       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/libunwind-$surum.src.tar.xz
+4       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
+dosya   = https://github.com/llvmbot/llvm-project/commit/939ee549a2c4.patch::$isim-internalize-enum.patch!
+
+;[sha256]
+;1       = 017a788cbe1ecc4a949abf10755870519086d058a2e99f438829aef24f0c66ce
+;2       = ce8508e318a01a63d4e8b3090ab2ded3c598a50258cc49e2625b9120d4c03ea5
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = cd build
+tip     = ninja
+
