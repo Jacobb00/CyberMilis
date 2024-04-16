@@ -5,7 +5,7 @@ grup    = ağ
 url     = https://www.mozilla.org/firefox/
 
 [gerek]
-derleme = python alsa-lib nodejs pango unzip zip libjpeg-turbo nasm nss gtk3 dbus-glib libxt libxcursor pipewire ccache wasi-compiler-rt wasi-libc wasi-libc++
+derleme = python alsa-lib nodejs pango unzip zip libjpeg-turbo nasm nss gtk3 dbus-glib libxt libxcursor pipewire ccache wasi-compiler-rt wasi-libc wasi-libc++ lld
 calisma = 
 
 [kaynak]

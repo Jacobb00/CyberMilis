@@ -14,7 +14,7 @@ calisma =
 2       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-$surum.src.tar.xz
 3       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/libunwind-$surum.src.tar.xz
 4       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
-dosya   = https://github.com/llvmbot/llvm-project/commit/939ee549a2c4.patch::$isim-internalize-enum.patch!
+5       = https://github.com/llvmbot/llvm-project/commit/939ee549a2c4.patch::$isim-internalize-enum.patch!
 
 ;[sha256]
 ;1       = 017a788cbe1ecc4a949abf10755870519086d058a2e99f438829aef24f0c66ce
@@ -25,4 +25,4 @@ dosya   = derle.sh
 
 [pakur]
 tip     = ninja
-
+betik   = rm -rf $PKG/usr/include/llvm
