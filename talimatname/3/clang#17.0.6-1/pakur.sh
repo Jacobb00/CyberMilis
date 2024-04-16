@@ -3,6 +3,7 @@ cd build
 DESTDIR="${PKG}" ninja install
 
 # Move analyzer scripts out of /usr/libexec
+
 mv "${PKG}"/usr/libexec/{ccc,c++}-analyzer "${PKG}/usr/lib/clang/"
 rmdir "${PKG}/usr/libexec"
 sed -i 's|libexec|lib/clang|' "${PKG}/usr/bin/scan-build"

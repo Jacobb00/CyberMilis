@@ -17,6 +17,7 @@ calisma =
 5  =  https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/llvm-$surum.src.tar.xz
 6  = https://github.com/llvm/llvm-project/commit/9d1dada57741.patch::clangd-handle-missing-ending-brace.patch!
 dosya = enable-fstack-protector-strong-by-default.patch
+dosya = 0003-PATCH-clang-Don-t-install-static-libraries.patch
 
 ;[sha256]
 ;1  = def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274

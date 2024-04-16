@@ -11,16 +11,17 @@ calisma =
 
 [kaynak]
 1       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/$isim-$surum.src.tar.xz
+2       = https://github.com/llvm/llvm-project/releases/download/llvmorg-$surum/cmake-$surum.src.tar.xz
 
 ;[sha256]
 ;1       = def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274
 
 [derle]
+betik   = cd $SRC;mv cmake{-$surum.src,};cd -
 betik   = mkdir build;cd build
-betik   = cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_SKIP_RPATH=ON -DCOMPILER_RT_INSTALL_PATH=/usr/lib/clang/${surum%%.*}
-betik   = ninja
+betik   = LC_ALL=C cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_SKIP_RPATH=ON -DCOMPILER_RT_INSTALL_PATH=/usr/lib/clang/${surum%%.*}
+betik   = LC_ALL=C ninja
 
 
 [pakur]
 tip     = ninja
-
