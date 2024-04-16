@@ -5,7 +5,7 @@ grup 	= sistem
 url     = https://www.qt.io
 
 [gerek]
-derleme = cmake ninja qt6-base qt6-declarative qt6-shadertools ccache bluez xcb-util-cursor libjpeg-turbo xcb-util-renderutil xcb-util-keysyms fontconfig shared-mime-info xcb-util-wm libxrender libxi sqlite xcb-util-image mesa libinput libxkbcommon cups sqlite alsa-lib gstreamer gtk3 pulseaudio cups vulkan mariadb unixodbc postgresql
+derleme = cmake ninja qt6-base qt6-declarative qt6-shadertools ccache bluez xcb-util-cursor libjpeg-turbo xcb-util-renderutil xcb-util-keysyms fontconfig shared-mime-info xcb-util-wm libxrender libxi sqlite xcb-util-image mesa libinput libxkbcommon cups sqlite alsa-lib gstreamer gtk3 pulseaudio cups vulkan mariadb unixodbc postgresql clang
 calisma = 
 
 [kaynak]
