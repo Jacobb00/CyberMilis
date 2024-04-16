@@ -5,7 +5,7 @@ grup 	= kütüphane
 url     = http://www.xorg-mesa3d.org
 
 [gerek]
-derleme = meson cmake eudev llvm libxdamage libxxf86vm lm_sensors libxshmfence libxrandr libdrm libomxil-bellagio libclc glslang libunwind wayland wayland-protocols python-mako vulkan libxext libx11 xorgproto spirv spirv-llvm-translator libxi
+derleme = meson cmake eudev llvm libxdamage libxxf86vm lm_sensors libxshmfence libxrandr libdrm libomxil-bellagio libclc glslang libunwind wayland wayland-protocols python-mako vulkan libxext libx11 xorgproto spirv spirv-llvm-translator libxi clang
 calisma = 
 
 [kaynak]

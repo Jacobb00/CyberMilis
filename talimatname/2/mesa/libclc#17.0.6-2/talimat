@@ -6,7 +6,7 @@ url     = https://libclc.llvm.org
 arsiv   = .
 
 [gerek]
-derleme  = cmake llvm ninja spirv-llvm-translator
+derleme  = cmake llvm ninja spirv-llvm-translator clang
 calisma  =  
 
 [kaynak]
