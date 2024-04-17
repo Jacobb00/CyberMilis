@@ -10,7 +10,7 @@ derleme = cmake qt6-base qt6-shadertools qt6-declarative
 calisma =
 
 [kaynak]
-1       = https://download.qt.io/official_releases/qt/6.6/$surum/submodules/qt5compat-everywhere-src-$surum.tar.xz
+1       = https://download.qt.io/official_releases/qt/6.7/$surum/submodules/qt5compat-everywhere-src-$surum.tar.xz
 
 ;[sha256]
 ;1       = 3d85edb66126f712266dcbfc6cd00383d46cc6d66c8b84607ca21e2bc71a8fca
