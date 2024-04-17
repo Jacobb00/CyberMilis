@@ -5,7 +5,7 @@ grup    = medya
 url     = https://obsproject.com
 
 [gerek]
-derleme = cmake swig qt6-base qt6-extra luajit fdk-aac ffmpeg mesa libxcomposite pulseaudio python pipewire jansson wayland xiph mbedtls pciutils
+derleme = cmake swig qt6-base qt6-svg luajit fdk-aac ffmpeg mesa libxcomposite pulseaudio python pipewire jansson wayland xiph mbedtls pciutils
 calisma =
 
 [kaynak]
