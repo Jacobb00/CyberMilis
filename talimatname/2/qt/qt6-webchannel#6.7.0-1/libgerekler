@@ -1,0 +1,6 @@
+libQt6Qml.so.6
+libQt6Core.so.6
+libstdc++.so.6
+libc.so.6
+libQt6WebChannel.so.6
+libQt6WebChannelQuick.so.6
