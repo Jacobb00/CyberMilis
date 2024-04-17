@@ -30,3 +30,5 @@ dosya  =  derle.sh
 
 [pakur]
 dosya  =  pakur.sh
+;qt6-tools
+betik  = sed -i '8i set(CLANG_INSTALL_PREFIX "/usr")' $PKG/usr/lib/cmake/clang/ClangConfig.cmake

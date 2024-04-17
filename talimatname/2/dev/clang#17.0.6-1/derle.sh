@@ -39,9 +39,10 @@ ln -s /usr/include/llvm ../include/llvm
 LC_ALL=C cmake .. -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib \
     -DCMAKE_SKIP_RPATH=ON \
     -DCLANG_DEFAULT_PIE_ON_LINUX=ON \
-    -DCLANG_LINK_CLANG_DYLIB=ON \
+    -DCLANG_LINK_CLANG_DYLIB=ON \   
     -DENABLE_LINKER_BUILD_ID=ON \
     -DLLVM_ENABLE_RTTI=ON \
     -DLLVM_INCLUDE_DOCS=ON \

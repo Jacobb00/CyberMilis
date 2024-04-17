@@ -20,4 +20,4 @@ python3 -m compileall "${PKG}/usr/share" -x 'clang-include-fixer|run-find-all-sy
 python3 -O -m compileall "${PKG}/usr/share" -x 'clang-include-fixer|run-find-all-symbols'
 python3 -OO -m compileall "${PKG}/usr/share" -x 'clang-include-fixer|run-find-all-symbols'
 
-rm -rf $PKG/usr/lib/*.a
+#rm -rf $PKG/usr/lib/*.a
