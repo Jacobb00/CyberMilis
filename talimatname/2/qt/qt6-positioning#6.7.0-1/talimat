@@ -6,7 +6,7 @@ url     = https://www.qt.io
 arsiv   = .
 
 [gerek]
-derleme = cmake ninja qt6-base qt6-declarative qt6-serialport
+derleme = cmake ninja qt6-base qt6-declarative qt6-serialport qt6-svg
 calisma = 
 
 [kaynak]

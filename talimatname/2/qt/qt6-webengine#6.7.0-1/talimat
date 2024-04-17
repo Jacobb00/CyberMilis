@@ -1,0 +1,22 @@
+[paket]
+tanim   = QT6 Webengine kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.qt.io
+
+[gerek]
+derleme = gperf cmake ninja nss qt6-base qt6-declarative qt6-shadertools qt6-websockets qt6-tools qt6-positioning qt6-webchannel pipewire ccache libepoxy nodejs pciutils libxcursor libxkbfile
+calisma =
+
+[kaynak]
+1       = https://download.qt.io/official_releases/qt/6.6/$surum/submodules/qtwebengine-everywhere-src-$surum.tar.xz
+
+;[sha256]
+;1       = d5dc9ff05a2c57adbf99cbf0c7cb6f19527f67216caf627b0cc160a1d253b780
+
+[derle]
+betik   = pip3 install html5lib
+dosya   = derle.sh
+
+[pakur]
+betik   = cd $SRC;DESTDIR=$PKG cmake --install build
