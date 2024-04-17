@@ -1,0 +1,15 @@
+libQt6WaylandClient.so
+libQt6WaylandClient.so.6
+libQt6WaylandClient.so.6.7.0
+libQt6WaylandCompositor.so
+libQt6WaylandCompositor.so.6
+libQt6WaylandCompositor.so.6.7.0
+libQt6WaylandEglClientHwIntegration.so
+libQt6WaylandEglClientHwIntegration.so.6
+libQt6WaylandEglClientHwIntegration.so.6.7.0
+libQt6WaylandEglCompositorHwIntegration.so
+libQt6WaylandEglCompositorHwIntegration.so.6
+libQt6WaylandEglCompositorHwIntegration.so.6.7.0
+libQt6WlShellIntegration.so
+libQt6WlShellIntegration.so.6
+libQt6WlShellIntegration.so.6.7.0

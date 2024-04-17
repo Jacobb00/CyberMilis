@@ -1,0 +1,8 @@
+libgcc_s.so.1
+libc.so.6
+ld-linux-x86-64.so.2
+libQt6ShaderTools.so.6
+libQt6Gui.so.6
+libQt6Core.so.6
+libstdc++.so.6
+libm.so.6

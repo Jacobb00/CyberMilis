@@ -1,0 +1,23 @@
+[paket]
+tanim   = QT6 Tranlations kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.qt.io
+arsiv   = qttranslations-everywhere-src-$surum
+
+[gerek]
+derleme = cmake qt6-base qt6-tools ccache
+calisma =
+
+[kaynak]
+1       = https://download.qt.io/official_releases/qt/6.7/$surum/submodules/qttranslations-everywhere-src-$surum.tar.xz
+
+;[sha256]
+;1       = a0d89a236f64b810eb0fe4ae1e90db22b0e86263521b35f89e69f1392815078c
+
+[derle]
+ekconf  = -DCMAKE_MESSAGE_LOG_LEVEL=STATUS
+tip     = cmake
+
+[pakur]
+tip     = cmake
