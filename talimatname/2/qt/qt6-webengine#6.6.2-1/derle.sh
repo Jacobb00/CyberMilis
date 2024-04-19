@@ -1,8 +1,8 @@
 cd $SRC
 cmake -B build -S qtwebengine-everywhere-src-$surum -G Ninja \
+$CMAKE_OPT \
 -D QT_USE_CCACHE=ON \
 -DCMAKE_MESSAGE_LOG_LEVEL=STATUS \
--DCMAKE_TOOLCHAIN_FILE=/usr/lib/cmake/Qt6/qt.toolchain.cmake \
 -DQT_FEATURE_webengine_system_ffmpeg=ON \
 -DQT_FEATURE_webengine_system_icu=ON \
 -DQT_FEATURE_webengine_system_libevent=ON \
@@ -10,4 +10,3 @@ cmake -B build -S qtwebengine-everywhere-src-$surum -G Ninja \
 -DQT_FEATURE_webengine_kerberos=ON \
 -DQT_FEATURE_webengine_webrtc_pipewire=ON
 cmake --build build $MAKEJOBS
-
