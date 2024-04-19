@@ -7,8 +7,7 @@ arsiv   = qt-creator-opensource-src-${surum}
 
 [gerek]
 derleme = cmake llvm clang python qt6-base qt6-5compat qt6-webengine ccache qt6-declarative qt6-quick3d qt6-tools qt6-serialport qt6-svg
-
-calisma = gdb
+calisma = gdb qt6-wayland
 
 [kaynak]
 1       = https://download.qt.io/official_releases/qtcreator/${surum%.*}/${surum}/qt-creator-opensource-src-${surum}.tar.xz
