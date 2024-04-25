@@ -6,7 +6,7 @@ url     = https://obsproject.com
 
 [gerek]
 derleme = cmake swig qt6-base qt6-svg luajit fdk-aac ffmpeg mesa libxcomposite pulseaudio python pipewire jansson wayland xiph mbedtls pciutils libdatachannel
-calisma =
+calisma = qt6-wayland
 
 [kaynak]
 1       = https://github.com/jp9000/obs-studio/archive/${surum}.tar.gz::$isim-$surum.tar.gz
