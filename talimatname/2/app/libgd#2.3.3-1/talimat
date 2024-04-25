@@ -1,0 +1,26 @@
+[paket]
+tanim   = Programcılar için dinamik resim oluşturucu kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = https://libgd.github.io
+arsiv   = $isim-gd-$surum
+
+[gerek]
+derleme = automake fontconfig libwebp aom libheif tiff
+calisma =
+
+[kaynak]
+1       = https://github.com/libgd/libgd/archive/gd-$surum.tar.gz
+2       = https://github.com/libgd/libgd/commit/bdc281eadb1d58d5c0c7bbc1125ee4674256df08.patch!
+
+[sha256]
+1       = 24429f9d0dbe0f865aaa4b1a63558242396ba9134e6cfd32ca5e486a84483350
+
+[derle]
+betik   = patch -p1 -R -i /sources/bdc281eadb1d58d5c0c7bbc1125ee4674256df08.patch
+betik   = ./bootstrap.sh
+ekconf  = --disable-rpath --disable-static
+tip     = gnu
+
+[pakur]
+tip     = gnu
