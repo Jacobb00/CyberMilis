@@ -3,8 +3,8 @@ make -j1 INSTALL_ROOT=${PKG} PHP_SAPI=embed install-{modules,cli,cgi,build,heade
 install -D -m644 ${SRC}/${isim}-${surum}/php.ini-production ${PKG}/etc/php/php.ini
 install -d -m755 ${PKG}/etc/php/conf.d/
 
-install -D -m755 ${SRC}/build-apache/libs/libphp7.so ${PKG}/usr/lib/httpd/modules/libphp7.so
-install -D -m644 ${SRC}/apache.conf ${PKG}/etc/httpd/conf/extra/php7_module.conf
+install -D -m755 ${SRC}/build-apache/libs/libphp8.so ${PKG}/usr/lib/httpd/modules/libphp8.so
+install -D -m644 ${SRC}/apache.conf ${PKG}/etc/httpd/conf/extra/php8_module.conf
 
 install -D -m755 ${SRC}/build/modules/enchant.so ${PKG}/usr/lib/php/modules/enchant.so
 
