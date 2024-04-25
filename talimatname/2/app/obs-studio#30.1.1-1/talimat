@@ -5,7 +5,7 @@ grup    = medya
 url     = https://obsproject.com
 
 [gerek]
-derleme = cmake swig qt6-base qt6-svg luajit fdk-aac ffmpeg mesa libxcomposite pulseaudio python pipewire jansson wayland xiph mbedtls pciutils
+derleme = cmake swig qt6-base qt6-svg luajit fdk-aac ffmpeg mesa libxcomposite pulseaudio python pipewire jansson wayland xiph mbedtls pciutils libdatachannel
 calisma =
 
 [kaynak]
@@ -14,14 +14,13 @@ dosya   = fix_python_binary_loading.patch
 dosya   = ignore_unused_submodules.patch
 
 [sha256]
-1       = 9d9cfbdbdd255f48a23feeefb60089769a65f52bbca24fa31d74125f3bbb0e90
+1       = 7fe7f67d683fb1fdc2fc58b0c07dd75622a6daba36b90959fc5b5d642a293dab
 
 [derle]
 betik   = patch -Np1 < $SRC/fix_python_binary_loading.patch
 betik   = patch -Np1 < $SRC/ignore_unused_submodules.patch
-betik   = cmake -B build . $CMAKE_OPT -DENABLE_BROWSER=OFF -DENABLE_VST=ON -DENABLE_VLC=OFF -DENABLE_NEW_MPEGTS_OUTPUT=OFF -DENABLE_AJA=OFF -DENABLE_JACK=ON -DENABLE_LIBFDK=ON -DOBS_VERSION_OVERRIDE="$surum" -Wno-dev
+betik   = cmake -B build . $CMAKE_OPT -DENABLE_QSV11=OFF -DENABLE_BROWSER=OFF -DENABLE_VST=ON -DENABLE_VLC=OFF -DENABLE_NEW_MPEGTS_OUTPUT=OFF -DENABLE_AJA=OFF -DENABLE_JACK=ON -DENABLE_LIBFDK=ON -DOBS_VERSION_OVERRIDE="$surum" -DCALM_DEPRECATION=ON -Wno-dev
 betik   = cmake --build build $MAKEJOBS
 
 [pakur]
 tip     = cmake
-betik   = mv $PKG/lib $PKG/usr/

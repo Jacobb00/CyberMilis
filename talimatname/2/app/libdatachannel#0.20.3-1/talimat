@@ -1,0 +1,29 @@
+[paket]
+tanim   = C/C++ WebRTC ağ kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = https://libdatachannel.org/
+
+[gerek]
+derleme = media-extra openssl
+calisma =
+
+[kaynak]
+git     = https://github.com/paullouisageneau/libdatachannel
+2       = https://github.com/paullouisageneau/libjuice/archive/refs/tags/v1.4.0.tar.gz::libjuice-1.4.0.tar.gz
+
+;[sha256]
+;1       = 8a119064296e8c354f82b6c865306c088ccce0d9863b7cc038927bf10981304e
+
+[derle]
+betik   = cd $SRC/$isim-$surum;git checkout v$surum;git submodule update --init --recursive deps/{usrsctp,plog,json}
+cmake   = libjuice-1.4.0
+;export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CXXFLAGS=$CFLAGS
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+ekconf  = -DJUICE_INCLUDE_DIR=$PKG/usr/include -DJUICE_LIBRARY=$PKG/usr/lib/libjuice.so.1.4.0 -DUSE_GNUTLS=0 -DUSE_NICE=0 -DUSE_SYSTEM_JUICE=1 -DUSE_SYSTEM_SRTP=1 -DNO_EXAMPLES=0 -DNO_TESTS=0 -Wno-dev
+cmake   = $isim-$surum
+
+[pakur]
+betik   = echo 0
