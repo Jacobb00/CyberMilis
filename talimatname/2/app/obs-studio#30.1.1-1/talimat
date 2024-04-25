@@ -19,9 +19,9 @@ dosya   = ignore_unused_submodules.patch
 [derle]
 betik   = patch -Np1 < $SRC/fix_python_binary_loading.patch
 betik   = patch -Np1 < $SRC/ignore_unused_submodules.patch
-betik   = cmake -B build . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DENABLE_QSV11=OFF -DENABLE_VST=ON -DENABLE_VLC=OFF -DENABLE_NEW_MPEGTS_OUTPUT=OFF -DENABLE_AJA=OFF -DENABLE_JACK=ON -DENABLE_LIBFDK=ON -DOBS_VERSION_OVERRIDE="$surum" -DCALM_DEPRECATION=ON -Wno-dev
+betik   = cmake -B build . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/lib -DENABLE_QSV11=OFF -DENABLE_VST=ON -DENABLE_VLC=OFF -DENABLE_NEW_MPEGTS_OUTPUT=OFF -DENABLE_AJA=OFF -DENABLE_JACK=ON -DENABLE_LIBFDK=ON -DOBS_VERSION_OVERRIDE="$surum" -DCALM_DEPRECATION=ON -Wno-dev
 betik   = cmake --build build $MAKEJOBS
 
 [pakur]
 tip     = cmake
-;betik   = mv $PKG/lib $PKG/usr/
+betik   = mv $PKG/lib $PKG/usr/
