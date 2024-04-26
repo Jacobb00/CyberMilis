@@ -1,0 +1,15 @@
+libnetsnmp.so
+libnetsnmp.so.40
+libnetsnmp.so.40.2.1
+libnetsnmpagent.so
+libnetsnmpagent.so.40
+libnetsnmpagent.so.40.2.1
+libnetsnmphelpers.so
+libnetsnmphelpers.so.40
+libnetsnmphelpers.so.40.2.1
+libnetsnmpmibs.so
+libnetsnmpmibs.so.40
+libnetsnmpmibs.so.40.2.1
+libnetsnmptrapd.so
+libnetsnmptrapd.so.40
+libnetsnmptrapd.so.40.2.1

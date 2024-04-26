@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = http://www.net-snmp.org/
 
 [gerek]
-derleme = libnsl libpcap lm_sensors pciutils pcre2
+derleme = libpcap lm_sensors pciutils pcre2
 
 [kaynak]
 gz      = https://downloads.sourceforge.net/$isim

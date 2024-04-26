@@ -2,7 +2,6 @@ export M4=m4
 patch -p0 -i ${SRC}/php-apache.patch
 patch -p0 -i ${SRC}/php-fpm.patch
 patch -p0 -i ${SRC}/php.ini.patch
-patch -p0 -i ${SRC}/enchant-2.patch
 autoconf
 
 rm tests/output/stream_isatty_*.phpt
@@ -25,55 +24,53 @@ _phpconfig="--srcdir=../${isim}-${surum} \
 	"
 
 _phpextensions="\
-	--enable-bcmath=shared \
-	--enable-calendar=shared \
-	--enable-dba=shared \
-	--enable-exif=shared \
-	--enable-ftp=shared \
-	--enable-gd=shared \
-	--enable-intl=shared \
-	--enable-mbstring \
-	--enable-pcntl \
-	--enable-shmop=shared \
-	--enable-soap=shared \
-	--enable-sockets=shared \
-	--enable-sysvmsg=shared \
-	--enable-sysvsem=shared \
-	--enable-sysvshm=shared \
-	--with-bz2=shared \
-	--with-curl=shared \
-	--with-db4=/usr \
-	--with-enchant=shared \
-	--with-external-gd \
-	--with-external-pcre \
-	--with-ffi=shared \
-	--with-gdbm \
-	--with-gettext=shared \
-	--with-gmp=shared \
-	--with-iconv=shared \
-	--with-kerberos \
-	--with-ldap=shared \
-	--with-ldap-sasl \
-	--with-mhash \
-	--with-mysql-sock=/run/mysqld/mysqld.sock \
-	--with-mysqli=shared,mysqlnd \
-	--with-openssl \
-	--with-pdo-dblib=shared,/usr \
-	--with-pdo-mysql=shared,mysqlnd \
-	--with-pdo-odbc=shared,unixODBC,/usr \
-	--with-pdo-pgsql=shared \
-	--with-pdo-sqlite=shared \
-	--with-pgsql=shared \
-	--with-readline \
-	--with-snmp=shared \
-	--with-sodium=shared \
-	--with-sqlite3=shared \
-	--with-tidy=shared \
-	--with-unixODBC=shared \
-	--with-xmlrpc=shared \
-	--with-xsl=shared \
-	--with-zip=shared \
-	--with-zlib \
+--enable-bcmath=shared \
+		--enable-calendar=shared \
+		--enable-dba=shared \
+		--enable-exif=shared \
+		--enable-ftp=shared \
+		--enable-gd=shared \
+		--enable-intl=shared \
+		--enable-mbstring \
+		--enable-pcntl \
+		--enable-shmop=shared \
+		--enable-soap=shared \
+		--enable-sockets=shared \
+		--enable-sysvmsg=shared \
+		--enable-sysvsem=shared \
+		--enable-sysvshm=shared \
+		--with-bz2=shared \
+		--with-curl=shared \
+		--with-enchant=shared \
+		--with-external-gd \
+		--with-external-pcre \
+		--with-ffi=shared \
+		--with-gdbm \
+		--with-gettext=shared \
+		--with-gmp=shared \
+		--with-iconv=shared \
+		--with-kerberos \
+		--with-ldap=shared \
+		--with-ldap-sasl \
+		--with-mhash \
+		--with-mysql-sock=/run/mysqld/mysqld.sock \
+		--with-mysqli=shared \
+		--with-openssl \
+		--with-password-argon2 \
+		--with-pdo-mysql=shared \
+		--with-pdo-odbc=shared,unixODBC,/usr \
+		--with-pdo-pgsql=shared \
+		--with-pdo-sqlite=shared \
+		--with-pgsql=shared \
+		--with-readline \
+		--with-snmp=shared \
+		--with-sodium=shared \
+		--with-sqlite3=shared \
+		--with-tidy=shared \
+		--with-unixODBC=shared \
+		--with-xsl=shared \
+		--with-zip=shared \
+		--with-zlib \
 	"
 
 EXTENSION_DIR=/usr/lib/php/modules
