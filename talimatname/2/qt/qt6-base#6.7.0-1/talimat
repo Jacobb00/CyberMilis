@@ -25,5 +25,5 @@ dosya   = derle.sh
 [pakur]
 betik   = cd $SRC
 betik   = DESTDIR=$PKG cmake --install build
-betik   = while read _line; do ln -s $_line; done < $SRC/build/user_facing_tool_links.txt
+betik   = cd $PKG;mkdir usr/bin ;while read _line; do ln -s $_line; done < $SRC/build/user_facing_tool_links.txt
 betik   = install -m644 $SRC/qt.conf $PKG/usr/lib/qt6/bin/qt.conf
