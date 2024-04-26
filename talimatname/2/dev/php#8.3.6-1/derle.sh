@@ -66,7 +66,6 @@ _phpextensions="\
 		--with-snmp=shared \
 		--with-sodium=shared \
 		--with-sqlite3=shared \
-		--with-tidy=shared \
 		--with-unixODBC=shared \
 		--with-xsl=shared \
 		--with-zip=shared \

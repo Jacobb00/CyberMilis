@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://www.php.net
 
 [gerek]
-derleme = automake libgd libzip enchant oniguruma freetype gdbm curl libjpeg-turbo mariadb libsodium unixodbc postgresql net-snmp sqlite libxslt apache pcre2
+derleme = automake libgd libzip enchant oniguruma freetype gdbm curl libjpeg-turbo mariadb libsodium unixodbc postgresql net-snmp sqlite libxslt apache pcre2 argon2
 calisma =
 
 [kaynak]
