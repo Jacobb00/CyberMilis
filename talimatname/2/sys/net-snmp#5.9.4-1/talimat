@@ -1,0 +1,23 @@
+[paket]
+tanim   = SNMPv1,SNMPv2c ve SNMPv3 gerçekleme kütüphanesi
+paketci = milisarge  
+grup    = kütüphane 
+url     = http://www.net-snmp.org/
+
+[gerek]
+derleme = libnsl libpcap lm_sensors pciutils pcre2
+
+[kaynak]
+gz      = https://downloads.sourceforge.net/$isim
+dosya   = net-snmp-0001-pcre2.patch
+
+;[sha256]
+;1       =  eb7fd4a44de6cddbffd9a92a85ad1309e5c1054fb9d5a7dd93079c8953f48c3f
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = sed -i -e "s:install --basedir=\$\$dir:install --basedir=\$\$dir --root=${PKG}:" Makefile
+betik   = make DESTDIR="${PKG}" INSTALL_PREFIX="${PKG}" INSTALLDIRS=vendor install
+betik   = rm -rf $PKG/none

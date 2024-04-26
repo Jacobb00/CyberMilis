@@ -1,0 +1,21 @@
+[paket]
+tanim   = Zip arşivlerini okumak, oluşturmak ve değiştirmek için C kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://libzip.org/
+
+[gerek]
+derleme = bzip2 openssl zlib zstd cmake
+calisma =
+
+[kaynak]
+1       = https://libzip.org/download/libzip-${surum}.tar.gz
+
+[sha256]
+1       = 9669ae5dfe3ac5b3897536dc8466a874c8cf2c0e3b1fdd08d75b273884299363
+
+[derle]
+tip     = cmake
+
+[pakur]
+tip     = cmake
