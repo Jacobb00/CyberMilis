@@ -1,0 +1,25 @@
+[paket]
+tanim   = Sound Open Firmware ve topoloji ikili dosyaları
+paketci = milisarge
+grup    = kütüphane
+url     = https://thesofproject.github.io/latest/index.html
+arsiv   = sof-bin-$surum
+
+[gerek]
+derleme = rsync
+calisma =
+
+[kaynak]
+1       = https://github.com/thesofproject/sof-bin/releases/download/v${surum}/sof-bin-${surum}.tar.gz
+
+[sha256]
+1       = 4fd932f7bbc1517b06fa7911e6d566814d5dc4fec5608bdb44e7c4fe4929fbf6
+
+[derle]
+betik   = echo "derleme yok"
+
+[pakur]
+nostrip = 1
+betik   = mkdir -p $PKG/usr/lib/firmware/intel
+betik   = cp -at $PKG/usr/lib/firmware/intel sof*
+betik   = install -Dt $PKG/usr/bin tools/*
