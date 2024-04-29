@@ -9,7 +9,7 @@ if [ ! -z $disk ];then
   [ ! -b $disk ] &&  echo "$disk !!!" && exit 1
   [ ! -f /usr/bin/sfdisk ] && echo "sfdisk command!!!" && exit 1
   if [ -d /sys/firmware/efi ];then
-    echo -e ",100M,EF\n;" | sfdisk $disk
+    echo -e ",300M,EF\n;" | sfdisk $disk
     echo "$disk 2 parça ayrılacak." >> $log_file
     mkfs.vfat -F32 ${disk}1 || echo "${disk}1 formatlanamadı." >> $log_file
     # lvm kontrol
