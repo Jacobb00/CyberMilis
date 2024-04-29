@@ -12,11 +12,11 @@ calisma =
 gz      = https://github.com/Kitware/CMake/releases/download/v$surum
 
 [sha256]
-1 		= 313b6880c291bd4fe31c0aa51d6e62659282a521e695f30d5cc0d25abbd5c208
+1 		= 36db4b6926aab741ba6e4b2ea2d99c9193222132308b4dc824d4123cb730352e
 
 [derle]
 betik   = export CXXFLAGS+=" ${CPPFLAGS}"
-betik   = ./bootstrap --prefix=/usr --mandir=/share/man --datadir=/share/$isim --docdir=/share/doc/$isim --system-libs --parallel=$(/usr/bin/getconf _NPROCESSORS_ONLN)
+betik   = ./bootstrap --prefix=/usr --mandir=/share/man --datadir=/share/$isim --docdir=/share/doc/$isim --system-libs --parallel=$(/usr/bin/getconf _NPROCESSORS_ONLN) --no-debugger
 betik   = make 
 
 [pakur]
