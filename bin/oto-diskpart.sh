@@ -17,7 +17,7 @@ if [ ! -z $disk ];then
     iki="p2"
   fi
   if [ -d /sys/firmware/efi ];then
-    wipefs -a ${disk}
+    #wipefs -a ${disk}
     echo -e ",300M,EF\n;" | sfdisk $disk
     echo "$disk 2 parça ayrılacak." >> $log_file
     mkfs.vfat -F32 ${disk}${bir} || echo "${disk}${bir} formatlanamadı." >> $log_file
