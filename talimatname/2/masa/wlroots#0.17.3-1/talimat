@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://github.com/swaywm/wlroots
 
 [gerek]
-derleme = cmake meson mesa libdrm wayland libinput libxkbcommon pixman wayland-protocols xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil seatd vulkan glslang hwids
+derleme = cmake meson mesa libdrm wayland libinput libxkbcommon pixman wayland-protocols xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil seatd vulkan glslang hwids libdisplay-info
 calisma =
 
 [kaynak]
@@ -13,8 +13,8 @@ gz      = https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/${surum}/dow
 
 
 [sha256]
-1       = d58d68e3f90d92de4d49fa43b4d75dc78f8af1d920d090729331cefbdfcf361b
-
+1       = 04d31521bd2b737541b9680098e55ebaaf956e68d692f80479f4ee1236606d98
+ 
 [derle]
 ekconf  = -Dexamples=false -Dwerror=false -Db_ndebug=false -Dxwayland=disabled --auto-features=enabled
 tip     = meson

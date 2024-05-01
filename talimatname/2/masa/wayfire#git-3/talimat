@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://wayfire.org
 
 [gerek]
-derleme = meson wayland wayland-protocols wlroots pango libjpeg-turbo glm
+derleme = meson wayland wayland-protocols wlroots pango libjpeg-turbo glm nlohmann-json
 calisma =
 
 [kaynak]
@@ -13,16 +13,12 @@ git     = https://github.com/WayfireWM/wayfire
 git     = https://github.com/WayfireWM/wf-config
 git     = https://github.com/WayfireWM/wf-utils
 git     = https://github.com/WayfireWM/wf-touch
-git     = https://github.com/nlohmann/json
 
 [derle]
 betik   = rmdir subprojects/*
-betik   = cp -r /sources/wf-config subprojects/wf-config
-betik   = cp -r /sources/wf-utils subprojects/wf-utils
-betik   = cp -r /sources/wf-touch subprojects/wf-touch
-betik   = mkdir -p plugins/ipc/subprojects
-betik   = cp -r /sources/json subprojects/json
-betik   = rm subprojects/json.wrap
+betik   = cp -r /sources/wf-config subprojects/wf-config;cd subprojects/wf-config;git checkout 5cd0c8a;cd -
+betik   = cp -r /sources/wf-utils subprojects/wf-utils;cd subprojects/wf-utils;git checkout 15f8e16;cd -
+betik   = cp -r /sources/wf-touch subprojects/wf-touch;cd subprojects/wf-touch;git checkout b8b844f;cd -
 ekconf  = -Dtests=disabled -Dxwayland=disabled -Duse_system_wfconfig=disabled -Duse_system_wlroots=enabled -Dwf-touch:tests=disabled -Dwf-config:tests=disabled
 tip     = meson
 
