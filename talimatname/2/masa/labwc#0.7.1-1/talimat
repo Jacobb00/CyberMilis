@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://github.com/labwc/labwc
 
 [gerek]
-derleme = meson wayland wayland-protocols wlroots pango xcb-util-wm
+derleme = meson wayland wayland-protocols wlroots pango xcb-util-wm librsvg
 calisma =
 
 [kaynak]
