@@ -7,7 +7,7 @@ arsiv   = labwc-$surum
 
 [gerek]
 derleme = meson wayland wayland-protocols pango xcb-util-wm xwayland
-calisma =
+calisma = xwayland
 
 [kaynak]
 1       = $url/archive/$surum.tar.gz::$isim-$surum.tar.gz
@@ -17,18 +17,11 @@ calisma =
 1       = 1810ec55e287708e7a3cd44c726aa887db02480704db82b3d0bd550a6c4bfb76
 
 [derle]
-betik   = sed -i "s|wlroots_has_xwayland = |wlroots_has_xwayland = true #|g" $SRC/labwc-$surum/meson.build
+;betik   = sed -i "s|wlroots_has_xwayland = |wlroots_has_xwayland = true #|g" $SRC/labwc-$surum/meson.build
 ekconf  = -Dxwayland=enabled -Dman-pages=disabled
 betik   = cd $SRC; meson setup --prefix /usr --libexecdir lib --sbindir bin --buildtype plain --auto-features enabled -D b_lto=true -D b_pie=true labwc-$surum  build ${EXT_OPT}
-;meson   = labwc-$surum
 
 [pakur]
-;betik = exit 1
-;betik   = sed -i 's/libwlroots.so/libwlroots-x.so.12/g' $SRC/build/build.ninja
-;betik   = sed -i 's/libwlroots.so/libwlroots-x.so.12/g' $SRC/build/meson-info/intro-dependencies.json
-;betik   = sed -i 's/libwlroots.so/libwlroots-x.so.12/g' $SRC/build/meson-info/intro-targets.json
-;betik   = sed -i 's/libwlroots.so/libwlroots-x.so.12/g' $SRC/build/meson-private/coredata.dat
-;betik   = sed -i 's/libwlroots.so/libwlroots-x.so.12/g' $SRC/build/meson-private/build.dat
 tip     = meson
 betik   = mv $PKG/usr/bin/labwc $PKG/
 betik   = mv $PKG/usr/share/wayland-sessions/labwc.desktop $PKG/
