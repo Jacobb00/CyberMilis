@@ -1,0 +1,12 @@
+libm.so.6
+libdl.so.2
+libc.so.6
+libdbus-1.so.3
+libffi.so.6
+libasound.so.2
+libuuid.so.1
+libpthread.so.0
+libXrender.so.1
+libX11.so.6
+libXext.so.6
+libpulse-simple.so.0
