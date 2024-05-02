@@ -1,4 +1,3 @@
-cd $isim-$surum.src
 install -Dm755 src/$isim "$PKG"/usr/bin/$isim
 install -Dm644 Scratch.image "$PKG"/usr/lib/$isim/Scratch.image
 install -m644 Scratch.ini "$PKG"/usr/lib/$isim/Scratch.ini

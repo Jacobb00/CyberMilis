@@ -3,6 +3,7 @@ tanim   = İnteraktif hikaye, oyun, sanat eseri oluşturma uygulaması
 paketci = milisarge
 grup    = geliştirme
 url     = http://scratch.mit.edu
+arsiv   = $isim-$surum.src
 
 [gerek]
 derleme = squeak shared-mime-info desktop-file-utils pango
@@ -15,7 +16,6 @@ calisma = squeak
 1       = b94d89278ecef2ba2d1147eec23936dd99697293ffa2c216c0a375ba98226a3e
 
 [derle]
-betik   = cd $isim-$surum.src
 betik   = sed -i 's/-xshm //' src/$isim
 betik   = make build
 
