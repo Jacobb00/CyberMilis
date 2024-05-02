@@ -10,7 +10,7 @@ derleme = squeak shared-mime-info desktop-file-utils pango
 calisma = squeak
 
 [kaynak]
-1       = http://download.scratch.mit.edu/${isim}-${surum}.src.tar.gz
+1       = http://distro.ibiblio.org/slitaz/sources/packages-cooking/s/scratch-1.4.0.7.src.tar.gz
 
 [sha256]
 1       = b94d89278ecef2ba2d1147eec23936dd99697293ffa2c216c0a375ba98226a3e
