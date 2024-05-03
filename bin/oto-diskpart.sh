@@ -17,6 +17,12 @@ if [ ! -z $disk ];then
     bir="p1"
     iki="p2"
   fi
+  # lvm kontrol
+  lvs -o +devices --no-headings | grep ${disk}${iki}
+  if [ $? -eq 0 ];then
+    vgchange -an `lvs -o +devices --no-headings | grep ${disk}${iki} | awk '{print $2}'`
+    echo "${disk}${iki} lvm pasif edildi." >> $log_file
+  fi
   # yeni gpt disk tanımlama
   sgdisk -Z ${disk}
   sgdisk -og ${disk}
@@ -26,12 +32,6 @@ if [ ! -z $disk ];then
     sgdisk -n 0:0:+300MiB -t 0:ef00 -c 0:efi ${disk}
     echo "$disk 2 parça ayrılacak." >> $log_file
     mkfs.vfat -F32 ${disk}${bir} || echo "${disk}${bir} formatlanamadı." >> $log_file
-    # lvm kontrol
-    lvs -o +devices --no-headings | grep ${disk}${iki}
-    if [ $? -eq 0 ];then
-      vgchange -an `lvs -o +devices --no-headings | grep ${disk}${iki} | awk '{print $2}'`
-      echo "${disk}${iki} lvm pasif edildi." >> $log_file
-    fi
     sgdisk -N 2 -t 1:8300 ${disk}
     mkfs.ext4 -F ${disk}${iki} || echo "${disk}${iki} formatlanamadı." >> $log_file
     echo "$disk 2 parça ayrıldı." >> $log_file
