@@ -8,6 +8,7 @@ echo "$(date) $disk otodisk başladı" >> $log_file
 if [ ! -z $disk ];then
   [ ! -b $disk ] &&  echo "$disk !!!" && exit 1
   [ ! -f /usr/bin/sfdisk ] && echo "sfdisk command!!!" && exit 1
+  [ ! -f /usr/bin/sgdisk ] && echo "sgdisk command!!!" && exit 1
   bir="1"
   iki="2"
   # nvme kontrol
@@ -16,9 +17,12 @@ if [ ! -z $disk ];then
     bir="p1"
     iki="p2"
   fi
+  # yeni gpt disk tanımlama
+  wipefs -a ${disk}
+  sgdisk -og ${disk}
+  # sistem efi açıldıysa
   if [ -d /sys/firmware/efi ];then
-    #wipefs -a ${disk}
-    echo -e ",300M,EF\n;" | sfdisk $disk
+    echo -e ",300M,EF\n;" | sfdisk ${disk}
     echo "$disk 2 parça ayrılacak." >> $log_file
     mkfs.vfat -F32 ${disk}${bir} || echo "${disk}${bir} formatlanamadı." >> $log_file
     # lvm kontrol
