@@ -18,11 +18,12 @@ if [ ! -z $disk ];then
     iki="p2"
   fi
   # yeni gpt disk tanımlama
-  wipefs -a ${disk}
+  sgdisk -Z ${disk}
   sgdisk -og ${disk}
   # sistem efi açıldıysa
   if [ -d /sys/firmware/efi ];then
-    echo -e ",300M,EF\n;" | sfdisk ${disk}
+    #echo -e ",300M,EF\n;" | sfdisk ${disk}
+    sgdisk -n 0:0:+300MiB -t 0:ef00 -c 0:efi ${disk}
     echo "$disk 2 parça ayrılacak." >> $log_file
     mkfs.vfat -F32 ${disk}${bir} || echo "${disk}${bir} formatlanamadı." >> $log_file
     # lvm kontrol
@@ -31,10 +32,12 @@ if [ ! -z $disk ];then
       vgchange -an `lvs -o +devices --no-headings | grep ${disk}${iki} | awk '{print $2}'`
       echo "${disk}${iki} lvm pasif edildi." >> $log_file
     fi
+    sgdisk -N 2 -t 1:8300 ${disk}
     mkfs.ext4 -F ${disk}${iki} || echo "${disk}${iki} formatlanamadı." >> $log_file
     echo "$disk 2 parça ayrıldı." >> $log_file
   else
-    echo -e ",,L" | sfdisk $disk
+    #echo -e ",,L" | sfdisk $disk
+    sgdisk -N 1 -t 1:8300 ${disk}
     echo "$disk 1 parça ayrılacak." >> $log_file
     mkfs.ext4 -F ${disk}${bir} || echo "${disk}${bir} formatlanamadı." >> $log_file
     echo "$disk 1 parça ayrıldı." >> $log_file
