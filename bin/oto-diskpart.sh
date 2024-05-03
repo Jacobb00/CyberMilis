@@ -17,12 +17,8 @@ if [ ! -z $disk ];then
     bir="p1"
     iki="p2"
   fi
-  # lvm kontrol
-  lvs -o +devices --no-headings | grep ${disk}${iki}
-  if [ $? -eq 0 ];then
-    vgchange -an `lvs -o +devices --no-headings | grep ${disk}${iki} | awk '{print $2}'`
-    echo "${disk}${iki} lvm pasif edildi." >> $log_file
-  fi
+  # lvm iptal
+  vgchange -an
   # yeni gpt disk tanımlama
   sgdisk -Z ${disk}
   sgdisk -og ${disk}

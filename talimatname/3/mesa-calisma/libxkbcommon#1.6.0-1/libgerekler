@@ -1,8 +1,0 @@
-libxkbcommon-x11.so.0
-libxkbregistry.so.0
-libc.so.6
-libxkbcommon.so.0
-libxcb.so.1
-libxcb-xkb.so.1
-libxml2.so.2
-libwayland-client.so.0

@@ -1,0 +1,24 @@
+[paket]
+tanim   = PipeWire için oturum ve ilke yöneticisi uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://pipewire.pages.freedesktop.org/wireplumber
+
+[gerek]
+derleme = meson glib pipewire lua python-lxml
+calisma =
+
+[kaynak]
+1       = https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/$surum/wireplumber-$surum.tar.gz
+
+[sha256]
+1       = 24ecc2323f7c39fe577b50903c324cfcbb77b9ea2da01baffd3467c9dbad1d8a
+
+[derle]
+betik   = sed -i "/subdir('docs')/d"  meson.build
+ekconf  = -Dintrospection=enabled -Dsystem-lua=true -Dsystem-lua=true -Ddoc=disabled -Delogind=disabled -Dsystemd=disabled
+tip     = meson
+
+[pakur]
+tip     = meson
+
