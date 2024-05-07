@@ -6,7 +6,7 @@ url     = https://mls.akdeniz.edu.tr/git/sonakinci41
 
 [gerek]
 derleme = 
-calisma = librsvg
+calisma = librsvg dejavu-fonts-ttf
 
 [kaynak]
 git     = $url/Arc_Milis
