@@ -1,8 +1,6 @@
 libde265.so
 libde265.so.0
-libde265.so.0.1.5
-libheif-rav1e.so
-libheif-svtenc.so
+libde265.so.0.1.8
 libheif.so
 libheif.so.1
-libheif.so.1.16.2
+libheif.so.1.17.6
