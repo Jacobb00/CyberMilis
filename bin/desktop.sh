@@ -37,11 +37,10 @@ do
     [ "$cdir" = "waybar" ] && waybar_fix.sh
 done
 
-# Çıkış menü yerel ayar
-lang=$(echo `servis oku locale.language`| cut -d_ -f1)
+
 [ ! -f ~/.config/nwg-launchers/nwgbar/bar.json ] && 
-[ -f /etc/skel/.config/nwg-launchers/nwgbar/bar-${lang}.json ] &&
-ln -s /etc/skel/.config/nwg-launchers/nwgbar/bar-${lang}.json ~/.config/nwg-launchers/nwgbar/bar.json
+[ -f /etc/skel/.config/nwg-launchers/nwgbar/bar-${LANG}.json ] &&
+ln -s /etc/skel/.config/nwg-launchers/nwgbar/bar-${LANG}.json ~/.config/nwg-launchers/nwgbar/bar.json
 
 # Milis uygulamaları desktop dosya kontrolü
 desktop_list="/usr/milis/ayarlar/uygulama/desktop.list"
