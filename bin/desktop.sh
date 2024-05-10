@@ -24,4 +24,5 @@ export WLR_RENDERER_ALLOW_SOFTWARE=1
 
 mkdir -p ~/.config
 
-
+#exec $1
+dbus-run-session $1 &> /tmp/desktop.sh.log

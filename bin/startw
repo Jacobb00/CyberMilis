@@ -5,5 +5,4 @@ mkdir -p $XDG_RUNTIME_DIR
 chown $UID:$UID $XDG_RUNTIME_DIR 
 chmod 700 $XDG_RUNTIME_DIR
 export XKB_DEFAULT_LAYOUT=`servis oku system.keyboard`
-#exec $1
-dbus-run-session $1 &> /tmp/desktop.sh.log
+exec $1
