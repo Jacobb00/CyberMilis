@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
 
 [gerek]
-derleme = automake 
+derleme = automake fuse2
 calisma = 
 
 [kaynak]
@@ -22,3 +22,4 @@ betik = make
 
 [pakur]
 tip   = gnu
+betik = rm -rf $PKG/usr/share
