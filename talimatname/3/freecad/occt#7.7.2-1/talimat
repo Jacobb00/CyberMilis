@@ -1,0 +1,25 @@
+[paket]
+tanim   = OpenCASCADE Teknolojisi - CAD/CAM/CAE uygulamaları için kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.opencascade.com
+arsiv   = occt-65e9fc5
+
+[gerek]
+derleme = freetype glu freeimage gl2ps tcl  tk
+calisma =
+
+[kaynak]
+1 = "https://git.dev.opencascade.org/gitweb/?p=occt.git;a=snapshot;h=65e9fc51515e174ed9cd445a7f80258c0511ce84;sf=tgz"::$isim-$surum.tar.gz
+
+[derle]
+betik   = cp build/OpenCASCADECompileDefinitionsAndFlags-release.cmake build/OpenCASCADECompileDefinitionsAndFlags-none.cmake
+ekconf  = -DUSE_FREEIMAGE=ON -DUSE_GL2PS=ON -DUSE_VTK=OFF -DINSTALL_SAMPLES=ON
+tip     = cmake
+
+[pakur]
+tip     = cmake
+betik   = rm ${PKG}/usr/bin/custom*.sh
+betik   = mkdir -p $PKG/etc/profile.d
+betik   = install -Dm644 ${SRC}/opencascade.sh $PKG/etc/profile.d/opencascade.sh
+betik   = chmod 755 ${PKG}/usr/bin/draw.sh

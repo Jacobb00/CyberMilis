@@ -1,0 +1,31 @@
+[paket]
+tanim   = TCL için TK grafik kullanıcı arayüzü araç seti
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.tcl.tk
+;arsiv   = build_unix
+
+[gerek]
+derleme = zlib libxext libxft
+calisma =
+
+[kaynak]
+1       = ${SOURCEFORGE_SITE}/tcl/tcl${surum}-src.tar.gz
+1       = ${SOURCEFORGE_SITE}/tcl/tk${surum}-src.tar.gz
+
+;[sha256]
+;1       = 2e65fa069a23365440a3c56c556b8673b5e32a283800d8d9b257e3f584ce0675
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+gnu     = tcl$surum/unix
+ekconf  = --enable-threads --without-tzdata --enable-man-symlinks --disable-static --disable-rpath --with-tcl=$PKG/usr/lib
+gnu     = tk$surum/unix
+
+[pakur]
+tip     = gnu
+betik   = make INSTALL_ROOT=${PKG} install install-private-headers
+betik   = ln -s $(basename ${PKG}/usr/bin/wish*) ${PKG}/usr/bin/wish

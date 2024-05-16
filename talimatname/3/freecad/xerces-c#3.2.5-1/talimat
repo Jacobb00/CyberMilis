@@ -1,0 +1,22 @@
+[paket]
+tanim   = Taşınabilir C++ ile yazılmış XML ayrıştırıcısının doğrulanması
+paketci = milisarge
+grup    = kütüphane
+url     = http://xerces.apache.org/xerces-c/
+
+[gerek]
+derleme = automake icu
+calisma =
+
+[kaynak]
+1       = http://archive.apache.org/dist/xerces/c/3/sources/${isim}-${surum}.tar.bz2
+
+[sha256]
+1       = 1db4028c9b7f1f778efbf4a9462d65e13f9938f2c22f9e9994e12c49ba97e252
+
+[derle]
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

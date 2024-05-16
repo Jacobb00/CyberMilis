@@ -1,0 +1,23 @@
+[paket]
+tanim   = Jpegxr'nin açık kaynak uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/glencoesoftware/jxrlib
+
+[gerek]
+derleme = cmake
+calisma =
+
+[kaynak]
+1       = ${url}/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+dosya   = jxr-CMakeLists.txt
+
+[sha256]
+1       = d1fbc5759a665949e7cb82de03c3258788bd07323f195a9e8ea9322504627cc3
+
+[derle]
+betik   = cp $SRC/jxr-CMakeLists.txt CMakeLists.txt
+tip     = cmake
+
+[pakur]
+tip     = cmake

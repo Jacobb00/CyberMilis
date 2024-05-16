@@ -1,0 +1,37 @@
+[paket]
+tanim   = Popüler grafik görüntü formatları için destek kitaplığı
+paketci = milisarge
+grup    = kütüphane
+url     = http://freeimage.sourceforge.net/
+
+[gerek]
+derleme = unzip imagemagick
+calisma =
+
+[kaynak]
+1       = ${SOURCEFORGE_SITE}/freeimage/Source%20Distribution/FreeImage${surum//./}.zip!
+dosya   = freeimage-unbundle.patch
+dosya   = freeimage-libraw-0.20.patch
+dosya   = freeimage-libraw-0.21.patch
+
+[sha256]
+1       = f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd
+
+[derle] 
+betik = cd $SRC;unzip /sources/FreeImage${surum//./}.zip;cd FreeImage
+
+betik = patch -p1 -i $SRC/freeimage-unbundle.patch
+betik = rm -rf Source/Lib* Source/ZLib Source/OpenEXR > Source/FreeImage/PluginG3.cpp > Source/FreeImageToolkit/JPEGTransform.cpp
+betik = patch -p1 -i $SRC/freeimage-libraw-0.20.patch
+betik = patch -p1 -i $SRC/freeimage-libraw-0.21.patch
+
+betik = sh gensrclist.sh
+betik = sh genfipsrclist.sh
+betik = make -f Makefile.gnu
+betik = make -f Makefile.fip
+
+[pakur]
+betik   = cd $SRC/FreeImage
+betik   = make -f Makefile.gnu DESTDIR=${PKG} install
+betik   = make -f Makefile.fip DESTDIR=${PKG} install
+betik   = rm -f $PKG/usr/lib/*.a
