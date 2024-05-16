@@ -1,0 +1,6 @@
+libc.so.6
+libfuse.so.2
+libuuid.so.1
+liblz4.so.1
+liblzma.so.5
+libz.so.1
