@@ -1,0 +1,24 @@
+[paket]
+tanim   = Linux-erofs dosya sistemi için kullanıcı alanı yardımcı programları
+paketci = milisarge
+grup    = kütüphane
+url     = https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
+
+[gerek]
+derleme = automake 
+calisma = 
+
+[kaynak]
+1       = $url/snapshot/$isim-$surum.tar.gz
+
+[sha512]
+1       = f5fc08d8d70e3e06c06aaa5a36e9b16ca1ff7c722fc88dba1f5c46fa86914be02e45e948c59504bd0fd4a3a4050ad7a27a5da2657ffbf40ec20ef0d1bfb832ff
+
+[derle]
+betik = autoreconf -fiv
+betik = ./configure --prefix=/usr --enable-fuse --enable-lzma
+betik = make
+
+
+[pakur]
+tip   = gnu
