@@ -1,0 +1,23 @@
+[paket]
+tanim   = Wayland dizgicisinin referans uygulaması
+paketci = milisarge
+grup    = kütüphane
+url     = https://wayland.freedesktop.org/
+
+[gerek]
+derleme = meson wayland wayland-protocols libpng libxkbcommon pixman pango cairo libwebp lcms2 pipewrire
+calisma =
+
+[kaynak]
+1       = https://wayland.freedesktop.org/releases/${isim}-${surum}.tar.xz
+
+[sha256]
+1       = ea1566ab4f5ffce7e9fd4f7a1fca5b30caae4d50023bf459213994094e02b29a
+
+[derle]
+betik   = sed -i "/subdir('tests')/d" meson.build
+ekconf  = -Dbackend-rdp=false -Dbackend-vnc=false -Dsystemd=false
+tip     = meson
+
+[pakur]
+tip     = meson
