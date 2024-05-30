@@ -9,4 +9,4 @@ cd $HOME/.cache
 
 rm -rf ../.local/go && tar -C ../.local -xzf go${version}.linux-amd64.tar.gz
 
-export PATH=$PATH:$HOME/.local/go/bin
+echo 'export PATH=$PATH:$HOME/.local/go/bin' >> ~/.bashrc
