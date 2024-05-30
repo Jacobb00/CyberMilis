@@ -1,0 +1,21 @@
+[paket]
+tanim   = SSH dosya aktarım dosya sistemi istemcisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/libfuse/sshfs
+
+[gerek]
+derleme = meson fuse3 glib python
+calisma =
+
+[kaynak]
+xz      = https://github.com/libfuse/sshfs/releases/download/sshfs-${surum}
+
+[sha256]
+1       = 5218ce7bdd2ce0a34137a0d7798e0f6d09f0e6d21b1e98ee730a18b0699c2e99
+
+[derle]
+tip     = meson
+
+[pakur]
+tip     = meson
