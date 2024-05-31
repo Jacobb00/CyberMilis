@@ -9,11 +9,7 @@ derleme = meson wayland wayland-protocols pango xcb-util-wm librsvg libdisplay-i
 calisma =
 
 [kaynak]
-1     = https://github.com/CuarzoSoftware/Louvre/archive/refs/tags/v$surum-2.tar.gz::$isim-$surum.tar.gz
-2     = https://github.com/CuarzoSoftware/SRM/archive/refs/tags/v0.5.6-1.tar.gz::$srm-0.5.6.tar.gz
-
-;[sha256]
-;1       = 1810ec55e287708e7a3cd44c726aa887db02480704db82b3d0bd550a6c4bfb76
+1       = https://github.com/CuarzoSoftware/Louvre
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
@@ -22,8 +18,10 @@ export  = CFLAGS="$CFLAGS -I$PKG/usr/include/SRM"
 export  = CXXFLAGS="$CFLAGS"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
-meson   = SRM-0.5.6-1/src
-meson   = Louvre-$surum-2/src
+betik   = git clone https://github.com/CuarzoSoftware/SRM $SRC/
+meson   = SRM
+betik   = cd $SRC/Louvre-$surum ; git checkout 2.0.0
+meson   = Louvre-$surum
 
 [pakur]
 betik   = echo 1 
