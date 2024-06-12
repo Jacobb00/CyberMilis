@@ -9,7 +9,7 @@ derleme = meson wayland wayland-protocols pango xcb-util-wm librsvg libdisplay-i
 calisma =
 
 [kaynak]
-1       = https://github.com/CuarzoSoftware/Louvre
+git     = https://github.com/CuarzoSoftware/Louvre
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
@@ -18,10 +18,11 @@ export  = CFLAGS="$CFLAGS -I$PKG/usr/include/SRM"
 export  = CXXFLAGS="$CFLAGS"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
-betik   = git clone https://github.com/CuarzoSoftware/SRM $SRC/
-meson   = SRM
-betik   = cd $SRC/Louvre-$surum ; git checkout 2.0.0
-meson   = Louvre-$surum
+betik   = git clone https://github.com/CuarzoSoftware/SRM $SRC/srm
+meson   = srm/src
+betik   = cd $SRC/louvre-$surum 
+;betik   = git checkout 2.0.0
+meson   = louvre-$surum/src
 
 [pakur]
 betik   = echo 1 
