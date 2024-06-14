@@ -1,0 +1,18 @@
+[paket]
+tanim   = Louvre kullanan deneysel Milis pencere yönetici
+paketci = milisarge
+grup    = sistem
+url     = https://gitlab.com/milisarge/milis-louvre
+
+[gerek]
+derleme = meson wayland wayland-protocols pango xcb-util-wm librsvg libdisplay-info mesa libinput seatd libxcursor libxkbcommon louvre
+calisma =
+
+[kaynak]
+git     = https://gitlab.com/milisarge/milis-louvre
+
+[derle]
+meson   = milis-louvre-$surum/src
+
+[pakur]
+betik   = echo 1 
