@@ -12,7 +12,7 @@ calisma =
 git     = https://gitlab.com/milisarge/milis-louvre
 
 [derle]
-meson   = milis-louvre-$surum/src
+meson   = $isim-$surum
 
 [pakur]
 betik   = echo 1 

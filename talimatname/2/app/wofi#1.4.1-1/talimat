@@ -1,0 +1,21 @@
+[paket]
+tanim   = Wayland dizgicileri için program başlatıcısı
+paketci = milisarge
+grup    = kütüphane
+url     = https://hg.sr.ht/~scoopta/wofi
+
+[gerek]
+derleme = meson pango wayland gtk3 cairo
+calisma = 
+
+[kaynak]
+1       = https://hg.sr.ht/~scoopta/wofi/archive/v$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = e95e35c03551c39178c16ad6213a88e3883a236e942d7f2666c780d934c270bb
+
+[derle]
+meson   = $isim-v$surum
+
+[pakur]
+betik   = echo 1
