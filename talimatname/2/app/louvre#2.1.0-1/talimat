@@ -10,7 +10,7 @@ calisma =
 
 [kaynak]
 git     = https://github.com/CuarzoSoftware/Louvre
-
+        
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
 export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
@@ -19,6 +19,7 @@ export  = CXXFLAGS="$CFLAGS"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
 betik   = git clone https://github.com/CuarzoSoftware/SRM $SRC/srm
+betik   = cd $SRC/srm;git checkout devel;cd -
 meson   = srm/src
 betik   = cd $SRC/louvre-$surum 
 ;betik   = git checkout 2.0.0
