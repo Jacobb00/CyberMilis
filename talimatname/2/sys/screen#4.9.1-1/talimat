@@ -1,0 +1,29 @@
+[paket]
+tanim   = Fiziksel bir terminali çoğaltan tam ekran pencere yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://www.gnu.org/software/screen/
+
+[gerek]
+derleme = pam libutempter
+calisma = 
+
+[kaynak]
+1     = https://ftp.gnu.org/gnu/screen/screen-$surum.tar.gz
+dosya = screen-pam.d
+
+[sha256]
+1 = 26cef3e3c42571c0d484ad6faf110c5c15091fbf872b06fa7aa4766c7405ac69
+
+[derle]
+betik = cd $isim-$surum
+betik = NOCONFIGURE=1 ./autogen.sh
+ekconf = --enable-colors256 --enable-pam --enable-rxvt_osc --enable-telnet --with-socket-dir=/run/screens --with-sys-screenrc=/etc/screenrc --with-pty-group=5
+tip    = gnu
+
+
+[pakur]
+tip   = gnu
+betik = install -Dm644 $SRC/screen-pam.d $PKG/etc/pam.d/screen
+betik = install -Dm644 etc/etcscreenrc $PKG/etc/screenrc
+
