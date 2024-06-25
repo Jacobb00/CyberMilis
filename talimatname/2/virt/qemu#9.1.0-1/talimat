@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://www.qemu.org
 
 [gerek]
-derleme = automake cmake meson python libpng libjpeg-turbo libx11 alsa-lib libaio gnutls glib xfsprogs libcap-ng libpcap libssh2 libusb pulseaudio libnfs sdl2 gtk3 vte3 pixman xiph cyrus-sasl libepoxy libdrm mesa numactl ndctl fuse3 libseccomp libssh sdl2-extra keyutils nss json-glib polkit vala
+derleme = automake cmake meson python libpng libjpeg-turbo libx11 alsa-lib libaio gnutls glib xfsprogs libcap-ng libpcap libssh2 libusb pulseaudio libnfs sdl2 gtk3 vte3 pixman xiph cyrus-sasl libepoxy libdrm mesa numactl ndctl fuse3 libseccomp libssh sdl2-extra keyutils nss json-glib polkit vala dtc
 calisma =
 
 [kaynak]
