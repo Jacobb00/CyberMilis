@@ -22,7 +22,7 @@ ekconf = --sbindir=/usr/bin --without-tcpwrappers
 tip    =  gnu
 
 [pakur]
-betik =	make INSTALLROOT=${DESTDIR} install
+betik =	make INSTALLROOT=${PKG} install
 betik = rm -rf $PKG/usr/bin/tftp
 betik = rm -rf $PKG/usr/share
 
