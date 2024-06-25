@@ -9,12 +9,15 @@ derleme = automake readline
 calisma = 
 
 [kaynak]
-1      = http://www.kernel.org/pub/software/network/tftp/$isim/$isim-$surum}.tar.gz
+1      = http://www.kernel.org/pub/software/network/tftp/$isim/$isim-$surum.tar.gz
+dosya  = tftp-hpa-0.49-fortify-strcpy-crash.patch
 
 [sha256]
 1      = acc04dde662491e3092565ecf9bde504c47dbb1bb0408366009b138fe7754cab
 
 [derle]
+yama   = tftp-hpa-0.49-fortify-strcpy-crash.patch
+export = CFLAGS+=' -fcommon' 
 ekconf = --sbindir=/usr/bin --without-tcpwrappers
 tip    =  gnu
 
