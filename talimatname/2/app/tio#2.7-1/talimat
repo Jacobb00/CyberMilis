@@ -1,0 +1,22 @@
+[paket]
+tanim   = Basit seri cihaz G/Ç aracı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/tio/tio
+
+[gerek]
+derleme = meson libinih
+calisma = 
+
+[kaynak]
+1   = https://github.com/tio/tio/archive/refs/tags/v$surum.tar.gz
+
+[sha256]
+1   = c1fb02f953a9a1f37a2077dd7030afbb99ace10a8c6204a810f2e662ecd43fe4
+
+[derle]
+tip =  meson
+
+[pakur]
+tip   = meson
+betik = rmdir $PKG/usr/share 
