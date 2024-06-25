@@ -1,0 +1,28 @@
+[paket]
+tanim   = TCL kodlama dili
+paketci = milisarge
+grup    = geliştirme
+url     = http://www.tcl.tk
+arsiv   = $isim$surum
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1 = ${SOURCEFORGE_SITE}/tcl/tcl$surum-src.tar.gz
+
+[sha256]
+1 = 5880225babf7954c58d4fb0f5cf6279104ce1cd6aa9b71e9a6322540e1c4de66
+
+[derle]
+betik  = rm -rf pkgs/sqlite*
+betik  = rm -rf unix/pkgs/sqlite* ; cd unix
+ekconf = --enable-threads --without-tzdata --enable-man-symlinks --disable-static --disable-rpath tcl_cv_strstr_unbroken=ok tcl_cv_strtoul_unbroken=ok
+tip    =  gnu
+
+[pakur]
+betik = cd unix
+tip   = gnu
+betik =	make INSTALL_ROOT=${PKG} install install-private-headers
+betik =	ln -s tclsh8.6 ${PKG}/usr/bin/tclsh
