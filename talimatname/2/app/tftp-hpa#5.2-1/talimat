@@ -1,0 +1,25 @@
+[paket]
+tanim   = Resmi tftp istemcisi ve sunucusu
+paketci = milisarge
+grup    = sistem
+url     = http://www.kernel.org
+
+[gerek]
+derleme = automake readline
+calisma = 
+
+[kaynak]
+1      = http://www.kernel.org/pub/software/network/tftp/$isim/$isim-$surum}.tar.gz
+
+[sha256]
+1      = acc04dde662491e3092565ecf9bde504c47dbb1bb0408366009b138fe7754cab
+
+[derle]
+ekconf = --sbindir=/usr/bin --without-tcpwrappers
+tip    =  gnu
+
+[pakur]
+betik =	make INSTALLROOT=${DESTDIR} install
+betik = rm -rf $PKG/usr/bin/tftp
+betik = rm -rf $PKG/usr/share
+

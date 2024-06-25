@@ -19,4 +19,4 @@ tip =  meson
 
 [pakur]
 tip   = meson
-betik = rmdir $PKG/usr/share 
+betik = rm -rf $PKG/usr/share
