@@ -6,7 +6,7 @@ url     = https://www.denx.de/wiki/U-Boot/WebHome
 arsiv   = u-boot-$surum
 
 [gerek]
-derleme = openssl python swig
+derleme = openssl python swig gnutls
 calisma = 
 
 [kaynak]

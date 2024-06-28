@@ -1,0 +1,4 @@
+libcrypto.so.3
+libc.so.6
+libncursesw.so.6
+libssl.so.3
