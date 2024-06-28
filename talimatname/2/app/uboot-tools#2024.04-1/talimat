@@ -1,0 +1,26 @@
+[paket]
+tanim   = U-Boot önyükleyici yardımcı araçları
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.denx.de/wiki/U-Boot/WebHome
+arsiv   = u-boot-$surum
+
+[gerek]
+derleme = openssl python swig
+calisma = 
+
+[kaynak]
+1 = https://ftp.denx.de/pub/u-boot/u-boot-$surum.tar.bz2
+
+[sha256]
+1 = 18a853fe39fad7ad03a90cc2d4275aeaed6da69735defac3492b80508843dd4a
+
+[derle]
+betik = make defconfig
+betik = make tools-all KBUILD_HOSTLDFLAGS=${LDFLAGS}
+
+
+[pakur]
+betik = install -m 755 -d $PKG/usr/bin
+betik = install -m 755 -t $PKG/usr/bin/ tools/{mk{,env}image,env/fw_printenv,img2srec,dumpimage,netconsole,jtagconsole,ncb,kwboot}
+betik = ln -s fw_printenv $PKG/usr/bin/fw_setenv
