@@ -12,7 +12,7 @@ calisma =
 1       = $url/software/download/OpenLDAP/openldap-release/$isim-$surum.tgz
 
 [sha256]
-1       = 2e27a8d4f4c2af8fe840b573271c20aa163e24987f9765214644290f5beb38d9
+1       = 48969323e94e3be3b03c6a132942dcba7ef8d545f2ad35401709019f696c3c4e
 
 [derle]
 dosya   = derle.sh
