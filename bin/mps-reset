@@ -30,5 +30,8 @@ mkdir -p /usr/milis
 [ $VER = "2" ] &&  /usr/milis/mps/bin/mps -v
 [ $VER = "3" ] &&  /usr/milis/mps/bin/mps version
 
+# ayar güncelle
+[ $VER = "3" ] &&  mps yaz repo mps https://gitlab.com/milislinux/mps3.git
+
 # mps guncellemeri alınır
 /usr/milis/mps/bin/mps gun
