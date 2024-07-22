@@ -9,6 +9,11 @@ else
 	VER=$1
 fi
 
+REPO=""
+
+[ $VER = "2" ] &&  REPO="https://gitlab.com/milislinux/mps23.git"
+[ $VER = "3" ] &&  REPO="https://gitlab.com/milislinux/mps3.git"
+
 # Bu betik, git depo adresleri güncellendiğinde yeni adresleri bu betik üzerinden güncellenerek
 # curl/bash ile kullanıcının güncel git depolarını almasını sağlamaktadır.
 
@@ -19,8 +24,7 @@ rm -rf /usr/milis
 mkdir -p /usr/milis
 
 # mps güncel depo adresi ile güncellenir
-[ $VER = "2" ] && git clone https://gitlab.com/milislinux/mps23.git /usr/milis/mps
-[ $VER = "3" ] && git clone https://gitlab.com/milislinux/mps3.git /usr/milis/mps
+git clone ${REPO} /usr/milis/mps
 
 # mps ayar güncellenir
 #curl https://gitlab.com/milislinux/milis23/-/raw/main/ayarlar/mps/mps.ini > /usr/milis/mps/conf/mps.ini.sablon
@@ -31,7 +35,7 @@ mkdir -p /usr/milis
 [ $VER = "3" ] &&  /usr/milis/mps/bin/mps version
 
 # ayar güncelle
-[ $VER = "3" ] &&  mps yaz repo mps https://gitlab.com/milislinux/mps3.git
+mps yaz repo mps ${REPO}
 
 # mps guncellemeri alınır
 /usr/milis/mps/bin/mps gun
