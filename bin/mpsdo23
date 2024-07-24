@@ -10,10 +10,10 @@ if [ ! -f $mpsconf ];then
  echo "$mpsconf geçerli yol değil!"
 fi
 
-surum="2024-07-24"
-ortam_sha="e136d43c5389947b209d72a926fcca42810bbf4d20a452aab60f18ca178470f8"
+surum="11-06"
+ortam_sha="425ddaf906327a67b26dbbd7516b3546170baa0d30002c321a260c0cf8cea72d"
 
-ortam_adres="https://sourceforge.net/projects/milislinux/files/images/milis23-${surum}-base.sfs"
+ortam_adres="https://mls.akdeniz.edu.tr/iso/2.3/base/milis23-${surum}-base.sfs"
 ortam=/mnt/milis23-${surum}-base.sfs
 
 shasum_kontrol(){
@@ -119,7 +119,7 @@ ortam_bagla_son(){
 	# ana sistem gitconfig
 	[ -f /root/.gitconfig ] && cp /root/.gitconfig $rootdir/root/
 	# ana sistemin mps ayarlarını kullanmak için
-	cp -f -v $mpsconf $rootdir/etc/mps.ini
+	cp -f -v $mpsconf $rootdir/usr/milis/mps/conf/mps.ini
 	#mkdir -p $rootdir/sources
 	
 	mount -v -B /dev $rootdir/dev

@@ -23,90 +23,78 @@ export MILIS_PATH=$MSYS/usr/milis
 2- Güncel MPS kaynak kodu indirilir:
 
 ```
-git clone https://gitlab.com/milislinux/mps23 $MPS_PATH
+git clone https://gitlab.com/milislinux/mps3.git $MPS_PATH
 ```
 
-3- MPS gerekli konfigürasyon ayarlarını yaptğınından dolayı ilk çalıştığında:
+3- MPS komut satırında gözükmesi için PATH e eklenir.
 
 ```
 export PATH=$MPS_PATH/bin:$PATH
-mps
-MPS öntanımlı ayarlar yüklendi.
-Lütfen mps'i yeniden çalıştırın!
 ```
 
-uyarısını verecektir. Bu adımdan sonra mps kurulumu tamamlanmış olur. Kontrol etmek için:
+Sürüm kontrolü yapıldığında aşağıdaki çıktı alınmalıdır:
 
 ```
-mps -v
+mps --v
 
-MPS 2.x.x - Milis Paket Sistemi milisarge@gmail.com
+MPS 3.0 - Milis Paket Yöneticisi - milisarge 2024
 ```
 
-4- MPS’in paketleri nereden alacağını belirlemek için gerekli ayarlar yapılır:
+4- Özel MPS ayarları kullanılacaksa MPS deposundan ayarlar özelleştirilir:
 
 ```
-nano conf/mps.ini
-# talimatdepoları milis21->milis23 çevrilir.
-# sunucu yerel depo için [1]="http://localhost:9911" ayarlanır.
+cp $MPS_PATH/mps.ini /opt/milis-calisma/mps-ozel.ini
 ```
 
 5- Dizin sistemi ve MPS’nin ilklenmesini kok değerine göre verilen dizinde oluşturulur:
 
 ```
 cd /opt/milis-calisma
-mps --ilkds --ilk --kok=$MSYS
+mps ilk $MSYS --config $MPS_PATH/mps.ini
 ```
 
-6- Gerekli güncellemeler yapılır; talimatname, depo ve betik:
+6- Gerekli güncellemeler yapılır:
 
 ```
-mps gun -GPB --kok=$MSYS
+mps gun --kok $MSYS --config $MPS_PATH/mps.ini
 ```
 
 7- Minimal bir sistem ortamı kurmak için gerekli paketler indirilir ve yüklenir:
 
 ```
-mps kur --dosya=$MSYS/usr/milis/ayarlar/pliste/base.list --kurkos=0 --koskur=0 --kok=$MSYS
+mps kur @$MSYS/usr/milis/ayarlar/pliste/base.list --kurkos 0 --koskur 0 --kok $MSYS --config $MPS_PATH/mps.ini
 ```
 
-8- MPS kurulum dizininin altına kopyalanır:
-
-```
-cp -r $MPS_PATH $MSYS/usr/milis/mps
-```
-
-9- chroot içine girilir:
+8- chroot içine girilir:
 
 ```
 enter-chroot $MSYS
 ```
 
-10- Gerekli güncellemeler çalıştırılır:
+9- Gerekli güncellemeler çalıştırılır:
 
 ```
-sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen
-sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen
-locale-gen
-update-ca-certificates --fresh && make-ca -g
-ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+chroot $MSYS bash -c "sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen"
+chroot $MSYS bash -c "sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen"
+chroot $MSYS bash -c "locale-gen"
+chroot $MSYS bash -c "update-ca-certificates --fresh && make-ca -g"
+chroot $MSYS bash -c "ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt"
 ```
 
-11- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
+10- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
 
 ```
-rm -rf /var/cache/mps/depo/*
-exit
+rm -rf $MSYS/var/cache/mps/depo/*
 rm -f $MSYS/root/.bash_history
 ```
 
-12- Ortam içindeki sources dizini silinir çünkü sonra mpsdo ile güncel sources dizini bağlanacak:
+11- Ortam içindeki sources dizini silinir çünkü sonra mpsdo ile güncel sources dizini bağlanacak:
 
 ```
 rm -rf $MSYS/sources
 ```
 
-13- Yeni sistem squash filesystem ile sıkıştırılır:
+12- Yeni sistem squash filesystem ile sıkıştırılır:
 
 ```
 mksquashfs $MSYS milis23-"$(date -d "$D" '+%m-%d')"-base.sfs -comp xz
