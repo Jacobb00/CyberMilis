@@ -1,0 +1,24 @@
+[paket]
+tanim   = SPIR-V LLVM arası çevirici
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/KhronosGroup/SPIRV-LLVM-Translator
+arsiv   = .
+
+[gerek]
+derleme = cmake llvm ninja spirv
+calisma = spirv
+
+[kaynak]
+gz      = https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v$surum
+;dosya   = spirv-llvm-translator-17.0.0-intel-capability.patch
+
+;[sha256]
+;1       = 305fac5bb8efdad9054f0d27b5b765aca8b3349a500e2ba0c927763e42badc2b
+
+[derle]
+dosya   = derle.sh
+
+[pakur]
+betik   = DESTDIR=$PKG cmake --install build
+betik   = install -Dm755 build/tools/llvm-spirv/llvm-spirv -t ${PKG}/usr/bin
