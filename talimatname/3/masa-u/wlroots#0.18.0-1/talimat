@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://github.com/swaywm/wlroots
 
 [gerek]
-derleme = cmake meson mesa libdrm wayland libinput libxkbcommon pixman wayland-protocols xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil seatd vulkan glslang hwids libdisplay-info
+derleme = cmake meson mesa libdrm wayland libinput libxkbcommon pixman wayland-protocols xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil seatd vulkan glslang hwids libdisplay-info lcms2 libliftoff
 calisma =
 
 [kaynak]
