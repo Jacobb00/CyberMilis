@@ -39,6 +39,7 @@ dosya   = egl+glx.patch
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
 export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
 export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include/GL"
 export  = CPPFLAGS="$CFLAGS"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 export  = PATH="$PATH:$PKG/usr/bin"
@@ -67,8 +68,8 @@ dosya   = glew.sh
 
 betik   = cd $SRC
 export  = CFLAGS+=' -fcommon'
-export  = DEPS=" -DOPENGL_INCLUDE_DIR=$PKG/usr/include -DOPENGL_gl_LIBRARY=$PKG/usr/lib/libGL.so -DOPENGL_glu_LIBRARY=$PKG/usr/lib/libGLU.so "
-betik   = cmake -Hfreeglut-3.4.0 -Bbuildf -DFREEGLUT_BUILD_STATIC_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=None $DEPS
+export  = DEPS=" -DOPENGL_GLU_INCLUDE_DIR=$PKG/usr/include -DOPENGL_INCLUDE_DIR=$PKG/usr/include -DOPENGL_gl_LIBRARY=$PKG/usr/lib/libGL.so -DOPENGL_glu_LIBRARY=$PKG/usr/lib/libGLU.so "
+betik   = cmake -Hfreeglut-3.6.0 -Bbuildf -DFREEGLUT_BUILD_STATIC_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=None $DEPS
 betik   = cmake --build buildf
 betik   = DESTDIR="$PKG" cmake --build buildf --target install
 betik   = ln -sr $PKG/usr/lib/pkgconfig/{glut,freeglut}.pc

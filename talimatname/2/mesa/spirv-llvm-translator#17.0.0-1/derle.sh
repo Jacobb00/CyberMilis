@@ -1,7 +1,7 @@
 #export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib LDFLAGS+=' -fuse-ld=lld'
 
 cd SPIRV-LLVM-Translator-$surum
-patch -Np1 -i $SRC/spirv-llvm-translator-17.0.0-intel-capability.patch
+#patch -Np1 -i $SRC/spirv-llvm-translator-17.0.0-intel-capability.patch
 cd -
 
 cmake -S SPIRV-LLVM-Translator-$surum -B build -G Ninja \

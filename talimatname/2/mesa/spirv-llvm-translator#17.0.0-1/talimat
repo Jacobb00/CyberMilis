@@ -11,7 +11,7 @@ calisma = spirv
 
 [kaynak]
 gz      = https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v$surum
-dosya   = spirv-llvm-translator-17.0.0-intel-capability.patch
+;dosya   = spirv-llvm-translator-17.0.0-intel-capability.patch
 
 ;[sha256]
 ;1       = 305fac5bb8efdad9054f0d27b5b765aca8b3349a500e2ba0c927763e42badc2b

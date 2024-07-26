@@ -44,6 +44,9 @@ libgbm.so.1.0.0
 libglapi.so
 libglapi.so.0
 libglapi.so.0.0.0
+libglut.so
+libglut.so.3
+libglut.so.3.12.1
 libva-drm.so
 libva-drm.so.2
 libva-drm.so.2.2100.0
