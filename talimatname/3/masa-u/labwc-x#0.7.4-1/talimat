@@ -1,0 +1,32 @@
+[paket]
+tanim   = Openbox benzeri Wayland için pencere yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/labwc/labwc
+arsiv   = labwc-$surum
+
+[gerek]
+derleme = meson wayland wayland-protocols pango xcb-util-wm xwayland
+calisma = xwayland
+
+[kaynak]
+1       = $url/archive/$surum.tar.gz::$isim-$surum.tar.gz
+2       = https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.18.0/downloads/wlroots-0.18.0.tar.gz
+
+[sha256]
+1       = 2afa1ef483863fc6217803a540b9afab6939d2324e9bb4dcf4a028281b731fb9
+
+[derle]
+;betik   = sed -i "s|wlroots_has_xwayland = |wlroots_has_xwayland = true #|g" $SRC/labwc-$surum/meson.build
+ekconf  = -Dxwayland=enabled -Dman-pages=disabled
+betik   = cd $SRC; meson setup --prefix /usr --libexecdir lib --sbindir bin --buildtype plain --auto-features enabled -D b_lto=true -D b_pie=true labwc-$surum  build ${EXT_OPT}
+
+[pakur]
+tip     = meson
+betik   = mv $PKG/usr/bin/labwc $PKG/
+betik   = mv $PKG/usr/share/wayland-sessions/labwc.desktop $PKG/
+betik   = rm -rf $PKG/usr
+betik   = mkdir -p $PKG/usr/{bin,share/wayland-sessions}
+betik   = mv $PKG/labwc $PKG/usr/bin/labwc-x
+betik   = mv $PKG/labwc.desktop $PKG/usr/share/wayland-sessions/labwc-x.desktop
+betik   = sed -i 's/labwc/labwc-x/g' $PKG/usr/share/wayland-sessions/labwc-x.desktop
