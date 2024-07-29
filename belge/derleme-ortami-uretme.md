@@ -59,31 +59,33 @@ mps ilk $MSYS --config $MPS_PATH/mps.ini
 mps gun --kok $MSYS --config $MPS_PATH/mps.ini
 ```
 
-7- Minimal bir sistem ortamı kurmak için gerekli paketler indirilir ve yüklenir:
+7- Taban ortamı kurmak için gerekli paketler indirilir ve yüklenir:
 
 ```
 mps kur @$MSYS/usr/milis/ayarlar/pliste/base.list --kurkos 0 --koskur 0 --kok $MSYS --config $MPS_PATH/mps.ini
 ```
 
-8- chroot içine girilir:
+8- Gerekli işlemler yapılarak chroot içine girilir:
 
 ```
+chroot $MSYS bash -c "sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen"
+chroot $MSYS bash -c "sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen"
+chroot $MSYS bash -c "locale-gen"
+
 enter-chroot $MSYS
 ```
 
 9- Gerekli güncellemeler çalıştırılır:
 
 ```
-chroot $MSYS bash -c "sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen"
-chroot $MSYS bash -c "sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen"
-chroot $MSYS bash -c "locale-gen"
-chroot $MSYS bash -c "update-ca-certificates --fresh && make-ca -g"
-chroot $MSYS bash -c "ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt"
+update-ca-certificates --fresh && make-ca -g
+ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
 
 10- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
 
 ```
+exit
 rm -rf $MSYS/var/cache/mps/depo/*
 rm -f $MSYS/root/.bash_history
 ```

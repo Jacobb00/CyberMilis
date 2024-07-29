@@ -18,58 +18,76 @@ export MPS_PATH=/usr/milis/mps
 
 ```
 
-2- MPS komut satırında gözükmesi için PATH e eklenir.
+2- MPS gerekli konfigürasyon ayarlarını yaptğınından dolayı ilk çalıştığında:
 
 ```
 export PATH=$MPS_PATH/bin:$PATH
+mps
+MPS öntanımlı ayarlar yüklendi.
+Lütfen mps'i yeniden çalıştırın!
 ```
 
-Sürüm kontrolü yapıldığında aşağıdaki çıktı alınmalıdır:
+uyarısını verecektir. Bu adımdan sonra mps kurulumu tamamlanmış olur. Kontrol etmek için:
 
 ```
-mps --v
+mps -v
 
-MPS 3.0 - Milis Paket Yöneticisi - milisarge 2024
+MPS 2.3 - Milis Paket Sistemi milisarge@gmail.com
 ```
 
-3- Özel MPS ayarları kullanılacaksa MPS deposundan ayarlar özelleştirilir:
+3- MPS’in paketleri nereden alacağını belirlemek için gerekli ayarlar yapılır:
 
 ```
-cp $MPS_PATH/mps.ini /opt/milis-calisma/mps-ozel.ini
+nano conf/mps.ini
+# talimatdepoları milis21->milis23 çevrilir.
+# sunucu yerel depo için 
+mps yaz sunucu 1 http://localhost:9911
 ```
 
 4- Dizin sistemi ve MPS’nin ilklenmesini kok değerine göre verilen dizinde oluşturulur:
 
 ```
 cd /opt/milis-calisma
-mps ilk $MSYS --config $MPS_PATH/mps.ini
+mps --ilkds --ilk --kok=$MSYS
 ```
 
-5- Gerekli güncellemeler yapılır:
+5- Gerekli güncellemeler yapılır; talimatname, depo ve betik:
 
 ```
-mps gun --kok $MSYS --config $MPS_PATH/mps.ini
+mps gun -GPB --kok=$MSYS
 ```
 
-6- Taban ortamı kurmak için gerekli paketler indirilir ve yüklenir:
+6- Minimal bir sistem ortamı kurmak için gerekli paketler indirilir ve yüklenir:
 
 ```
-mps kur @$MSYS/usr/milis/ayarlar/pliste/base.list --kurkos 0 --koskur 0 --kok $MSYS --config $MPS_PATH/mps.ini
+mps kur --dosya=$MSYS/usr/milis/ayarlar/pliste/base.list --kurkos=0 --koskur=0 --kok=$MSYS
 ```
 
-7- Gerekli işlemler yapılarak chroot içine girilir:
+7- MPS kurulum dizininin altına kopyalanır:
 
 ```
-chroot $MSYS bash -c "sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen"
-chroot $MSYS bash -c "sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen"
-chroot $MSYS bash -c "locale-gen"
+cp -r $MPS_PATH $MSYS/usr/milis/mps
+```
 
+8- Konak sistemin hosts dosyası kullanılmak istenirse:
+
+```
+cp -f /etc/hosts $MSYS/etc/
+```
+
+9- chroot içine girilir:
+
+```
+cp /usr/lib/locale/locale-archive $MSYS/usr/lib/locale/ 
 enter-chroot $MSYS
 ```
 
-8- Gerekli güncellemeler çalıştırılır:
+10- Gerekli güncellemeler çalıştırılır:
 
 ```
+sed -i 's/#tr_TR\.UTF-8 UTF-8/tr_TR\.UTF-8 UTF-8/g' /etc/locale.gen
+sed -i 's/#en_US\.UTF-8 UTF-8/en_US\.UTF-8 UTF-8/g' /etc/locale.gen
+locale-gen
 update-ca-certificates --fresh && make-ca -g
 ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
@@ -79,15 +97,15 @@ ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
 cd /opt
 mps gun
-mps sor -gtl minimal > minimal.liste
-mps sor -gtl masa > masa.liste
-mps sor -gtl ofis > ofis.liste
-mps kur @minimal.liste
-mps kur @masa.liste
-mps kur @ofis.liste
+mps sor --gtl minimal > minimal.liste
+mps sor --gtl masa > masa.liste
+mps sor --gtl ofis > ofis.liste
+mps kur --dosya minimal.liste
+mps kur --dosya masa.liste
+mps kur --dosya ofis.liste
 
 # minimal sistem + limine + xfs destek + tmux
-mps kur udisks xfsprogs tmux limine
+mps kur udisks xfsprogs tmux
 ```
 
 12- Milis servis sistemi aşağıdaki yönergeye göre kurulur. /etc/init/system.ini kontrol edilir.
@@ -115,7 +133,7 @@ mps gun -B
 #
 servis ekle ayguci
 servis aktif ayguci
-mps kur jc jq lshw acpi lm_sensors
+mps kur jc jq lshw acpi lm_sensors limine
 ```
 
 14- mls kullanıcısı oluşturulur.(Canlı masaüstü kullanımı için test kullanıcısı)
