@@ -1,0 +1,23 @@
+[paket]
+tanim   = Görüntü işleme ve analiz kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = http://leptonica.org/
+
+[gerek]
+derleme = automake libtool openjpeg2 libwebp
+calisma = 
+
+[kaynak]
+1 = https://github.com/DanBloomberg/leptonica/archive/$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1 = ecd7a868403b3963c4e33623595d77f2c87667e2cfdd9b370f87729192061bef
+
+[derle]
+betik =	./autogen.sh
+tip   =  gnu
+
+[pakur]
+tip   =  gnu
+

@@ -1,0 +1,25 @@
+[paket]
+tanim   = Tesseract Açık Kaynak OCR motoru
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/tesseract-ocr/tesseract
+
+[gerek]
+derleme = automake libtool leptonica libxslt cairo pango icu
+calisma = 
+
+[kaynak]
+gz  = $url/archive/$surum
+1   = https://github.com/tesseract-ocr/tessdata/raw/main/tur.traineddata!
+2   = https://github.com/tesseract-ocr/tessdata/raw/main/eng.traineddata!
+
+;[sha256]
+;1 = dc4329f85f41191b2d813b71b528ba6047745813474e583ccce8795ff2ff5681
+
+[derle]
+betik =	NOCONFIGURE=1 ./autogen.sh
+tip   = gnu
+
+[pakur]
+tip   = gnu
+betik = mv /sources/*.traineddata $PKG/usr/share/tessdata/
