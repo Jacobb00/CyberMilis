@@ -1,0 +1,36 @@
+[paket]
+tanim   = Tarayıcıya Erişim Artık Kolay
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.sane-project.org/
+arsiv   = backends-$surum
+
+[gerek]
+derleme = autoconf-archive python libjpeg-turbo tiff libgphoto2 v4l-utils avahi
+calisma = 
+
+[kaynak]
+1     = https://gitlab.com/sane-project/backends/-/archive/$surum/backends-$surum.tar.gz::$isim-$surum.tar.gz
+dosya = 66-saned.rules
+
+;[sha256]
+;1 = f832395efcb90bb5ea8acd367a820c393dda7e0dd578b16f48928b8f5bdd0524
+
+[derle]
+betik  = printf "%s\n" "$surum" > .tarball-version
+betik  = printf "%s\n" "$surum" > .version
+betik  = LC_ALL=C autoreconf -fiv
+ekconf = --disable-locking --enable-ipv6 --enable-pthread --with-usb --disable-rpath --enable-pthread --with-avahi --with-libcurl --with-pic --with-poppler-glib --without-systemd
+tip    = gnu
+
+[pakur]
+tip   = gnu
+betik = install -vdm 755 "$PKG/usr/lib/udev/rules.d/"
+betik = tools/sane-desc -m udev+hwdb -s doc/descriptions/ > "$PKG/usr/lib/udev/rules.d/65-sane.rules"
+betik = tools/sane-desc -m udev+hwdb -s doc/descriptions-external/ >> "$PKG/usr/lib/udev/rules.d/65-sane.rules"
+betik = install -vdm 755 "$PKG/usr/lib/udev/hwdb.d/"
+betik = tools/sane-desc -m hwdb -s doc/descriptions/ > "$PKG/usr/lib/udev/hwdb.d/20-sane.hwdb"
+betik = printf "\n" >> "$PKG/usr/lib/udev/hwdb.d/20-sane.hwdb"
+betik = tools/sane-desc -m hwdb -s doc/descriptions-external/ >> "$PKG/usr/lib/udev/hwdb.d/20-sane.hwdb"
+betik = install -vDm 644 $SRC/66-saned.rules "$PKG/usr/lib/udev/rules.d/"
+
