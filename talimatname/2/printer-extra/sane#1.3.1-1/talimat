@@ -6,7 +6,7 @@ url     = http://www.sane-project.org/
 arsiv   = backends-$surum
 
 [gerek]
-derleme = autoconf-archive python libjpeg-turbo tiff libgphoto2 v4l-utils avahi
+derleme = automake autoconf-archive python libjpeg-turbo tiff libgphoto2 v4l-utils avahi
 calisma = 
 
 [kaynak]

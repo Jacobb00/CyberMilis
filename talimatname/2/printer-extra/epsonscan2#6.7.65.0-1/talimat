@@ -1,0 +1,29 @@
+[paket]
+tanim   = Epson tarayıcı yönetimi yardımcı programı
+paketci = milisarge
+grup    = kütüphane
+url     = http://support.epson.net/linux/en/epsonscan2.php
+arsiv   = $isim-$surum-1
+
+[gerek]
+derleme = libjpeg-turbo libpng tiff libusb  zlib boost cmake
+calisma = sane
+
+[kaynak]
+1 = https://download3.ebz.epson.net/dsc/f/03/00/15/87/25/a00d9b45f416c29b5b5cf569e76448b918c0eabd/epsonscan2-6.7.65.0-1.src.tar.gz
+
+[derle]
+betik = sed -i 's|/lib/udev|/usr/lib/udev|' CMakeLists.txt
+betik = sed -i '1 i #include "zlib.h"' src/CommonUtility/DbgLog.cpp
+betik = sed -i '/zlib/d' src/Controller/CMakeLists.txt
+betik = sed -i 's|add_subdirectory(Standalone)|#add_subdirectory(Standalone)|g' src/CMakeLists.txt
+betik = sed -i 's|add_subdirectory(DetectAlert)|#add_subdirectory(DetectAlert)|g' src/CMakeLists.txt
+tip   = cmake
+
+[pakur]
+tip   = cmake
+betik = install -d $PKG/usr/lib/sane ; cd $PKG/usr/lib/sane
+betik = ln -s ../$isim/libsane-epsonscan2.so libsane-epsonscan2.so
+betik = ln -s ../$isim/libsane-epsonscan2.so libsane-epsonscan2.so.1
+betik = ln -s ../$isim/libsane-epsonscan2.so libsane-epsonscan2.so.1.0.0
+
