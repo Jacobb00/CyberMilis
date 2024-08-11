@@ -1,0 +1,46 @@
+[paket]
+tanim   = PPP (Point-to-Point Protocol) arkaplan uygulaması
+paketci = milisarge
+grup 	= sistem
+url     = https://ppp.samba.org
+
+[gerek]
+derleme = libpcap
+calisma = 
+
+[kaynak]
+gz = https://ftp.samba.org/pub/ppp
+2  = https://github.com/ppp-project/ppp/commit/99cbf5e269994482edaf64624be8b1c806f9587c.patch::ppp-revert-var-lock.patch!
+3  = https://github.com/ppp-project/ppp/commit/b0e7307b3569a5dad0f2606d2736cc8317851598.patch::ppp-utils-mkdir.patch!
+4  = https://github.com/ppp-project/ppp/commit/3a4fec968174fd6f387d5ec872a56343f256f645.patch::ppp-create-rundir.patch!
+5  = https://github.com/ppp-project/ppp/commit/9d6d326b2530cffb1414e4c401675117c42d43ce.patch::ppp-device-name-too-long.patch!
+dosya   = $isim-ip-up
+dosya   = $isim-ip-down
+dosya   = $isim-ipv6-up
+dosya   = $isim-ipv6-down
+dosya   = $isim-options
+dosya   = $isim-ipv6-up.d.iface-config.sh
+dosya   = $isim-ip-down.d.dns.sh
+dosya   = $isim-ip-up.d.dns.sh
+6       = ${SOURCEFORGE_SITE}/pptpclient/files/pptp-1.10.0.tar.gz
+
+;[sha256]
+;1 	= f938b35eccde533ea800b15a7445b2f1137da7f88e32a16898d02dee8adc058d
+
+[derle]
+betik = patch -Np1 -i /sources/ppp-revert-var-lock.patch
+betik = patch -Np1 -i /sources/ppp-utils-mkdir.patch
+betik = patch -Np1 -i /sources/ppp-create-rundir.patch
+betik = patch -Np1 -i /sources/ppp-device-name-too-long.patch
+betik = ./configure --prefix=/usr --sbindir=/usr/bin --sysconfdir=/etc --runstatedir=/run --enable-systemd --enable-cbcp --enable-multilink --disable-systemd
+betik = make
+;pptpclient
+betik = cd $SRC/pptp-1.10.0
+betik = sed -i -e "/CFLAGS  =/ c\CFLAGS = ${CFLAGS}" Makefile
+betik = sed -i -e "/LDFLAGS =/ c\LDFLAGS = ${LDFLAGS}" Makefile
+betik = sed -i 's#/bin/ip#/usr/bin/ip#' routing.c
+betik = sed -i "/BINDIR/s#/sbin#/bin#" Makefile
+betik = make && make DESTDIR=$PKG install
+	      
+[pakur]
+dosya   = pakur.sh

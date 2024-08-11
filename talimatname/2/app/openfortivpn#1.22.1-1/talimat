@@ -6,7 +6,7 @@ url     = https://github.com/adrienverge/openfortivpn
 
 [gerek]
 derleme = automake
-calisma =
+calisma = ppp
 
 [kaynak]
 1       = https://github.com/adrienverge/openfortivpn/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
