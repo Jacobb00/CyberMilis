@@ -5,7 +5,7 @@ grup 	= sistem
 url     = https://ppp.samba.org
 
 [gerek]
-derleme = libpcap
+derleme = automake libpcap
 calisma = 
 
 [kaynak]
