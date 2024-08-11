@@ -1,0 +1,24 @@
+[paket]
+tanim   = PPP+SSL VPN tünel hizmetleri için istemci
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/adrienverge/openfortivpn
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+1       = https://github.com/adrienverge/openfortivpn/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+;[sha256]
+;1       = 0f3f3c767cb8bf81418a0fc7c6ab7636c574840c3b6a95c50901c3e1a09c079a
+
+[derle]
+betik   = autoreconf -fi
+ekconf  = --enable-proc
+
+tip     = gnu
+
+[pakur]
+tip     = gnu
