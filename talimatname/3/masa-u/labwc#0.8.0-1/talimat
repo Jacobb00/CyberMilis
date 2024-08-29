@@ -9,8 +9,8 @@ derleme = meson wayland wayland-protocols wlroots pango xcb-util-wm librsvg
 calisma =
 
 [kaynak]
-;1       = https://github.com/labwc/labwc/archive/refs/tags/$surum.tar.gz::$isim-$surum.tar.gz
-git      = https://github.com/labwc/labwc
+1       = https://github.com/labwc/labwc/archive/refs/tags/$surum.tar.gz::$isim-$surum.tar.gz
+;git      = https://github.com/labwc/labwc
 
 ;[sha256]
 ;1       = 172dbbf468f2d83896081a22c4d65964cd0fa3dfda7926bfbd6da8b7d4d91d75

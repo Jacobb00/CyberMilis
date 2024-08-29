@@ -13,8 +13,8 @@ calisma = xwayland
 1       = $url/archive/$surum.tar.gz::$isim-$surum.tar.gz
 2       = https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.18.0/downloads/wlroots-0.18.0.tar.gz
 
-[sha256]
-1       = 2afa1ef483863fc6217803a540b9afab6939d2324e9bb4dcf4a028281b731fb9
+;[sha256]
+;1       = 2afa1ef483863fc6217803a540b9afab6939d2324e9bb4dcf4a028281b731fb9
 
 [derle]
 ;betik   = sed -i "s|wlroots_has_xwayland = |wlroots_has_xwayland = true #|g" $SRC/labwc-$surum/meson.build
