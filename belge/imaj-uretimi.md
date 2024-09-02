@@ -108,9 +108,9 @@ servis ekle ipfs
 13- MPS ile kurulacak Milis uygulamaları eklenir.
 
 ```
-mps yaz betik mservice @mservice.git
-mps yaz betik ayguci @ayguci.git
-mps yaz betik mpsui @mpsui.git
+mps yaz betik mservice https://gitlab.com/milislinux/mservice.git
+mps yaz betik ayguci https://gitlab.com/milislinux/ayguci.git
+mps yaz betik mpsui https://gitlab.com/milislinux/mpsui.git
 mps gun -B
 #
 servis ekle ayguci
@@ -130,7 +130,7 @@ dracut -N --force --xz --add 'dmsquash-live pollcdrom' --omit systemd /boot/init
 rm /boot/initrd.img-*
 ```
 
-16- /usr/milis/mps/conf/mps.ini , /etc/hosts ayarları ve kırık bileşen(revdep-rebuild) kontrol edilir.
+16- /etc/mps.ini , /etc/hosts ayarları ve kırık bileşen(revdep-rebuild) kontrol edilir.
 
 17- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
 
