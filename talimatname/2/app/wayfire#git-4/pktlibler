@@ -1,6 +1,8 @@
 libwf-config.so
-libwf-config.so.0.9.0
+libwf-config.so.0.10.0
 libwf-config.so.1
 libwf-utils.so
 libwf-utils.so.0
 libwf-utils.so.0.4.0
+libwlroots.so
+libwlroots.so.12
