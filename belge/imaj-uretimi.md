@@ -8,9 +8,11 @@ Not: Aynı sürümlü Milis Linux kullanıyorsanız; 2, 3 ve 4 adımlarını atl
 
 ```
 mkdir /opt/milis-calisma
+
 cd /opt/milis-calisma
+
 export MSYS=/opt/milis-calisma/sys
-export MPS_PATH=/opt/milis-calisma/mps23
+export MPS_PATH=/opt/milis-calisma/mps3
 export MILIS_PATH=$MSYS/usr/milis
 
 # Sistem Milis Linux ise
@@ -21,6 +23,7 @@ export MPS_PATH=/usr/milis/mps
 2- MPS komut satırında gözükmesi için PATH e eklenir.
 
 ```
+git clone https://gitlab.com/milislinux/mps3.git
 export PATH=$MPS_PATH/bin:$PATH
 ```
 
@@ -41,7 +44,6 @@ cp $MPS_PATH/mps.ini /opt/milis-calisma/mps-ozel.ini
 4- Dizin sistemi ve MPS’nin ilklenmesini kok değerine göre verilen dizinde oluşturulur:
 
 ```
-cd /opt/milis-calisma
 mps ilk $MSYS --config $MPS_PATH/mps.ini
 ```
 
