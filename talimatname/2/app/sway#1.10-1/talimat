@@ -9,10 +9,11 @@ derleme = meson wayland wayland-protocols wlroots json-c pango cairo gdk-pixbuf 
 calisma = 
 
 [kaynak]
-git     = $url
+;git     = $url
+1       =; https://github.com/swaywm/sway/archive/refs/heads/v$surum.tar.gz::$isim-$surum.tar.gz
 
 [derle]
-betik  = git checkout v1.9
+;betik  = git checkout v1.9
 ekconf = -Dsd-bus-provider=basu -Dxwayland=disabled -Dman-pages=disabled
 meson  = sway-$surum
 
