@@ -1,0 +1,23 @@
+[paket]
+tanim   = İstatistiksel hesaplama ve grafik sistemi
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.r-project.org/
+arsiv   = R-$surum
+
+[gerek]
+derleme = less tar readline lapack
+calisma = 
+
+[kaynak]
+1 = https://cran.r-project.org/src/base/R-4/R-$surum.tar.gz
+
+[sha256]
+1 = b4cb675deaaeb7299d3b265d218cde43f192951ce5b89b7bb1a5148a36b2d94d
+
+[derle]
+dosya = derle.sh
+
+[pakur]
+dosya = pakur.sh
+betik = rm -rf $PKG/etc/ld.so.conf.d
