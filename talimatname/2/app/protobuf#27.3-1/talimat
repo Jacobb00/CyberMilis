@@ -1,5 +1,5 @@
 [paket]
-tanim   = Protokol arabellekleri C++ kitaplığı - geliştirme dosyaları
+tanim   = Protokol arabellekleri C,C++ kitaplığı - geliştirme dosyaları
 paketci = milisarge
 grup    = kütüphane
 url     = https://developers.google.com/protocol-buffers/
@@ -11,7 +11,6 @@ calisma =
 [kaynak]
 1       = https://github.com/protocolbuffers/protobuf/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
 2       = https://github.com/protocolbuffers/protobuf/commit/2e62ef1e.patch!
-;dosya   = protobuf-25.3-ruby-disable-LTO.patch
 3       = https://github.com/protobuf-c/protobuf-c/releases/download/v1.5.0/protobuf-c-1.5.0.tar.gz
 dosya   = protobuf-26.patch
 
@@ -20,16 +19,16 @@ dosya   = protobuf-26.patch
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
 export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
 export  = CXXFLAGS=$CFLAGS
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 export  = PATH=$PATH:$PKG/usr/bin
 
 betik   = patch -p1 < /sources/2e62ef1e.patch # Fix cmake config compatibility mode
-;betik   = patch -p1 < protobuf-25.3-ruby-disable-LTO.patch
 dosya   = derle.sh
 betik   = cd $SRC/protobuf-c-1.5.0 ; patch -p1 -i $SRC/protobuf-26.patch
 gnu     = protobuf-c-1.5.0
 
 [pakur]
-betik  = echo "pakur yok"
+betik   = echo "pakur yok"

@@ -1,5 +1,5 @@
 cd $SRC
-local cmake_options=(
+cmake_options=(
 -B build
 -D CMAKE_BUILD_TYPE=None
 -D CMAKE_INSTALL_PREFIX=/usr
@@ -17,4 +17,5 @@ local cmake_options=(
 cmake "${cmake_options[@]}"
 cmake --build build --verbose
 
-DESTDIR=$PKG cmake --install build
+#-D protobuf_USE_EXTERNAL_GTEST=OFF
+
