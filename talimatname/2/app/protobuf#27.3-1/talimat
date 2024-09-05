@@ -1,0 +1,22 @@
+[paket]
+tanim   = Protokol arabellekleri C++ kitaplığı - geliştirme dosyaları
+paketci = milisarge
+grup    = kütüphane
+url     = https://developers.google.com/protocol-buffers/
+
+[gerek]
+derleme = automake
+calisma =
+
+[kaynak]
+1       = https://github.com/protocolbuffers/protobuf/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1       = 22fdaf641b31655d4b2297f9981fa5203b2866f8332d3c6333f6b0107bb320de
+
+[derle]
+betik   = autoreconf -fi
+tip     = gnu
+
+[pakur]
+tip     = gnu

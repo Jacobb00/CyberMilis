@@ -1,0 +1,23 @@
+[paket]
+tanim   = Ortak kütüphaneleri topla
+paketci = milisarge
+grup    = kütüphane
+url     = https://abseil.io
+
+[gerek]
+derleme = cmake
+calisma = 
+
+[kaynak]
+1       = https://github.com/abseil/abseil-cpp/archive/$surum.tar.gz
+
+[sha256]
+1       = 733726b8c3a6d39a4120d7e45ea8b41a434cdacde401cba500f14236c49b39dc
+
+[derle]
+ekconf  = -DBUILD_SHARED_LIBS=ON -DABSL_PROPAGATE_CXX_STD=ON -DCMAKE_CXX_STANDARD=17
+tip     =  cmake
+
+[pakur]
+tip     =  cmake
+
