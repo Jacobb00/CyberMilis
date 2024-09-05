@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://github.com/libnet/libnet
 
 [gerek]
-derleme = iproute2
+derleme = automake
 calisma = 
 
 [kaynak]
