@@ -5,18 +5,21 @@ grup    = kütüphane
 url     = https://developers.google.com/protocol-buffers/
 
 [gerek]
-derleme = automake
+derleme = cmake abseil-cpp
 calisma =
 
 [kaynak]
 1       = https://github.com/protocolbuffers/protobuf/archive/v${surum}.tar.gz::$isim-$surum.tar.gz
+2       = https://github.com/protocolbuffers/protobuf/commit/2e62ef1e.patch!
+;dosya   = protobuf-25.3-ruby-disable-LTO.patch
 
-[sha256]
-1       = 22fdaf641b31655d4b2297f9981fa5203b2866f8332d3c6333f6b0107bb320de
+;[sha256]
+;1       = 22fdaf641b31655d4b2297f9981fa5203b2866f8332d3c6333f6b0107bb320de
 
 [derle]
-betik   = autoreconf -fi
-tip     = gnu
+betik   = patch -p1 < /sources/2e62ef1e.patch # Fix cmake config compatibility mode
+;betik   = patch -p1 < protobuf-25.3-ruby-disable-LTO.patch
+dosya   = derle.sh
 
 [pakur]
-tip     = gnu
+betik   = cd $SRC;DESTDIR="$PKG" cmake --install build
