@@ -16,6 +16,4 @@ cmake_options=(
 
 cmake "${cmake_options[@]}"
 cmake --build build --verbose
-
-#-D protobuf_USE_EXTERNAL_GTEST=OFF
-
+DESTDIR=$PKG cmake --install build
