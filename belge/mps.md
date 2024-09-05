@@ -5,91 +5,8 @@ MPS paketlerin birbiriyle kararlı bir şekilde kurulum, silme ve güncelleme i�
 MPS paket yönetiminde talimatname dizin yapısını kullanarak kaynak koddan derleme ve paket üretimini gerçekleştirirken
 paket depo bilgi dosyalarındaki paket bilgileriyle ikili paket yönetimini sağlar. Böylelikle hem derleme sistemine hem de
 derlenmiş paket sistemini uygulamış olur. MPS i kullanmak için merkezi depoya erişmenize gerek yoktur, kendi yerel deponuzu da
-kurarak gerekli paket güncelleme işlemlerini gerçekleştirebilirsiniz. Aşağıda MPS için komutlar açıklanmıştır, 
-@paket yazan yere uygulama/kütüphane ile ilgili paket adı girilmelidir.  
-
-### Uçbirim Komutları
-
-#### Yardım
-
-```
-	mps -h
-	mps --help
-	mps işlev -h # ilgili işlev ile ilgili yardım menüsü
-```
-
-#### Güncelleme:
-```
-	mps gun     # tüm depoların güncellemesi
-	mps gun -M  # paket yöneticisi güncellemesi
-	mps gun -P  # paket depo güncellemesi
-	mps gun -G  # talimat depo güncellemesi
-	mps gun -B  # betik depo güncellemesi
-	mps gun -S  # sistem güncellemesi
-
-	mps gun -S --durum # sistem güncelleme bilgisi
-```
-
-#### Kurulum:
-```
-	mps kur @paket / paket_adı.mps.lz
-	mps kur @paket1 @paket2 
-	mps kur -d paket_listesi_dosyasi # Dosyadan kurar
-```
-
-#### Silme:
-```
-	mps sil @paket
-	mps sil @paket --ona # onay almadan siler
-```
-
-#### Derleme:
-
-```
-	mps der @paket     # gerekleriyle derler
-	mps der @paket -t  # tekil paket derleme
-
-	mps der -d paket_liste_dosyası # Dosyadan derler		
-```
-
-#### Arama:
-```
-	mps ara @paket -t # talimatnamede arar
-	mps ara @paket    # paket depolarında arar
-	mps ara @paket -a # açıklamalarda arar
-```
-
-#### Bilgi:
-
-```
-	mps bil @paket       # paket veya talimat hakkında bilgi sağlar
-	mps bil @paket --kk  # paketin kurulu olma durum bilgisi verir
-	mps bil @paket --kdl # paketin kurulu dosyalarını gösterir
-	mps bil @paket --pkd # paket kurulum doğrulaması yapılır
-```
-
-#### Sorgulama:
-
-```
-	mps sor -L         # sistemdeki kurulu paket listesini verir
-	mps sor --hp dosya # dosyanın hangi kurulu paketlerde yer aldığını bulur.
-	mps sor --dpl      # depolardaki paket listesinin verir.
-```
-
-#### İndirme:
-
-```
-	mps in @paket      # paketi önbellek paket dizinine (/var/cache/mps/depo) indirir.
-```
-
-#### Ayarlama:
-
-```
-	mps oku bölüm.anahtar        # mps.ini ayarlarında ilgili bölümdeki anahtarın değerini gösterir.
-	mps yaz bölüm anahtar deger  # mps.ini ayarlarında ilgili bölümdeki anahtara ilgili değeri atar.
-	mps yaz bölüm anahtar ""     # mps.ini ayarlarında ilgili bölümdeki anahtarı siler.
-```
-
+kurarak gerekli paket güncelleme işlemlerini gerçekleştirebilirsiniz. 
+Ayrıntılı bilgi için [yardım](https://gitlab.com/milislinux/mps3/-/blob/main/HELP.md) dosyasına bakabilirsiniz.
 
 ### Arayüz Uygulaması
 
@@ -106,7 +23,7 @@ Aşağıda yer alan varsayılan ayar içeriği üzerinden ayrıntılı olarak il
 
 ```
 [sunucu]
-1 = https://mls.akdeniz.edu.tr/paketler23
+1 = https://gitlab.com/milislinux/depo/-/raw/main
 ;2 = https://mls.akdeniz.edu.tr/mkd23
 ;3 = http://localhost:9900
 
@@ -114,7 +31,7 @@ Aşağıda yer alan varsayılan ayar içeriği üzerinden ayrıntılı olarak il
 ayarlar  = https://gitlab.com/milislinux/milis23::ayarlar
 bin      = https://gitlab.com/milislinux/milis23::bin
 mservice = https://gitlab.com/milislinux/mservice
-ayguciui = https://gitlab.com/milislinux/ayguciui
+ayguci   = https://gitlab.com/milislinux/ayguci
 mpsui    = https://gitlab.com/milislinux/mpsui
 
 [talimat]
@@ -167,7 +84,7 @@ Bu değişken /usr/milis/ altında yerleşecek dizin isimleri değişken adı ol
 ayarlar  = https://gitlab.com/milislinux/milis23::ayarlar
 bin      = https://gitlab.com/milislinux/milis23::bin
 mservice = https://gitlab.com/milislinux/mservice
-ayguciui = https://gitlab.com/milislinux/ayguciui
+ayguci   = https://gitlab.com/milislinux/ayguci
 mpsui    = https://gitlab.com/milislinux/mpsui
 ```
 
