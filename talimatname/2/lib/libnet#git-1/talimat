@@ -1,0 +1,20 @@
+[paket]
+tanim   = Yaygın olarak kullanılan düşük düzeyli ağ işlevleri için API sağlayan bir kitaplık
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/libnet/libnet
+
+[gerek]
+derleme = iproute2
+calisma = 
+
+[kaynak]
+git     = $url
+
+[derle]
+betik   = autoreconf -vfi
+tip     = gnu
+
+[pakur]
+tip     = gnu
+
