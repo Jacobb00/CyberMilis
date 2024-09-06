@@ -15,7 +15,7 @@ Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı ku
 - Pencere yöneticisi(Yığın): [labwc](https://github.com/labwc/labwc)
 - Panel : [waybar](https://github.com/Alexays/Waybar)
 - Menü: [nwg-drawer](https://github.com/nwg-piotr/nwg-drawer)
-- Giriş yöneticisi arayüzü:[milis-greeter](https://gitlab.com/milisarge/milis-greeter)
+- Giriş yöneticisi arayüzü:[milis-greeter](https://gitlab.com/milislinux/milis-greeter)
 - Giriş yöneticisi arkaucu:[greetd](https://sr.ht/~kennylevinsen/greetd)
 - Oturum yöneticisi: [seatd](https://git.sr.ht/~kennylevinsen/seatd)
 - Bildirim sunucusu: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
@@ -34,7 +34,7 @@ Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı ku
 - Medya oynatıcısı: [celluloid](https://celluloid-player.github.io)
 - Tema ve simge seti: [milis-gtk-theme](https://github.com/sonakinci41/milis-gtk-theme),[milis-simge](https://github.com/sonakinci41/Milis-Simge)
 - Resim gösterici: [resimlik](https://gitlab.com/milislinux/milis23/src/branch/master/bin/resimlik)
-- Ekran boyutlandırma: [ayar merkezi](https://gitlab.com/milislinux/ayguciui)
+- Ekran boyutlandırma: [ayar merkezi](https://gitlab.com/milislinux/ayguci)
 - Ekran parlaklık: [light](https://github.com/haikarainen/light)
 - Ekran kitleme: [gtklock](https://github.com/jovanlanik/gtklock)
 - Ekran kayıt edici: [wf-recorder](https://github.com/ammen99/wf-recorder)
@@ -46,7 +46,7 @@ Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı ku
 - Pano uygulaması: [wf-clipboard](https://github.com/bugaevc/wl-clipboard)
 - Takvim yöneticisi: [osmo](https://osmo-pim.sourceforge.net)
 - Servis yöneticisi: [mservice](https://gitlab.com/milislinux/mservice)
-- Paket yönetici arayüzü: [mservice](https://gitlab.com/milislinux/mpsui)
+- Paket yönetici arayüzü: [mpsui](https://gitlab.com/milislinux/mpsui)
 
 #### Masaüstü Ortamının Ayarlanması
 
