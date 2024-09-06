@@ -1,0 +1,8 @@
+libgnutls.so.30
+libprotobuf-c.so.1
+libnl-3.so.200
+libnet.so.9
+libc.so.6
+ld-linux-x86-64.so.2
+libbsd.so.0
+libbpf.so.1

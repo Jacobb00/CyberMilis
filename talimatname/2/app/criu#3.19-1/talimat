@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://criu.org/
 
 [gerek]
-derleme = protobuf libnftnl libdrm gnutls python libbsd libnet libbpf
+derleme = protobuf libnftnl libdrm gnutls python libbsd libnet libbpf libnl
 calisma =
 
 [kaynak]
@@ -15,21 +15,24 @@ calisma =
 1     = 990cdd147cb670a5d5d14216c2b5c2fc2b9a53ef19396569a6413807ba2a6aa2
 
 [derle]
-betik = python3 -m pip install -U pip
+;betik = python3 -m pip install -U pip
 betik = export CFLAGS=$(echo "$CFLAGS" | sed 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g')
 betik = sed -i 's/.PHONY: docs//g' Makefile
 betik = sed -i 's/install-man install-lib/install-lib/g' Makefile.install
 ;betik = sed -i 's/lib-a lib-py/lib-a /g' lib/Makefile
-betik = make criu crit amdgpu_plugin
-betik = pip3 install build
-betik = pip3 install installer
-betik = pip3 install wheel
-betik = pip3 install protobuf
-betik = python -m build --wheel --no-isolation crit
-betik = python -m build --wheel --no-isolation --skip-dependency-check lib
+betik = make criu amdgpu_plugin
+;betik = make criu crit amdgpu_plugin
+;betik = pip3 install build
+;betik = pip3 install installer
+;betik = pip3 install wheel
+;betik = pip3 install protobuf
+;betik = python -m build --wheel --no-isolation crit
+;betik = python -m build --wheel --no-isolation --skip-dependency-check lib
 
 [pakur]
-betik = make DESTDIR="$PKG" PREFIX=/usr SBINDIR=/usr/bin LIBDIR=/usr/lib LIBEXECDIR=/usr/lib install
-betik = python -m installer --destdir="$PKG" crit/dist/*.whl
-betik = python -m installer --destdir="$PKG" lib/dist/*.whl
+;betik = make DESTDIR="$PKG" PREFIX=/usr SBINDIR=/usr/bin LIBDIR=/usr/lib LIBEXECDIR=/usr/lib install
+betik = make DESTDIR="$PKG" PREFIX=/usr SBINDIR=/usr/bin LIBDIR=/usr/lib LIBEXECDIR=/usr/lib install-criu
+;betik = python -m installer --destdir="$PKG" crit/dist/*.whl
+;betik = python -m installer --destdir="$PKG" lib/dist/*.whl
 betik = rm -rf "$PKG/usr/include/compel/common/asm"
+
