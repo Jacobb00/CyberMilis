@@ -9,7 +9,7 @@ derleme = meson wayland glib pam gtk3 gtk-layer-shell gobject-introspection vala
 calisma =
 
 [kaynak]
-1     = ${url}/archive/refs/tags/v${surum}.tar.gz::$isim-$surum.tar.gz
+git   = ${url}
 2     = https://github.com/Cu3PO42/gtk-session-lock/archive/refs/tags/v0.2.0.tar.gz::gtk-session-lock-0.2.0.tar.gz
 dosya = gtklock-tr.po
 
@@ -20,10 +20,9 @@ export  = CFLAGS="$CFLAGS -I$PKG/usr/include/gtk-session-lock"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
 meson   = gtk-session-lock-0.2.0
-;betik   = sed -i 's/Unlock/Kilidi Aç/g' res/gtklock.ui
-;betik   = sed -i 's/Password/Parola/g' res/gtklock.ui
+betik   = cd $SRC/gtklock-$surum
 betik   = echo "tr" >> po/LINGUAS
-betik   = cp $SRC/gtklock-tr.po po/
+betik   = cp $SRC/gtklock-tr.po po/tr.po
 ekconf  = -Dman-pages=disabled
 tip     = meson
 
