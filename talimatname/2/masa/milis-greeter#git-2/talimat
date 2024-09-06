@@ -13,7 +13,7 @@ calisma = greetd
 git     = $url 
 
 [derle]
-betik   = go_setup.sh 1.23.2
+betik   = go_setup.sh 1.22.3
 betik   = export PATH=$PATH:$HOME/.local/go/bin
 tip     = go
 
