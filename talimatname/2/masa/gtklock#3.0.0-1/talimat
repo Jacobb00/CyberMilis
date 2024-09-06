@@ -1,0 +1,27 @@
+[paket]
+tanim   = Wayland için GTK tabanlı kilit ekranı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/jovanlanik/gtklock
+
+[gerek]
+derleme = meson wayland glib pam gtk3 gtk-layer-shell gobject-introspection
+calisma =
+
+[kaynak]
+1     = ${url}/archive/refs/tags/v${surum}.tar.gz::$isim-$surum.tar.gz
+2     = https://github.com/Cu3PO42/gtk-session-lock/archive/refs/tags/v0.0.2.tar.gz::gtk-session-lock-0.0.2.tar.gz
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+meson   = gtk-session-lock-0.0.2
+betik	= sed -i 's/Unlock/Kilidi Aç/g' res/gtklock.ui
+betik	= sed -i 's/Password/Parola/g' res/gtklock.ui
+ekconf	= -Dman-pages=disabled
+tip		= meson
+
+[pakur]
+tip     = meson
