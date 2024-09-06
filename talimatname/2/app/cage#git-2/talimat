@@ -5,15 +5,13 @@ grup    = sistem
 url     = https://www.hjdskes.nl/projects/cage
 
 [gerek]
-derleme = meson wayland wayland-protocols wlroots
+derleme = meson wayland wayland-protocols wayfire
 calisma = 
 
 [kaynak]
-git     = https://github.com/kennylevinsen/cage
+git    = https://github.com/cage-kiosk/cage
 
 [derle]
-betik  = git checkout scene_upgrade
-ekconf = -Dxwayland=disabled -Dman-pages=disabled
 meson  = cage-git
 
 [pakur]
