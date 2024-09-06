@@ -12,7 +12,7 @@ calisma =
 1       = https://wayland.freedesktop.org/releases/${isim}-${surum}.tar.xz
 
 [sha256]
-1       = ea1566ab4f5ffce7e9fd4f7a1fca5b30caae4d50023bf459213994094e02b29a
+1       = 47fd0325b0b948e9b003a38fdf4eb3a8581f3fdc740b8932b35ae8793bf4e4a5
 
 [derle]
 betik   = sed -i "/subdir('tests')/d" meson.build

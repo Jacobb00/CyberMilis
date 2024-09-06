@@ -5,25 +5,31 @@ grup    = sistem
 url     = https://criu.org/
 
 [gerek]
-derleme = protobuf libnftnl libdrm gnutls python libbsd libnet libbpf 
-calisma = 
+derleme = protobuf libnftnl libdrm gnutls python libbsd libnet libbpf
+calisma =
 
 [kaynak]
 1       = https://github.com/checkpoint-restore/criu/archive/refs/tags/v$surum.tar.gz::$isim-$surum.tar.gz
 
-;[sha256]
-;1      = 6a9997981c9fe4730c848ce59346b3a22fad69b803607cb67a3f6ec0557fa474
+[sha256]
+1     = 990cdd147cb670a5d5d14216c2b5c2fc2b9a53ef19396569a6413807ba2a6aa2
 
 [derle]
-betik =	export CFLAGS=$(echo "$CFLAGS" | sed 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g')
+betik = python3 -m pip install -U pip
+betik = export CFLAGS=$(echo "$CFLAGS" | sed 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g')
+betik = sed -i 's/.PHONY: docs//g' Makefile
+betik = sed -i 's/install-man install-lib/install-lib/g' Makefile.install
+;betik = sed -i 's/lib-a lib-py/lib-a /g' lib/Makefile
 betik = make criu crit amdgpu_plugin
+betik = pip3 install build
+betik = pip3 install installer
+betik = pip3 install wheel
+betik = pip3 install protobuf
 betik = python -m build --wheel --no-isolation crit
 betik = python -m build --wheel --no-isolation --skip-dependency-check lib
 
 [pakur]
-betik =	make DESTDIR="$PKG" PREFIX=/usr SBINDIR=/usr/bin LIBDIR=/usr/lib LIBEXECDIR=/usr/lib install
+betik = make DESTDIR="$PKG" PREFIX=/usr SBINDIR=/usr/bin LIBDIR=/usr/lib LIBEXECDIR=/usr/lib install
 betik = python -m installer --destdir="$PKG" crit/dist/*.whl
 betik = python -m installer --destdir="$PKG" lib/dist/*.whl
-betik = rm -r "$PKG/usr/include/compel/common/asm"
-
-
+betik = rm -rf "$PKG/usr/include/compel/common/asm"
