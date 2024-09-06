@@ -5,11 +5,11 @@ grup    = kütüphane
 url     = https://wayland.freedesktop.org/
 
 [gerek]
-derleme = meson wayland wayland-protocols libpng libxkbcommon pixman pango cairo libwebp lcms2 pipewrire
+derleme = cmake meson wayland wayland-protocols libpng libxkbcommon pixman pango cairo libwebp lcms2 pipewrire libdisplay-info
 calisma =
 
 [kaynak]
-1       = https://wayland.freedesktop.org/releases/${isim}-${surum}.tar.xz
+1       = https://gitlab.freedesktop.org/wayland/weston/-/releases/$surum/downloads/weston-$surum.tar.xz
 
 [sha256]
 1       = 47fd0325b0b948e9b003a38fdf4eb3a8581f3fdc740b8932b35ae8793bf4e4a5
