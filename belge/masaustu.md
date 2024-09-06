@@ -57,3 +57,13 @@ Bu dosya içinde yer alan ilgili ayar sekmeleri elle veya ayar merkezi yardımı
 Bu ayarlar imaj üretilirken */etc/skel* altında gelir ve kullanıcı *.config* dizini altına gerekli kontroller yapılarak kopyalanır.
 Bu ayarların kontrolü her oturum açıldığında yapılmaktadır. 
 Kullanıcı masaüstü ayarlarını varsayılan ayarlara döndürmek için ilgili ayar dizini silinerek oturum yeniden başlatılır.
+
+#### Tercih Edilen Pencere Yöneticisini Ayarlama
+
+Birden fazla pencere yöneticisi kullanılma durumunda tercih edilenin giriş yöneticisinde ilk sırada gelmesi için;
+*.config/masa.ini* dosyasında *[desktop]* bölümü altındaki *masa1* anahtarı istenen değere ayarlanır.
+```
+[desktop]
+masa1 = labwc
+``` 
+Atanan değerin /usr/share/wayland-sessions altında bulunan oturum isimlerinde biri olması gerekmektedir.
