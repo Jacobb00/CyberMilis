@@ -2,7 +2,7 @@
 tanim   = Milis Linux konsol tabanlı giriş yöneticisi
 paketci = milisarge
 grup    = sistem
-url     = https://mls.akdeniz.edu.tr/git/milisarge/milis-greeter
+url     = https://gitlab.com/milislinux/milis-greeter
 arsiv   = $isim
 
 [gerek]
@@ -13,7 +13,7 @@ calisma = greetd
 git     = $url 
 
 [derle]
-betik   = go_setup.sh 1.20.6
+betik   = go_setup.sh 1.23.2
 betik   = export PATH=$PATH:$HOME/.local/go/bin
 tip     = go
 

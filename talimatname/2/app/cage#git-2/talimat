@@ -12,6 +12,7 @@ calisma =
 git    = https://github.com/cage-kiosk/cage
 
 [derle]
+ekconf = -Dman-pages=disabled
 meson  = cage-git
 
 [pakur]

@@ -1,1 +1,4 @@
-
+libc.so.6
+libwayland-server.so.0
+libwlroots.so.12
+libxkbcommon.so.0
