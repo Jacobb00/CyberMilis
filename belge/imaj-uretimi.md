@@ -76,7 +76,7 @@ update-ca-certificates --fresh && make-ca -g
 ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
 
-11- Minimal sistem için gerekli paket listesi kurulur.
+9- Minimal sistem için gerekli paket listesi kurulur.
 
 ```
 cd /opt
@@ -92,7 +92,7 @@ mps kur @ofis.liste
 mps kur udisks xfsprogs tmux limine
 ```
 
-12- Milis servis sistemi aşağıdaki yönergeye göre kurulur. /etc/init/system.ini kontrol edilir.
+10- Milis servis sistemi aşağıdaki yönergeye göre kurulur. /etc/init/system.ini kontrol edilir.
 
 ```
 #minimal sistem için
@@ -107,7 +107,7 @@ ipfs_setup.sh
 servis ekle ipfs
 ```
 
-13- MPS ile kurulacak Milis uygulamaları eklenir.
+11- MPS ile kurulacak Milis uygulamaları eklenir.
 
 ```
 mps yaz betik mservice https://gitlab.com/milislinux/mservice.git
@@ -120,21 +120,21 @@ servis aktif ayguci
 mps kur jc jq lshw acpi lm_sensors
 ```
 
-14- mls kullanıcısı oluşturulur.(Canlı masaüstü kullanımı için test kullanıcısı)
+12- mls kullanıcısı oluşturulur.(Canlı masaüstü kullanımı için test kullanıcısı)
 ```
 ko mls mls
 ```
 
-15- Canlı sistem için initramfs üretilir:
+13- Canlı sistem için initramfs üretilir:
 
 ```
 dracut -N --force --xz --add 'dmsquash-live pollcdrom' --omit systemd /boot/initrd_live `ls /usr/lib/modules`
 rm /boot/initrd.img-*
 ```
 
-16- /etc/mps.ini , /etc/hosts ayarları ve kırık bileşen(revdep-rebuild) kontrol edilir.
+14- /etc/mps.ini , /etc/hosts ayarları ve kırık bileşen(revdep-rebuild) kontrol edilir.
 
-17- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
+15- Önbellekteki paket arşivleri temizlenir, ortamdan çıkılır ve komut tarihçesi temizlenir:
 
 ```
 exit
@@ -143,14 +143,14 @@ rm -rf $MSYS//tmp/*
 rm -f $MSYS/root/.bash_history
 ```
 
-18- İmajın hazırlanacağı dizinin altına girilir ve imaj üretici indirilir:
+16- İmajın hazırlanacağı dizinin altına girilir ve imaj üretici indirilir:
 
 ```
 cd /opt
 git clone https://gitlab.com/milislinux/imaj-uretici23
 ```
 
-19- Imaj oluşturma betiğiyle imaj oluşturma işlemi başlatılır:
+17- Imaj oluşturma betiğiyle imaj oluşturma işlemi başlatılır:
 
 ```
 cd /opt/imaj-uretici23
