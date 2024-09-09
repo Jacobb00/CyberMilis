@@ -1,0 +1,10 @@
+libplds4.so
+libnspr4.so
+libssl3.so
+libnss3.so
+libz.so.1
+libsqlite3.so.0
+libnssutil3.so
+libplc4.so
+libsmime3.so
+libc.so.6
