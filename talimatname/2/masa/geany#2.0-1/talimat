@@ -12,7 +12,7 @@ calisma =
 bz2     = https://download.${isim}.org
 
 [sha256]
-1       = abff176e4d48bea35ee53037c49c82f90b6d4c23e69aed6e4a5ca8ccd3aad546
+1       = 565b4cd2f0311c1e3a167ec71c4a32dba642e0fe554ae5bb6b8177b7a74ccc92
 
 [derle]
 ekconf  = --enable-vte 
