@@ -103,8 +103,6 @@ mps kur udisks xfsprogs tmux limine
 
 # ek servisler
 servis ekle bluetooth
-ipfs_setup.sh
-servis ekle ipfs
 ```
 
 11- MPS ile kurulacak Milis uygulamaları eklenir.
@@ -114,7 +112,8 @@ mps yaz betik mservice https://gitlab.com/milislinux/mservice.git
 mps yaz betik ayguci https://gitlab.com/milislinux/ayguci.git
 mps yaz betik mpsui https://gitlab.com/milislinux/mpsui.git
 mps gun -B
-#
+
+# Ayguci Ayar Merkezi
 servis ekle ayguci
 servis aktif ayguci
 mps kur jc jq lshw acpi lm_sensors
