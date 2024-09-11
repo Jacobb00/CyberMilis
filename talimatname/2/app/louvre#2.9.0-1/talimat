@@ -22,7 +22,7 @@ betik   = git clone https://github.com/CuarzoSoftware/SRM $SRC/srm
 ;betik   = cd $SRC/srm;git checkout devel;cd -
 meson   = srm/src
 betik   = cd $SRC/louvre-$surum 
-;betik   = git checkout 2.8.0
+;betik   = git checkout 2.9.0
 meson   = louvre-$surum/src
 
 [pakur]
