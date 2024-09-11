@@ -12,7 +12,7 @@ calisma =
 gz     	= https://github.com/eudev-project/eudev/releases/download/v${surum}
 
 [sha256]
-1       = ccdd64ec3c381d3c3ed0e99d2e70d1f62988c7763de89ca7bdffafa5eacb9ad8
+1       = 8da4319102f24abbf7fff5ce9c416af848df163b29590e666d334cc1927f006f
 
 [derle]
 ekconf  = --with-rootprefix=/usr --enable-kmod --enable-split-usr
