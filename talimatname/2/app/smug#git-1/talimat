@@ -1,0 +1,22 @@
+[paket]
+tanim   = Tmux oturum yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/ivaaaan/smug
+arsiv   = $isim
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+git     = $url 
+
+[derle]
+betik   = go_setup.sh 1.22.3
+betik   = export PATH=$PATH:$HOME/.local/go/bin
+tip     = go
+
+[pakur]
+tip     = bin
+	

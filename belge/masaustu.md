@@ -63,7 +63,10 @@ Kullanıcı masaüstü ayarlarını varsayılan ayarlara döndürmek için ilgil
 Birden fazla pencere yöneticisi kullanılma durumunda tercih edilenin giriş yöneticisinde ilk sırada gelmesi için;
 *.config/masa.ini* dosyasında *[desktop]* bölümü altındaki *masa1* anahtarı istenen değere ayarlanır.
 ```
+# 1.yol dosyadan
 [desktop]
 masa1 = labwc
+# 2.yol komutla
+dinit yaz desktop masa1 labwc
 ``` 
 Atanan değerin /usr/share/wayland-sessions altında bulunan oturum isimlerinde biri olması gerekmektedir.
