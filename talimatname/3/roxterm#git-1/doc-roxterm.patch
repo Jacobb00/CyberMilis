@@ -1,0 +1,36 @@
+--- /tmp/work/src/roxterm-git/meson.build	2024-09-12 20:09:06.026625147 +0300
++++ meson.build	2024-09-12 20:07:12.109963134 +0300
+@@ -34,17 +34,6 @@
+ meta_info = configure_file(input: 'roxterm.metainfo.xml.in',
+     output: 'roxterm.metainfo.xml', configuration: conf_data)
+ 
+-custom_target('roxterm.1', capture: true,
+-    input: roxterm_man_xml, output: 'roxterm.1',
+-    build_by_default: true,
+-    install: true, install_dir: get_option('mandir') / 'man1',
+-    command: ['xmltoman', '@INPUT@'])
+-custom_target('roxterm-config.1', capture: true,
+-    input: roxterm_config_man_xml, output: 'roxterm-config.1',
+-    build_by_default: true,
+-    install: true, install_dir: get_option('mandir') / 'man1',
+-    command: ['xmltoman', '@INPUT@'])
+-
+ # Stuff to be installed
+ dd = get_option('prefix') / get_option('datadir')
+ install_data('roxterm.desktop', install_dir: dd / 'applications')
+@@ -53,15 +42,5 @@
+              install_dir: dd / 'icons/hicolor/scalabale.apps')
+ install_subdir('Config', install_dir: dd / '/roxterm')
+ 
+-# Docs
+-install_emptydir(docdir)
+-foreach a: ['AUTHORS', 'Changes', 'COPYING', 'index.html', 'index.php',
+-    'NEWS', 'README']
+-    install_data('docs' / a, install_dir: docdir)
+-endforeach
+-foreach a: ['en', 'lib']
+-    install_subdir('docs' / a, install_dir: docdir)
+-endforeach
+-
+ subdir('src')
+ subdir('Config')
