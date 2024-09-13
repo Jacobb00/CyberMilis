@@ -1,19 +1,25 @@
---- /tmp/work/src/roxterm-git/src/session-file.c	2024-09-12 22:36:39.176263816 +0300
-+++ session-file.c	2024-09-12 22:36:28.199597598 +0300
-@@ -83,14 +83,14 @@
+--- /tmp/work/src/roxterm-git/src/session-file.c	2024-09-13 08:53:33.977027730 +0300
++++ session-file.c	2024-09-13 08:52:53.033694478 +0300
+@@ -82,19 +82,17 @@
+     const char *title = multi_tab_get_window_title(tab);
      char *cwd = roxterm_get_cwd(roxterm);
      const char *colour_scheme_name = roxterm_get_colour_scheme_name(roxterm);
-     char *colour_scheme_clause = colour_scheme_name ?
+-    char *colour_scheme_clause = colour_scheme_name ?
 -        g_strdup_printf("colour_scheme='%s' ", colour_scheme_name) : NULL;
-+        g_strdup_printf("colour_scheme='%s'\n ", colour_scheme_name) : NULL;
      char *s = g_markup_printf_escaped("<tab profile='%s'\n"
-             "        %scwd='%s'\n"
+-            "        %scwd='%s'\n"
++            "        colour_scheme='%s'\n"
++            "        cwd='%s'\n"
              "        title_template='%s' window_title='%s'\n"
              "        title_template_locked='%d'",
              roxterm_get_profile_name(roxterm),
--            cwd ? cwd : (cwd = g_get_current_dir()),
-             colour_scheme_clause ? colour_scheme_clause : "",
-+            cwd ? cwd : (cwd = g_get_current_dir()),
++            colour_scheme_name ? colour_scheme_name : "Default",
+             cwd ? cwd : (cwd = g_get_current_dir()),
+-            colour_scheme_clause ? colour_scheme_clause : "",
              name ? name : "",
              title ? title : "",
              multi_tab_get_title_template_locked(tab));
+-    g_free(colour_scheme_clause);
+ 
+     SLOG("Saving tab with window_title '%s', cwd %s", title, cwd);
+     fprintf(fp, "    %s current='%d'%s>\n", s,

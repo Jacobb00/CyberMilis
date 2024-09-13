@@ -5,23 +5,30 @@ grup    = sistem
 url     = https://github.com/realh/roxterm
 
 [gerek]
-derleme = 
+derleme = meson
 calisma =
 
 [kaynak]
 git     = $url
 dosya   = doc-roxterm.patch
 dosya   = roxterm-session-save.patch
+dosya   = roxterm-cmake.patch
 
 [derle]
-betik   = git checkout meson; 
+;betik   = patch < $SRC/roxterm-cmake.patch
+betik   = git checkout meson
 betik   = patch < $SRC/doc-roxterm.patch
 betik   = cd src;patch < $SRC/roxterm-session-save.patch
+;cmake   = $isim-git
+;betik   = sed -i s#/uk/co/realh#/usr/share#g gresources.xml
+;betik   = sed -i s#/uk/co/realh#/usr/share#g resources.h
 meson   = $isim-git
 
 [pakur]
+;betik   = echo 1
 betik   = rm -rf $PKG/roxterm
 betik   = install -Dm755 $SRC/build-roxterm-git/src/roxterm $PKG/usr/bin/roxterm
 betik   = install -Dm755 $SRC/build-roxterm-git/src/roxterm-config $PKG/usr/bin/roxterm-config
 betik   = install -Dm644 $SRC/build-roxterm-git/roxterm.metainfo.xml $PKG/usr/share/metainfo/roxterm.metainfo.xml 
+betik   = install -Dm644 $SRC/roxterm-git/src/roxterm-config.ui $PKG/usr/share/roxterm/roxterm-config.ui
 
