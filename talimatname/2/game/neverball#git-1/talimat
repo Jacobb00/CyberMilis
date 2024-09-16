@@ -1,0 +1,18 @@
+[paket]
+tanim   = Super Monkey Balla benzer bulmaca/aksiyon oyunu
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.neverball.org
+
+[gerek]
+derleme = libpng libjpeg-turbo xiph sdl2
+calisma = 
+
+[kaynak]
+git     = https://github.com/Neverball/neverball
+
+[derle]
+betik   = make DATADIR=/usr/share/neverball LOCALEDIR=/usr/share/locale CPPFLAGS="$CPPFLAGS -DNDEBUG" CFLAGS="$CFLAGS"
+
+[pakur]
+dosya   = pakur.sh
