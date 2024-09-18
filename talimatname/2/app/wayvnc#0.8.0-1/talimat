@@ -12,7 +12,7 @@ calisma =
 1       = https://github.com/any1/wayvnc/archive/refs/tags/v$surum.tar.gz::wayvnc-$surum.tar.gz
 2       = https://github.com/any1/aml/archive/refs/tags/v0.3.0.tar.gz::aml-0.3.0.tar.gz
 3       = https://github.com/any1/neatvnc/archive/refs/tags/v0.8.1.tar.gz::neatvnc-0.8.1.tar.gz
-4       = https://github.com/any1/wlvncc/archive/174ad8aef7978c242861a66c481a7ca25dc04e37::vlvncc-174ad8aef7978c242861a66c481a7ca25dc04e37.tar.gz
+4       = https://github.com/any1/wlvncc/archive/174ad8aef7978c242861a66c481a7ca25dc04e37.tar.gz::vlvncc-174ad8aef7978c242861a66c481a7ca25dc04e37.tar.gz
 
 ;[sha256]
 ;1       = 95cdcfd241018215b9290705f6af7671d4b2701b3aba62e7e2d7837e94a027ad
