@@ -81,9 +81,9 @@ ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ```
 cd /opt
 mps gun
-mps sor -gtl minimal > minimal.liste
-mps sor -gtl masa > masa.liste
-mps sor -gtl ofis > ofis.liste
+mps sor -gtl minimal | awk '{print $1}' > minimal.liste
+mps sor -gtl masa | awk '{print $1}' > masa.liste
+mps sor -gtl ofis | awk '{print $1}' > ofis.liste
 mps kur @minimal.liste
 mps kur @masa.liste
 mps kur @ofis.liste
