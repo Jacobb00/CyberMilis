@@ -1,7 +1,8 @@
 ### Uzak Masaüstü Bağlantısı
 
-Şu an için iki Milis Linux masaüstü sistemi arasında [wayvnc](https://github.com/any1/wayvnc) uygulaması üzerinden uzak masaüstü bağlantısı sağlanmaktadır.
-Milis Linux 2.1 kullandığı Wlroots tabanlı pencere yöneticisinden dolayı her VNC uygulaması destekleyememektedir.
+Milis Linux masaüstüne [wayvnc](https://github.com/any1/wayvnc) uygulaması üzerinden uzak masaüstü bağlantısı sağlanmaktadır.
+Milis Linux 2.3 kullandığı Wlroots tabanlı pencere yöneticisinden dolayı her VNC uygulaması destekleyememektedir.
+Bu yöntem sadece Wlroots tabanlı pencere yönetici oturumları (labwc, wayfire) için geçerlidir.
 Bağlantı için **wayvnc** uygulaması kurulmalıdır. 
 
 ```
