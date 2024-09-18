@@ -12,11 +12,12 @@ calisma =
 1       = https://github.com/any1/wayvnc/archive/refs/tags/v$surum.tar.gz::wayvnc-$surum.tar.gz
 2       = https://github.com/any1/aml/archive/refs/tags/v0.3.0.tar.gz::aml-0.3.0.tar.gz
 3       = https://github.com/any1/neatvnc/archive/refs/tags/v0.7.0.tar.gz::neatvnc-0.7.0.tar.gz
+git     = https://github.com/any1/wlvncc
 
-[sha256]
-1       = 95cdcfd241018215b9290705f6af7671d4b2701b3aba62e7e2d7837e94a027ad
-2       = 38c015e746ed42483107a1b711552cc3fb13a4d71993948d27b19b559746fcf7
-3       = cba1ca1689d4031faf37bb7a184559106b6d2f462ae8890a9fa16e3022ca1eb0
+;[sha256]
+;1       = 95cdcfd241018215b9290705f6af7671d4b2701b3aba62e7e2d7837e94a027ad
+;2       = 38c015e746ed42483107a1b711552cc3fb13a4d71993948d27b19b559746fcf7
+;3       = cba1ca1689d4031faf37bb7a184559106b6d2f462ae8890a9fa16e3022ca1eb0
 
 [derle]
 export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
@@ -26,7 +27,8 @@ export  = CPPFLAGS="$CFLAGS"
 export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
 meson   = aml-0.3.0
-meson   = neatvnc-0.7.0
+meson   = neatvnc-0.8.1
+meson   = wlvncc
 ekconf  = -Dman-pages=disabled -Dpam=enabled
 meson   = wayvnc-$surum
 
