@@ -11,7 +11,7 @@ calisma =
 [kaynak]
 1       = https://github.com/any1/wayvnc/archive/refs/tags/v$surum.tar.gz::wayvnc-$surum.tar.gz
 2       = https://github.com/any1/aml/archive/refs/tags/v0.3.0.tar.gz::aml-0.3.0.tar.gz
-3       = https://github.com/any1/neatvnc/archive/refs/tags/v0.7.0.tar.gz::neatvnc-0.8.1.tar.gz
+3       = https://github.com/any1/neatvnc/archive/refs/tags/v0.8.1.tar.gz::neatvnc-0.8.1.tar.gz
 git     = https://github.com/any1/wlvncc
 
 ;[sha256]
