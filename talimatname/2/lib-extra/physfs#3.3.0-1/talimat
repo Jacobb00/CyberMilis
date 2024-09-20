@@ -1,0 +1,23 @@
+[paket]
+tanim   = Çeşitli arşivlere soyut erişim sağlayan kütüphane
+paketci = milisarge
+grup    = kütüphane
+url     = http://icculus.org/physfs/
+arsiv   = $isim-b1a2f1f18bce3dc0dea29314b5d7fb887d4c10ae
+
+[gerek]
+derleme = cmake
+calisma = 
+
+[kaynak]
+1      = https://github.com/icculus/physfs/archive/b1a2f1f18bce3dc0dea29314b5d7fb887d4c10ae.tar.gz::physfs-${surum}-b1a2f1f18.tar.gz
+
+;[sha256]
+;1      = 34abf8c4b94ce2f2e4653ab40a6cdea96cae3869c46821b06fb12bb9ab37c566
+
+[derle]
+ekconf = -DPHYSFS_BUILD_TEST=OFF -DPHYSFS_BUILD_STATIC=OFF
+tip    =  cmake
+
+[pakur]
+tip    = cmake
