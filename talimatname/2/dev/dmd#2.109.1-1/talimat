@@ -25,8 +25,7 @@ betik  = $HOST_DMD -ofgenerated/build -g compiler/src/build.d -release -O
 betik  = generated/build BUILD=release HOST_DMD="$HOST_DMD" CXX="c++" ENABLE_RELEASE=1 DFLAGS="$DFLAGS" dmd -v $MAKEFLAGS
 betik  = cd $SRC/dmd/druntime
 betik  = make -f posix.mak DMD=$GENERATED/linux/release/*/dmd BUILD=release ENABLE_RELEASE=1 PIC=1
-betik  = ln -s 
-betik  = cd $SRC/phobos-$surum
+betik  = cd $SRC/phobos
 betik  = make -f posix.mak DMD=$GENERATED/linux/release/*/dmd BUILD=release ENABLE_RELEASE=1 PIC=1
 
 [pakur]
