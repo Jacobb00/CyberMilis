@@ -46,9 +46,16 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 - `alire_setup.sh $ALIRE-SÜRÜM` ile istenen `alire` paket yöneticisi sürüm kurulumu yapılır.
 - `alire` kullanılarak Ada derleyicisi kurulur.
 
+#### PHP
+- `php` (8.x) paketi kurulur.
+
 #### Erlang, Elixir
 - `erlang` ve `elixir` paketleri kurulur.
 - Paket yöneticisi için `rebar3_setup.sh` kullanılır.
+
+#### Nodejs
+- `nodejs` paketleri kurulur.
+- Paket yöneticisi `npm` paketin içinde gelmektedir.
 
 #### V
 - `vlang_setup.sh` ile kurulumu yapılır.
@@ -58,3 +65,6 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 - `gleam_setup.sh $GLEAM-SÜRÜM` ile istenen sürüm kurulumu yapılır.
 - `/usr/local/bin/` altına kurulur.
 - `erlang` paketi de otomatik kurulur.
+
+#### Perl
+- Perl 5.x sürümü kurulu gelmektedir.
