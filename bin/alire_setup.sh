@@ -1,5 +1,5 @@
 #!/bin/sh
-# Milis Linux Hızlı Go Derleyici Kurucu 2022
+# Milis Linux Hızlı Alire-Ada Derleyici Kurucu 2024
 [ -z $1 ] && exit 1
 
 # 2.0.1
