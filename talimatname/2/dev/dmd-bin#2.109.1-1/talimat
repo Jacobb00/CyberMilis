@@ -1,0 +1,23 @@
+[paket]
+tanim   = D programlama dili araçları - Derleme için hazır paket
+paketci = milisarge
+grup    = geliştirme
+url     = https://www.dlang.org
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1 = https://archlinux.org/packages/extra/x86_64/dmd/download::dmd-$surum-arch.tar.zstd
+2 = https://archlinux.org/packages/extra/x86_64/libphobos/download::libphobos-$surum-arch.tar.zstd
+
+[derle]
+betik  = echo "derleme yok"
+
+[pakur]
+nostrip = 1
+betik  = cd $SRC;cp -r $SRC/usr $PKG/
+betik  = cp -r $SRC/etc $PKG/
+betik  = rm -rf  $PKG/usr/share
+

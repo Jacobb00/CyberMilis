@@ -1,0 +1,42 @@
+[paket]
+tanim   = D programlama dili araçları
+paketci = milisarge
+grup    = geliştirme
+url     = https://www.dlang.org
+
+[gerek]
+derleme = dmd-bin
+calisma = 
+
+[kaynak]
+1 = https://github.com/dlang/dmd/archive/refs/tags/v$surum.tar.gz::dmd-$surum.tar.gz
+2 = https://github.com/dlang/phobos/archive/refs/tags/v2.109.1.tar.gz::$libphobos-$surum.tar.gz
+dosya = dmd.conf
+
+[derle]
+;betik  = export DFLAGS="-link-defaultlib-shared=false $(echo -ne $LDFLAGS | cut -d\" -f2 | tail -c+4 | sed -e "s/-Wl,/-L=/g" -e "s/,/ -L=/g" -e "s/-flto=auto/--flto=full/")" 
+betik  = cd $SRC;mv dmd-$surum dmd;mv phobos-$surum phobos
+betik  = export HOST_DMD=dmd
+betik  = cd $SRC/dmd
+export = GENERATED=$SRC/dmd/generated
+betik  = mkdir generated
+betik  = $HOST_DMD -ofgenerated/build -g compiler/src/build.d -release -O
+betik  = generated/build BUILD=release HOST_DMD="$HOST_DMD" CXX="c++" ENABLE_RELEASE=1 DFLAGS="$DFLAGS" dmd -v $MAKEFLAGS
+betik  = cd $SRC/dmd/druntime
+betik  = make -f posix.mak DMD=$GENERATED/linux/release/*/dmd BUILD=release ENABLE_RELEASE=1 PIC=1
+betik  = ln -s 
+betik  = cd $SRC/phobos-$surum
+betik  = make -f posix.mak DMD=$GENERATED/linux/release/*/dmd BUILD=release ENABLE_RELEASE=1 PIC=1
+
+[pakur]
+betik  = cd $SRC/dmd
+betik  = install -Dm755 $SRC/dmd/generated/linux/release/*/dmd $PKG/usr/bin/dmd
+betik  = mkdir -p $PKG/etc
+betik  = install -Dm644 $SRC/dmd.conf $PKG/etc/dmd.conf
+betik  = mkdir -p $PKG/usr/lib
+betik  = cp -P $(find $SRC/dmd/generated/linux/release/*/ \( -iname "*.a" -a \! -iname "*.so.a" \) -o \( -iname "*.so*" -a \! -iname "*.o" -a \! -iname "*.a" \) ) $PKG/usr/lib
+betik  = cp -P $(find $SRC/phobos/generated/linux/release/ \( -iname "*.a" -a \! -iname "*.so.a" \) -o \( -iname "*.so*" -a \! -iname "*.o" -a \! -iname "*.a" \) ) $PKG/usr/lib
+betik  = mkdir -p $PKG/usr/include/dlang/dmd
+betik  = cp -r $SRC/phobos/{*.d,etc,std} $PKG/usr/include/dlang/dmd
+betik  = cp -r $SRC/dmd/druntime/import/* $PKG/usr/include/dlang/dmd/
+

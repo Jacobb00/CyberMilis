@@ -6,7 +6,7 @@ url     = https://colobot.info/
 arsiv   = colobot-colobot-gold-${surum}-alpha
 
 [gerek]
-derleme = cmake mesa librsvg boost openal libsndfile xiph sdl2 sdl2-extra physfs
+derleme = cmake mesa librsvg boost openal libsndfile xiph sdl2 sdl2-extra physfs python
 calisma =
 
 [kaynak]
