@@ -1,0 +1,23 @@
+[paket]
+tanim   = VNC sunucusu veya istemci işlevselliğini kolayca uygulamak için C kitaplıkları
+paketci = milisarge
+grup    = kütüphane
+url     = https://libvnc.github.io/
+
+[gerek]
+derleme = cmake libjpeg-turbo libpng openssl
+calisma = 
+
+[kaynak]
+1 = https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$surum.tar.gz
+
+[sha256]
+1 = 83104e4f7e28b02f8bf6b010d69b626fae591f887e949816305daebae527c9a5
+
+[derle]
+ekconf = -DWITH_OPENSSL=ON -DWITH_GNUTLS=OFF -DWITH_SYSTEMD=OFF
+cmake  = $isim-LibVNCServer-$surum
+
+[pakur]
+betik  = echo 1 
+

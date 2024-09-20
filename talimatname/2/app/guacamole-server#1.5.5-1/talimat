@@ -5,20 +5,18 @@ grup    = sistem
 url     = http://guacamole.sourceforge.net/
 
 [gerek]
-derleme = pango openssl xiph libssh2
+derleme = pango openssl xiph libssh2 libvncserver libwebp
 calisma = 
 
 [kaynak]
-1 = https://dlcdn.apache.org/guacamole/1.5.5/source/guacamole-server-$surum.tar.gz
+1     = https://dlcdn.apache.org/guacamole/1.5.5/source/guacamole-server-$surum.tar.gz
 dosya = guacd.conf
 
 [derle]
 betik = ./configure --prefix=/usr --sbindir=/usr/bin CPPFLAGS="-Wno-error=pedantic"
 betik = make
 
-
 [pakur]
-betik =	make DESTDIR="$PKG" install
-betik =	mkdir -p "$PKG"/etc/guacamole
-betik =	cp -f ../guacd.conf "$PKG"/etc/guacamole/
-
+betik =	make DESTDIR=${PKG} install
+betik =	mkdir -p ${PKG}/etc/guacamole
+betik =	cp -f $SRC/guacd.conf ${PKG}/etc/guacamole/
