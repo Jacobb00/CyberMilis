@@ -9,8 +9,9 @@ derleme = dmd-bin
 calisma = 
 
 [kaynak]
-1 = https://github.com/dlang/dmd/archive/refs/tags/v$surum.tar.gz::dmd-$surum.tar.gz
-2 = https://github.com/dlang/phobos/archive/refs/tags/v2.109.1.tar.gz::$libphobos-$surum.tar.gz
+1     = https://github.com/dlang/dmd/archive/refs/tags/v$surum.tar.gz::dmd-$surum.tar.gz
+2     = https://github.com/dlang/phobos/archive/refs/tags/v2.109.1.tar.gz::$libphobos-$surum.tar.gz
+3     = https://github.com/dlang/dub/releases/download/v1.38.1/dub-v1.38.1-linux-x86_64.tar.gz
 dosya = dmd.conf
 
 [derle]
@@ -39,4 +40,4 @@ betik  = cp -P $(find $SRC/phobos/generated/linux/release/ \( -iname "*.a" -a \!
 betik  = mkdir -p $PKG/usr/include/dlang/dmd
 betik  = cp -r $SRC/phobos/{*.d,etc,std} $PKG/usr/include/dlang/dmd
 betik  = cp -r $SRC/dmd/druntime/import/* $PKG/usr/include/dlang/dmd/
-
+betik  = install -Dm755 $SRC/dub $PKG/usr/bin/dub
