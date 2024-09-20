@@ -1,0 +1,26 @@
+[paket]
+tanim   = Birimlerinizi programlayabileceğiniz gerçek zamanlı strateji oyunu
+paketci = milisarge
+grup    = oyun
+url     = https://colobot.info/
+arsiv   = colobot-colobot-gold-${surum}-alpha
+
+[gerek]
+derleme = cmake mesa librsvg boost openal libsndfile xiph sdl2 sdl2-extra physfs
+calisma =
+
+[kaynak]
+1       = https://github.com/colobot/colobot/archive/colobot-gold-${surum}-alpha.tar.gz
+2       = https://github.com/colobot/colobot-data/archive/colobot-gold-${surum}-alpha.tar.gz::colobot-data-$surum.tar.gz
+
+[sha256]
+1       = e2a6df3cb5e713da6ac13b5b4cb9fe9d22dbffab3b7163a886060c38a0d0639e
+
+[derle]
+ekconf  = -DCOLOBOT_INSTALL_BIN_DIR=/usr/bin -DOpenGL_GL_PREFERENCE=GLVND
+tip     = cmake
+ekconf  = -DMUSIC=0
+cmake   = colobot-data-colobot-gold-${surum}-alpha
+
+[pakur]
+tip     = cmake

@@ -1,0 +1,15 @@
+libstdc++.so.6
+libm.so.6
+libgcc_s.so.1
+libc.so.6
+libboost_filesystem.so.1.83.0
+libsndfile.so.1
+libphysfs.so.1
+libSDL2-2.0.so.0
+libOpenGL.so.0
+libGLEW.so.2.2
+libCBot.so
+libSDL2_ttf-2.0.so.0
+libopenal.so.1
+libSDL2_image-2.0.so.0
+libpng16.so.16
