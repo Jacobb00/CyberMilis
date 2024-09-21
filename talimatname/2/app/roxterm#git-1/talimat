@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://github.com/realh/roxterm
 
 [gerek]
-derleme = meson
+derleme = meson gtk3 vte3 dbus-glib
 calisma =
 
 [kaynak]
