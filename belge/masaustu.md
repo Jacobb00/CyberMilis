@@ -90,7 +90,7 @@ Her açtığınız dosya sekmesi de otomatik kayıt edilir.
 Varsayılan olarak Sakura uçbirim uygulaması kullanılmaktadır.
 Şu an için Sakura uygulamasının oturum yönetim özelliği yoktur.
 Sakura ile ancak Tmux uygulamasının desteği kullanılarak terminal ortamları yönetilebilir.
-Bir diğer tercih te oturum ve profil yönetimine sahip olan Roxterm uygulamasının kullanılmasıdır.
+Bir diğer tercih ise oturum ve profil yönetimine sahip olan Roxterm uygulamasının kullanılmasıdır.
 Tmux ile de kullanılarak esnek bir uçbirim yönetimi sağlanabilir.
 Örnek bir tmux oturum başlatma:
 ```
