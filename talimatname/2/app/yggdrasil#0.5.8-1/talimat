@@ -1,0 +1,21 @@
+[paket]
+tanim   = Şifrelenmiş bir IPv6 özel ağ yapısı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/yggdrasil-network/yggdrasil-go
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1      = $url/archive/refs/tags/v$surum.tar.gz::$isim-$surum.tar.gz
+
+[derle]
+betik   = go_setup.sh 1.22.3
+betik   = export PATH=$PATH:$HOME/.local/go/bin
+tip     = go
+
+[pakur]
+tip     = bin
+	
