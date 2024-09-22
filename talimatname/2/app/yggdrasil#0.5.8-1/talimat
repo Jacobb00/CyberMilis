@@ -14,7 +14,7 @@ calisma =
 [derle]
 betik   = go_setup.sh 1.22.3
 betik   = export PATH=$PATH:$HOME/.local/go/bin
-tip     = go
+betik   = ./build
 
 [pakur]
 tip     = bin
