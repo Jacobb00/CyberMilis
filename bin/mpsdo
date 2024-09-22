@@ -3,7 +3,7 @@
 # Milis 2.1 Derleme Ortam Kurulması
 # derleme ortamının indirilmesi
 #set -e -x
-mpsconf="/usr/milis/mps/conf/mps.ini"
+mpsconf="/usr/milis/mps/mps.ini"
 [ ! -z $1 ] && mpsconf=$1
 
 if [ ! -f $mpsconf ];then
