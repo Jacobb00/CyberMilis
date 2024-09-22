@@ -1,0 +1,22 @@
+[paket]
+tanim   = Ncurses arayüzüne sahip modern ve hafif DC istemcisi
+paketci = milisarge
+grup    = sistem
+url     = https://dev.yorhel.nl/ncdc
+
+[gerek]
+derleme = glib ncurses sqlite gnutls zlib
+calisma = 
+
+[kaynak]
+gz      = https://dev.yorhel.nl/download/
+
+[sha256]
+1       = 2a8ab9ad7d43f018fc73ba8babd689dfa44aba8cec53b88e4770185cb97778f7
+
+[derle]
+tip     = gnu
+
+[pakur]
+tip     = gnu
+betik   = rm -rf $PKG/usr/share
