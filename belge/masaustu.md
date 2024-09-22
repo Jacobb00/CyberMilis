@@ -70,3 +70,39 @@ masa1 = labwc
 dinit yaz desktop masa1 labwc
 ``` 
 Atanan değerin /usr/share/wayland-sessions altında bulunan oturum isimlerinde biri olması gerekmektedir.
+
+#### Masaüstü Çalışma Ortamı Yönetimi
+
+Masaüstü ortamında farklı uygulamalar ile çalışılmaktadır. 
+Bu uygulamalar normal şartlarda masaüstü yeniden başlatıldığında sonlanmaktadır.
+Çalışma ortamının masaüstü açıldığında yeniden yüklenmesini ve oturum kaydı için ilgili uygulamaları aşağıda önerilen şekilde kullanabilir.
+Ayrıca Bu sürecin otomatize edilmesi için de çalışma yapılmaktadır.
+
+- **Web Tarayıcısı**: 
+Firefox ve Chromium uygulamaları kendi oturumlarını yönetmektedir.
+Masaüstü açılınca oturumu yeniden yükle ile tekrar oturumunuzu yükleyebilirsiniz.
+
+- **Metin Düzenleyicisi**:
+Geany uygulaması ile açılan dosyalar bir sonraki masaüstü açılışında tekrardan yüklenir.
+Her açtığınız dosya sekmesi de otomatik kayıt edilir.
+
+- **Uçbirim**:
+Varsayılan olarak Sakura uçbirim uygulaması kullanılmaktadır.
+Şu an için Sakura uygulamasının oturum yönetim özelliği yoktur.
+Sakura ile ancak Tmux uygulamasının desteği kullanılarak terminal ortamları yönetilebilir.
+Bir diğer tercih te oturum ve profil yönetimine sahip olan Roxterm uygulamasının kullanılmasıdır.
+Tmux ile de kullanılarak esnek bir uçbirim yönetimi sağlanabilir.
+Örnek bir tmux oturum başlatma:
+```
+tmux a -t oturum1
+```
+
+- **Dosya Yöneticisi**:
+Varsayılan olarak kullanılan Thunar dosya yöneticisi açılan sekmeleri güncel olarak kayıt etmekte ve bir sonraki açılışında yüklemektedir.
+Bunun için düzenle->tercihler->davranış bölümünde yer alan "Başlangıçta sekmeleri geri yükle" özelliği seçili olmalıdır.
+Thunar bu sekmeleri ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml dosyası üzerinden yönetmektedir.
+Açılması istenen sekmelerin uçbirimden komut ile kaydı:
+
+```
+xfconf-query -c thunar -p /last-tabs-left -n -a -t string -s "file:///opt/work" -t string -s "file:///opt/work2"
+```
