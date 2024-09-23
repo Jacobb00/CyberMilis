@@ -1,0 +1,24 @@
+[paket]
+tanim   = Statik olarak yazılan programlama dili
+paketci = milisarge
+grup    = kütüphane
+url     = http://www.ats-lang.org/
+arsiv   = ATS2-Postiats-gmp-$surum
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1     = https://downloads.sourceforge.net/project/ats2-lang/ats2-lang/ats2-postiats-$surum/ATS2-Postiats-gmp-$surum.tgz
+
+[derle]
+betik = autoconf
+betik = ./configure --prefix=/usr
+betik = make all
+
+[pakur]
+betik  = make DESTDIR=$PKG install
+betik  = mkdir -p $PKG/etc/profile.d 
+betik  = echo "export PATSHOME=/usr/lib/ats2-postiats-$surum" > $PKG/etc/profile.d/$isim.sh
+

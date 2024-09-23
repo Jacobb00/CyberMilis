@@ -38,6 +38,9 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 #### R
 - `rlang` paketi kurulur.
 
+#### Haskell
+- `haskell_setup.sh` ile geliştirme ortamı (ghci + cabal) kurulur.
+
 #### Zig
 - `zig_setup.sh $ZİG-SÜRÜM` ile istenen sürüm kurulumu yapılır.
 - `$HOME/.local/zig` altına kurulur.
@@ -68,3 +71,6 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 
 #### Perl
 - Perl 5.x sürümü kurulu gelmektedir.
+
+#### Ats2
+- `ats2` paketi kurulur.
