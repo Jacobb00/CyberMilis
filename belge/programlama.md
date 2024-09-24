@@ -74,3 +74,8 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 
 #### Ats2
 - `ats2` paketi kurulur.
+
+## Geliştirme Ortamı
+
+Milis Linux'ta grafik arayüzü kod düzenleyicisi olarak varsayılan olarak kurulu gelen **Geany** ve **Vscodium** (vscodium-bin) uygulamalarını kullanabilirsiniz.
+Ayrıca uçbirim ortamında kullanabileceğiz **nano** ve **vim** uygulamaları da mevcuttur.
