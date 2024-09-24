@@ -1,0 +1,24 @@
+[paket]
+tanim   = WeeChat hızlı, hafif ve genişletilebilir bir sohbet istemcisidir.
+paketci = milisarge
+grup    = kütüphane
+url     = https://weechat.org
+
+[gerek]
+derleme = cmake enchant gnutls cjson gnupg python guile ruby
+calisma = 
+
+[kaynak]
+1 = https://github.com/weechat/weechat/archive/refs/tags/v4.4.2.tar.gz::$isim-$surum.tar.gz 
+
+[sha256]
+1 = 8a7b06a9f82ee6c970ca80fd8d60d8d692a7f4552dde52073d43d85228acf16a
+
+[derle]
+ekconf = -DENABLE_ENCHANT=ON -DENABLE_JAVASCRIPT=OFF -DENABLE_PHP=OFF -DWITH-DEBUG=1 
+tip    = cmake 
+
+
+[pakur]
+tip    = cmake
+
