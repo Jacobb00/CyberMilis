@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://github.com/linuxmint/nemo
 
 [gerek]
-derleme = iso-codes libxkbfile libx11 libxi xkeyboard-config gtk3 vala pulseaudio
+derleme = meson json-glib iso-codes libxkbfile libx11 libxi xkeyboard-config gtk3 vala pulseaudio
 calisma = 
 
 [kaynak]
@@ -27,7 +27,7 @@ export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/l
 export  = XDG_DATA_DIRS=$XDG_DATA_DIRS:$PKG/usr/share
 
 ;cinn-desktop
-betik  = $SRC/cinnamon-desktop-6.2.0
+betik  = cd $SRC/cinnamon-desktop-6.2.0
 betik  = patch -p1 -i $SRC/0001-Only-compile-the-desktop-library.patch 
 ekconf = -Dsystemd=disabled
 meson  = cinnamon-desktop-6.2.0
