@@ -1,0 +1,13 @@
+libm.so.6
+libz.so.1
+libncursesw.so.6
+libperl.so
+libgcrypt.so.20
+libgnutls.so.30
+libcurl.so.4
+libzstd.so.1
+libc.so.6
+liblua.so.5.4
+ld-linux-x86-64.so.2
+libpython3.11.so.1.0
+libcjson.so.1
