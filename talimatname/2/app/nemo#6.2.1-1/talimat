@@ -1,0 +1,58 @@
+[paket]
+tanim   = Nemo, Cinnamon masaüstü ortamının dosya yöneticisidir.
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/linuxmint/nemo
+
+[gerek]
+derleme = iso-codes libxkbfile libx11 libxi xkeyboard-config gtk3 vala pulseaudio
+calisma = 
+
+[kaynak]
+1 = https://github.com/linuxmint/nemo/archive/refs/tags/6.2.1.tar.gz::$isim-$surum.tar.gz 
+2 = https://github.com/linuxmint/xapp/archive/refs/tags/2.8.4.tar.gz::xapp-2.8.4.tar.gz
+3 = https://github.com/linuxmint/cinnamon-translations/archive/refs/tags/6.2.1.tar.gz::cinnamon-translations-6.2.1.tar.gz
+4 = https://github.com/linuxmint/cinnamon-desktop/archive/refs/tags/6.2.0.tar.gz::cinnamon-desktop-6.2.0.tar.gz 
+dosya = 0001-Only-compile-the-desktop-library.patch
+dosya = 0001-Add-install-prefix-and-only-compile-nemo-translation.patch
+
+[sha256]
+1 = 7f88460530a67ca265efe20e368af4707e8c6191fb748445c211bd0990e3dda5
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = CXXFLAGS="$CFLAGS"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+export  = XDG_DATA_DIRS=$XDG_DATA_DIRS:$PKG/usr/share
+
+;cinn-desktop
+betik  = $SRC/cinnamon-desktop-6.2.0
+betik  = patch -p1 -i $SRC/0001-Only-compile-the-desktop-library.patch 
+ekconf = -Dsystemd=disabled
+meson  = cinnamon-desktop-6.2.0
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/cinnamon-desktop"
+
+; xapp
+betik  = cd $SRC/xapp-2.8.4
+ekconf = -Dapp-lib-only=true -Dstatus-notifier=false -Dxfce=false -Dmate=false
+meson  = xapp-2.8.4
+; nemo
+export = CFLAGS="$CFLAGS -I$PKG/usr/include/xapp"
+betik  = cd $SRC/nemo-$surum
+betik  = sed -i '/^\[Desktop Entry/,/^\[Desktop Action/ s/^Name\(.*\)=.*/Name\1=Nemo/' data/nemo.desktop.in 
+betik  = sed -i "s/subdir('search-helpers')//g" meson.build
+ekconf = -Dxmp=false
+tip    = meson
+;translations
+betik  = cd $SRC/cinnamon-translations-6.2.1
+betik  = patch -p1 -i $SRC/0001-Add-install-prefix-and-only-compile-nemo-translation.patch
+betik  = make DESTDIR=$PKG
+
+[pakur]
+;xapp
+; # Cleanup
+betik = find $PKG -type d -empty -print -delete
+; nemo
+; # Rename 'Files' app name to avoid having the same as nautilus 
+tip   = meson
