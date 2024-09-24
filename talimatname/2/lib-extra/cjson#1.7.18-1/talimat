@@ -1,0 +1,23 @@
+[paket]
+tanim   = ANSI Cde ultra hafif JSON ayrıştırıcısı
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/DaveGamble/cJSON/
+arsiv   = cJSON-$surum
+
+[gerek]
+derleme = cmake
+calisma = 
+
+[kaynak]
+1 = https://github.com/DaveGamble/cJSON/archive/refs/tags/v1.7.18.tar.gz::$isim-$surum.tar.gz 
+
+[sha256]
+1 = 3aa806844a03442c00769b83e99970be70fbef03735ff898f4811dd03b9f5ee5
+
+[derle]
+tip    = cmake 
+
+[pakur]
+tip   = cmake
+
