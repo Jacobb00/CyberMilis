@@ -26,7 +26,7 @@ Bu uygulamalar 2.3 sürümünde kullanılan mevcut uygulamar olup kullanıcı ku
 - İnternet tarayıcısı: [firefox](mozilla.org)
 - Dosya yöneticisi: [thunar](https://docs.xfce.org/xfce/thunar/start)
 - Metin düzenleyici: [geany](https://geany.org)
-- PDF görüntüleyici: [mpdf](https://gitlab.com/milislinux/milis23/src/branch/master/bin/mpdf)
+- PDF görüntüleyici: [atril](https://directory.fsf.org/wiki/Atril)
 - Terminal uygulaması:[sakura](https://github.com/dabisu/sakura)
 - Görev yöneticisi: [lxtask](https://wiki.lxde.org/en/LXTask),[htop](https://github.com/htop-dev/htop)
 - Resim uygulaması: [mypaint](https://mypaint.app)
