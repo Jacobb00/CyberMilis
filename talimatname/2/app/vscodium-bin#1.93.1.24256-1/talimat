@@ -1,0 +1,32 @@
+[paket]
+tanim   = VSCodeun Ücretsiz/Libre İkili Dosyaları
+paketci = milisarge
+grup    = geliştirme
+url     = https://github.com/VSCodium/vscodium.git
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+1 = https://github.com/VSCodium/vscodium/releases/download/$surum/VSCodium-linux-x64-$surum.tar.gz
+dosya = vscodium.desktop
+dosya = vscodium-uri-handler.desktop
+
+;[sha256]
+;1 = 3a5bc109974fcf408855c13965f6d6be0997655c5b359de0bfd19a678c00844e
+
+[derle]
+betik = echo 1
+
+[pakur]
+betik = cd $SRC
+betik = install -d -m755 $PKG/usr/bin
+betik = install -d -m755 $PKG/usr/share/{vscodium,applications,pixmaps}
+betik = cp -r $SRC/* $PKG/usr/share/vscodium/
+betik = ln -s /usr/share/vscodium/bin/codium $PKG/usr/bin/codium
+betik = ln -s /usr/share/vscodium/bin/codium $PKG/usr/bin/vscodium
+betik = install -D -m644 vscodium.desktop $PKG/usr/share/applications/vscodium.desktop
+betik = install -D -m644 vscodium-uri-handler.desktop $PKG/usr/share/applications/vscodium-uri-handler.desktop
+betik = install -D -m644 $SRC/resources/app/resources/linux/code.png $PKG/usr/share/pixmaps/vscodium.png
+
