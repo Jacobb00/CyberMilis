@@ -1,0 +1,29 @@
+[paket]
+tanim   = GNU Midnight Commander, terminal bazlı dosya yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://midnight-commander.org
+
+[gerek]
+derleme = libssh2
+calisma = 
+
+[kaynak]
+1 = https://github.com/MidnightCommander/mc/archive/refs/tags/4.8.28.tar.gz::$isim-$surum.tar.gz 
+dosya = mc-checki.diff
+dosya = mc-python3.patch
+
+[sha256]
+1 = a74b75adf2c9342a98c1eb4927711cd5b8d4fdfa67b109624d367ae2259eb518
+
+[derle]
+betik = sed -i 's| helpers-list||' tests/src/vfs/extfs/Makefile.am 
+betik = patch -p1 -i $SRC/mc-checki.diff 
+betik = patch -p1 -i $SRC/mc-python3.patch 
+betik = autoreconf -i 
+tip   = gnu
+
+[pakur]
+; # disable helpers tests because they are failing 
+tip   = gnu
+

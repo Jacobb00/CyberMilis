@@ -1,0 +1,21 @@
+[paket]
+tanim   = S-Lang dili yorumlayıcısı
+paketci = milisarge
+grup    = geliştirme
+url     = https://www.jedsoft.org/slang
+
+[gerek]
+derleme = pcre
+calisma = 
+
+[kaynak]
+1 = https://www.jedsoft.org/releases/slang/slang-2.3.2.tar.bz2 
+
+[sha256]
+1 = fc9e3b0fc4f67c3c1f6d43c90c16a5c42d117b8e28457c5b46831b8b5d3ae31a
+
+[derle]
+betik = ./configure --prefix=/usr --sysconfdir=/etc && make
+
+[pakur]
+betik = make DESTDIR=$PKG install-all
