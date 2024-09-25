@@ -16,11 +16,12 @@ calisma =
 1 = cba3a5759690d11dae4b5620c44f56be17a5688e32c9856776db8a9a93d6d59a
 
 [derle]
-betik = go_setup.sh 1.22.3 
+betik = go_setup.sh 1.22.3
+betik = betik = pathappend $HOME/.local/go/bin
 betik = make ${MAKEJOBS} 
-betik = cd $SRC/rest-server-0.13.0 ; CGO_ENABLED=0 go build -o rest-server ./cmd/rest-server
+betik = cd $SRC ; CGO_ENABLED=0 go build -o rest-server ./cmd/rest-server
 
 [pakur]
 betik = install -Dm00755 restic -t $PKG/usr/bin 
-betik = install -Dm00755 $SRC/rest-server/rest-server -t $PKG/usr/bin 
+betik = install -Dm00755 $SRC/rest-server -t $PKG/usr/bin 
 
