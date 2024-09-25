@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://midnight-commander.org
 
 [gerek]
-derleme = libssh2
+derleme = slang libssh2 automake glib
 calisma = 
 
 [kaynak]
@@ -17,13 +17,15 @@ dosya = mc-python3.patch
 1 = a74b75adf2c9342a98c1eb4927711cd5b8d4fdfa67b109624d367ae2259eb518
 
 [derle]
-betik = sed -i 's| helpers-list||' tests/src/vfs/extfs/Makefile.am 
-betik = patch -p1 -i $SRC/mc-checki.diff 
-betik = patch -p1 -i $SRC/mc-python3.patch 
-betik = autoreconf -i 
+betik = sed -i 's| helpers-list||' tests/src/vfs/extfs/Makefile.am
+betik = patch -p1 -i $SRC/mc-checki.diff
+betik = patch -p1 -i $SRC/mc-python3.patch
+betik = ./autogen.sh
 tip   = gnu
 
 [pakur]
-; # disable helpers tests because they are failing 
 tip   = gnu
+betik = rm -f $PKG/etc/mc/mc.keymap
+betik = cp $PKG/etc/mc/mc{.default,}.keymap
+betik = rm -v $PKG/usr/lib/mc/extfs.d/s3+
 
