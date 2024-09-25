@@ -19,7 +19,7 @@ def encrypt_password(username, password):
   return f"{username}:{bcrypted}"
 
 if len(sys.argv) != 3:
-  print("kullanim: httpasswd username password")
+  print("kullanim: httpasswd.py username password")
   sys.exit(1)
 
 user = sys.argv[1]
