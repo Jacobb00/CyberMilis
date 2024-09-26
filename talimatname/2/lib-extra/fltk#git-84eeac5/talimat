@@ -6,18 +6,16 @@ url     = https://www.fltk.org/
 arsiv   = fltk-84eeac5892c47c657deb961ef3aa88076c8ad651
 
 [gerek]
-derleme = alsa mesa
+derleme = alsa mesa wayland wayland-protocols libx11
 calisma = 
 
 [kaynak]
 1 = https://github.com/fltk/fltk/archive/84eeac5892c47c657deb961ef3aa88076c8ad651.tar.gz::$isim-84eeac5.tar.gz
-dosya = fltk-0001-disable_static_libs.patch 
 
 ;[sha256]
 ;1 = d736b0445c50d607432c03d5ba5e82f3fba2660b10bc1618db8e077a42d9511b
 
 [derle]
-;betik  = patch -p1 -i $SRC/fltk-0001-disable_static_libs.patch 
 betik  = ./autogen.sh
 ekconf =  --prefix=/usr --enable-threads --disable-xft --enable-shared 
 tip    = gnu
