@@ -6,7 +6,7 @@ url     = https://www.fltk.org/
 arsiv   = fltk-84eeac5892c47c657deb961ef3aa88076c8ad651
 
 [gerek]
-derleme = alsa mesa wayland wayland-protocols libx11
+derleme = automake alsa mesa wayland wayland-protocols libxkbcommon libx11 pango
 calisma = 
 
 [kaynak]
@@ -17,9 +17,8 @@ calisma =
 
 [derle]
 betik  = ./autogen.sh
-ekconf =  --prefix=/usr --enable-threads --disable-xft --enable-shared 
+ekconf =  --prefix=/usr --enable-threads --disable-xft --enable-shared --enable-wayland
 tip    = gnu
 
 [pakur]
 tip   = gnu
-
