@@ -1,0 +1,7 @@
+libChplFrontend.so
+libclang-cpp.so.17
+libLLVM-17.so
+libm.so.6
+libstdc++.so.6
+libc.so.6
+libncursesw.so.6
