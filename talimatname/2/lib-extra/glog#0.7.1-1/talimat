@@ -1,0 +1,35 @@
+[paket]
+tanim   = Google günlük kaydı modülünün C++ uygulaması.
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/google/glog
+
+[gerek]
+derleme = cmake
+calisma = 
+
+[kaynak]
+1 = https://github.com/google/glog/archive/v$surum.tar.gz::glog-$surum.tar.gz
+2 = https://github.com/gflags/gflags/archive/v2.2.2.tar.gz::gflags-2.2.2.tar.gz
+
+[sha256]
+1 = 00e4a87e87b7e7612f519a41e491f16623b12423620006f59f5688bfd8d13b08
+
+[derle]
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+;export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = CXXFLAGS="$CFLAGS"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+export = CMAKE_PREFIX_PATH=/usr/lib/cmake:$PKG/usr/lib/cmake
+ekconf = -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=ON
+cmake  = gflags-2.2.2
+
+ekconf = -DWITH_PKGCONFIG=ON
+cmake  = glog-$surum
+
+[pakur]
+betik = echo 1
+betik = rm -rf $PKG/root
+

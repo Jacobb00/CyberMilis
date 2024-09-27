@@ -72,6 +72,9 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 #### Perl
 - Perl 5.x sürümü kurulu gelmektedir.
 
+#### Chapel
+- `chapel` paketi kurulur.
+
 #### Ats2
 - `ats2` paketi kurulur.
 
