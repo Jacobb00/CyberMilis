@@ -13,7 +13,7 @@ calisma =
 dosya = cinttypes.patch
 
 [sha256]
-1 = 51c1fc58070979ffc6eb0af4b6ac26492b82fb230a9cbcc06f21c4eede398ce2
+1 = 74f123e98026f55f711e0b232944b884b535a28ab87eccab01dafd3dcc07a390
 2 = 7435708ea725f2a916cda116a88c76b1a72f4136295ee2dc88374a1efc5d70d3
 
 [derle]
