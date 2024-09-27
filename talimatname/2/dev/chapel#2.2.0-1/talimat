@@ -12,7 +12,7 @@ calisma =
 1 = https://github.com/chapel-lang/chapel/releases/download/${surum}/chapel-${surum}.tar.gz
 
 [sha256]
-1 = 72593c037505dd76e8b5989358b7580a3fdb213051a406adb26a487d26c68c60
+1 = bb16952a87127028031fd2b56781bea01ab4de7c3466f7b6a378c4d8895754b6
 
 [derle]
 betik = ./configure --prefix=/usr && make $MAKEJOBS
