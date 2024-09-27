@@ -1,0 +1,22 @@
+[paket]
+tanim   = Chapel programlama dili
+paketci = milisarge
+grup    = geliştirme
+url     = https://github.com/chapel-lang/chapel
+
+[gerek]
+derleme = llvm clang python
+calisma = 
+
+[kaynak]
+1 = https://github.com/chapel-lang/chapel/releases/download/${surum}/chapel-${surum}.tar.gz
+
+[sha256]
+1 = 72593c037505dd76e8b5989358b7580a3fdb213051a406adb26a487d26c68c60
+
+[derle]
+betik = ./configure --prefix=/usr && make $MAKEJOBS
+
+[pakur]
+tip   =  gnu
+
