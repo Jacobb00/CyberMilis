@@ -1,0 +1,15 @@
+libgdk-3.so.0
+libsigc-2.0.so.0
+libjsoncpp.so.25
+ld-linux-x86-64.so.2
+libgio-2.0.so.0
+libstdc++.so.6
+libc.so.6
+libgcc_s.so.1
+libiptux-core.so.0
+libgdk_pixbuf-2.0.so.0
+libglib-2.0.so.0
+libglog.so.2
+libgtk-3.so.0
+libpango-1.0.so.0
+libgobject-2.0.so.0

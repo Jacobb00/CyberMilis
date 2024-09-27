@@ -1,0 +1,27 @@
+[paket]
+tanim   = LAN messenger ve dosya gönderici, bir IP Messenger istemcisi
+paketci = milisarge
+grup    = ağ
+url     = https://github.com/iptux-src/iptux/
+
+[gerek]
+derleme = gtk3 jsoncpp appstream meson
+calisma = 
+
+[kaynak]
+1 = https://github.com/iptux-src/$isim/archive/v$surum/$isim-$surum.tar.gz
+dosya = cinttypes.patch
+
+[sha256]
+1 = 51c1fc58070979ffc6eb0af4b6ac26492b82fb230a9cbcc06f21c4eede398ce2
+2 = 7435708ea725f2a916cda116a88c76b1a72f4136295ee2dc88374a1efc5d70d3
+
+[derle]
+betik = patch -p1 -i $SRC/cinttypes.patch # Add missing include
+betik = CXXFLAGS+=" -DGLOG_USE_GLOG_EXPORT -DGLOG_USE_GFLAGS" milis-meson -Dappindicator=disabled . build
+betik = meson compile -C build
+
+
+[pakur]
+betik = meson install -C build --destdir "$PKG"
+
