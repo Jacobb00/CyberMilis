@@ -15,16 +15,17 @@ calisma =
 
 [sha256]
 1 = fc883483d86b1830674f3b08515daa27ae54ab47646c7edc48a067e8d1e8c114 
-;2 = 
 
 [derle]
 export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PKG/usr/lib"
 export = CFLAGS="$CFLAGS -I$PKG/usr/include"
 export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
 
-betik  = cd $SRC/filter_audio-0.0.1 && make && make DESTDIR=$PKG install
-ekconf = -DENABLE_ASAN=OFF
+betik  = cd $SRC/filter_audio-0.0.1 && make PREFIX=/usr && make PREFIX=/usr DESTDIR=$PKG install
+ekconf = -DSTATIC_FILTERAUDIO=ON -DENABLE_TESTS=OFF -DLIBFILTERAUDIO_LIBRARY=$PKG/usr/lib/libfilteraudio.a -DLIBFILTERAUDIO_INCLUDE_DIR=$PKG/usr/include -DENABLE_ASAN=OFF
 cmake  = uTox
 
 [pakur]
-betik = echo 1
+betik = rm -rf $PKG/usr/lib
+betik = rm -rf $PKG/usr/include
