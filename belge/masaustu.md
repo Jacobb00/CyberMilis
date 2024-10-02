@@ -106,3 +106,7 @@ Açılması istenen sekmelerin uçbirimden komut ile kaydı:
 ```
 xfconf-query -c thunar -p /last-tabs-left -n -a -t string -s "file:///opt/work" -t string -s "file:///opt/work2"
 ```
+
+#### Masaüstü Tema Arızası Giderme
+
+Normal kullanıcının tema ayarlarında bir bozukluk meydana geldiğinde `tamir_tema.py` , eğer yetkili modda çalıştırılan bir uygulama sonucu meydana gelirse `tamir_tema.sh` komutu ile gerekli düzeltme yapılabilir.
