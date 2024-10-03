@@ -17,7 +17,7 @@ Aşağıda adı geçen programlama dillerinin kurulum bilgileri yer almaktadır.
 - Statik olarak kurulu gelen `slua` ikilisi kullanılabilir. 
 
 #### Java
-- `sdk_setup.sh` ile `sdk` aracı kurulur.
+- `sudo sdk_setup.sh` ile `sdk` aracı kurulur.
 - sdk aracı ile `java` ve bileşenleri kurulabilir [(belge)](https://gitlab.com/milislinux/milis23/-/blob/main/belge/java.md).
 
 #### D
