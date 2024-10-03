@@ -1,0 +1,23 @@
+[paket]
+tanim   = Çeşitli 3 boyutlu model formatlarını içe ve dışa aktaran bir kitaplık.
+paketci = milisarge
+grup    = kütüphane
+url     = https://www.assimp.org/
+
+[gerek]
+derleme = cmake
+calisma = 
+
+[kaynak]
+1 = https://github.com/assimp/assimp/archive/v$surum.tar.gz::$isim-$surum.tar.gz 
+
+;[sha256]
+;1 = a07666be71afe1ad4bc008c2336b7c688aca391271188eb9108d0c6db1be53f1
+
+[derle]
+betik = -DASSIMP_BUILD_ZLIB=OFF -DASSIMP_WARNINGS_AS_ERRORS=OFF -DASSIMP_BUILD_ASSIMP_TOOLS=ON 
+tip    = cmake 
+
+[pakur]
+tip   = cmake
+
