@@ -1,5 +1,8 @@
 aclocal -I config-scripts
 autoconf -I config-scripts
+
+export DSOFLAGS=${LDFLAGS}
+
 ./configure --prefix=/usr \
 --sysconfdir=/etc \
 --localstatedir=/var \

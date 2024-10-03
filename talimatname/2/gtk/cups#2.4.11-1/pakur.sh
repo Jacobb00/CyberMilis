@@ -9,6 +9,9 @@ done
 # Remove files provided by cups-filters.
 rm -f ${PKG}/usr/share/cups/banners/*
 rm -f ${PKG}/usr/share/cups/data/testprint
+
+find "${PKG}"/usr/share/cups/model -name "*.ppd" | xargs gzip -n9f
+
 # comment out all conversion rules which use any of the removed filters
 perl -p -i -e 's:^(.*\s+bannertops\s*)$:#\1:' ${PKG}/usr/share/cups/mime/mime.convs
 
@@ -28,3 +31,4 @@ echo "NoDisplay=true" >> ${PKG}/usr/share/applications/cups.desktop
 rm -rf "${PKG}"/etc/rc*.d
 rm -rf "${PKG}"/etc/init.d
 rm -rf "${PKG}"/run
+rm -rf "${PKG}"/etc/xinetd.d
