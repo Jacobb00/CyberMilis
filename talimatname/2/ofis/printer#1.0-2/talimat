@@ -1,8 +1,8 @@
 [paket]
-tanim   = POSIX sistemleri için yazıcı sürücüleri
+tanim   = Milis Linux yazıcı gereksinimlerini içeren birleşik paket
 paketci = milisarge
 grup    = kütüphane
-url     = http://gimp-print.sourceforge.net
+url     = https://github.com/OpenPrinting
 
 [gerek]
 derleme = automake meson cmake ghostscript perl cups glib avahi poppler lcms2 python dejavu-fonts-ttf libyaml libexif python-gobject libsecret openjpeg2 harfbuzz mesa desktop-file-utils
@@ -58,7 +58,7 @@ betik  = find -type f  -name 'hpijs*' | xargs rm -vf
 betik  = make DESTDIR=$PKG install
 
 ; liblouis
-betik  = cd $SRC/liblouis-3.27.0
+betik  = cd $SRC/liblouis-3.31.0
 betik  = ./configure --prefix=/usr --enable-ucs4
 betik  = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 betik  = make $MAKEJOBS && make DESTDIR=$PKG install
@@ -119,4 +119,3 @@ betik  = echo "pakur yok"
 betik  = mv "${PKG}"/usr/sbin/* "${PKG}"/usr/bin/
 betik  = rmdir ${PKG}/usr/sbin/
 betik  = rm -rf ${PKG}/usr/lib/*.a
-betik  = mv $PKG/usr/lib/python3.11/site-packages/cupshelpers-1.0-py3.11.egg/cupshelpers $PKG/usr/lib/python3.11/site-packages/
