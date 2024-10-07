@@ -9,10 +9,10 @@ derleme	= meson glib libpng pixman freetype fontconfig libxrender xcb-util libxe
 calisma	= 
 
 [kaynak]
-bz2	    = https://gitlab.freedesktop.org/cairo/cairo/-/archive/$surum
+xz	    = https://www.cairographics.org/releases
 
 [sha256]
-1       = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+1       = a62b9bb42425e844cc3d6ddde043ff39dbabedd1542eba57a2eb79f85889d45a
 
 [derle]
 ekconf	= -D dwrite=disabled -D gtk_doc=false -D spectre=disabled -D symbol-lookup=disabled -D tests=disabled

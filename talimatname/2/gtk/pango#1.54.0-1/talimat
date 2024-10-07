@@ -9,10 +9,10 @@ derleme	= meson cairo gobject-introspection fontconfig freetype glib harfbuzz li
 calisma =
 
 [kaynak]
-xz  	= http://ftp.gnome.org/pub/gnome/sources/$isim/${surum%.*}
+1       =  https://download.gnome.org/sources/pango/1.54/pango-$surum.tar.xz
 
 [sha256]
-1       = 1d67f205bfc318c27a29cfdfb6828568df566795df0cb51d2189cde7f2d581e8
+1       = 8a9eed75021ee734d7fc0fdf3a65c3bba51dfefe4ae51a9b414a60c70b2d1ed8
 
 [derle]
 betik	= milis-meson -Dlibthai=disabled build
