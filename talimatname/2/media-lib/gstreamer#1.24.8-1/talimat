@@ -12,14 +12,16 @@ calisma  = python-gobject
 [kaynak]
 1     = https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-$surum.tar.xz
 2     = https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-$surum.tar.xz
-3     = http://gstreamer.freedesktop.org/src/orc/orc-0.4.34.tar.xz
+3     = http://gstreamer.freedesktop.org/src/orc/orc-0.4.40.tar.xz
 
 ;[sha256]
 ;1    = 4408d7930f381809e85917acc19712f173261ba85bdf20c5567b2a21b1193b61
 
 [derle]
 ekconf= -Dgtk_doc=disabled -Dexamples=disabled
-meson = orc-0.4.34
+meson = orc-0.4.40
+betik = rust_setup.sh -y
+betik = source $HOME/.cargo/env
 dosya = derle.sh
 
 [pakur]
