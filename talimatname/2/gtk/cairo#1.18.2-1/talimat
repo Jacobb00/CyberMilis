@@ -12,7 +12,7 @@ calisma	=
 bz2	    = https://gitlab.freedesktop.org/cairo/cairo/-/archive/$surum
 
 [sha256]
-1       = ead4724423eb969f98b456fe1e3ee1e1741fe1c8dfb1a41ca12afa81a6c1665f
+1       = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 [derle]
 ekconf	= -D dwrite=disabled -D gtk_doc=false -D spectre=disabled -D symbol-lookup=disabled -D tests=disabled

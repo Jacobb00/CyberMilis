@@ -9,14 +9,14 @@ derleme = meson gobject-introspection glib libxcomposite libxinerama libxcursor 
 calisma = shared-mime-info desktop-file-utils
 
 [kaynak]
-1      = https://gitlab.gnome.org/GNOME/gtk/-/archive/$surum/gtk-$surum.tar.bz2
+1      = https://download.gnome.org/sources/gtk/4.16/gtk-$surum.tar.xz
 
-;[sha256]
-;1 	   = bd152fa3a971c41da6d55179b4bd9eadf63ec5663fbf4a382c627042f1bfb7d9
+[sha256]
+1 	   = a5bf574c2a37c93f92618688d94857c7fb28dc14379e6416c7f3284e34576be2
 
 [derle]
 ;betik = export CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
-ekconf = -Dbroadway-backend=true -Dcloudproviders=disabled -Dcolord=disabled -Ddocumentation=false -Dman-pages=false -Dtracker=disabled  -Dmedia-ffmpeg=disabled -Dbuild-tests=false -Dbuild-testsuite=false -Dbuild-examples=false -Ddemos=false
+ekconf = -Dbroadway-backend=true -Dcloudproviders=disabled -Dcolord=disabled -Ddocumentation=false -Dman-pages=false -Dtracker=disabled -Dbuild-tests=false -Dbuild-testsuite=false -Dbuild-examples=false
 meson  = gtk-$surum
 	      
 [pakur]
