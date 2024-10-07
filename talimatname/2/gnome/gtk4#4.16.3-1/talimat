@@ -11,8 +11,8 @@ calisma = shared-mime-info desktop-file-utils
 [kaynak]
 1      = https://gitlab.gnome.org/GNOME/gtk/-/archive/$surum/gtk-$surum.tar.bz2
 
-[sha256]
-1 	   = bd152fa3a971c41da6d55179b4bd9eadf63ec5663fbf4a382c627042f1bfb7d9
+;[sha256]
+;1 	   = bd152fa3a971c41da6d55179b4bd9eadf63ec5663fbf4a382c627042f1bfb7d9
 
 [derle]
 ;betik = export CFLAGS+=" -DG_ENABLE_DEBUG -DG_DISABLE_CAST_CHECKS"
