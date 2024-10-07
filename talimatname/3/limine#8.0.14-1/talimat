@@ -1,0 +1,21 @@
+[paket]
+tanim   = Yeni x86/x86_64 BIOS/UEFI bootloader uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://limine-bootloader.org
+
+[gerek]
+derleme = nasm mtools
+calisma = 
+
+[kaynak]
+xz      = https://github.com/limine-bootloader/limine/releases/download/v${surum}
+
+[sha256]
+1       = 9422af86014a1414cac618375ed1e1be6b6f6d9b2217b46ce39f0a5b7ec5e7eb
+
+[derle]
+betik   = ./configure --prefix=/usr --enable-bios-cd --enable-bios-pxe --enable-bios --enable-uefi-x86-64 --enable-uefi-cd && make
+
+[pakur]
+betik   = make DESTDIR=${PKG} install
