@@ -5,6 +5,7 @@ export LD_LIBRARY_PATH=/usr/lib:$PKG/usr/lib
 #export PATH=$PATH:$PKG/usr/bin
 export XDG_DATA_DIRS="/usr/share/:/usr/locale/share/:$PKG/usr/share/"
 export CFLAGS="$CFLAGS -I$PKG/usr/include/gstreamer-1.0"
+export CFLAGS="$CFLAGS -I/usr/include/webrtc-audio-processing-1"
 export CPPFLAGS=$CFLAGS
 
 # gst-plugins good-bad
@@ -42,7 +43,6 @@ bad_opt=(
 -D doc=disabled
 -D wpe=disabled
 -D opencv=disabled
--D webrtc=disabled
 -D msdk=disabled
 -D curl-ssh2=disabled
 -D ladspa=disabled
@@ -70,6 +70,10 @@ bad_opt=(
 -D wasapi=disabled
 -D wic=disabled
 -D win32ipc=disabled
+-D aja=disabled
+-D lc3=disabled
+-D qt6d3d11=disabled
+-D webrtc=disabled
 )
 
 meson setup \
