@@ -5,14 +5,14 @@ grup    = kütüphane
 url     = https://invent.kde.org/plasma/layer-shell-qt
 
 [gerek]
-derleme = cmake extra-cmake-modules qt5-extra wayland-protocols
+derleme = cmake extra-cmake-modules qt6-base wayland-protocols qt6-wayland
 calisma =
 
 [kaynak]
 xz      = ${KDE_SITE}/plasma/${surum}
 
 [sha256]
-1       = 772f2aba1710bab59f4c948a8e9628f205a7c6a4dabeb418b3249c5990c688ab
+1       = layer-shell-qt
 
 [derle]
 tip     = cmake
