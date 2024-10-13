@@ -11,15 +11,15 @@ calisma =
 [kaynak]
 xz      = ${GNU_SITE}/${isim}
 
-;[sha256]
-;1       = fd5bebb7be1833abdb6e023c2f498a354498281df9d05523d8915babeb893f0a
+[sha256]
+1       = 83350ccd35b5b5a0cba6b334c41294ea968158c573940904f00b92f76345314d
 
 [derle]
 ; doc-man textinfo gereğinden kurtulmak için
 betik   = ln -s /usr/bin/echo /usr/bin/makeinfo
-;betik   = sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" libiberty/configure
+betik   = sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" libiberty/configure
 betik   = mkdir build;cd build
-betik   = ../configure --prefix=/usr --disable-nls --disable-source-highlight --enable-tui --with-system-readline --with-python=/usr/bin/python3 --without-guile --with-system-gdbinit=/etc/gdb/gdbinit
+betik   = ../configure --prefix=/usr --disable-nls --enable-source-highlight --enable-tui --enable-targets=all --enable-languages=all --enable-multilib --enable-interwork --with-system-readline --with-python=/usr/bin/python --with-system-gdbinit=/etc/gdb/gdbinit
 betik   = make $MAKEJOBS
 
 [pakur]
