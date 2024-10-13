@@ -12,7 +12,7 @@ calisma =
 xz      = ${KDE_SITE}/plasma/${surum}
 
 [sha256]
-1       = layer-shell-qt
+1       = 5390d178e7f6516d691edaa85fce9cbccfe060cea573abc650bb4066878eb2fe
 
 [derle]
 tip     = cmake
