@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://www.gnu.org/software/gdb/
 
 [gerek]
-derleme = perl python ncurses zlib readline expat
+derleme = perl python ncurses zlib readline expat guile
 calisma =
 
 [kaynak]

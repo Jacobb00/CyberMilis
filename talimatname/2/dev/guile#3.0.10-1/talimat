@@ -5,7 +5,7 @@ grup    = geliştirme
 url     = http://www.gnu.org/software/guile
 
 [gerek]
-derleme = gc
+derleme = gc libunistring
 calisma = 
 
 [kaynak]
@@ -20,5 +20,8 @@ betik = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 betik = make $MAKEJOBS
 
 [pakur]
+nostrip = 1
 tip   = gnu
 betik = rm -f $PKG/usr/lib/libguile-3.?.so.*-gdb.scm
+betik = rm -f $PKG/usr/lib/*.la
+betik = strip $PKG/usr/lib/libguile-*
