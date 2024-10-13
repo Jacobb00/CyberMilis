@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://www.gnu.org/software/gdb/
 
 [gerek]
-derleme = perl python ncurses zlib readline expat guile
+derleme = perl python ncurses zlib readline expat
 calisma =
 
 [kaynak]
@@ -20,7 +20,7 @@ betik   = ln -s /usr/bin/echo /usr/bin/makeinfo
 betik   = sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" libiberty/configure
 betik   = mkdir build;cd build
 betik   = ../configure --prefix=/usr --disable-nls --disable-source-highlight --enable-tui --enable-targets=all --enable-languages=all --enable-multilib --enable-interwork --with-system-readline --with-python=/usr/bin/python --with-system-gdbinit=/etc/gdb/gdbinit
-betik   = make $MAKEJOBS
+betik   = LC_ALL=C make $MAKEJOBS
 
 [pakur]
 nostrip = 1
