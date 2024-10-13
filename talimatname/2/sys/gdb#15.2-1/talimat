@@ -23,9 +23,12 @@ betik   = ../configure --prefix=/usr --disable-nls --disable-source-highlight --
 betik   = make $MAKEJOBS
 
 [pakur]
+nostrip = 1
 betik   = cd build
 betik   = make -C gdb/data-directory DESTDIR=$PKG install
 betik   = make -C gdb DESTDIR=$PKG install
 betik   = make -C gdbserver DESTDIR=$PKG install
 betik   = install -dm755 $PKG/etc/gdb
 betik   = touch $PKG/etc/gdb/gdbinit
+betik   = strip $PKG/usr/bin/gdb
+betik   = strip $PKG/usr/bin/gdbserver
