@@ -1,0 +1,24 @@
+[paket]
+tanim   = Guile programlama dili
+paketci = milisarge
+grup    = geliştirme
+url     = http://www.gnu.org/software/guile
+
+[gerek]
+derleme = gc
+calisma = 
+
+[kaynak]
+gz = https://mirrors.rit.edu/gnu/guile
+
+[sha256]
+1 = 2dbdbc97598b2faf31013564efb48e4fed44131d28e996c26abe8a5b23b56c2a
+
+[derle]
+betik = ./configure --prefix=/usr --disable-static --disable-error-on-warning
+betik = sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+betik = make $MAKEJOBS
+
+[pakur]
+tip   = gnu
+betik = rm -f $PKG/usr/lib/libguile-3.?.so.*-gdb.scm
