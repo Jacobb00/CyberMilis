@@ -11,8 +11,8 @@ calisma =
 [kaynak]
 xz      = https://download.kde.org/stable/frameworks/${surum%.*}
 
-;[sha256]
-;1       = 265e5440eebeca07351a469e617a4bf35748927bd907b00ace9c018392bb3bc4
+[sha256]
+1       = 206e23e05ba8934ac7a275c8fdd3704165f558878d3dbe3299f991473997ccb8
 
 [derle]
 ekconf  = -DBUILD_HTML_DOCS=OFF -DBUILD_TESTING=OFF
