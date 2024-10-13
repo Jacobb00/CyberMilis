@@ -1,1 +1,13 @@
-
+libm.so.6
+libc.so.6
+libexpat.so.1
+libreadline.so.8
+libzstd.so.1
+libpython3.11.so.1.0
+libstdc++.so.6
+ld-linux-x86-64.so.2
+liblzma.so.5
+libncursesw.so.6
+libmpfr.so.6
+libgmp.so.10
+libgcc_s.so.1
