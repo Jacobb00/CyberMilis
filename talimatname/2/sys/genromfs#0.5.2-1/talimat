@@ -1,0 +1,20 @@
+[paket]
+tanim   = romfs görüntüleri oluşturmak için araç
+paketci = milisarge
+grup    = sistem
+url     = http://romfs.sourceforge.net
+
+[gerek]
+derleme =
+calisma = 
+
+[kaynak]
+gz      = http://downloads.sourceforge.net/project/romfs/$isim/$surum
+
+[derle]
+betik = make
+
+[pakur]
+betik = mkdir -p "$PKG/usr/bin"
+betik = install -m 755 genromfs "$PKG/usr/bin"
+
