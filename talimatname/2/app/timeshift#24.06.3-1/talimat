@@ -1,0 +1,24 @@
+[paket]
+tanim   = Linux için bir sistem geri yükleme aracı
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/linuxmint/timeshift
+
+[gerek]
+derleme = cmake meson nemo libgee json-glib gtk3 vte3 rsync cronie meson vala btrfs-progs
+calisma = cronie btrfs-progs
+
+[kaynak]
+1      = ${url}/archive/refs/tags/$surum.tar.gz::$isim-$surum.tar.gz
+
+[sha256]
+1      = d5151abba395ceb54d7b3383c52f30ed99ecb880d09c5a8c9f666dceef2015ca
+
+[derle]
+ekconf = -Dman=false
+tip    = meson
+
+[pakur]
+tip    = meson
+betik  = sed -i 's/Exec=/Exec=sudoui -c /g' $PKG/usr/share/applications/timeshift-gtk.desktop
+
