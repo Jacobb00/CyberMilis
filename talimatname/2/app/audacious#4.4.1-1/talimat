@@ -5,7 +5,7 @@ grup    = medya
 url     = https://audacious-media-player.org/
 
 [gerek]
-derleme = qt6-base glib xiph media-extra ffmpeg pipewire
+derleme = meson qt6-base qt6-svg glib xiph media-extra ffmpeg pipewire libcdio-paranoia faac fluidsynth libnotify
 calisma = qt6-wayland
 
 [kaynak]
