@@ -1,0 +1,33 @@
+[paket]
+tanim   = Audacious açık kaynaklı bir ses oynatıcısıdır.
+paketci = milisarge
+grup    = medya
+url     = https://audacious-media-player.org/
+
+[gerek]
+derleme = qt6-base glib xiph media-extra ffmpeg pipewire
+calisma = qt6-wayland
+
+[kaynak]
+1 = https://distfiles.audacious-media-player.org/audacious-$surum.tar.bz2 
+2 = https://distfiles.audacious-media-player.org/audacious-plugins-$surum.tar.bz2 
+
+[sha256]
+1 = 260d988d168e558f041bbb56692e24c535a96437878d60dfd01efdf6b1226416
+2 = 484ed416b1cf1569ce2cc54208e674b9c516118485b94ce577d7bc5426d05976
+
+[derle]
+export  = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export  = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export  = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+
+ekconf = -Dgtk=false
+meson  = audacious-$surum
+
+export  = CXXFLAGS=$CFLAGS
+ekconf = -Dgtk=false
+meson  = audacious-plugins-$surum
+
+[pakur]
+betik = install -Dm00644 $SRC_DIR/contrib/audacious.appdata.xml -t $PKG/usr/share/metainfo/ 
+

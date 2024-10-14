@@ -1,0 +1,24 @@
+[paket]
+tanim   = kconfig-frontends aracı
+paketci = milisarge
+grup    = sistem
+url     = https://bitbucket.org/nuttx/tools.git
+arsiv   = nuttx-tools/kconfig-frontends
+
+
+[gerek]
+derleme =
+calisma = 
+
+[kaynak]
+git     = $url::nuttx-tools
+
+[derle]
+betik  = ln -s /usr/local/bin/aclocal /usr/local/bin/aclocal-1.15
+betik  = ln -s /usr/local/bin/automake /usr/local/bin/automake-1.15
+ekconf = --enable-mconf --disable-shared --enable-static --disable-gconf --disable-qconf --disable-nconf
+tip    = gnu
+
+[pakur]
+tip   = gnu
+
