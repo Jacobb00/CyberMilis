@@ -9,11 +9,11 @@ derleme = meson fftw libexif libarchive librsvg libwebp gobject-introspection li
 calisma = 
 
 [kaynak]
-xz      = https://github.com/libvips/libvips/releases/download/v$surum
+1       = https://github.com/libvips/libvips/releases/download/v$surum/$isim-$surum-rc1.tar.xz
 
 [derle]
 ekconf = -Dnifti=disabled -Djpeg-xl=disabled -Dpdfium=disabled -Dhighway=disabled -Dmatio=disabled -Dopenslide=disabled -Dspng=disabled -Dquantizr=disabled -Dimagequant=disabled -Dcfitsio=disabled -Dgtk_doc=false
-meson  = vips-$surum
+meson  = vips-$surum-rc1
 
 [pakur]
 betik  = echo 1
