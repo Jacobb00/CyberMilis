@@ -1,0 +1,19 @@
+[paket]
+tanim   = Düşük bellek ihtiyacı olan hızlı bir görüntü işleme kütüphanesi
+paketci = milisarge
+grup    = kütüphane
+url     = https://libvips.github.io/libvips/
+
+[gerek]
+derleme = fftw libexif libarchive librsvg libwebp gobject-introspection libheif imagemagick poppler
+calisma = 
+
+[kaynak]
+xz      = https://github.com/libvips/libvips/releases/download/v$surum
+
+[derle]
+ekconf = -Dnifti=disabled -Djpeg-xl=disabled -Dpdfium=disabled -Dhighway=disabled -Dmatio=disabled -Dopenslide=disabled -Dspng=disabled -Dquantizr=disabled -Dimagequant=disabled -Dcfitsio=disabled -Dgtk_doc=false
+meson  = vips-$surum
+
+[pakur]
+betik  = echo 1
