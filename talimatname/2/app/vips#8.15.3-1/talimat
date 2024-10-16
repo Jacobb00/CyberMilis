@@ -5,7 +5,7 @@ grup    = kütüphane
 url     = https://libvips.github.io/libvips/
 
 [gerek]
-derleme = fftw libexif libarchive librsvg libwebp gobject-introspection libheif imagemagick poppler
+derleme = meson fftw libexif libarchive librsvg libwebp gobject-introspection libheif imagemagick poppler gstreamer
 calisma = 
 
 [kaynak]
