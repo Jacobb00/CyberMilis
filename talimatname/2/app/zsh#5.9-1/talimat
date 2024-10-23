@@ -5,7 +5,7 @@ grup    = sistem
 url     = https://www.zsh.org/
 
 [gerek]
-derleme = libcap pcre2
+derleme = automake libcap pcre2
 calisma = 
 
 [kaynak]
@@ -16,6 +16,7 @@ dosya = 0002-50325-fix-autocompletion.patch
 dosya = 0003-51862-support-texinfo-7-0.patch
 dosya = 0004-pcre2.patch
 dosya = 0005-52383-avoid-incompatible-pointer-types.patch
+dosya = zprofile
 
 [sha256]
 1   = 9b8d1ecedd5b5e81fbf1918e876752a7dd948e05c1a0dba10ab863842d45acd5
@@ -37,7 +38,7 @@ export = EKCONF1="--enable-maildir-support --with-term-lib='ncursesw' --enable-m
 export = EKCONF2="--enable-scriptdir=/usr/share/zsh/scripts --with-tcsetpgrp --enable-pcre --enable-gdbm --enable-cap "
 export = EKCONF3="--enable-etcdir=/etc/zsh --enable-zshenv=/etc/zsh/zshenv --enable-zlogin=/etc/zsh/zlogin --enable-zlogout=/etc/zsh/zlogout "
 export = EKCONF4="--enable-zprofile=/etc/zsh/zprofile --enable-zshrc=/etc/zsh/zshrc --enable-zsh-secure-free "
-ekconf = "$EKCONF1 $EKCONF2 $EKCONF3 $EKCONF4"
+ekconf = $EKCONF1 $EKCONF2 $EKCONF3 $EKCONF4
 tip    = gnu
 
 [pakur]
