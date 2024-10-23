@@ -1,0 +1,22 @@
+[paket]
+tanim   = Z Unix kabuğu uygulaması
+paketci = milisarge
+grup    = sistem
+url     = https://www.zsh.org/
+
+[gerek]
+derleme = libcap pcre2
+calisma = 
+
+[kaynak]
+xz  = https://sourceforge.net/projects/zsh/files/zsh/$surum
+
+[sha256]
+1   = 9b8d1ecedd5b5e81fbf1918e876752a7dd948e05c1a0dba10ab863842d45acd5
+
+[derle]
+tip = gnu
+
+[pakur]
+tip   = gnu
+

@@ -1,0 +1,33 @@
+[paket]
+tanim   = Gobject tabanlı kütüphaneler için gözlem sistemi
+paketci = milisarge
+grup    = sistem
+url     = https://gi.readthedocs.io/en/latest/
+
+[gerek]
+derleme = meson cairo glib
+calisma = python
+
+[kaynak]
+xz      = https://download.gnome.org/sources/$isim/${surum%.*}
+2       = http://ftp.gnome.org/pub/gnome/sources/glib/2.82/glib-2.82.2.tar.xz
+
+;[sha256]
+;1      = 196178bf64345501dcdc4d8469b36aa6fe80489354efe71cb7cb8ab82a3738bf
+
+[derle]
+export = LIBRARY_PATH="$LIBRARY_PATH:$PKG/usr/lib"
+export = CFLAGS="$CFLAGS -I$PKG/usr/include"
+export = PKG_CONFIG_PATH=$(pkg-config --variable pc_path pkg-config):$PKG/usr/lib/pkgconfig
+export = PATH=$PATH:$PKG/usr/bin
+
+ekconf = -Ddoctool=disabled -Dcairo=enabled -D gtk_doc=false
+meson  = $isim-$surum
+betik  = cp -r $PKG/usr $PKG/usr2
+ekconf = -Dselinux=disabled -Ddtrace=disabled -Dsystemtap=disabled -Dglib_debug=disabled -Dintrospection=enabled -Dsysprof=disabled -Ddocumentation=false -Dman-pages=disabled
+meson  = glib-2.82.2
+
+[pakur]
+betik  = mv -v $PKG/usr/share/gir-1.0/* $PKG/usr2/share/gir-1.0/
+betik  = mv -v $PKG/usr/lib/girepository-1.0 $PKG/usr2/lib/
+betik  = rm -rf $PKG/usr && mv $PKG/usr2 $PKG/usr
