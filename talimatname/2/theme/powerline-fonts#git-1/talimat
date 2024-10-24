@@ -1,0 +1,21 @@
+[paket]
+tanim   = Powerline fontlar
+paketci = milisarge
+grup    = kütüphane
+url     = https://github.com/powerline/fonts/
+arsiv   = fonts
+
+[gerek]
+derleme = 
+calisma = 
+
+[kaynak]
+git = https://github.com/powerline/fonts
+
+[derle]
+betik = echo 1
+
+[pakur]
+betik = rm -r install.sh install.ps1 samples 
+betik = mkdir -p $PKG/usr/share/fonts/powerline 
+betik = cp -r * $PKG/usr/share/fonts/powerline
