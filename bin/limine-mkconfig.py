@@ -72,21 +72,26 @@ if "blockdevices" in blocks:
             boot_path = mntp+"/boot"
             if os.path.exists(boot_path):
               initrd = ""
+              initrds = []
               kernel = ""
+              kernels = []
               for init in ["initrd.img-*","initrd-*","initramfs-*","initramfs-linux-*"]:
-                result = subprocess.run(["find",boot_path,"-name",init],capture_output=True)
+                #result = subprocess.run(["find",boot_path,"-name",init],capture_output=True)
+                result = subprocess.run(["rg","-g",init,"--files",boot_path,"--sort=modified"],capture_output=True)
                 result = result.stdout.decode()
                 if result != "":
-                  initrd= result.split("\n")[0].strip().split("/boot/")[-1]
-                  # bir init bulunca çık
-                  break 
+                  for line in result.split("\n"):
+                    initrd = line.strip().split("/boot/")[-1]
+                    if initrd != "" :
+                      initrds.append(initrd) 
               for kern in ["kernel-*","vmlinuz-*","initramfs-linux-*"]:
-                result = subprocess.run(["find",boot_path,"-name",kern],capture_output=True)
+                result = subprocess.run(["rg","-g",kern,"--files",boot_path,"--sort=modified"],capture_output=True)
                 result = result.stdout.decode()
                 if result != "":
-                  kernel = result.split("\n")[0].strip().split("/boot/")[-1]
-                  # bir kernel bulunca çık
-                  break
+                  for line in result.split("\n"):
+                    kernel = line.strip().split("/boot/")[-1]
+                    if kernel != "":                    
+                      kernels.append(kernel)
               uuid = child["uuid"]
               if child["label"]: label=child["label"]
               if os.path.exists(mntp+"/etc/milis-surum"):
@@ -97,10 +102,15 @@ if "blockdevices" in blocks:
                   label = cnt[0].split("=")[1]+" "
                   label += cnt[1].split("=")[1]
                   label = label.replace('"',"")
-              item_str = linux_item.format(label,uuid,kernel,uuid,initrd,uuid,cmdline)
-              if "Milis Linux" in label:
-                  menu_items.insert(0,item_str)
-              else:
+              for ki, kernel in enumerate(kernels):
+                initrd = ""
+                if ki < len(initrds):
+                  initrd = initrds[ki]	 
+                item_str = linux_item.format(label,uuid,kernel,uuid,initrd,uuid,cmdline)
+                if "Milis Linux" in label:
+                  #menu_items.insert(0,item_str)
+                  menu_items.append(item_str)
+                else:
                   menu_items.append(item_str)
 
 for istr in menu_items:
