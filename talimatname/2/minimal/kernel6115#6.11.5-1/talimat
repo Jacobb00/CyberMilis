@@ -1,0 +1,23 @@
+[paket]
+tanim   = Milis Linux Kararlı Kernel sürümü
+paketci = milisarge
+grup 	= temel
+url     = http://www.kernel.org
+
+[gerek]
+derleme = linux-firmware intel-ucode elfutils python cpio pahole
+calisma = 
+
+[kaynak]
+1     = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-$surum.tar.xz
+dosya = kernel-$surum-config
+
+[sha256]
+1     = 471485b3b7f2fb637bd8fe3d00944c4c135c7d8ee02f357f33690baab0752a07
+
+[derle]
+dosya = derle.sh
+     
+[pakur]
+nostrip = 1
+dosya = pakur.sh
