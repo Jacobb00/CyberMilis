@@ -1,0 +1,41 @@
+[paket]
+tanim   = Grafik görüntülerin manipülasyonu için bir araç seti
+paketci = milisarge
+grup    = kütüphane
+url     = http://netpbm.sourceforge.net/
+
+[gerek]
+derleme = jbigkit libjpeg-turbo libpng tiff libxml2
+calisma = 
+
+[kaynak]
+1 = https://downloads.sourceforge.net/project/netpbm/super_stable/$surum/netpbm-$surum.tgz
+dosya = netpbm-CAN-2005-2471.patch
+dosya = netpbm-security-code.patch
+dosya = netpbm-security-scripts.patch
+dosya = reproducible-man-gzip.patch
+
+[sha256]
+1 = ac7d30dc1bcfc754931d247fcad475503c121c16cc6470e68c4313128a221ddd
+
+[derle]
+betik = patch -p1 < ../netpbm-CAN-2005-2471.patch
+betik = patch -p1 < ../netpbm-security-code.patch
+betik = patch -p1 < ../netpbm-security-scripts.patch
+betik = patch -p1 < ../reproducible-man-gzip.patch
+betik = cp config.mk.in  config.mk
+betik = echo 'CFLAGS_SHLIB = -fPIC' >> config.mk
+betik = echo 'TIFFLIB = libtiff.so' >> config.mk
+betik = echo 'JPEGLIB = libjpeg.so' >> config.mk
+betik = echo 'PNGLIB = libpng.so' >> config.mk
+betik = echo 'ZLIB = libz.so' >> config.mk
+betik = echo 'JBIGLIB = /usr/lib/libjbig.a' >> config.mk
+betik = sed -i 's|misc|share/netpbm|' common.mk
+betik = sed -e 's|/sharedlink|/lib|' -e 's|/staticlink|/lib|' -i lib/Makefile
+betik = sed -i 's|install.manwebmain install.manweb install.man|install.man|' GNUmakefile
+betik = make
+
+[pakur]
+betik = make pkgdir="$PKG/usr" install-run install-dev
+betik = echo -e '#!/bin/sh\npamditherbw $@ | pamtopnm\n' > "$PKG/usr/bin/pgmtopbm"
+
