@@ -3,6 +3,7 @@ tanim   = Vektör tabanlı çizim programı
 paketci = milisarge
 grup    = tasarım
 url     = http://inkscape.org
+arsiv   = inkscape-1.4_2024-10-09_e7c3feb100
 
 [gerek]
 derleme = cmake python glib libpng gc gsl gtkmm libxslt boost poppler libvisio lib2geom lcms2 potrace double-conversion libjpeg-turbo graphicsmagick libsoup openjpeg2
@@ -12,7 +13,7 @@ calisma = python-numpy python-lxml
 1       = https://media.inkscape.org/dl/resources/file/inkscape-${surum}.tar.xz
 
 [sha256]
-1       = 8d9b31142554945664edfefe2d6b55910a5099765f7176a71107c34f1dcde6ad
+1       = c59a85453b699addebcd51c1dc07684dd96a10c8aec716b19551db50562e13f5
 
 [derle]
 ekconf  = -DWITH_DBUS=ON
