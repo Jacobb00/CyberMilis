@@ -6,7 +6,7 @@ url     = http://inkscape.org
 arsiv   = inkscape-1.4_2024-10-09_e7c3feb100
 
 [gerek]
-derleme = cmake python glib libpng gc gsl gtkmm libxslt boost poppler libvisio lib2geom lcms2 potrace double-conversion libjpeg-turbo graphicsmagick libsoup openjpeg2
+derleme = cmake python glib libpng gc gsl gtkmm libxslt boost poppler libvisio lcms2 potrace double-conversion libjpeg-turbo graphicsmagick libsoup openjpeg2
 calisma = python-numpy python-lxml
 
 [kaynak]
