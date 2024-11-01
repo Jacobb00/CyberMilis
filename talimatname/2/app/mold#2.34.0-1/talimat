@@ -1,0 +1,23 @@
+[paket]
+tanim   = kalıp, mevcut Unix bağlayıcıları için daha hızlı bir alternatiftir.
+paketci = milisarge
+grup    = sistem
+url     = https://github.com/rui314/mold
+
+[gerek]
+derleme = cmake zstd mimalloc tbb
+calisma = 
+
+[kaynak]
+1   = https://github.com/rui314/mold/archive/refs/tags/v${surum}.tar.gz::$isim-$surum.tar.gz 
+
+[sha256]
+1 = 6067f41f624c32cb0f4e959ae7fabee5dd71dd06771e2c069c2b3a6a8eca3c8c
+
+[derle]
+ekconf = -DMOLD_MOSTLY_STATIC=OFF -DMOLD_USE_MIMALLOC=ON -DMOLD_USE_SYSTEM_MIMALLOC=OFF -DMOLD_USE_SYSTEM_TBB=OFF -DMOLD_LTO=ON  
+tip    = cmake 
+
+[pakur]
+tip    = cmake
+
