@@ -1,0 +1,27 @@
+[paket]
+tanim   = Wireshark dünyanın önde gelen ağ protokolü analizörüdür.
+paketci = milisarge
+grup    = ağ
+url     = https://www.wireshark.org/
+arsiv   = $isim-v${surum}
+
+[gerek]
+derleme = cmake qt6-base c-ares qt6-compat5
+calisma = 
+
+[kaynak]
+1 = https://gitlab.com/wireshark/wireshark/-/archive/v$surum/wireshark-v${surum}.tar.gz 
+
+[sha256]
+1 = 7c23296e057daf27fdceb6a551f5810da40b88434ff7ccb3e942d4ccefcbc798
+
+[derle]
+tip   = cmake 
+
+
+[pakur]
+tip   = cmake
+betik = chmod 750  $PKG/usr/bin/dumpcap 
+betik = chown :150 $PKG/usr/bin/dumpcap 
+betik = setcap 'CAP_NET_RAW=ep CAP_NET_ADMIN=ep' $PKG/usr/bin/dumpcap 
+
