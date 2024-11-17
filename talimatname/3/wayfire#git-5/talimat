@@ -1,0 +1,31 @@
+[paket]
+tanim   = 3D wayland pencere yöneticisi
+paketci = milisarge
+grup    = sistem
+url     = https://wayfire.org
+
+[gerek]
+derleme = meson wayland wayland-protocols pango libjpeg-turbo glm nlohmann-json mesa libinput libxkbcommon vulkan glslang seatd xcb-util-wm xcb-util-image xcb-util-errors xcb-util-renderutil wlroots
+calisma = 
+
+[kaynak]
+git     = https://github.com/WayfireWM/wayfire
+git     = https://github.com/WayfireWM/wf-config
+git     = https://github.com/WayfireWM/wf-utils
+git     = https://github.com/WayfireWM/wf-touch
+
+[derle]
+betik   = rmdir subprojects/*
+betik   = cp -r /sources/wf-config subprojects/wf-config
+betik   = cp -r /sources/wf-utils subprojects/wf-utils
+betik   = cp -r /sources/wf-touch subprojects/wf-touch
+ekconf  = -Dtests=disabled -Dxwayland=disabled -Duse_system_wfconfig=disabled -Duse_system_wlroots=enabled -Dwf-touch:tests=disabled -Dwf-config:tests=disabled
+betik   = cd wayfire; git checkout track-wlroots,
+meson   = wayfire
+
+[pakur]
+;tip     = meson
+betik   = install -Dm644 $isim-$surum/wayfire.desktop "${PKG}/usr/share/wayland-sessions/wayfire.desktop"
+betik   = install -Dm644 $isim-$surum/wayfire.ini "${PKG}/etc/wayfire/wayfire.ini"
+betik   = rm -rf $PKG/usr/man
+betik   = rm -rf $PKG/usr/lib/*.a
