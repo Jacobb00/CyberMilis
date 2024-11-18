@@ -24,8 +24,7 @@ betik   = git checkout track-wlroots
 meson   = wayfire
 
 [pakur]
-;tip     = meson
-betik   = install -Dm644 $isim-$surum/wayfire.desktop "${PKG}/usr/share/wayland-sessions/wayfire.desktop"
-betik   = install -Dm644 $isim-$surum/wayfire.ini "${PKG}/etc/wayfire/wayfire.ini"
+betik   = install -Dm644 wayfire/wayfire.desktop "${PKG}/usr/share/wayland-sessions/wayfire.desktop"
+betik   = install -Dm644 wayfire/wayfire.ini "${PKG}/etc/wayfire/wayfire.ini"
 betik   = rm -rf $PKG/usr/man
 betik   = rm -rf $PKG/usr/lib/*.a
