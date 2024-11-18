@@ -15,12 +15,12 @@ git     = https://github.com/WayfireWM/wf-utils
 git     = https://github.com/WayfireWM/wf-touch
 
 [derle]
-betik   = rmdir subprojects/*
+betik   = cd wayfire;rmdir subprojects/*
 betik   = cp -r /sources/wf-config subprojects/wf-config
 betik   = cp -r /sources/wf-utils subprojects/wf-utils
 betik   = cp -r /sources/wf-touch subprojects/wf-touch
 ekconf  = -Dtests=disabled -Dxwayland=disabled -Duse_system_wfconfig=disabled -Duse_system_wlroots=enabled -Dwf-touch:tests=disabled -Dwf-config:tests=disabled
-betik   = cd wayfire; git checkout track-wlroots,
+betik   = git checkout track-wlroots
 meson   = wayfire
 
 [pakur]
